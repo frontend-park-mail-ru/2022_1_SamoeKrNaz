@@ -1,0 +1,10 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    color: blue;
+    font-family: Helvetica, Arial, sans-serif;
+}
