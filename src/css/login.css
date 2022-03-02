@@ -4,8 +4,15 @@
     --gray-text: #7F7F7F;
     --gray-main-dark: #E9F0F6;
     --gray-menu: #ABB7C0;
+    --white: #F8FAFD;
 }
 
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
 
 .container {
     height: 100vh;
@@ -18,11 +25,16 @@
     background-color: var(--blue-color);
     height: 100%;
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #DFE8EF;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth__svg {
     position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -700px;
+    margin-left: -500px;
 }
 
 .auth__block {
@@ -48,15 +60,16 @@
 }
 
 .auth__block_header {
-    font-size: 44px;
+    font-size: 40px;
     color: var(--gray-text);
-    margin-bottom: 9px;
+    margin-bottom: 20px;
+    width: 370px;
 }
 
 .auth__block_descp {
     color: var(--gray-text);
     font-size: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     line-height: 20px;
 }
 
@@ -69,7 +82,7 @@
     border-radius: 10px;
     margin: 10px 0;
     padding: 20px;
-    caret-color: transparent;
+    caret-color: var(--gray-text);
 }
 
 .auth__block_input::placeholder {
@@ -78,7 +91,6 @@
 
 .auth__block_input:focus-visible {
     outline-color: var(--blue-color);
-    /*border-color: #4277FA;*/
 }
 
 .auth__block_button {
@@ -86,10 +98,11 @@
     border: 2px solid var(--blue-color);
     border-radius: 10px;
     width: 320px;
-    height: 35px;
+    height: 45px;
     color: var(--bg-color);
     font-size: 14px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .auth__block_signup {
@@ -129,10 +142,5 @@
     background-color: var(--gray-main-dark);
 }
 
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-}
+
 

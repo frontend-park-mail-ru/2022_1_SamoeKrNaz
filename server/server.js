@@ -1,6 +1,7 @@
-const http = require('http')
-const fs = require('fs')
-const path = require('path')
+"use strict";
+
+const http = require('http');
+const fs = require('fs');
 
 const SERVER_PORT = 3000
 
@@ -9,12 +10,12 @@ const server = http.createServer((req, res) => {
     const {url} = req;
     console.log('request', url);
 
-    let fileName = url === '/' ? 'index.html' : url;
+    let fileName = url === '/' ? 'login.html' : url;
 
     const extension = fileName.split('.').pop()
-    if (extension == 'js') {
+    if (extension === 'js') {
         fileName.concat('js/');
-    } else if (extension == 'css') {
+    } else if (extension === 'css') {
         fileName.concat('css/');
     }
     fs.readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
@@ -24,7 +25,6 @@ const server = http.createServer((req, res) => {
             res.end();
             return;
         }
-
         res.write(file)
         res.end();
     });
