@@ -36,7 +36,7 @@
     <div class="auth__form">
         <div class="auth__block">
             <div class="auth__block_logo">
-                <a href="index.html">
+                <a href="/">
                     <svg fill="none" height="82" viewBox="0 0 77 82" width="77" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.8081 46.2156C19.1349 45.2344 16.9938 45.814 16.0259 47.5102C15.058 49.2064 15.6298 51.3768 17.303 52.358C20.6302 54.3092 23.0875 57.6047 23.9587 61.4967C24.3864 63.4077 26.2613 64.6053 28.1464 64.1717C30.0315 63.738 31.2129 61.8374 30.7851 59.9264C29.4732 54.065 25.7837 49.1334 20.8081 46.2156Z"
                               fill="#4277FA"/>
@@ -52,26 +52,32 @@
                 </a>
             </div>
             <div class="auth__block_header">
-                Добро пожаловать!
+                Добро пожаловать на <span class="auth__block_header_blue">Plan</span>exa!
             </div>
-            <form action="">
-                <input class="auth__block_input" placeholder="Укажите адрес электронной почты" type="text">
-                <input class="auth__block_input" placeholder="Введите пароль" type="password">
-                <input class="auth__block_input" placeholder="Повторите пароль" type="password">
+            <div class="auth__block_descp">
+                Авторизация необходима для работы в команде. <br>
+                Зарегистрируйся и начинай работать эффективней!
+            </div>
+            <form method="POST" id="input_form" class="auth__block_form" action="base.html">
+                <input class="auth__block_input" placeholder="Укажите адрес электронной почты" type="text" id="input_login">
+                <input class="auth__block_input" placeholder="Введите пароль" type="password" id="input_pass">
+                <input class="auth__block_input" placeholder="Повторите пароль" type="password" id="input_pass_rep">
+                <button class="auth__block_button" type="submit">
+                    Зарегистрироваться!
+                </button>
             </form>
-            <button class="auth__block_button" type="submit">
-                Зарегистрироваться!
-            </button>
             <div class="auth__block_signup">
                 <div class="auth__block_dont">
                     Уже зарегистрированы?
                 </div>
                 <div>
-                    <a class="auth__block_reg" href="login.html">Войти</a>
+                    <a class="auth__block_link" href="login.html">Войти</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script src="js/func.js"></script>
+<script src="js/signup.js"></script>
 </html>
