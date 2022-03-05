@@ -1,4 +1,3 @@
-
 function signup(){
     deleteError();
     const inpLogin = document.getElementById('input_login').value;
