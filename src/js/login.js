@@ -1,6 +1,6 @@
 function login(){
     const inpLogin = document.getElementById('input_login').value
-    const inpPass = document.getElementById('input_password').value
+    const inpPass = document.getElementById('input_pass').value
     if (inpLogin.length < 6) {
         addError('Слишком короткий логин')
         return false;

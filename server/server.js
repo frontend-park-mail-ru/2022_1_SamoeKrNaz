@@ -1,9 +1,12 @@
 "use strict";
 
-const http = require('http');
-const fs = require('fs');
+import * as http from 'http';
+import * as fs from 'fs';
+import * as path from "path";
 
 const SERVER_PORT = 3000
+
+const __dirname = path.resolve();
 
 
 const server = http.createServer((req, res) => {
