@@ -9,9 +9,11 @@ templates['input'] = template({"compiler":[8,">= 4.3.0"],"main":function(contain
     };
 
   return "<input class=\"auth__block_input\" placeholder=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"Placeholder") || (depth0 != null ? lookupProperty(depth0,"Placeholder") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Placeholder","hash":{},"data":data,"loc":{"start":{"line":1,"column":46},"end":{"line":1,"column":61}}}) : helper)))
-    + "\" type=\"text\" id=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"Id") || (depth0 != null ? lookupProperty(depth0,"Id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Id","hash":{},"data":data,"loc":{"start":{"line":1,"column":79},"end":{"line":1,"column":85}}}) : helper)))
-    + "\">";
+    + alias4(((helper = (helper = lookupProperty(helpers,"inputPlaceholder") || (depth0 != null ? lookupProperty(depth0,"inputPlaceholder") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"inputPlaceholder","hash":{},"data":data,"loc":{"start":{"line":1,"column":46},"end":{"line":1,"column":66}}}) : helper)))
+    + "\" type=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"inputType") || (depth0 != null ? lookupProperty(depth0,"inputType") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"inputType","hash":{},"data":data,"loc":{"start":{"line":1,"column":74},"end":{"line":1,"column":87}}}) : helper)))
+    + "\" id=\""
+    + alias4(((helper = (helper = lookupProperty(helpers,"inputId") || (depth0 != null ? lookupProperty(depth0,"inputId") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"inputId","hash":{},"data":data,"loc":{"start":{"line":1,"column":93},"end":{"line":1,"column":104}}}) : helper)))
+    + "\">\r\n";
 },"useData":true});
 })();

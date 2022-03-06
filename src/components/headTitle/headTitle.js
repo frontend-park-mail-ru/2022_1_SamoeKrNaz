@@ -9,7 +9,7 @@ templates['headTitle'] = template({"compiler":[8,">= 4.3.0"],"main":function(con
     };
 
   return "<div class=\"auth__block_header\">\r\n    "
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"Text") || (depth0 != null ? lookupProperty(depth0,"Text") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"Text","hash":{},"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":12}}}) : helper)))
-    + " <span class=\"auth__block_header_blue\">Plan</span>exa\r\n</div>";
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"headTitle") || (depth0 != null ? lookupProperty(depth0,"headTitle") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"headTitle","hash":{},"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":2,"column":17}}}) : helper)))
+    + " <span class=\"auth__block_header_blue\">Plan</span>exa\r\n</div>\r\n";
 },"useData":true});
 })();

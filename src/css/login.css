@@ -84,7 +84,7 @@ body {
 .auth__block_form {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
 }
 
 .auth__block_input {
