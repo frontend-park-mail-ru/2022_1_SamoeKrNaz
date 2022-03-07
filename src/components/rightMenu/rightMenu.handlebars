@@ -1,0 +1,15 @@
+<div class="Active-tasks">
+    <div class="Active-tasks__title">
+        <span>Важные задачи</span>
+        <div class="Toggle__block Toggle__block_blue">
+            <svg class="Toggle__icon" id="active-closer" width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.89011 0.226718C7.61973 0.506622 7.59437 0.948913 7.81601 1.25924L7.88259 1.34038L12.4583 6.2125L0.75 6.2125C0.335786 6.2125 0 6.56507 0 7C0 7.40147 0.286114 7.73277 0.655921 7.78136L0.75 7.7875H12.4583L7.88259 12.6596C7.61601 12.9435 7.59663 13.3861 7.82245 13.6931L7.89011 13.7733C8.16049 14.0532 8.58204 14.0735 8.87442 13.8364L8.95074 13.7654L14.7841 7.55288C15.048 7.27182 15.07 6.83453 14.8501 6.52743L14.7841 6.44712L8.95074 0.234617C8.65994 -0.0750946 8.18507 -0.0786307 7.89011 0.226718Z" fill="#F8FAFD"/>
+            </svg>
+        </div>
+    </div>
+    <div class="Active-tasks__block">
+            {{#each activeTasks}}
+                {{>activeTask}}
+            {{/each}}
+    </div>
+</div>
