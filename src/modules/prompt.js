@@ -27,6 +27,3 @@ function deletePrompt(){
         el.remove();
     };
 };
-
-
-

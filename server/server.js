@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 import {createServer} from 'http';
 import {readFile} from 'fs';
-import * as path from "path";
+import {resolve}  from 'path';
 
 const SERVER_PORT = 3000;
 
-const __dirname = path.resolve();
+const __dirname = resolve();
 
 const server = createServer((req, res) => {
     const {url} = req;

@@ -17,15 +17,15 @@ export function validateLoginPage(){
     if (inpLogin.length < 6) {
         addError(Messages['shortLogin']);
         return false;
-    }
+    };
     if (inpPass.length < 6) {
         addError(Messages['shortPassword']);
         return false;
-    }
+    };
     if (inpPass !== true_pass || inpLogin !== true_login){
         addError(Messages['notLogin']);
         return false;
-    }
+    };
     return true;
 };
 
@@ -36,18 +36,17 @@ export function validateSignUpPage() {
     if (inpLogin === true_login) {
         addError(Messages['alreadyRegister']);
         return false;
-    }
+    };
     if (inpLogin.length < 6){
         addError(Messages['shortLogin']);
         return false;
-    }
+    };
     if (inpPass.length < 6){
         addError(Messages['shortPassword']);
         return false;
-    }
+    };
     if (inpPass !== inpPassRep){
         addError(Messages['repeatPassword']);
         return false;
-    }
-}
-
+    };
+};

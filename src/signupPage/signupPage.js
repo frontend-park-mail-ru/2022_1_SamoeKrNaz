@@ -1,6 +1,6 @@
 'use strict';
 
-import * as render from './signupPage.templ.js'
+import * as render from './signupPage.templ.js';
 import {validateSignUpPage} from "../modules/validation.js";
 import {addPrompt} from "../modules/prompt.js";
 
@@ -16,11 +16,11 @@ Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 const signupPage = Handlebars.templates.signupPage;
 const html = signupPage({});
 
-const container = document.getElementsByClassName('container')[0]
+const container = document.getElementsByClassName('container')[0];
 container.innerHTML += html;
 
 const form = document.getElementById('input_form');
-form.onsubmit = validateSignUpPage
+form.onsubmit = validateSignUpPage;
 
 const input_pas = document.getElementById('input_pass');
-input_pas.onfocus = addPrompt
+input_pas.onfocus = addPrompt;

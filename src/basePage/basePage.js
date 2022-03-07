@@ -34,11 +34,11 @@ function toggleMenu() {
     document.getElementsByClassName("Header")[0].classList.toggle("Header_open");
     document.getElementsByTagName("body")[0].classList.toggle("menu-open");
     document.getElementById("Search-icon").classList.toggle("Toggle__icon_open");
-}
+};
 
 function toggleActiveTasks() {
     document.getElementsByTagName("body")[0].classList.toggle("active-tasks-open");
     document.getElementsByClassName("Active-tasks")[0].classList.toggle("close");
     document.getElementsByClassName("Main__cap")[0].classList.toggle("active-close");
     document.getElementById("active-closer").classList.toggle("Toggle__icon_open");
-}
+};

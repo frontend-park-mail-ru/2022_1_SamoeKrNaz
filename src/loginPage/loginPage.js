@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import {validateLoginPage} from "../modules/validation.js";
 import * as render from './loginPage.templ.js';
@@ -14,9 +14,9 @@ Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 const loginPage = Handlebars.templates.loginPage;
 const html = loginPage({});
 
-const container = document.getElementsByClassName('container')[0]
+const container = document.getElementsByClassName('container')[0];
 container.innerHTML += html;
 
 const form = document.getElementById('input_form');
 
-form.onsubmit = validateLoginPage
+form.onsubmit = validateLoginPage;
