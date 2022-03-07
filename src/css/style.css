@@ -1,0 +1,358 @@
+/* reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+	--blue-color: #4277FA;
+	--bg-color: #F1F6FA;
+	--white: #F8FAFD;
+	--menu-gray: #ABB7C0;
+
+	--menu-width: 75px;
+	--active-task: 350px;
+	--top-margin: 45px;
+	--button-radius: 10px;
+	--time-anim: 0.5s;
+
+	--shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	background: var(--bg-color);
+
+	padding: 0 var(--active-task) 0 var(--menu-width);
+	transition: var(--time-anim);
+}
+
+body.menu-open {
+	padding-left: 220px;
+	transition: var(--time-anim);
+}
+
+body.active-tasks-open {
+	padding-right: 0;
+	transition: var(--time-anim);
+}
+
+.Main__container {
+	width: 100%;
+}
+
+.Main__cap {
+	display: flex;
+	justify-content: space-between;
+	padding: calc(var(--top-margin) - 5px) 30px 0;
+	transition: var(--time-anim);
+}
+
+.Main__cap.active-close {
+	margin-right: 70px;
+	transition: var(--time-anim);
+}
+
+.Main__content {
+	height: 70vh;
+	padding: 15px;
+	margin-top: 15px;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.Desk {
+	background: var(--white);
+	border-radius: var(--button-radius);
+	box-shadow: var(--shadow);
+	cursor: pointer;
+
+	padding: 20px;
+	margin: 15px;
+	width: 275px;
+}
+
+.Desk__title {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 21px;
+	letter-spacing: 0.02em;
+}
+
+.Desk__description {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0.02em;
+	margin: 20px 0;
+
+	color: #9D9D9D;
+}
+
+.Desk__date {
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 15px;
+	letter-spacing: 0.02em;
+
+	color: #9D9D9D;
+}
+
+.Toggle__block {
+	background: var(--white);
+	box-shadow: var(--shadow);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+	width: 40px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.Toggle__icon {
+	transition: var(--time-anim);
+}
+
+.Toggle__icon_open {
+	transform: rotate(180deg);
+	transition: var(--time-anim);
+}
+
+.search-new {
+	display: flex;
+}
+
+.Search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	height: 40px;
+	border-radius: var(--button-radius);
+	background: #E2ECF4;
+
+	margin-right: 30px;
+}
+
+.Search__input {
+	outline: none;
+	border: none;
+	background: #E2ECF4;
+	margin-left: 15px;
+	width: 220px;
+}
+
+.Search__input::placeholder {
+	color: #ABB7C0;
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.Button {
+	line-height: 40px;
+	padding: 0 30px;
+	border-radius: var(--button-radius);
+	background: var(--blue-color);
+	font-size: 15px;
+	color: var(--white);
+	cursor: pointer;
+}
+
+.Header {
+	background: var(--white);
+	box-shadow: var(--shadow);
+
+	position: fixed;
+	height: 100%;
+	width: var(--menu-width);
+	left: 0;
+	transition: var(--time-anim);
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.Header_open {
+	transition: var(--time-anim);
+	width: 220px;
+}
+
+.Header__logo {
+	margin: var(--top-margin) 0;
+}
+
+.Header__menu-block {
+	--button-size: 44px;
+	width: calc(100% - var(--menu-width) + var(--button-size));
+	cursor: pointer;
+}
+
+.Header__menu-part {
+	width: 100%;
+	height: var(--button-size);
+	overflow: hidden;
+
+	position: relative;
+	border-radius: var(--button-radius);
+	color: #ABB7C0;
+}
+
+.Header__menu-separator {
+	background: var(--menu-gray);
+	width: 100%;
+	height: 2px;
+	margin: 10px 0;
+}
+
+.Header__menu-part_active {
+	background: var(--blue-color);
+	color: var(--white);
+}
+
+.Header__menu-part:hover {
+	background: #f3f3f3;
+}
+
+.Header__menu-part_active:hover {
+	background: var(--blue-color);
+}
+
+.Header__part-block {
+	position: absolute;
+
+	height: calc(var(--button-size) / 2);
+	bottom: calc(50% - var(--button-size) / 4);
+	left: calc(var(--button-size) / 4);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Header__icon {
+	width: calc(var(--button-size) / 2);
+	height: calc(var(--button-size) / 2);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Header__menu-text {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 15px;
+	margin-left: calc(var(--button-size) / 4);
+	white-space: nowrap;
+}
+
+.Active-tasks {
+	background: var(--white);
+	box-shadow: var(--shadow);
+
+	position: fixed;
+	height: 100%;
+	left: calc(100vw - var(--active-task));
+	top: 0;
+	width: var(--active-task);
+
+	transition: var(--time-anim);
+}
+
+.Active-tasks.close {
+	left: 100vw;
+	transition: var(--time-anim);
+}
+
+.Active-tasks__title {
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: 500;
+	padding: calc(var(--top-margin) - 5px) 30px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.Toggle__block_blue {
+	background: var(--blue-color);
+	position: fixed;
+	top: 40px;
+	right: 30px;
+}
+
+.Active-tasks__block {
+	padding: 15px 30px 0;
+}
+
+.Active-tasks__part {
+	display: flex;
+	align-items: center;
+
+	margin-top: 25px;
+}
+
+.Active-tasks__icon-block {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Active-tasks__text-block {
+	margin-left: 20px;
+}
+
+.Active-tasks__text-block-title {
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+.Active-tasks__text-block-time {
+	color: #656F77;
+	font-size: 13px;
+}
