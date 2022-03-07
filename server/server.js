@@ -10,23 +10,21 @@ const __dirname = resolve();
 
 const server = createServer((req, res) => {
     const {url} = req;
-    console.log('request', url);
 
-    let fileName = url === '/' ? 'login.html' : url;
-
-    const extension = fileName.split('.').pop()
-    if (extension === 'js') {
-        fileName.concat('js/');
-    } else if (extension === 'css') {
-        fileName.concat('css/');
+    let fileName = 'index.html';
+    if (url !== '/login' && url !== '/signup' && url !== '/base' && url !== '/') {
+        fileName = url;
     }
+    console.log('write: ', fileName);
+    const extension = fileName.split('.').pop()
+
     readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
         if (err) {
             console.error('error');
             res.write('404 not found');
             res.end();
             return;
-        }
+        };
         if (extension === 'js') {
             res.setHeader('Content-type', 'text/javascript')
         };

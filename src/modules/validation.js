@@ -1,7 +1,8 @@
 'use strict';
 
 import {addError} from './errors.js'
-import {true_login, true_pass, Messages} from "../constants/constants.js";
+import {Messages} from "../constants/constants.js";
+import {Ajax} from './ajax.js';
 
 export function validateEmail (email) {
     return String(email)
@@ -22,10 +23,12 @@ export function validateLoginPage(){
         addError(Messages['shortPassword']);
         return false;
     };
-    if (inpPass !== true_pass || inpLogin !== true_login){
-        addError(Messages['notLogin']);
-        return false;
-    };
+    // if (inpLogin !== 'planexa' || inpPass !== '123456') {
+    //     addError(Messages['notLogin']);
+    //     return false;
+    // }
+    const aj = new Ajax;
+    aj.get({url: ''}).then(r => console.log(r));
     return true;
 };
 
@@ -33,7 +36,7 @@ export function validateSignUpPage() {
     const inpLogin = document.getElementById('input_login').value;
     const inpPass = document.getElementById('input_pass').value;
     const inpPassRep = document.getElementById('input_pass_rep').value;
-    if (inpLogin === true_login) {
+    if (inpLogin === 'planexa') {
         addError(Messages['alreadyRegister']);
         return false;
     };
@@ -49,4 +52,5 @@ export function validateSignUpPage() {
         addError(Messages['repeatPassword']);
         return false;
     };
+    return true;
 };
