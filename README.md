@@ -1,6 +1,8 @@
 # 2022_1_SamoeKrNaz
 Проект Trello команды "Самое крутое название"
 
+Деплой: [planexa](http://89.208.199.114/)
+
 # Ссылки
 
 + Репозиторий [backend](https://github.com/go-park-mail-ru/2022_1_SamoeKrNaz)
