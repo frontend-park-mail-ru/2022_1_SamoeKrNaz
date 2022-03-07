@@ -16,7 +16,7 @@ const server = createServer((req, res) => {
         fileName = url;
     }
     console.log('write: ', fileName);
-    const extension = fileName.split('.').pop()
+    const extension = fileName.split('.').pop();
 
     readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
         if (err) {

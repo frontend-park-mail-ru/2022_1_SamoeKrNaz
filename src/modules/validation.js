@@ -3,6 +3,7 @@
 import {addError} from './errors.js'
 import {Messages} from "../constants/constants.js";
 import {Ajax} from './ajax.js';
+import {basePageRender} from "../basePage/basePage.js";
 
 export function validateEmail (email) {
     return String(email)
@@ -28,7 +29,23 @@ export function validateLoginPage(){
     //     return false;
     // }
     const aj = new Ajax;
-    aj.get({url: ''}).then(r => console.log(r));
+    aj.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+        .then(r => {
+            if (r.status === 401) {
+                addError(Messages['notLogin']);
+            }
+            if (r.status === 200) {
+                aj.get({url: ''}).then(r => {
+                    console.log(r.status);
+                    if (r.status === 200) {
+                        console.log(r);
+                        basePageRender(r);
+                    }
+                })
+            };
+        })
+        .catch(er => {
+        });
     return true;
 };
 

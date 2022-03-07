@@ -2,7 +2,7 @@
 
 import * as render from './basePage.templ.js';
 
-export function basePageRender() {
+export function basePageRender(r) {
     Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
     Handlebars.registerPartial('cap', Handlebars.templates['cap']);
     Handlebars.registerPartial('desk', Handlebars.templates['desk']);
@@ -11,11 +11,7 @@ export function basePageRender() {
     Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
 
     const tasks = {
-        tasks: [{deskTitle: 'Доска для важных дел', deskDescp: 'Тут будет подробное описания таблицы и то зачем она. Но тут текст будет длиннее, чтобы можно было посмотреть, как увеличится блок.', deskDate: '11 Декабря 2022 года'},
-            {deskTitle: 'Доска для важных дел', deskDescp: 'Тут будет подробное описания таблицы и то зачем она. Но тут текст будет длиннее, чтобы можно было посмотреть, как увеличится блок.', deskDate: '11 Декабря 2022 года'},
-            {deskTitle: 'Доска для важных дел', deskDescp: 'Тут будет подробное описания таблицы и то зачем она. Но тут текст будет длиннее, чтобы можно было посмотреть, как увеличится блок.', deskDate: '11 Декабря 2022 года'},
-            {deskTitle: 'Доска для важных дел', deskDescp: 'Чтобы можно было посмотреть, как увеличится блок.', deskDate: '11 Декабря 2022 года'},
-            {deskTitle: 'Доска для важных дел', deskDescp: 'Чтобы можно было посмотреть, как увеличится блок.', deskDate: '11 Декабря 2022 года'}],
+        tasks: r,
         activeTasks: [{activeTaskText: 'Важное дело номер раз', activeTaskDate: '11 декабря 2022 года'},
             {activeTaskText: 'Важное дело номер два', activeTaskDate: '11 декабря 2022 года'},
             {activeTaskText: 'Важное дело номер три', activeTaskDate: '11 декабря 2022 года'},

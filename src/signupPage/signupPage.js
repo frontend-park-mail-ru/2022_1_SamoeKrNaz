@@ -24,6 +24,8 @@ export function signupPageRender() {
     Handlebars.registerPartial('input', Handlebars.templates['input']);
     Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 
+    window.history.pushState("", "", 'http://89.208.199.114:3000/signup');
+
     const signupPage = Handlebars.templates.signupPage;
     const html = signupPage({});
 
