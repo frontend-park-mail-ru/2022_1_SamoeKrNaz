@@ -47,4 +47,4 @@ const server = createServer((req, res) => {
 });
 
 /* Прослушивание порта*/
-server.listen(SERVER_PORT)
+server.listen(SERVER_PORT);

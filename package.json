@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "script": "bash script.sh && cd server && node server.js"
+    "buildHandleBars": "bash script.sh && npx eslint src/*/*.js && cd server && node server.js "
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/frontend-park-mail-ru/2022_1_SamoeKrNaz#readme",
   "dependencies": {
     "handlebars": "^4.7.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
