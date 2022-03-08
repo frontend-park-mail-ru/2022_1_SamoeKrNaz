@@ -10,11 +10,11 @@ import {deleteListeners} from '../modules/deleteEventListeners.js';
  */
 export function logout() {
 	Ajax.delete({url: '/logout'})
-		.then((r) => {
-			loginPageRender();
+		.then(r => {
+					loginPageRender();
 		})
 		.catch((er) => {
-			console.error('error');
+			//console.error('error');
 		});
 };
 
@@ -33,9 +33,18 @@ export function basePageRender(r) {
 	Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 	Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
 
+	/* Получение данных с бэка */
+	const tasks = {
+		tasks: r,
+		activeTasks: [{activeTaskText: 'Важное дело номер раз', activeTaskDate: '11 декабря 2022 года'},
+			{activeTaskText: 'Важное дело номер два', activeTaskDate: '11 декабря 2022 года'},
+			{activeTaskText: 'Важное дело номер три', activeTaskDate: '11 декабря 2022 года'},
+			{activeTaskText: 'Важное дело номер четыре', activeTaskDate: '11 декабря 2022 года'}],
+	};
+
 	/* Рендер шаблона с входными данными */
 	const basePage = Handlebars.templates.basePage;
-	const html = basePage(r);
+	const html = basePage(tasks);
 
 	/* Смена урла в адресной строке */
 	window.history.pushState('', '', 'http://89.208.199.114:3000/base');
@@ -46,7 +55,7 @@ export function basePageRender(r) {
 	/* Навешивание обработчиков событий на кнопки */
 	document.getElementsByClassName('toggle__block')[0].addEventListener('click', toggleMenu);
 	document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
-	document.getElementById('logout').addEventListener('click', logout);
+	document.getElementById('logout').onclick = logout;
 };
 
 /**
