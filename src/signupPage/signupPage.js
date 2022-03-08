@@ -36,7 +36,7 @@ export function signupPageRender() {
 
 	/* Навешивание обработчика валидации данных для формы регистрации */
 	const form = document.getElementById('input_form');
-	form.onsubmit = validateSignUpPage;
+	form.addEventListener('submit', validateSignUpPage);
 
 	/* Добавление подсказки при вводе пароля */
 	const inputPas = document.getElementById('input_pass');
