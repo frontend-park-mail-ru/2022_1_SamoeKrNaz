@@ -14,7 +14,7 @@ export function deleteListeners() {
 	if (toggleBlockBlue) {
 		toggleBlockBlue.removeEventListener('click', toggleActiveTasks);
 	}
-	const logoutButton = document.getElementById('logout');
+	const logoutButton = document.getElementById('logout1');
 	if (logoutButton) {
 		logoutButton.getElementById('logout1').removeEventListener('click', logout);
 	}
