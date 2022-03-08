@@ -26,7 +26,7 @@ export function validateLoginPage() {
 				addError(Messages['notLogin']);
 			}
 			if (r.status === 200) {
-				aj.get({url: ''})
+				Ajax.get({url: ''})
 					.then((r) => {
 					console.log(r.status);
 					if (r.status === 200) {
@@ -76,8 +76,7 @@ export function validateSignUpPage() {
 					if (r.status === 200) {
 						console.log(r);
 						basePageRender(r.responseText);
-					}
-				})
+					}})
 					.catch((er) => {
 						console.error('error');
 					});

@@ -69,7 +69,7 @@ export function toggleActiveTasks() {
  */
 export function logout() {
 	Ajax.delete({url: '/logout'})
-		.then((r) => {
+		.then(r => {
 			loginPageRender();
 		})
 		.catch((er) => {
