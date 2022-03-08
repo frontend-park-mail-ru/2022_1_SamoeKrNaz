@@ -118,10 +118,12 @@ body {
     font-size: 14px;
     margin-top: 20px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .auth__block_button:hover {
     box-shadow: 0 0 7px var(--blue-color);
+    transition: 0.3s;
 }
 
 .auth__block_signup {
