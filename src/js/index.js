@@ -3,15 +3,12 @@
 import {loginPageRender} from '../loginPage/loginPage.js';
 import {basePageRender} from '../basePage/basePage.js';
 import {signupPageRender} from '../signupPage/signupPage.js';
-import {Ajax} from "../modules/ajax.js";
-import {addError} from "../modules/errors.js";
-import {Messages} from "../constants/constants.js";
-
-const domainSize = 27;
+import {Ajax} from '../modules/ajax.js';
+import {domainSize} from '../constants/constants.js';
 
 const configApp = {
     signup: {
-        href: '/sighup',
+        href: '/signup',
         openMethod: signupPageRender,
     },
     login: {

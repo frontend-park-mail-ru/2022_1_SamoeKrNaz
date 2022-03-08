@@ -19,14 +19,17 @@ export function signupPageRender() {
     const signupPage = Handlebars.templates.signupPage;
     const html = signupPage({});
 
-    document.body.innerHTML ='';
+    document.body.innerHTML = '';
     const container = document.createElement('div');
     container.className = 'container';
     document.body.appendChild(container);
     document.getElementsByClassName('container')[0].innerHTML += html;
 
     const form = document.getElementById('input_form');
-    form.onsubmit = validateSignUpPage;
+    form.addEventListener('submit', function (e){
+        e.preventDefault();
+        validateSignUpPage();
+    });
 
     const input_pas = document.getElementById('input_pass');
     input_pas.onfocus = addPrompt;

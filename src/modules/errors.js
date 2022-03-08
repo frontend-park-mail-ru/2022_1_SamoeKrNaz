@@ -13,7 +13,6 @@ export function addError(errorText) {
     const error = Handlebars.templates.error;
     const html = error({errorText: errorText});
     authDescp.outerHTML += html;
-    return false;
 };
 
 /**

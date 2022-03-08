@@ -1,8 +1,8 @@
 'use strict';
 
 import * as render from './basePage.templ.js';
-import {Ajax} from "../modules/ajax.js";
-import {loginPageRender} from "../loginPage/loginPage.js";
+import {Ajax} from '../modules/ajax.js';
+import {loginPageRender} from '../loginPage/loginPage.js';
 
 export function basePageRender(r) {
     Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
@@ -26,22 +26,22 @@ export function basePageRender(r) {
     window.history.pushState("", "", 'http://89.208.199.114:3000/base');
     document.body.innerHTML = html;
 
-    document.getElementsByClassName('toggle__block')[0].onclick = toggleMenu;
-    document.getElementsByClassName('toggle__block_blue')[0].onclick = toggleActiveTasks;
+    document.getElementsByClassName('toggle__block')[0].addEventListener('click',toggleMenu);
+    document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
 
     document.getElementById('logout').addEventListener('click', logout);
 
     function toggleMenu() {
-        document.getElementsByClassName("header")[0].classList.toggle("header_open");
-        document.getElementsByClassName("main")[0].classList.toggle("menu-open");
-        document.getElementById("search-icon").classList.toggle("toggle__icon_open");
+        document.getElementsByClassName('header')[0].classList.toggle('header_open');
+        document.getElementsByClassName('main')[0].classList.toggle('menu-open');
+        document.getElementById('search-icon').classList.toggle('toggle__icon_open');
     }
 
     function toggleActiveTasks() {
-        document.getElementsByClassName("main")[0].classList.toggle("active-tasks-open");
-        document.getElementsByClassName("active-tasks")[0].classList.toggle("close");
-        document.getElementsByClassName("main__cap")[0].classList.toggle("active-close");
-        document.getElementById("active-closer").classList.toggle("toggle__icon_open");
+        document.getElementsByClassName('main')[0].classList.toggle('active-tasks-open');
+        document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
+        document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
+        document.getElementById('active-closer').classList.toggle('toggle__icon_open');
     }
 
     function logout() {

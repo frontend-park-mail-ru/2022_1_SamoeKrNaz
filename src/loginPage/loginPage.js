@@ -1,6 +1,6 @@
 'use strict';
 
-import {validateLoginPage} from "../modules/validation.js";
+import {validateLoginPage, validateSignUpPage} from "../modules/validation.js";
 import * as render from './loginPage.templ.js';
 import {basePageRender} from "../basePage/basePage.js";
 
@@ -26,5 +26,8 @@ export function loginPageRender() {
     document.getElementsByClassName('container')[0].innerHTML += html;
 
     const form = document.getElementById('input_form');
-    form.onsubmit = validateLoginPage;
+    form.addEventListener('submit', function (e){
+        e.preventDefault();
+        validateLoginPage();
+    });
 };

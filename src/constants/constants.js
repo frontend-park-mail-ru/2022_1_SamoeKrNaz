@@ -6,3 +6,5 @@ export const Messages = {
     alreadyRegister : 'Пользователь с таким именем уже зарегистрирован',
     repeatPassword : 'Введенные пароли не совпадают',
 };
+
+export const domainSize = 27;
