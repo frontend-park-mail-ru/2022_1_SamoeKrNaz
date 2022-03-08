@@ -55,7 +55,7 @@ export function basePageRender(r) {
 	/* Навешивание обработчиков событий на кнопки */
 	document.getElementsByClassName('toggle__block')[0].addEventListener('click', toggleMenu);
 	document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
-	document.getElementById('logout').addEventListener('click', logout);
+	document.getElementById('logout').onclick = logout;
 };
 
 /**
