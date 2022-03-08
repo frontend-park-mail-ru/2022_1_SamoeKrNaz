@@ -24,10 +24,6 @@ export function validateLoginPage(){
         addError(Messages['shortPassword']);
         return false;
     };
-    // if (inpLogin !== 'planexa' || inpPass !== '123456') {
-    //     addError(Messages['notLogin']);
-    //     return false;
-    // }
     const aj = new Ajax;
     aj.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
         .then(r => {
