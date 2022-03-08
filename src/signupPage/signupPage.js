@@ -1,7 +1,7 @@
 'use strict';
 
 import * as render from './signupPage.templ.js';
-import {validateLoginPage, validateSignUpPage} from "../modules/validation.js";
+import {validateSignUpPage} from "../modules/validation.js";
 import {addPrompt} from "../modules/prompt.js";
 import {basePageRender} from "../basePage/basePage.js";
 
@@ -26,7 +26,7 @@ export function signupPageRender() {
     document.getElementsByClassName('container')[0].innerHTML += html;
 
     const form = document.getElementById('input_form');
-    form.onsubmit = validateLoginPage;
+    form.onsubmit = validateSignUpPage;
 
     const input_pas = document.getElementById('input_pass');
     input_pas.onfocus = addPrompt;
