@@ -6,6 +6,19 @@ import {loginPageRender} from '../loginPage/loginPage.js';
 import {deleteListeners} from '../modules/deleteEventListeners.js';
 
 /**
+ * Функция, осуществляющая выход пользователя из системы.
+ */
+export function logout() {
+	Ajax.delete({url: '/logout'})
+		.then(r => {
+			loginPageRender();
+		})
+		.catch((er) => {
+			console.error('error');
+		});
+};
+
+/**
  * Функция, осуществляющая рендер страницы пользователя с досками.
  * @param {json} r данных с бэка
  */
@@ -62,19 +75,4 @@ export function toggleActiveTasks() {
 	document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
 	document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
 	document.getElementById('active-closer').classList.toggle('toggle__icon_open');
-}
-
-/**
- * Функция, осуществляющая выход пользователя из системы.
- */
-export function logout() {
-	Ajax.delete({url: '/logout'})
-		.then(r => {
-			loginPageRender();
-		})
-		.catch((er) => {
-			console.error('error');
-		});
 };
-
-
