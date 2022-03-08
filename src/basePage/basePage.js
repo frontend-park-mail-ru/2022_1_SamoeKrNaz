@@ -31,16 +31,16 @@ export function basePageRender(r) {
 
     function toggleMenu() {
         document.getElementsByClassName("header")[0].classList.toggle("header_open");
-        document.getElementsByTagName("body")[0].classList.toggle("menu-open");
+        document.getElementsByClassName("main")[0].classList.toggle("menu-open");
         document.getElementById("search-icon").classList.toggle("toggle__icon_open");
-    };
+    }
 
     function toggleActiveTasks() {
-        document.getElementsByTagName("body")[0].classList.toggle("active-tasks-open");
+        document.getElementsByClassName("main")[0].classList.toggle("active-tasks-open");
         document.getElementsByClassName("active-tasks")[0].classList.toggle("close");
         document.getElementsByClassName("main__cap")[0].classList.toggle("active-close");
         document.getElementById("active-closer").classList.toggle("toggle__icon_open");
-    };
+    }
 
     function logout() {
         const aj = new Ajax();

@@ -1,3 +1,4 @@
+
 /* reset CSS */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -63,17 +64,19 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 	background: var(--bg-color);
+}
 
+.main {
 	padding: 0 var(--active-task) 0 var(--menu-width);
 	transition: var(--time-anim);
 }
 
-body.menu-open {
+.main.menu-open {
 	padding-left: 220px;
 	transition: var(--time-anim);
 }
 
-body.active-tasks-open {
+.main.active-tasks-open {
 	padding-right: 0;
 	transition: var(--time-anim);
 }
