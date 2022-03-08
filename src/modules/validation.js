@@ -7,6 +7,7 @@ import {basePageRender} from '../basePage/basePage.js';
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.
+ * {return}
  */
 export function validateLoginPage() {
 	const inpLogin = document.getElementById('input_login').value;

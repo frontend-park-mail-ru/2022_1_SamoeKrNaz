@@ -38,7 +38,7 @@ if (getUrl === 'login') {
 			};
 		})
 		.catch((er) => {
-			console.error(er);
+			console.error('error');
 		});
 } else if (getUrl === 'signup') {
 	Ajax.get({url: ''})
@@ -52,7 +52,7 @@ if (getUrl === 'login') {
 			};
 		})
 		.catch((er) => {
-			console.error(er);
+			console.error('error');
 		});
 } else if (getUrl === 'base' || getUrl === '') {
 	Ajax.get({url: ''})
@@ -70,12 +70,12 @@ if (getUrl === 'login') {
 						basePageRender(r.responseText);
 					}})
 					.catch((er) =>{
-						console.error(er);
+						console.error('error');
 					});
 			};
 		})
 		.catch((er) => {
-			console.error(er);
+			console.error('error');
 		});
 }
 
