@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Install eslint
-        run: npm install eslint --save-dev
+      - name: Install
+        run: npm install
       - name: Start eslint
         run: npx eslint src/*/*.js
+      - name: Start stylelint
+        run: stylelint src/css/*.css

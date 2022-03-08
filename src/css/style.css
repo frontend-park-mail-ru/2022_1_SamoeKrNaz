@@ -1,4 +1,5 @@
 /* reset CSS */
+
 html,
 body,
 div,
@@ -88,6 +89,7 @@ video {
 }
 
 /* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -112,10 +114,10 @@ q {
 	quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
 	content: "";
 	content: none;
 }
@@ -131,19 +133,17 @@ table {
 	--white: #f8fafd;
 	--menu-gray: #abb7c0;
 	--gray-color: #9d9d9d;
-
 	--menu-width: 75px;
 	--active-task: 350px;
 	--top-margin: 45px;
 	--button-radius: 10px;
 	--time-anim: 0.5s;
-
-	--shadow: 0px 0px 10px rgba(0, 0, 0, 2%);
+	--shadow: 0 0 10px #00000005;
 }
 
 body {
 	line-height: 1;
-	font-family: "Roboto", sans-serif;
+	font-family: Roboto, sans-serif;
 	font-size: 14px;
 	background: var(--bg-color);
 }
@@ -183,10 +183,8 @@ body {
 	height: 70vh;
 	padding: 15px;
 	margin-top: 15px;
-
 	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
+	flex-flow: column wrap;
 	align-content: flex-start;
 }
 
@@ -195,7 +193,6 @@ body {
 	border-radius: var(--button-radius);
 	box-shadow: var(--shadow);
 	cursor: pointer;
-
 	padding: 20px;
 	margin: 15px;
 	width: 275px;
@@ -214,7 +211,6 @@ body {
 	line-height: 16px;
 	letter-spacing: 0.02em;
 	margin: 20px 0;
-
 	color: var(--gray-color);
 }
 
@@ -223,7 +219,6 @@ body {
 	font-size: 13px;
 	line-height: 15px;
 	letter-spacing: 0.02em;
-
 	color: var(--gray-color);
 }
 
@@ -263,23 +258,22 @@ body {
 	padding: 0 25px;
 	height: 40px;
 	border-radius: var(--button-radius);
-	background: #E2ECF4;
-
+	background: #e2ecf4;
 	margin-right: 30px;
 }
 
 .search__input {
 	outline: none;
 	border: none;
-	background: #E2ECF4;
+	background: #e2ecf4;
 	margin-left: 15px;
 	width: 220px;
 }
 
 .search__input::placeholder {
-	color: #ABB7C0;
+	color: #abb7c0;
 	font-size: 15px;
-	font-family: 'Roboto', sans-serif;
+	font-family: Roboto, sans-serif;
 }
 
 .button {
@@ -295,13 +289,11 @@ body {
 .header {
 	background: var(--white);
 	box-shadow: var(--shadow);
-
 	position: fixed;
 	height: 100%;
 	width: var(--menu-width);
 	left: 0;
 	transition: var(--time-anim);
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -318,6 +310,7 @@ body {
 
 .header__menu-block {
 	--button-size: 44px;
+
 	width: calc(100% - var(--menu-width) + var(--button-size));
 	cursor: pointer;
 }
@@ -326,10 +319,9 @@ body {
 	width: 100%;
 	height: var(--button-size);
 	overflow: hidden;
-
 	position: relative;
 	border-radius: var(--button-radius);
-	color: #ABB7C0;
+	color: #abb7c0;
 }
 
 .header__menu-separator {
@@ -358,11 +350,9 @@ body {
 
 .header__part-block {
 	position: absolute;
-
 	height: calc(var(--button-size) / 2);
 	bottom: calc(50% - var(--button-size) / 4);
 	left: calc(var(--button-size) / 4);
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -371,7 +361,6 @@ body {
 .header__icon {
 	width: calc(var(--button-size) / 2);
 	height: calc(var(--button-size) / 2);
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -388,13 +377,11 @@ body {
 .active-tasks {
 	background: var(--white);
 	box-shadow: var(--shadow);
-
 	position: fixed;
 	height: 100%;
 	left: calc(100vw - var(--active-task));
 	top: 0;
 	width: var(--active-task);
-
 	transition: var(--time-anim);
 }
 
@@ -428,13 +415,12 @@ body {
 .active-tasks__part {
 	display: flex;
 	align-items: center;
-
 	margin-top: 25px;
 	position: relative;
 }
 
 .active-tasks__part::before {
-	content: 'Скоро в релизе';
+	content: "Скоро в релизе";
 	font-size: 20px;
 	line-height: 90px;
 	vertical-align: middle;
@@ -471,6 +457,6 @@ body {
 }
 
 .active-tasks__text-block-time {
-	color: #656F77;
+	color: #656f77;
 	font-size: 13px;
 }
