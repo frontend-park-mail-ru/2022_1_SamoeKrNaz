@@ -33,12 +33,12 @@ export function validateLoginPage() {
 						basePageRender(r.responseText);
 					}})
 					.catch((er) => {
-						console.error(er);
+						console.error('error');
 					});
 			};
 		})
 		.catch((er) => {
-			console.error(er);
+			console.error('error');
 		});
 };
 
@@ -74,11 +74,11 @@ export function validateSignUpPage() {
 					}
 				})
 					.catch((er) => {
-						console.error(er);
+						console.error('error');
 					});
 			};
 		})
 		.catch((er) => {
-			console.error(er);
+			console.error('error');
 		});
 };
