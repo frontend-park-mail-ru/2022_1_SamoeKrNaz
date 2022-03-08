@@ -1,9 +1,12 @@
 'use strict';
+import {frontendUrl, backendUrl} from "../constants/constants.js";
 
 /**
  * Класс реализующий методы доступа к апи
  */
 class Ajax {
+	frontendUrl = frontendUrl;
+	backendUrl = backendUrl;
 	/**
 	 * Метод, реализующий любые GET запросы к апи. Требуется задавать только URL
 	 * @param {object} params - параметры запроса
