@@ -6,6 +6,7 @@ import {signupPageRender} from '../signupPage/signupPage.js';
 import {Ajax} from '../modules/ajax.js';
 import {domainSize} from '../constants/constants.js';
 
+/* Структура для вызова методов в зависимости от урла */
 const configApp = {
     signup: {
         href: '/signup',
@@ -20,7 +21,11 @@ const configApp = {
         openMethod: basePageRender,
     }
 };
+
+/* Получение текущего адреса без домена */
 const getUrl = window.location.href.slice(domainSize);
+
+/* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login'){
     const aj = new Ajax;
     aj.get({url: ''})
@@ -71,6 +76,7 @@ if (getUrl === 'login'){
         });
 }
 
+/* Навешивание обработки на все ссылки в боди */
 document.body.addEventListener('click', (e) => {
     const {target} = e;
     if (target instanceof HTMLAnchorElement) {

@@ -7,7 +7,6 @@ import {basePageRender} from "../basePage/basePage.js";
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.
- * @returns {boolean} статус валидации
  */
 
 export function validateLoginPage(){
@@ -39,12 +38,10 @@ export function validateLoginPage(){
         })
         .catch(er => {
         });
-    return false;
 };
 
 /**
  * Функция, осуществляющая валидацию регистрации пользователя.
- * @returns {boolean} статус валидации
  */
 
 export function validateSignUpPage() {

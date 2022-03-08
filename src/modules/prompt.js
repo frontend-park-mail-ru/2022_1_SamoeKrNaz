@@ -29,7 +29,7 @@ export function addPrompt() {
  * Функция, удаляющая подсказку на странице регистрации.
  */
 
-function deletePrompt(){
+export function deletePrompt(){
     let el = document.getElementsByClassName('auth__block_prompt')[0];
     if (el) {
         el.remove();

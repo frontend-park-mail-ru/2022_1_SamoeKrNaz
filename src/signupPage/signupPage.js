@@ -1,11 +1,15 @@
 'use strict';
 
-import * as render from './signupPage.templ.js';
-import {validateSignUpPage} from "../modules/validation.js";
-import {addPrompt} from "../modules/prompt.js";
-import {basePageRender} from "../basePage/basePage.js";
+import {validateSignUpPage} from '../modules/validation.js';
+import {addPrompt, deletePrompt} from '../modules/prompt.js';
+
+/**
+ * Функция, осуществляющая рендер страницы регистрации.
+ */
 
 export function signupPageRender() {
+    /* Регистрация всех компонентов для страницы */
+
     Handlebars.registerPartial('button', Handlebars.templates['button']);
     Handlebars.registerPartial('decoration', Handlebars.templates['decoration']);
     Handlebars.registerPartial('descp', Handlebars.templates['descp']);
@@ -14,23 +18,32 @@ export function signupPageRender() {
     Handlebars.registerPartial('input', Handlebars.templates['input']);
     Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 
+    /* Смена урла в адресной строке */
     window.history.pushState("", "", 'http://89.208.199.114:3000/signup');
 
+    /* Рендер шаблона с входными данными */
     const signupPage = Handlebars.templates.signupPage;
     const html = signupPage({});
 
+    /* Создание контейнера для вставки в DOM */
     document.body.innerHTML = '';
     const container = document.createElement('div');
     container.className = 'container';
     document.body.appendChild(container);
     document.getElementsByClassName('container')[0].innerHTML += html;
 
+    /* Навешивание обработчика валидации данных для формы регистрации */
     const form = document.getElementById('input_form');
     form.addEventListener('submit', function (e){
+        /* Блокировка действия по умолчанию */
         e.preventDefault();
         validateSignUpPage();
     });
 
+    /* Добавление подсказки при вводе пароля */
     const input_pas = document.getElementById('input_pass');
-    input_pas.onfocus = addPrompt;
+    input_pas.addEventListener('focus', addPrompt);
+
+    /* Удаление подсказки при снятии фокуса */
+    input_pas.addEventListener('blur', deletePrompt);
 };
