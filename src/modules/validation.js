@@ -41,6 +41,7 @@ export function validateLoginPage() {
 		.catch((er) => {
 			console.error('error');
 		});
+	return false;
 };
 
 /**
@@ -52,12 +53,15 @@ export function validateSignUpPage() {
 	const inpPassRep = document.getElementById('input_pass_rep').value;
 	if (inpLogin.length <= 6) {
 		addError(Messages['shortLogin']);
+		return false;
 	};
 	if (inpPass.length <= 6) {
 		addError(Messages['shortPassword']);
+		return false;
 	};
 	if (inpPass !== inpPassRep) {
 		addError(Messages['repeatPassword']);
+		return false;
 	};
 	Ajax.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
 		.then((r) => {
@@ -82,4 +86,5 @@ export function validateSignUpPage() {
 		.catch((er) => {
 			console.error('error');
 		});
+	return false;
 };

@@ -1,7 +1,7 @@
 'use strict';
 
 import * as render from './signupPage.templ.js';
-import {validateSignUpPage} from '../modules/validation.js';
+import {validateLoginPage, validateSignUpPage} from '../modules/validation.js';
 import {addPrompt, deletePrompt} from '../modules/prompt.js';
 import {deleteListeners} from '../modules/deleteEventListeners.js';
 
@@ -36,11 +36,7 @@ export function signupPageRender() {
 
 	/* Навешивание обработчика валидации данных для формы регистрации */
 	const form = document.getElementById('input_form');
-	form.addEventListener('submit', function(e) {
-		/* Блокировка действия по умолчанию */
-		e.preventDefault();
-		validateSignUpPage();
-	});
+	form.addEventListener('submit', validateSignUpPage);
 
 	/* Добавление подсказки при вводе пароля */
 	const inputPas = document.getElementById('input_pass');
