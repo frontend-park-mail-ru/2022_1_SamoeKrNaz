@@ -49,11 +49,11 @@ export function validateSignUpPage() {
     const inpLogin = document.getElementById('input_login').value;
     const inpPass = document.getElementById('input_pass').value;
     const inpPassRep = document.getElementById('input_pass_rep').value;
-    if (inpLogin.length < 6){
+    if (inpLogin.length <= 6){
         addError(Messages['shortLogin']);
         return false;
     };
-    if (inpPass.length < 6){
+    if (inpPass.length <= 6){
         addError(Messages['shortPassword']);
         return false;
     };
