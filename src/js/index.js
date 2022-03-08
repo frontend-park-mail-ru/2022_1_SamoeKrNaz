@@ -22,13 +22,13 @@ const configApp = {
     }
 };
 const getUrl = window.location.href.slice(22);
+const aj = new Ajax;
 if (getUrl === 'login' || getUrl === ''){
     loginPageRender();
 } else if (getUrl === 'signup') {
     signupPageRender();
 } else if (getUrl === 'base') {
-    const aj = new Ajax;
-    aj.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+    aj.get({url: '/login'})
         .then(r => {
             if (r.status === 401) {
                 loginPageRender();
@@ -38,6 +38,7 @@ if (getUrl === 'login' || getUrl === ''){
                     console.log(r.status);
                     if (r.status === 200) {
                         console.log(r);
+                        window.history.pushState("", "", 'http://89.208.199.114:3000/login');
                         basePageRender(r);
                     }
                 })
@@ -53,6 +54,7 @@ document.body.addEventListener('click', (e) => {
         e.preventDefault();
         const section = target.href.slice(22);
         if (section) {
+            window.history.pushState("", "", section);
             configApp[section].openMethod();
         }
     }

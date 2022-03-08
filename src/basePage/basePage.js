@@ -21,10 +21,13 @@ export function basePageRender(r) {
     const basePage = Handlebars.templates.basePage;
     const html = basePage(tasks);
 
+    window.history.pushState("", "", 'http://89.208.199.114:3000/base');
     document.body.innerHTML = html;
 
     document.getElementsByClassName('toggle__block')[0].onclick = toggleMenu;
     document.getElementsByClassName('toggle__block_blue')[0].onclick = toggleActiveTasks;
+
+    document.getElementById('logout').addEventListener('click', logout());
 
     function toggleMenu() {
         document.getElementsByClassName("header")[0].classList.toggle("header_open");
@@ -38,5 +41,16 @@ export function basePageRender(r) {
         document.getElementsByClassName("main__cap")[0].classList.toggle("active-close");
         document.getElementById("active-closer").classList.toggle("toggle__icon_open");
     };
+
+    function logout() {
+        const aj = new Ajax();
+        aj.delete({url: '/logout'})
+            .then(r => {
+                loginPageRender();
+            })
+            .catch(er => {
+            });
+    };
 };
+
 

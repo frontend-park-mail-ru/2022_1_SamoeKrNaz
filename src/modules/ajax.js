@@ -11,13 +11,17 @@ export class Ajax {
         return this._ajax('POST', params);
     };
 
+    delete(params = {}) {
+        return this._ajax('DELETE', params);
+    };
+
     _ajax(method, params = {}) {
         let status;
 
         return fetch(this._backUrl + params.url, {
             method: method,
             mode: 'cors',
-            //credentials: 'include',
+            credentials: 'include',
             headers: {
                 Origin: this._frontUrl,
             },

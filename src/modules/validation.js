@@ -39,24 +39,20 @@ export function validateLoginPage(){
                     console.log(r.status);
                     if (r.status === 200) {
                         console.log(r);
-                        basePageRender(r);
+                        basePageRender(r.responseText);
                     }
                 })
             };
         })
         .catch(er => {
         });
-    return true;
+    return false;
 };
 
 export function validateSignUpPage() {
     const inpLogin = document.getElementById('input_login').value;
     const inpPass = document.getElementById('input_pass').value;
     const inpPassRep = document.getElementById('input_pass_rep').value;
-    if (inpLogin === 'planexa') {
-        addError(Messages['alreadyRegister']);
-        return false;
-    };
     if (inpLogin.length < 6){
         addError(Messages['shortLogin']);
         return false;
@@ -69,5 +65,24 @@ export function validateSignUpPage() {
         addError(Messages['repeatPassword']);
         return false;
     };
-    return true;
+    const aj = new Ajax;
+    aj.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+        .then(r => {
+            if (r.status === 409) {
+                console.log(r.status);
+                addError(Messages['alreadyRegister']);
+            }
+            if (r.status === 201) {
+                aj.get({url: ''}).then(r => {
+                    console.log(r.status);
+                    if (r.status === 200) {
+                        console.log(r);
+                        basePageRender(r.responseText);
+                    }
+                })
+            };
+        })
+        .catch(er => {
+        });
+    return false;
 };

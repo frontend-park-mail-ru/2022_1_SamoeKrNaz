@@ -4,6 +4,16 @@ import {validateLoginPage} from "../modules/validation.js";
 import * as render from './loginPage.templ.js';
 import {basePageRender} from "../basePage/basePage.js";
 
+function validateRedirect(evt) {
+    evt.preventDefault();
+    if (validateLoginPage()) {
+        window.history.pushState("", "", 'base');
+        basePageRender();
+        return true;
+    };
+    return false;
+};
+
 export function loginPageRender() {
     Handlebars.registerPartial('button', Handlebars.templates['button']);
     Handlebars.registerPartial('decoration', Handlebars.templates['decoration']);
@@ -12,8 +22,6 @@ export function loginPageRender() {
     Handlebars.registerPartial('headTitle', Handlebars.templates['headTitle']);
     Handlebars.registerPartial('input', Handlebars.templates['input']);
     Handlebars.registerPartial('logo', Handlebars.templates['logo']);
-
-    window.history.pushState("", "", 'http://89.208.199.114:3000/login');
 
     const loginPage = Handlebars.templates.loginPage;
     const html = loginPage({});
