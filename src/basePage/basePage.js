@@ -28,7 +28,7 @@ export function basePageRender(r) {
     document.getElementsByClassName('toggle__block')[0].onclick = toggleMenu;
     document.getElementsByClassName('toggle__block_blue')[0].onclick = toggleActiveTasks;
 
-    document.getElementById('logout').addEventListener('click', logout());
+    document.getElementById('logout').addEventListener('click', logout);
 
     function toggleMenu() {
         document.getElementsByClassName("header")[0].classList.toggle("header_open");
