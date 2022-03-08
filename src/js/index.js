@@ -39,7 +39,19 @@ if (getUrl === 'login'){
         .catch(er => {
         });
 } else if (getUrl === 'signup') {
-    signupPageRender();
+    const aj = new Ajax;
+    aj.get({url: ''})
+        .then(r => {
+            if (r.status == 401){
+                signupPageRender();
+            }
+            if (r.status === 200) {
+                window.history.pushState("", "", 'http://89.208.199.114:3000/base');
+                basePageRender(r.responseText);
+            };
+        })
+        .catch(er => {
+        });
 } else if (getUrl === 'base' || getUrl === '') {
     const aj = new Ajax;
     aj.get({url: ''})
