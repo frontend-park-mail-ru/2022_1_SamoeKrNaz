@@ -1,6 +1,7 @@
 'use strict';
 
 import * as render from './basePage.templ.js';
+import {Ajax} from "../modules/ajax.js";
 
 export function basePageRender(r) {
     Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
