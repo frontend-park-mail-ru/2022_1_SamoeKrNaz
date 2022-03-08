@@ -16,7 +16,7 @@ export function deleteListeners() {
 	}
 	const logoutButton = document.getElementById('logout');
 	if (logoutButton) {
-		logoutButton.getElementById('logout1').removeEventListener('click', logout);
+		logoutButton.getElementById('logout').removeEventListener('click', logout);
 	}
 	const form = document.getElementById('input_form');
 	if (form) {
