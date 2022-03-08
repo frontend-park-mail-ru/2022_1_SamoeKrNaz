@@ -5,6 +5,12 @@ import {Messages} from "../constants/constants.js";
 import {Ajax} from './ajax.js';
 import {basePageRender} from "../basePage/basePage.js";
 
+/**
+ * Функция, осуществляющая валидацию email.
+ * @param {string} email входящий email
+ * @returns {RegExpMatchArray} получившиеся совпадения
+ */
+
 export function validateEmail (email) {
     return String(email)
         .toLowerCase()
@@ -12,6 +18,11 @@ export function validateEmail (email) {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
 };
+
+/**
+ * Функция, осуществляющая валидацию входа пользователя.
+ * @returns {boolean} статус валидации
+ */
 
 export function validateLoginPage(){
     const inpLogin = document.getElementById('input_login').value
@@ -44,6 +55,11 @@ export function validateLoginPage(){
         });
     return false;
 };
+
+/**
+ * Функция, осуществляющая валидацию регистрации пользователя.
+ * @returns {boolean} статус валидации
+ */
 
 export function validateSignUpPage() {
     const inpLogin = document.getElementById('input_login').value;

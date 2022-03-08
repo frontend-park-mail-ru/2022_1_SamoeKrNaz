@@ -1,4 +1,5 @@
 'use strict';
+
 export class Ajax {
     _backUrl = 'http://89.208.199.114:8080/api';
     _frontUrl = 'http://89.208.199.114:3000';
