@@ -64,11 +64,10 @@ if (getUrl === 'login') {
 			if (r.status === 200) {
 				Ajax.get({url: ''})
 					.then((r) => {
-					console.log(r.status);
-					if (r.status === 200) {
-						console.log(r);
-						basePageRender(r.responseText);
-					}})
+						if (r.status === 200) {
+							basePageRender(r.responseText);
+						}
+					})
 					.catch((er) =>{
 						console.error('error');
 					});

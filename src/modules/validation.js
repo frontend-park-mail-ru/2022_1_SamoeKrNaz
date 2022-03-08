@@ -7,7 +7,7 @@ import {basePageRender} from '../basePage/basePage.js';
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.
- * {return}
+ * @return {boolean} результат валидации
  */
 export function validateLoginPage() {
 	const inpLogin = document.getElementById('input_login').value;
@@ -28,11 +28,10 @@ export function validateLoginPage() {
 			if (r.status === 200) {
 				Ajax.get({url: ''})
 					.then((r) => {
-					console.log(r.status);
-					if (r.status === 200) {
-						console.log(r);
-						basePageRender(r.responseText);
-					}})
+						if (r.status === 200) {
+							basePageRender(r.responseText);
+						}
+					})
 					.catch((er) => {
 						console.error('error');
 					});
@@ -46,12 +45,17 @@ export function validateLoginPage() {
 
 /**
  * Функция, осуществляющая валидацию регистрации пользователя.
+ * @return {boolean} результат валидации
  */
 export function validateSignUpPage() {
 	const inpLogin = document.getElementById('input_login').value;
 	const inpPass = document.getElementById('input_pass').value;
 	const inpPassRep = document.getElementById('input_pass_rep').value;
-	if (inpLogin.length <= 6) {
+	if (inpLogin.length <= 6 && inpLogin.length >= 20 && inpPass.length <= 6 && inpPass.length >= 20) {
+		addError(Messages['shortLoginPassword']);
+		return false;
+	}
+	if (inpLogin.length <= 6 && inpLogin.length >= 20) {
 		addError(Messages['shortLogin']);
 		return false;
 	};
@@ -66,17 +70,15 @@ export function validateSignUpPage() {
 	Ajax.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
 		.then((r) => {
 			if (r.status === 409) {
-				console.log(r.status);
 				addError(Messages['alreadyRegister']);
 			}
 			if (r.status === 201) {
 				Ajax.get({url: ''})
 					.then((r) => {
-					console.log(r.status);
-					if (r.status === 200) {
-						console.log(r);
-						basePageRender(r.responseText);
-					}})
+						if (r.status === 200) {
+							basePageRender(r.responseText);
+						}
+					})
 					.catch((er) => {
 						console.error('error');
 					});

@@ -1,5 +1,5 @@
 'use strict';
-import {frontendUrl, backendUrl} from "../constants/constants.js";
+import {frontendUrl, backendUrl} from '../constants/constants.js';
 
 /**
  * Класс реализующий методы доступа к апи
@@ -53,7 +53,6 @@ class Ajax {
 			body: params.opt,
 		})
 			.then((response) => {
-				console.log(response);
 				status = response.status;
 				return response.json();
 			})

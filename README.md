@@ -2,6 +2,7 @@
 Проект Trello команды "Самое крутое название"
 
 Деплой: [planexa](http://89.208.199.114/)
+Swagger: [API](https://app.swaggerhub.com/apis/Planexa/Planexa/0.2.0)
 
 # Ссылки
 

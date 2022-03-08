@@ -120,6 +120,10 @@ body {
     cursor: pointer;
 }
 
+.auth__block_button:hover {
+    box-shadow: 0 0 7px var(--blue-color);
+}
+
 .auth__block_signup {
     display: flex;
     justify-content: space-between;
