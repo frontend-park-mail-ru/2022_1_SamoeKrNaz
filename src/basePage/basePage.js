@@ -73,6 +73,7 @@ export function logout() {
 			loginPageRender();
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 };
 

@@ -38,6 +38,7 @@ if (getUrl === 'login') {
 			};
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 } else if (getUrl === 'signup') {
 	Ajax.get({url: ''})
@@ -51,6 +52,7 @@ if (getUrl === 'login') {
 			};
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 } else if (getUrl === 'base' || getUrl === '') {
 	Ajax.get({url: ''})
@@ -60,16 +62,20 @@ if (getUrl === 'login') {
 				window.history.pushState('', '', 'http://89.208.199.114:3000/login');
 			}
 			if (r.status === 200) {
-				Ajax.get({url: ''}).then((r) => {
+				Ajax.get({url: ''})
+					.then((r) => {
 					console.log(r.status);
 					if (r.status === 200) {
 						console.log(r);
 						basePageRender(r.responseText);
-					}
-				});
+					}})
+					.catch((er) =>{
+						console.error(er);
+					});
 			};
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 }
 

@@ -13,9 +13,11 @@ export function validateLoginPage() {
 	const inpPass = document.getElementById('input_pass').value;
 	if (inpLogin.length < 6) {
 		addError(Messages['shortLogin']);
+		return false;
 	};
 	if (inpPass.length < 6) {
 		addError(Messages['shortPassword']);
+		return false;
 	};
 	Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
 		.then((r) => {
@@ -23,16 +25,20 @@ export function validateLoginPage() {
 				addError(Messages['notLogin']);
 			}
 			if (r.status === 200) {
-				aj.get({url: ''}).then((r) => {
+				aj.get({url: ''})
+					.then((r) => {
 					console.log(r.status);
 					if (r.status === 200) {
 						console.log(r);
 						basePageRender(r.responseText);
-					}
-				});
+					}})
+					.catch((er) => {
+						console.error(er);
+					});
 			};
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 };
 
@@ -59,15 +65,20 @@ export function validateSignUpPage() {
 				addError(Messages['alreadyRegister']);
 			}
 			if (r.status === 201) {
-				Ajax.get({url: ''}).then((r) => {
+				Ajax.get({url: ''})
+					.then((r) => {
 					console.log(r.status);
 					if (r.status === 200) {
 						console.log(r);
 						basePageRender(r.responseText);
 					}
-				});
+				})
+					.catch((er) => {
+						console.error(er);
+					});
 			};
 		})
 		.catch((er) => {
+			console.error(er);
 		});
 };
