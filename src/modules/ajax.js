@@ -6,7 +6,7 @@ export class Ajax {
     /**
      * Метод, реализующий любые GET запросы к апи. Требуется задавать только URL
      * @param {object} params - параметры запроса
-     * @returns {promice} - результат запроса
+     * @returns {promise} - результат запроса
      */
     get(params = {}) {
         return this._ajax('GET', params);
@@ -15,7 +15,7 @@ export class Ajax {
     /**
      * Метод, реализующий любые POST запросы к апи. Требуется задавать URL и OPT данные, которые передаются
      * @param {object} params - параметры запроса
-     * @returns {promice} - результат запроса
+     * @returns {promise} - результат запроса
      */
     post(params = {}) {
         return this._ajax('POST', params);
@@ -24,7 +24,7 @@ export class Ajax {
     /**
      * Метод, реализующий любые DELETE запросы к апи. Требуется задавать только URL
      * @param {object} params - параметры запроса
-     * @returns {promice} - результат запроса
+     * @returns {promise} - результат запроса
      */
     delete(params = {}) {
         return this._ajax('DELETE', params);
@@ -33,7 +33,7 @@ export class Ajax {
     /**
      * Метод, реализующий любые запросы к апи. Требуется задавать метод и тело
      * @param {string} method - Метод запроса строкой
-     * @returns {promice} - результат запроса
+     * @returns {promise} - результат запроса
      */
     _ajax(method, params = {}) {
         let status;

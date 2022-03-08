@@ -1,6 +1,7 @@
 'use strict';
 
 import {validateLoginPage, validateSignUpPage} from "../modules/validation.js";
+import * as render from './loginPage.templ.js';
 
 /**
  * Функция, осуществляющая рендер страницы логина.

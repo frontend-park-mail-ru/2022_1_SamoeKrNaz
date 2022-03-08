@@ -1,5 +1,6 @@
 'use strict';
 
+import * as render from './signupPage.templ.js';
 import {validateSignUpPage} from '../modules/validation.js';
 import {addPrompt, deletePrompt} from '../modules/prompt.js';
 
