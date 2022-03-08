@@ -27,4 +27,4 @@ jobs:
       - name: Start eslint
         run: npx eslint src/*/*.js
       - name: Start stylelint
-        run: stylelint src/css/*.css
+        run: npx stylelint src/css/*.css
