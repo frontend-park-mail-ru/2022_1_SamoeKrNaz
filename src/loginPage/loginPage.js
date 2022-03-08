@@ -35,5 +35,5 @@ export function loginPageRender() {
 
 	/* Навешивание обработчика валидации данных для формы логина */
 	const form = document.getElementById('input_form');
-	form.addEventListener('submit', validateLoginPage);
+	form.onsubmit = validateLoginPage;
 };
