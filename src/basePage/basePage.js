@@ -33,18 +33,9 @@ export function basePageRender(r) {
 	Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 	Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
 
-	/* Получение данных с бэка */
-	const tasks = {
-		tasks: r,
-		activeTasks: [{activeTaskText: 'РК № 1. СУБД', activeTaskDate: '4 марта 2022 года'},
-			{activeTaskText: 'РК № 1. Фронт', activeTaskDate: '9 марта 2022 года'},
-			{activeTaskText: 'РК № 1. Go', activeTaskDate: '10 марта 2022 года'},
-			{activeTaskText: 'Спокойно выдохнуть', activeTaskDate: 'После всех РК'}],
-	};
-
 	/* Рендер шаблона с входными данными */
 	const basePage = Handlebars.templates.basePage;
-	const html = basePage(tasks);
+	const html = basePage(r);
 
 	/* Смена урла в адресной строке */
 	window.history.pushState('', '', 'http://89.208.199.114:3000/base');

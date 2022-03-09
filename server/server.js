@@ -5,7 +5,7 @@ import {readFile} from 'fs';
 import {resolve}  from 'path';
 
 /* Порт, на котором разворачиваемся */
-const SERVER_PORT = 80;
+const SERVER_PORT = 3000;
 
 /* Получение текущей директории */
 const __dirname = resolve();
