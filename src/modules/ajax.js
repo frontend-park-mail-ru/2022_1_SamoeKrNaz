@@ -1,4 +1,3 @@
-'use strict';
 import {frontendUrl, backendUrl} from '../constants/constants.js';
 
 /**

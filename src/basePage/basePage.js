@@ -36,10 +36,10 @@ export function basePageRender(r) {
 	/* Получение данных с бэка */
 	const tasks = {
 		tasks: r,
-		activeTasks: [{activeTaskText: 'Важное дело номер раз', activeTaskDate: '11 декабря 2022 года'},
-			{activeTaskText: 'Важное дело номер два', activeTaskDate: '11 декабря 2022 года'},
-			{activeTaskText: 'Важное дело номер три', activeTaskDate: '11 декабря 2022 года'},
-			{activeTaskText: 'Важное дело номер четыре', activeTaskDate: '11 декабря 2022 года'}],
+		activeTasks: [{activeTaskText: 'РК № 1. СУБД', activeTaskDate: '4 марта 2022 года'},
+			{activeTaskText: 'РК № 1. Фронт', activeTaskDate: '9 марта 2022 года'},
+			{activeTaskText: 'РК № 1. Go', activeTaskDate: '10 марта 2022 года'},
+			{activeTaskText: 'Спокойно выдохнуть', activeTaskDate: 'После всех РК'}],
 	};
 
 	/* Рендер шаблона с входными данными */

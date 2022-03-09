@@ -37,7 +37,7 @@ const server = createServer((req, res) => {
 
         /* При расширении .js необходимо установить заголовок */
         if (extension === 'js') {
-            res.setHeader('Content-type', 'text/javascript')
+            res.setHeader('Content-type', 'text/javascript');
         };
 
         /* Запись данных*/
