@@ -1,0 +1,33 @@
+{
+  "type": "module",
+  "name": "2022_1_samoekrnaz",
+  "version": "1.0.0",
+  "description": "Проект Trello команды \"Самое крутое название\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildHandleBars": "bash script.sh && npx eslint src/*/*.js && cd server && node server.js ",
+    "checkLinters" : "npx eslint src/*/*.js && npx stylelint src/css/*.css",
+    "checkLintersFix": "npx eslint src/*/*.js --fix && npx stylelint src/css/*.css",
+    "runServer": "cd server && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontend-park-mail-ru/2022_1_SamoeKrNaz.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frontend-park-mail-ru/2022_1_SamoeKrNaz/issues"
+  },
+  "homepage": "https://github.com/frontend-park-mail-ru/2022_1_SamoeKrNaz#readme",
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-standard": "^25.0.0"
+  }
+}
