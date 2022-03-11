@@ -1,12 +1,11 @@
 {
-  "type": "module",
   "name": "2022_1_samoekrnaz",
   "version": "1.0.0",
   "description": "Проект Trello команды \"Самое крутое название\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildHandleBars": "bash script.sh && npx eslint src/*/*.js && cd server && node server.js ",
+    "buildhandlebars": "bash script.sh && npx eslint src/*/*.js && cd server && node server.js ",
     "checkLinters" : "npx eslint src/*/*.js && npx stylelint src/css/*.css",
     "checkLintersFix": "npx eslint src/*/*.js --fix && npx stylelint src/css/*.css",
     "runServer": "cd server && node server.js"
