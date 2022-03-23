@@ -25,28 +25,27 @@ export function validateLoginPage() {
 		addError(Messages['shortPassword']);
 		return false;
 	};
-	// Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
-	// 	.then((r) => {
-	// 		if (r.status === 401) {
-	// 			addError(Messages['notLogin']);
-	// 		}
-	// 		if (r.status === 200) {
-	// 			Ajax.get({url: ''})
-	// 				.then((r) => {
-	// 					if (r.status === 200) {
-	// 						basePageRender(r.responseText);
-	// 					}
-	// 				})
-	// 				.catch((er) => {
-	// 					console.error('error');
-	// 				});
-	// 		};
-	// 	})
-	// 	.catch((er) => {
-	// 		console.error('error');
-	// 	});
-	// return false;
-	router.open(Url.basePage)
+	Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+		.then((r) => {
+			if (r.status === 401) {
+				addError(Messages['notLogin']);
+			}
+			if (r.status === 200) {
+				Ajax.get({url: ''})
+					.then((r) => {
+						if (r.status === 200) {
+							router.open(Url.basePage, r.responseText);
+						}
+					})
+					.catch((er) => {
+						console.error('error');
+					});
+			};
+		})
+		.catch((er) => {
+			console.error('error');
+		});
+	return false;
 };
 
 /**
@@ -82,7 +81,7 @@ export function validateSignUpPage() {
 				Ajax.get({url: ''})
 					.then((r) => {
 						if (r.status === 200) {
-							basePageRender(r.responseText);
+							router.open(Url.basePage, r.responseText);
 						}
 					})
 					.catch((er) => {

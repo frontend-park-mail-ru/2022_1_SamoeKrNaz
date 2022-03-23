@@ -33,7 +33,7 @@ if (getUrl === 'login') {
 	Ajax.get({url: ''})
 		.then((r) => {
 			if (r.status == 401) {
-				loginPageRender();
+				router.open(Url.loginPage);
 			}
 			if (r.status === 200) {
 				router.open(Url.basePage, r.responseText);
