@@ -20,9 +20,6 @@ export function signupPageRender() {
 	Handlebars.registerPartial('input', Handlebars.templates['input']);
 	Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 
-	/* Смена урла в адресной строке */
-	window.history.pushState('', '', 'http://89.208.199.114:3000/signup');
-
 	/* Рендер шаблона с входными данными */
 	const signupPage = Handlebars.templates.signupPage;
 	const html = signupPage({});

@@ -4,7 +4,8 @@ import {loginPageRender} from '../loginPage/loginPage.js';
 import {basePageRender} from '../basePage/basePage.js';
 import {signupPageRender} from '../signupPage/signupPage.js';
 import Ajax from '../modules/ajax.js';
-import {domainSize} from '../constants/constants.js';
+import {domainSize, Url} from '../constants/constants.js';
+import router from '../modules/router.js';
 
 /* Структура для вызова методов в зависимости от урла */
 const configApp = {
@@ -25,6 +26,8 @@ const configApp = {
 /* Получение текущего адреса без домена */
 const getUrl = window.location.href.slice(domainSize);
 
+router.register(Url.index, loginPageRender).register(Url.basePage, basePageRender).register(Url.loginPage, loginPageRender).register(Url.signupPage, signupPageRender);
+
 /* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login') {
 	Ajax.get({url: ''})
@@ -33,8 +36,7 @@ if (getUrl === 'login') {
 				loginPageRender();
 			}
 			if (r.status === 200) {
-				window.history.pushState('', '', 'http://89.208.199.114:3000/base');
-				basePageRender(r.responseText);
+				router.open(Url.basePage, r.responseText);
 			};
 		})
 		.catch((er) => {
@@ -44,11 +46,10 @@ if (getUrl === 'login') {
 	Ajax.get({url: ''})
 		.then((r) => {
 			if (r.status == 401) {
-				signupPageRender();
+				router.open(Url.signupPage);
 			}
 			if (r.status === 200) {
-				window.history.pushState('', '', 'http://89.208.199.114:3000/base');
-				basePageRender(r.responseText);
+				router.open(Url.basePage, r.responseText);
 			};
 		})
 		.catch((er) => {
@@ -58,14 +59,13 @@ if (getUrl === 'login') {
 	Ajax.get({url: ''})
 		.then((r) => {
 			if (r.status === 401) {
-				loginPageRender();
-				window.history.pushState('', '', 'http://89.208.199.114:3000/login');
+				router.open(Url.loginPage);
 			}
 			if (r.status === 200) {
 				Ajax.get({url: ''})
 					.then((r) => {
 						if (r.status === 200) {
-							basePageRender(r.responseText);
+							router.open(Url.basePage, r.responseText);
 						}
 					})
 					.catch((er) =>{
@@ -77,16 +77,3 @@ if (getUrl === 'login') {
 			console.error('error');
 		});
 }
-
-/* Навешивание обработки на все ссылки в боди */
-document.body.addEventListener('click', (e) => {
-	const {target} = e;
-	if (target instanceof HTMLAnchorElement) {
-		e.preventDefault();
-		const section = target.href.slice(domainSize);
-		if (section) {
-			window.history.pushState('', '', section);
-			configApp[section].openMethod();
-		}
-	}
-});

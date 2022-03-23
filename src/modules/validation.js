@@ -1,9 +1,10 @@
 'use strict';
 
 import {addError} from './errors.js';
-import {Messages} from '../constants/constants.js';
+import {Messages, Url} from '../constants/constants.js';
 import Ajax from './ajax.js';
 import {basePageRender} from '../basePage/basePage.js';
+import router from "./router.js";
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.
@@ -24,27 +25,28 @@ export function validateLoginPage() {
 		addError(Messages['shortPassword']);
 		return false;
 	};
-	Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
-		.then((r) => {
-			if (r.status === 401) {
-				addError(Messages['notLogin']);
-			}
-			if (r.status === 200) {
-				Ajax.get({url: ''})
-					.then((r) => {
-						if (r.status === 200) {
-							basePageRender(r.responseText);
-						}
-					})
-					.catch((er) => {
-						console.error('error');
-					});
-			};
-		})
-		.catch((er) => {
-			console.error('error');
-		});
-	return false;
+	// Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+	// 	.then((r) => {
+	// 		if (r.status === 401) {
+	// 			addError(Messages['notLogin']);
+	// 		}
+	// 		if (r.status === 200) {
+	// 			Ajax.get({url: ''})
+	// 				.then((r) => {
+	// 					if (r.status === 200) {
+	// 						basePageRender(r.responseText);
+	// 					}
+	// 				})
+	// 				.catch((er) => {
+	// 					console.error('error');
+	// 				});
+	// 		};
+	// 	})
+	// 	.catch((er) => {
+	// 		console.error('error');
+	// 	});
+	// return false;
+	router.open(Url.basePage)
 };
 
 /**
