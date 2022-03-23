@@ -9,7 +9,7 @@ class Router {
 	 */
 	constructor() {
 		this.routes = {}; // маршруты, куда будем складывать путь-View
-		this.body = document.getElementsByTagName('body'); // берем корень index.html
+		this.body = document.body; // берем тело index.html
 	};
 
 	/**
