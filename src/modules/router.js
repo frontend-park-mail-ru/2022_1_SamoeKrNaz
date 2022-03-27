@@ -47,6 +47,13 @@ class Router {
 	 * @param {*} context Данные с бэка для рендера страницы
 	 */
 	open(path, context = null) {
+		this.body.removeEventListener('click', (event) => {
+			const {target} = event;
+			if (target instanceof HTMLAnchorElement) {
+				event.preventDefault();
+				this.open(target.pathname);
+			}
+		});
 		const view = this.routes[path];
 		// зарегистрировал ли такой путь
 		if (!view) {
@@ -60,11 +67,15 @@ class Router {
 		// рендерим страницу
 		view(context);
 	};
-
+	/**
+	 * Переключение страницы назад
+	 */
 	back() {
 		window.history.back();
 	};
-
+	/**
+	 * Переключение страницы вперед
+	 */
 	forward() {
 		window.history.forward();
 	};

@@ -4,7 +4,7 @@ import {addError} from './errors.js';
 import {Messages, Url} from '../constants/constants.js';
 import Ajax from './ajax.js';
 import {basePageRender} from '../basePage/basePage.js';
-import router from "./router.js";
+import router from './router.js';
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.

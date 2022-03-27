@@ -9,11 +9,11 @@ export const Messages = {
 };
 
 export const Url = {
-	loginPage : '/login',
-	basePage : '/base',
-	signupPage : '/signup',
-	index : '/',
-}
+	loginPage: '/login',
+	basePage: '/base',
+	signupPage: '/signup',
+	index: '/',
+};
 
 export const domainSize = 27;
 

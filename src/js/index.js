@@ -26,7 +26,10 @@ const configApp = {
 /* Получение текущего адреса без домена */
 const getUrl = window.location.href.slice(domainSize);
 
-router.register(Url.index, loginPageRender).register(Url.basePage, basePageRender).register(Url.loginPage, loginPageRender).register(Url.signupPage, signupPageRender);
+router.register(Url.index, loginPageRender);
+router.register(Url.basePage, basePageRender);
+router.register(Url.loginPage, loginPageRender);
+router.register(Url.signupPage, signupPageRender);
 
 /* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login') {
