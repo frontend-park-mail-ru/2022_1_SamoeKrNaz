@@ -8,13 +8,13 @@ class Dispatcher {
 	constructor() {
 		this._callbacks = {}; // библиотека, в которой будут храниться все колбэки
 		this._isWaiting = {}; // false - начало исполняться, true если ожидает исполнения
-		this._i = 0; // итератор для
+		this._i = 0; // итератор для выдачи айдишников событиям
 	};
 
 	/**
 	 * Метод, регистрирующий события в диспетчере
 	 * @param {object} callback функция, которую будет вызывать диспетчер
-	 * @return {int} id зарегистрированного события
+	 * @return {number} id зарегистрированного события
 	 */
 	register(callback) {
 		this._callbacks[this._i] = callback;
