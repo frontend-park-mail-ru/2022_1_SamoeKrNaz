@@ -6,7 +6,8 @@ class Dispatcher {
 	 * @constructor
 	 */
 	constructor() {
-		this._callbacks = []; // библиотека, в которой будут храниться все колбэки
+		this._callbacks = {}; // библиотека, в которой будут храниться все колбэки
+		this._i = 0;
 	};
 
 	/**
@@ -15,8 +16,8 @@ class Dispatcher {
 	 * @return {int} id зарегистрированного события
 	 */
 	register(callback) {
-		this._callbacks.push(callback);
-		return this._callbacks.length - 1;
+		this._callbacks[this._i++] = callback;
+		return this._i;
 	}
 
 	/**
@@ -24,7 +25,11 @@ class Dispatcher {
 	 * @param {object} action функция, которую будет вызывать диспетчер
 	 */
 	dispatch(action) {
-		this._callbacks.map((callback) => callback(action));
+		for (const callback in this._callbacks) {
+			if ({}.hasOwnProperty.call(this._callbacks, callback)) {
+				this._callbacks[callback](action);
+			}
+		}
 	}
 
 	/**
@@ -32,7 +37,7 @@ class Dispatcher {
 	 * @param {int} id функция, которую будет вызывать диспетчер
 	 */
 	unregister(id) {
-		this._callbacks.splice(id, 1);
+		delete this._callbacks[id];
 	}
 }
 
