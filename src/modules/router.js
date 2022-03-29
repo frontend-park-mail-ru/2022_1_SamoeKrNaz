@@ -79,6 +79,6 @@ class Router {
 	forward() {
 		window.history.forward();
 	};
-};
+}
 
 export default new Router();
