@@ -7,8 +7,8 @@ class Dispatcher {
 	 */
 	constructor() {
 		this._callbacks = {}; // библиотека, в которой будут храниться все колбэки
-		this._isWaiting = {}; // false - если событие выполнилось, true если ожидает выполнения
-		this._i = 0;
+		this._isWaiting = {}; // false - начало исполняться, true если ожидает исполнения
+		this._i = 0; // итератор для
 	};
 
 	/**
@@ -17,9 +17,11 @@ class Dispatcher {
 	 * @return {int} id зарегистрированного события
 	 */
 	register(callback) {
-		this._callbacks[this._i++] = callback;
+		this._callbacks[this._i] = callback;
 		this._isWaiting[this._i] = false;
-		return this._i;
+		this._i++;
+
+		return this._i - 1;
 	}
 
 	/**
@@ -27,15 +29,17 @@ class Dispatcher {
 	 * @param {object} action функция, которую будет вызывать диспетчер
 	 */
 	dispatch(action) {
+		this._currentAction = action;
+
 		// eslint-disable-next-line guard-for-in
 		for (const id in this._callbacks) {
 			this._isWaiting[id] = true;
 		}
 
 		for (const id in this._callbacks) {
-			if ({}.hasOwnProperty.call(this._callbacks, id)) {
-				this._callbacks[id](action);
+			if ({}.hasOwnProperty.call(this._callbacks, id) && this._isWaiting[id]) {
 				this._isWaiting[id] = false;
+				this._callbacks[id](this._currentAction);
 			}
 		}
 	}
@@ -53,12 +57,12 @@ class Dispatcher {
 	 * @param {array<int>} ids функция, которую будет вызывать диспетчер
 	 */
 	wait(ids) {
-		// eslint-disable-next-line guard-for-in
-		for (const id in ids) {
-			if ({}.hasOwnProperty.call(this._isWaiting, id)) {
-				while (this._isWaiting[id]);
+		ids.map((id) => {
+			if (this._isWaiting[id]) {
+				this._isWaiting[id] = false;
+				this._callbacks[id](this._currentAction);
 			}
-		}
+		});
 	}
 }
 
