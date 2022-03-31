@@ -6,8 +6,8 @@ class Dispatcher {
 	 * @constructor
 	 */
 	constructor() {
-		this._callbacks = {}; // библиотека, в которой будут храниться все колбэки
-		this._isWaiting = {}; // false - начало исполняться, true если ожидает исполнения
+		this._callbacks = []; // библиотека, в которой будут храниться все колбэки
+		this._isWaiting = []; // false - начало исполняться, true если ожидает исполнения
 		this._i = 0; // итератор для выдачи айдишников событиям
 	};
 
@@ -31,17 +31,12 @@ class Dispatcher {
 	dispatch(action) {
 		this._currentAction = action;
 
-		// eslint-disable-next-line guard-for-in
-		for (const id in this._callbacks) {
-			this._isWaiting[id] = true;
-		}
+		this._isWaiting.fill(true);
 
-		for (const id in this._callbacks) {
-			if ({}.hasOwnProperty.call(this._callbacks, id) && this._isWaiting[id]) {
-				this._isWaiting[id] = false;
-				this._callbacks[id](this._currentAction);
-			}
-		}
+		this._callbacks.forEach((el, i) => {
+			this._isWaiting[i] = false;
+			el(this._currentAction);
+		});
 	}
 
 	/**
@@ -50,6 +45,7 @@ class Dispatcher {
 	 */
 	unregister(id) {
 		delete this._callbacks[id];
+		delete this._isWaiting[id];
 	}
 
 	/**
