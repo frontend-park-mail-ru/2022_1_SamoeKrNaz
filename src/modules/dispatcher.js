@@ -6,8 +6,7 @@ class Dispatcher {
 	 * @constructor
 	 */
 	constructor() {
-		this._callbacks = []; // библиотека, в которой будут храниться все колбэки
-		this._isWaiting = []; // false - начало исполняться, true если ожидает исполнения
+		this._callbacks = new Map(); // библиотека, в которой будут храниться все колбэки и информация по их выполнению
 		this._i = 0; // итератор для выдачи айдишников событиям
 	};
 
@@ -17,11 +16,12 @@ class Dispatcher {
 	 * @return {number} id зарегистрированного события
 	 */
 	register(callback) {
-		this._callbacks[this._i] = callback;
-		this._isWaiting[this._i] = false;
-		this._i++;
+		this._callbacks.set(this._i, {
+			action: callback,
+			isWait: false,
+		});
 
-		return this._i - 1;
+		return this._i++;
 	}
 
 	/**
@@ -31,12 +31,14 @@ class Dispatcher {
 	dispatch(action) {
 		this._currentAction = action;
 
-		this._isWaiting.fill(true);
+		this._callbacks.forEach((el) => {
+			el.isWait = true;
+		});
 
-		this._callbacks.forEach((el, i) => {
-			if (this._isWaiting[i]) {
-				this._isWaiting[i] = false;
-				el(this._currentAction);
+		this._callbacks.forEach((el) => {
+			if (el.isWait) {
+				el.isWait = false;
+				el.action(this._currentAction);
 			}
 		});
 	}
@@ -46,8 +48,7 @@ class Dispatcher {
 	 * @param {int} id функция, которую будет вызывать диспетчер
 	 */
 	unregister(id) {
-		delete this._callbacks[id];
-		delete this._isWaiting[id];
+		this._callbacks.delete(id);
 	}
 
 	/**
@@ -56,9 +57,11 @@ class Dispatcher {
 	 */
 	wait(ids) {
 		ids.map((id) => {
-			if (this._isWaiting[id]) {
-				this._isWaiting[id] = false;
-				this._callbacks[id](this._currentAction);
+			const el = this._callbacks.get(id);
+
+			if (el !== undefined && el.isWait) {
+				el.isWait = false;
+				el.action(this._currentAction);
 			}
 		});
 	}
