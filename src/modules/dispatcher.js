@@ -34,8 +34,10 @@ class Dispatcher {
 		this._isWaiting.fill(true);
 
 		this._callbacks.forEach((el, i) => {
-			this._isWaiting[i] = false;
-			el(this._currentAction);
+			if (this._isWaiting[i]) {
+				this._isWaiting[i] = false;
+				el(this._currentAction);
+			}
 		});
 	}
 
