@@ -22,7 +22,7 @@ export function addPrompt() {
 
 	promptBlock = document.getElementsByClassName('auth__block_prompt')[0];
 	promptBlock.appendChild(firstReq);
-};
+}
 
 /**
  * Функция, удаляющая подсказку на странице регистрации.
@@ -31,5 +31,5 @@ export function deletePrompt() {
 	const el = document.getElementsByClassName('auth__block_prompt')[0];
 	if (el) {
 		el.remove();
-	};
-};
+	}
+}

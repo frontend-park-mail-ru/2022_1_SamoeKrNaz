@@ -15,7 +15,7 @@ export const Url = {
 	index: '/',
 };
 
-export const domainSize = 27;
+export const backendUrl = 'http://localhost:8080/api';
+export const frontendUrl = 'http://localhost:3000';
 
-export const backendUrl = 'http://89.208.199.114:8080/api';
-export const frontendUrl = 'http://89.208.199.114:3000';
+export const domainSize = frontendUrl.length + 1;
