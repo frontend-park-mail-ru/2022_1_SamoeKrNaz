@@ -13,15 +13,15 @@ import router from './router.js';
 export function validateLoginPage() {
 	const inpLogin = document.getElementById('input_login').value;
 	const inpPass = document.getElementById('input_pass').value;
-	if (inpLogin.length <= 6 && inpLogin.length >= 20 && inpPass.length <= 6 && inpPass.length >= 20) {
+	if ((inpLogin.length <= 6 || inpLogin.length > 20) && (inpPass.length <= 6 || inpPass.length > 20)) {
 		addError(Messages['shortLoginPassword']);
 		return false;
 	}
-	if (inpLogin.length <= 6 && inpLogin.length >= 20) {
+	if (inpLogin.length <= 6 || inpLogin.length > 20) {
 		addError(Messages['shortLogin']);
 		return false;
 	};
-	if (inpPass.length <= 6 && inpPass.length >= 20) {
+	if (inpPass.length <= 6 || inpPass.length > 20) {
 		addError(Messages['shortPassword']);
 		return false;
 	};
@@ -56,15 +56,15 @@ export function validateSignUpPage() {
 	const inpLogin = document.getElementById('input_login').value;
 	const inpPass = document.getElementById('input_pass').value;
 	const inpPassRep = document.getElementById('input_pass_rep').value;
-	if (inpLogin.length <= 6 && inpLogin.length >= 20 && inpPass.length <= 6 && inpPass.length >= 20) {
+	if ((inpLogin.length <= 6 || inpLogin.length > 20) && (inpPass.length <= 6 || inpPass.length > 20)) {
 		addError(Messages['shortLoginPassword']);
 		return false;
 	}
-	if (inpLogin.length <= 6 && inpLogin.length >= 20) {
+	if (inpLogin.length <= 6 || inpLogin.length > 20) {
 		addError(Messages['shortLogin']);
 		return false;
 	};
-	if (inpPass.length <= 6 && inpPass.length >= 20) {
+	if (inpPass.length <= 6 || inpPass.length > 20) {
 		addError(Messages['shortPassword']);
 		return false;
 	};
