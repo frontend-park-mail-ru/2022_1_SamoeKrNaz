@@ -37,9 +37,6 @@ export function basePageRender(r) {
 	const basePage = Handlebars.templates.basePage;
 	const html = basePage(r);
 
-	/* Смена урла в адресной строке */
-	window.history.pushState('', '', 'http://89.208.199.114:3000/base');
-
 	/* Добавление контента в DOM */
 	document.body.innerHTML = html;
 

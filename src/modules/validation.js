@@ -1,9 +1,10 @@
 'use strict';
 
 import {addError} from './errors.js';
-import {Messages} from '../constants/constants.js';
+import {Messages, Url} from '../constants/constants.js';
 import Ajax from './ajax.js';
 import {basePageRender} from '../basePage/basePage.js';
+import router from './router.js';
 
 /**
  * Функция, осуществляющая валидацию входа пользователя.
@@ -33,7 +34,7 @@ export function validateLoginPage() {
 				Ajax.get({url: ''})
 					.then((r) => {
 						if (r.status === 200) {
-							basePageRender(r.responseText);
+							router.open(Url.basePage, r.responseText);
 						}
 					})
 					.catch((er) => {
@@ -80,7 +81,7 @@ export function validateSignUpPage() {
 				Ajax.get({url: ''})
 					.then((r) => {
 						if (r.status === 200) {
-							basePageRender(r.responseText);
+							router.open(Url.basePage, r.responseText);
 						}
 					})
 					.catch((er) => {

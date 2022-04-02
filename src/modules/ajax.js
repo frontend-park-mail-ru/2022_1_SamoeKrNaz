@@ -1,7 +1,7 @@
 import {frontendUrl, backendUrl} from '../constants/constants.js';
 
 /**
- * Класс реализующий методы доступа к апи
+ * Класс, реализующий методы доступа к апи
  */
 class Ajax {
 	frontendUrl = frontendUrl;

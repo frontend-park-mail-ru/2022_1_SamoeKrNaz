@@ -8,7 +8,14 @@ export const Messages = {
 	shortLoginPassword: 'Логин и пароль должны составлять от 7 до 20 символов',
 };
 
-export const domainSize = 27;
+export const Url = {
+	loginPage: '/login',
+	basePage: '/base',
+	signupPage: '/signup',
+	index: '/',
+};
 
-export const backendUrl = 'http://89.208.199.114:8080/api';
-export const frontendUrl = 'http://89.208.199.114:3000';
+export const backendUrl = 'http://localhost:8080/api';
+export const frontendUrl = 'http://localhost:3000';
+
+export const domainSize = frontendUrl.length + 1;
