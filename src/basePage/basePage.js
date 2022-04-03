@@ -16,7 +16,7 @@ export function logout() {
 		.catch((er) => {
 			console.error('error');
 		});
-};
+}
 
 /**
  * Функция, осуществляющая рендер страницы пользователя с досками.
@@ -44,7 +44,7 @@ export function basePageRender(r) {
 	document.getElementsByClassName('toggle__block')[0].addEventListener('click', toggleMenu);
 	document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
 	document.getElementById('logout').addEventListener('click', logout);
-};
+}
 
 /**
  * Функция, осуществляющая выезд/въезд левого меню.
@@ -63,4 +63,4 @@ export function toggleActiveTasks() {
 	document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
 	document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
 	document.getElementById('active-closer').classList.toggle('toggle__icon_open');
-};
+}

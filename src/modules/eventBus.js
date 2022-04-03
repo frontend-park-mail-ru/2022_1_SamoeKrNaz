@@ -8,7 +8,7 @@ class EventBus {
 	constructor() {
 		this._events = new Map();
 		this._i = 0;
-	};
+	}
 
 	/**
 	 * Подписка на события в шине

@@ -25,7 +25,7 @@ export function loginPageRender() {
 	const html = loginPage({});
 
 	/* Создание контейнера для вставки в DOM */
-	document.body.innerHTML ='';
+	document.body.innerHTML = '';
 	const container = document.createElement('div');
 	container.className = 'container';
 	document.body.appendChild(container);

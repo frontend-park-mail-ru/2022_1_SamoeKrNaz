@@ -10,7 +10,7 @@ class Router {
 	constructor() {
 		this.routes = {}; // маршруты, куда будем складывать путь-View
 		this.body = document.body; // берем тело index.html
-	};
+	}
 
 	/**
 	 * Регистрация пути path и View к этому пути
@@ -21,7 +21,7 @@ class Router {
 	register(path, view) {
 		this.routes[path] = view;
 		return this;
-	};
+	}
 
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
@@ -40,7 +40,7 @@ class Router {
 		});
 		const currentUrl = window.location.pathname;
 		this.open(currentUrl);
-	};
+	}
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
 	 * @param {string} path Урл для рендера
@@ -66,19 +66,19 @@ class Router {
 		}
 		// рендерим страницу
 		view(context);
-	};
+	}
 	/**
 	 * Переключение страницы назад
 	 */
 	back() {
 		window.history.back();
-	};
+	}
 	/**
 	 * Переключение страницы вперед
 	 */
 	forward() {
 		window.history.forward();
-	};
+	}
 }
 
 export default new Router();

@@ -87,10 +87,10 @@ export function validateSignUpPage() {
 					.catch((er) => {
 						console.error('error');
 					});
-			};
+			}
 		})
 		.catch((er) => {
 			console.error('error');
 		});
 	return false;
-};
+}
