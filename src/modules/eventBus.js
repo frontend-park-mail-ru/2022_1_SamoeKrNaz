@@ -14,7 +14,7 @@ class EventBus {
 	 * Подписка на события в шине
 	 * @param {string} event событие, на которое подписаться
 	 * @param {object} callback функция, которую будет вызывать шина
-	 * @return {function(): void} функцию удаляющую подписку на событие
+	 * @return {function(): void} функция, удаляющая подписку на событие
 	 */
 	subscribe(event, callback) {
 		const eventMap = this._events.get(event);
