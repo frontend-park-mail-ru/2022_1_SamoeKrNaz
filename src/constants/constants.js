@@ -12,6 +12,7 @@ export const Url = {
 	loginPage: '/login',
 	basePage: '/base',
 	signupPage: '/signup',
+	boardPage: '/board',
 	index: '/',
 };
 
