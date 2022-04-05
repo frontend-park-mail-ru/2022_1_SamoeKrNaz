@@ -717,7 +717,6 @@ body {
 	font-size: 18px;
 	line-height: 21px;
 	letter-spacing: 0.02em;
-
 	cursor: pointer;
 	background: inherit;
 	border: none;
@@ -735,7 +734,6 @@ body {
 .desk__new-task {
 	display: flex;
 	align-items: center;
-
 	margin-top: 20px;
 	cursor: pointer;
 	font-style: normal;
@@ -743,7 +741,7 @@ body {
 	font-size: 14px;
 	line-height: 16px;
 	letter-spacing: 0.02em;
-	color: #7F7F7F;
+	color: #7f7f7f;
 }
 
 .desk__new-task > span {
@@ -752,10 +750,9 @@ body {
 
 .desk__task {
 	margin: 12px 0;
-	background: #E9F0F6;
+	background: #e9f0f6;
 	border-radius: var(--button-radius);
 	padding: 12px 15px;
-
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 17px;
@@ -847,4 +844,3 @@ body {
 	padding: 10px 30px;
 	margin: 15px;
 }
-
