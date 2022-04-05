@@ -1,4 +1,11 @@
+/**
+ * Базовый класс стора, от которого будут наследоваться все остальные сторы
+ */
 class Store {
-    constructor() {
-    }
+	/**
+	 * @constructor
+	 */
+	constructor() {
+		this._data = {};
+	}
 }
