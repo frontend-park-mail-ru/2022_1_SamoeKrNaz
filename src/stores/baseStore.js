@@ -27,4 +27,4 @@ class Store {
 	}
 }
 
-export default new Store();
+export default Store;

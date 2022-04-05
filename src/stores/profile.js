@@ -14,3 +14,5 @@ class Profile extends Store {
 		super('Profile', data);
 	}
 }
+
+export default Profile;
