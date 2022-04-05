@@ -74,7 +74,7 @@ if (getUrl === 'login') {
 					.catch((er) =>{
 						console.error('error');
 					});
-			};
+			}
 		})
 		.catch((er) => {
 			console.error('error');
