@@ -42,6 +42,7 @@ class Router {
 
 		this.open(window.location.pathname);
 	}
+
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
 	 * @param {string} path Урл для рендера
@@ -56,11 +57,13 @@ class Router {
 			}
 		});
 		const view = this.routes[path];
+
 		// зарегистрировал ли такой путь
 		if (!view) {
 			this.open(Url.index);
 			return;
 		}
+
 		// проверяем урл, если другой, то добавляем в историю
 		if (window.location.pathname !== path) {
 			window.history.pushState('', '', path);
@@ -68,12 +71,14 @@ class Router {
 		// рендерим страницу
 		view(context);
 	}
+
 	/**
 	 * Переключение страницы назад
 	 */
 	back() {
 		window.history.back();
 	}
+
 	/**
 	 * Переключение страницы вперед
 	 */

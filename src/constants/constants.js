@@ -16,6 +16,6 @@ export const Url = {
 	index: '/',
 };
 
-export const backendUrl = 'http://localhost:8080/api';
-export const frontendUrl = 'http://localhost:3000';
+export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/api';
+export const frontendUrl = window.location.origin;
 
