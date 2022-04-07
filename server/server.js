@@ -2,7 +2,7 @@
 
 import {createServer} from 'http';
 import {readFile} from 'fs';
-import {resolve}  from 'path';
+import {resolve} from 'path';
 
 /* Порт, на котором разворачиваемся */
 const SERVER_PORT = 3000;
@@ -12,38 +12,38 @@ const __dirname = resolve();
 
 /* Обработка запросов */
 const server = createServer((req, res) => {
-    /* Получение урла */
-    const {url} = req;
+	/* Получение урла */
+	const {url} = req;
 
-    /* По дефолту будем отдавать index.html */
-    let fileName = 'index.html';
+	/* По дефолту будем отдавать index.html */
+	let fileName = 'index.html';
 
-    /* Если не заданные урлы, то придется отдать нужный файли */
-    if (url !== '/login' && url !== '/signup' && url !== '/base' && url !== '/') {
-        fileName = url;
-    }
+	/* Если не заданные урлы, то придется отдать нужный файли */
+	if (!req.headers.accept.includes('text/html')) {
+		fileName = url;
+	}
 
-    /* Определение расширения файла */
-    const extension = fileName.split('.').pop();
+	/* Определение расширения файла */
+	const extension = fileName.split('.').pop();
 
-    readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+	readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
 
-        /* Обработка ошибки*/
-        if (err) {
-            res.write('404 not found');
-            res.end();
-            return;
-        };
+		/* Обработка ошибки*/
+		if (err) {
+			res.write('404 not found');
+			res.end();
+			return;
+		}
 
-        /* При расширении .js необходимо установить заголовок */
-        if (extension === 'js') {
-            res.setHeader('Content-type', 'text/javascript');
-        }
+		/* При расширении .js необходимо установить заголовок */
+		if (extension === 'js') {
+			res.setHeader('Content-type', 'text/javascript');
+		}
 
-        /* Запись данных*/
-        res.write(file);
-        res.end();
-    });
+		/* Запись данных*/
+		res.write(file);
+		res.end();
+	});
 });
 
 /* Прослушивание порта*/

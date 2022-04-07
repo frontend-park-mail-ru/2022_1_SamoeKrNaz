@@ -91,7 +91,7 @@ export function boardPageRender(r) {
 	homeButton.addEventListener('click', (e) => {
 		router.open(Url.basePage);
 	});
-};
+}
 
 /**
  * Функция, осуществляющая выезд/въезд левого меню.
@@ -110,4 +110,4 @@ export function toggleActiveTasks() {
 	document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
 	document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
 	document.getElementById('active-closer').classList.toggle('toggle__icon_open');
-};
+}
