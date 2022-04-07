@@ -89,7 +89,7 @@ export function boardPageRender(r) {
 
 	const homeButton = document.getElementsByClassName('homeButton')[0];
 	homeButton.addEventListener('click', (e) => {
-		router.open(Url.basePage);
+		router.open(Url.base);
 	});
 }
 

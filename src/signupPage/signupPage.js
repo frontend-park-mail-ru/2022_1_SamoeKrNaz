@@ -41,4 +41,4 @@ export function signupPageRender() {
 
 	/* Удаление подсказки при снятии фокуса */
 	inputPas.addEventListener('blur', deletePrompt);
-};
+}

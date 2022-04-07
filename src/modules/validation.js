@@ -45,7 +45,7 @@ export function validateLoginPage() {
 	// 	.catch((er) => {
 	// 		console.error('error');
 	// 	});
-	router.open(Url.basePage);
+	router.open(Url.base);
 	return false;
 }
 

@@ -65,12 +65,12 @@ export function basePageRender(r) {
 
 	const deskButton = document.getElementsByClassName('deskButton')[0];
 	deskButton.addEventListener('click', (e) => {
-		router.open(Url.boardPage);
+		router.open(Url.board);
 	});
 
 	const homeButton = document.getElementsByClassName('homeButton')[0];
 	homeButton.addEventListener('click', (e) => {
-		router.open(Url.basePage);
+		router.open(Url.base);
 	});
 }
 
