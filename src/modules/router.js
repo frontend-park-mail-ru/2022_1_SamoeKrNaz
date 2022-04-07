@@ -34,12 +34,13 @@ class Router {
 				this.open(target.pathname);
 			}
 		});
+
 		// popstate при нажатии кнопок вперед/назад
 		window.addEventListener('popstate', () =>{
 			this.open(window.location.pathname);
 		});
-		const currentUrl = window.location.pathname;
-		this.open(currentUrl);
+
+		this.open(window.location.pathname);
 	}
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера

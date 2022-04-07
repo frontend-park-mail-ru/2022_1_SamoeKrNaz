@@ -9,14 +9,13 @@ export const Messages = {
 };
 
 export const Url = {
-	loginPage: '/login',
-	basePage: '/base',
-	signupPage: '/signup',
-	boardPage: '/board',
+	login: '/login',
+	base: '/base',
+	signup: '/signup',
+	board: '/board',
 	index: '/',
 };
 
 export const backendUrl = 'http://localhost:8080/api';
 export const frontendUrl = 'http://localhost:3000';
 
-export const domainSize = frontendUrl.length + 1;

@@ -4,34 +4,18 @@ import {loginPageRender} from '../loginPage/loginPage.js';
 import {basePageRender} from '../basePage/basePage.js';
 import {signupPageRender} from '../signupPage/signupPage.js';
 import Ajax from '../modules/ajax.js';
-import {domainSize, Url} from '../constants/constants.js';
+import {domainSize, frontendUrl, Url} from '../constants/constants.js';
 import router from '../modules/router.js';
 import {boardPageRender} from '../boardPage/boardPage.js';
 
-/* Структура для вызова методов в зависимости от урла */
-const configApp = {
-	signup: {
-		href: '/signup',
-		openMethod: signupPageRender,
-	},
-	login: {
-		href: '/login',
-		openMethod: loginPageRender,
-	},
-	base: {
-		href: '/base',
-		openMethod: basePageRender,
-	},
-};
-
 /* Получение текущего адреса без домена */
-const getUrl = window.location.href.slice(domainSize);
+const getUrl = window.location.href.replace(frontendUrl, '');
 
 router.register(Url.index, loginPageRender);
-router.register(Url.basePage, basePageRender);
-router.register(Url.loginPage, loginPageRender);
-router.register(Url.signupPage, signupPageRender);
-router.register(Url.boardPage, boardPageRender);
+router.register(Url.base, basePageRender);
+router.register(Url.login, loginPageRender);
+router.register(Url.signup, signupPageRender);
+router.register(Url.board, boardPageRender);
 
 /* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login') {
