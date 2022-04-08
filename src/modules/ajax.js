@@ -1,4 +1,4 @@
-import {frontendUrl, backendUrl} from '../constants/constants.js';
+import {backendUrl, frontendUrl} from '../constants/constants.js';
 
 /**
  * Класс, реализующий методы доступа к апи
@@ -11,8 +11,8 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	get(params = {}) {
-		return this._ajax('GET', params);
+	async get(params = {}) {
+		return await this._ajax('GET', params);
 	}
 
 	/**
@@ -20,8 +20,8 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	post(params = {}) {
-		return this._ajax('POST', params);
+	async post(params = {}) {
+		return await this._ajax('POST', params);
 	}
 
 	/**
@@ -29,8 +29,8 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	delete(params = {}) {
-		return this._ajax('DELETE', params);
+	async delete(params = {}) {
+		return await this._ajax('DELETE', params);
 	}
 
 	/**
@@ -39,10 +39,8 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	_ajax(method, params = {}) {
-		let status;
-
-		return fetch(this.backendUrl + params.url, {
+	async _ajax(method, params = {}) {
+		const response = await fetch(this.backendUrl + params.url, {
 			method: method,
 			mode: 'cors',
 			credentials: 'include',
@@ -50,17 +48,15 @@ class Ajax {
 				Origin: this.frontendUrl,
 			},
 			body: params.opt,
-		})
-			.then((response) => {
-				status = response.status;
-				return response.json();
-			})
-			.then((parsedBody) => {
-				return {
-					status,
-					responseText: parsedBody,
-				};
-			});
+		});
+
+		const status = response.status;
+		const body = await response.json();
+
+		return {
+			status,
+			body,
+		};
 	}
 }
 
