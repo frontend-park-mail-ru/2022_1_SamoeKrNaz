@@ -15,6 +15,8 @@ class Store {
 	constructor(name, data) {
 		this._data = data;
 		this._name = name;
+
+		Dispatcher.register(this._callback);
 	}
 
 	/**
