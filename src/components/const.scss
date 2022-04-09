@@ -47,12 +47,6 @@ body {
 
 .header_important {
   font-weight: 400;
-  font-size: 14.5px;
-  line-height: 17px;
-}
-
-.header_important {
-  font-weight: 400;
   font-size: 14px;
   line-height: 16px;
 }
@@ -60,6 +54,6 @@ body {
 .container {
   height: 100vh;
   width: 100%;
-  background-color: var(--blue-color);
+  background-color: $blue-color;
   display: flex;
 }
