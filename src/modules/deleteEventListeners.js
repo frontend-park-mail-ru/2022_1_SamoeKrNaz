@@ -29,5 +29,5 @@ export function deleteListeners() {
 	if (inputPas) {
 		inputPas.removeEventListener('focus', addPrompt);
 		inputPas.removeEventListener('blur', deletePrompt);
-	};
+	}
 }

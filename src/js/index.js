@@ -35,12 +35,12 @@ router.register(Url.signupPage, signupPageRender);
 if (getUrl === 'login') {
 	Ajax.get({url: ''})
 		.then((r) => {
-			if (r.status == 401) {
+			if (r.status === 401) {
 				router.open(Url.loginPage);
 			}
 			if (r.status === 200) {
 				router.open(Url.basePage, r.responseText);
-			};
+			}
 		})
 		.catch((er) => {
 			console.error('error');
@@ -48,12 +48,12 @@ if (getUrl === 'login') {
 } else if (getUrl === 'signup') {
 	Ajax.get({url: ''})
 		.then((r) => {
-			if (r.status == 401) {
+			if (r.status === 401) {
 				router.open(Url.signupPage);
 			}
 			if (r.status === 200) {
 				router.open(Url.basePage, r.responseText);
-			};
+			}
 		})
 		.catch((er) => {
 			console.error('error');
@@ -74,7 +74,7 @@ if (getUrl === 'login') {
 					.catch((er) =>{
 						console.error('error');
 					});
-			};
+			}
 		})
 		.catch((er) => {
 			console.error('error');

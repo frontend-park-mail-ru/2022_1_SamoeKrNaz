@@ -13,7 +13,7 @@ class Ajax {
 	 */
 	get(params = {}) {
 		return this._ajax('GET', params);
-	};
+	}
 
 	/**
 	 * Метод, реализующий любые POST запросы к апи. Требуется задавать URL и OPT данные, которые передаются
@@ -22,7 +22,7 @@ class Ajax {
 	 */
 	post(params = {}) {
 		return this._ajax('POST', params);
-	};
+	}
 
 	/**
 	 * Метод, реализующий любые DELETE запросы к апи. Требуется задавать только URL
@@ -31,7 +31,7 @@ class Ajax {
 	 */
 	delete(params = {}) {
 		return this._ajax('DELETE', params);
-	};
+	}
 
 	/**
 	 * Метод, реализующий любые запросы к апи. Требуется задавать метод и тело
@@ -61,7 +61,7 @@ class Ajax {
 					responseText: parsedBody,
 				};
 			});
-	};
-};
+	}
+}
 
 export default new Ajax();

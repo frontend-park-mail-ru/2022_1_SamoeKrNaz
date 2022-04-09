@@ -10,7 +10,7 @@ export function addError(errorText) {
 	const error = Handlebars.templates.error;
 	const html = error({errorText: errorText});
 	authDescp.outerHTML += html;
-};
+}
 
 /**
  * Функция, осуществляющая удаление ошибки в DOM.
@@ -19,5 +19,5 @@ function deleteError() {
 	const el = document.getElementsByClassName('auth__block_error')[0];
 	if (el) {
 		el.remove();
-	};
-};
+	}
+}
