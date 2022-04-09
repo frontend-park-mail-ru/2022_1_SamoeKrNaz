@@ -2,7 +2,8 @@
 
 import Store from './baseStore.js';
 import {ProfileActions} from '../modules/actions.js';
-import Ajax from '../modules/ajax.js';
+import Ajax from '../ajax/ajax.js';
+import {network} from '../ajax/profile.js';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -15,31 +16,16 @@ class Profile extends Store {
 		super('Profile', {
 			isAuth: undefined,
 		});
-
-		this._network = {
-			async loadProfile() {
-				try {
-					return await Ajax.get('/profile');
-				} catch (err) {
-					console.error(err);
-				}
-			},
-		};
 	}
 
 	/**
 	 * Метод, который переопределяют в субклассах, чтобы передавать в диспетчер
 	 * @param {object} action событие
 	 */
-	async _callback(action) {
+	_callback(action) {
 		switch (action.type) {
 		case ProfileActions.loadProfile:
-			try {
-				const res = await Ajax.get({url: '/profile'});
-				console.log(res);
-			} catch (err) {
-				console.error(err);
-			}
+			this.loadProfile();
 			break;
 		}
 	}
@@ -47,8 +33,8 @@ class Profile extends Store {
 	/**
 	 * Получение и обработка информации о профиле пользователя
 	 */
-	async _loadProfile() {
-		const res = await this._network.loadProfile();
+	async loadProfile() {
+		const res = await network.loadProfile();
 
 		console.log(res);
 	}

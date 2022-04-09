@@ -1,7 +1,7 @@
 'use strict';
 
 import * as render from './boardPage.templ.js';
-import Ajax from '../modules/ajax.js';
+import Ajax from '../ajax/ajax.js';
 import {loginPageRender} from '../loginPage/loginPage.js';
 import {deleteListeners} from '../modules/deleteEventListeners.js';
 import router from '../modules/router.js';
