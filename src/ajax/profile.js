@@ -2,7 +2,7 @@
 
 import Ajax from '../ajax/ajax.js';
 
-export const network = {
+export const ajaxMethods = {
 	loadProfile: async () => {
 		try {
 			return await Ajax.get({url: '/api'});

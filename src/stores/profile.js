@@ -3,7 +3,7 @@
 import Store from './baseStore.js';
 import {ProfileActions} from '../modules/actions.js';
 import Ajax from '../ajax/ajax.js';
-import {network} from '../ajax/profile.js';
+import {ajaxMethods} from '../ajax/profile.js';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -22,10 +22,10 @@ class Profile extends Store {
 	 * Метод, который переопределяют в субклассах, чтобы передавать в диспетчер
 	 * @param {object} action событие
 	 */
-	_callback(action) {
+	async _callback(action) {
 		switch (action.type) {
 		case ProfileActions.loadProfile:
-			this.loadProfile();
+			await this.loadProfile();
 			break;
 		}
 	}
@@ -34,7 +34,7 @@ class Profile extends Store {
 	 * Получение и обработка информации о профиле пользователя
 	 */
 	async loadProfile() {
-		const res = await network.loadProfile();
+		const res = await ajaxMethods.loadProfile();
 
 		console.log(res);
 	}
