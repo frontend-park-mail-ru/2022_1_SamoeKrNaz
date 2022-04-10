@@ -1,14 +1,13 @@
 'use strict';
 
-import * as render from './signupPage.templ.js';
-import {validateLoginPage, validateSignUpPage} from '../modules/validation.js';
-import {addPrompt, deletePrompt} from '../modules/prompt.js';
-import {deleteListeners} from '../modules/deleteEventListeners.js';
+import {validateLoginPage, validateSignUpPage} from '../../modules/validation.js';
+import * as render from './loginPage.templ.js';
+import {deleteListeners} from '../../modules/deleteEventListeners.js';
 
 /**
- * Функция, осуществляющая рендер страницы регистрации.
+ * Функция, осуществляющая рендер страницы логина.
  */
-export function signupPageRender() {
+export function loginPageRender() {
 	/* Удаляем обработчики событий для всех используемых элементов */
 	deleteListeners();
 	/* Регистрация всех компонентов для страницы */
@@ -20,9 +19,12 @@ export function signupPageRender() {
 	Handlebars.registerPartial('input', Handlebars.templates['input']);
 	Handlebars.registerPartial('logo', Handlebars.templates['logo']);
 
+	/* Смена урла в адресной строке */
+	window.history.pushState('', '', 'http://localhost:3000/login');
+
 	/* Рендер шаблона с входными данными */
-	const signupPage = Handlebars.templates.signupPage;
-	const html = signupPage({});
+	const loginPage = Handlebars.templates.loginPage;
+	const html = loginPage({});
 
 	/* Создание контейнера для вставки в DOM */
 	document.body.innerHTML = '';
@@ -31,14 +33,7 @@ export function signupPageRender() {
 	document.body.appendChild(container);
 	document.getElementsByClassName('container')[0].innerHTML += html;
 
-	/* Навешивание обработчика валидации данных для формы регистрации */
+	/* Навешивание обработчика валидации данных для формы логина */
 	const form = document.getElementById('input_form');
-	form.onsubmit = validateSignUpPage;
-
-	/* Добавление подсказки при вводе пароля */
-	const inputPas = document.getElementById('input_pass');
-	inputPas.addEventListener('focus', addPrompt);
-
-	/* Удаление подсказки при снятии фокуса */
-	inputPas.addEventListener('blur', deletePrompt);
+	form.onsubmit = validateLoginPage;
 }

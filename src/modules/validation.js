@@ -3,7 +3,7 @@
 import {addError} from './errors.js';
 import {Messages, Url} from '../constants/constants.js';
 import Ajax from '../ajax/ajax.js';
-import {basePageRender} from '../basePage/basePage.js';
+import {basePageRender} from '../views/basePage/basePage.js';
 import router from './router.js';
 
 /**

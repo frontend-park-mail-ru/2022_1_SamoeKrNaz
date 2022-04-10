@@ -1,6 +1,6 @@
 import {validateSignUpPage} from './validation.js';
 import {addPrompt, deletePrompt} from './prompt.js';
-import {toggleActiveTasks, toggleMenu, logout} from '../basePage/basePage.js';
+import {toggleActiveTasks, toggleMenu, logout} from '../views/basePage/basePage.js';
 
 /**
  * Функция, осуществляющая удаление обработчиков событий для всех используемых элементов.

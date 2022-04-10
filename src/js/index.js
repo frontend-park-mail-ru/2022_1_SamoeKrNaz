@@ -7,10 +7,10 @@ import router from '../modules/router.js';
 
 import Profile from '../stores/profile.js';
 
-import {loginPageRender} from '../loginPage/loginPage.js';
-import {basePageRender} from '../basePage/basePage.js';
-import {signupPageRender} from '../signupPage/signupPage.js';
-import {boardPageRender} from '../boardPage/boardPage.js';
+import {loginPageRender} from '../views/loginPage/loginPage.js';
+import {basePageRender} from '../views/basePage/basePage.js';
+import {signupPageRender} from '../views/signupPage/signupPage.js';
+import {boardPageRender} from '../views/boardPage/boardPage.js';
 
 if (!Profile.isLoad()) {
 	Dispatcher.dispatch({
