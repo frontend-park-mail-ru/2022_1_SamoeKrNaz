@@ -1,6 +1,6 @@
 import {validateSignUpPage} from './validation.js';
 import {addPrompt, deletePrompt} from './prompt.js';
-import {toggleActiveTasks, toggleMenu, logout} from '../views/basePage/basePage.js';
+import {toggleActiveTasks, toggleMenu} from '../views/basePage/basePage.js';
 
 /**
  * Функция, осуществляющая удаление обработчиков событий для всех используемых элементов.
@@ -14,10 +14,10 @@ export function deleteListeners() {
 	if (toggleBlockBlue) {
 		toggleBlockBlue.removeEventListener('click', toggleActiveTasks);
 	}
-	const logoutButton = document.getElementById('logout1');
-	if (logoutButton) {
-		logoutButton.getElementById('logout1').removeEventListener('click', logout);
-	}
+	// const logoutButton = document.getElementById('logout1');
+	// if (logoutButton) {
+	// 	logoutButton.getElementById('logout1').removeEventListener('click', logout);
+	// }
 	const form = document.getElementById('input_form');
 	if (form) {
 		form.removeEventListener('submit', function(e) {

@@ -2,7 +2,6 @@
 
 import * as render from './basePage.templ.js';
 import Ajax from '../../ajax/ajax.js';
-import {loginPageRender} from '../loginPage/loginPage.js';
 import {deleteListeners} from '../../modules/deleteEventListeners.js';
 import router from '../../modules/router.js';
 import {Url} from '../../constants/constants.js';
@@ -10,15 +9,15 @@ import {Url} from '../../constants/constants.js';
 /**
  * Функция, осуществляющая выход пользователя из системы.
  */
-export function logout() {
-	Ajax.delete({url: 'logout'})
-		.then((r) => {
-			loginPageRender();
-		})
-		.catch((er) => {
-			console.error('error');
-		});
-}
+// export function logout() {
+// 	Ajax.delete({url: 'logout'})
+// 		.then((r) => {
+// 			loginPageRender();
+// 		})
+// 		.catch((er) => {
+// 			console.error('error');
+// 		});
+// }
 
 /**
  * Функция, осуществляющая рендер страницы пользователя с досками.

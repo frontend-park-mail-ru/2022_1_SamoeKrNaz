@@ -2,8 +2,9 @@
 
 import Store from './baseStore.js';
 import {ProfileActions, ProfileEvents} from '../modules/actions.js';
-import {ResponseStatus} from '../constants/constants.js';
+import {Messages, ResponseStatus} from '../constants/constants.js';
 import {ajaxMethods} from '../ajax/profile.js';
+import {addError} from "../modules/errors.js";
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -15,6 +16,9 @@ class Profile extends Store {
 	constructor() {
 		super('Profile', {
 			isAuth: undefined,
+			validation: {
+				errorMsg: undefined,
+			},
 		});
 	}
 
@@ -26,6 +30,9 @@ class Profile extends Store {
 		switch (action.type) {
 		case ProfileActions.loadProfile:
 			await this._loadProfile();
+			break;
+		case ProfileActions.login:
+			await this._loginValidation(action);
 			break;
 		}
 	}
@@ -43,6 +50,30 @@ class Profile extends Store {
 		}
 
 		this._publish(ProfileEvents.load);
+	}
+
+	/**
+	 * Получение и обработка информации о профиле пользователя
+	 * @param {object} data инфорация о событии
+	 */
+	async _loginValidation(data) {
+		console.log(data);
+
+		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
+			this._data.validation.errorMsg = Messages['shortLoginPassword'];
+			this._publish(ProfileEvents.login);
+			return;
+		}
+		if (data.login.length <= 6 || data.login.length > 20) {
+			this._data.validation.errorMsg = Messages['shortLogin'];
+			this._publish(ProfileEvents.login);
+			return;
+		}
+		if (data.password.length <= 6 || data.password.length > 20) {
+			this._data.validation.errorMsg = Messages['shortPassword'];
+			this._publish(ProfileEvents.login);
+			return;
+		}
 	}
 
 	/**

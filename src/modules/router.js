@@ -44,7 +44,7 @@ class Router {
 		});
 
 		// popstate при нажатии кнопок вперед/назад
-		window.addEventListener('popstate', () =>{
+		window.addEventListener('popstate', () => {
 			this.open(window.location.pathname);
 		});
 

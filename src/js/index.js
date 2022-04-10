@@ -7,7 +7,7 @@ import router from '../modules/router.js';
 
 import Profile from '../stores/profile.js';
 
-import {loginPageRender} from '../views/loginPage/loginPage.js';
+import LoginPage from '../views/loginPage/loginPage.js';
 import {basePageRender} from '../views/basePage/basePage.js';
 import {signupPageRender} from '../views/signupPage/signupPage.js';
 import {boardPageRender} from '../views/boardPage/boardPage.js';
@@ -18,9 +18,9 @@ if (!Profile.isLoad()) {
 	});
 }
 
-router.register(Url.index, loginPageRender);
+router.register(Url.index, LoginPage.render);
 router.register(Url.base, basePageRender);
-router.register(Url.login, loginPageRender);
+router.register(Url.login, LoginPage.render);
 router.register(Url.signup, signupPageRender);
 router.register(Url.board, boardPageRender);
 

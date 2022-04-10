@@ -73,7 +73,7 @@ export function validateSignUpPage() {
 		addError(Messages['repeatPassword']);
 		return false;
 	}
-	router.open(Url.basePage);
+	router.open(Url.base);
 	// Ajax.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
 	// 	.then((r) => {
 	// 		if (r.status === 409) {
