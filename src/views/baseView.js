@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Базовый класс View
+ */
 class BaseView {
 	/**
 	 * @constructor
@@ -8,7 +11,13 @@ class BaseView {
 
 	}
 
-	render() {
-
+	/**
+	 * Метод отвечающий за генерацию View
+	 * @param {object} data данные, на основе которых будет формироваться страница
+	 */
+	render(data) {
+		console.error('Нужно переопределить метод в классе');
 	}
 }
+
+export default BaseView;
