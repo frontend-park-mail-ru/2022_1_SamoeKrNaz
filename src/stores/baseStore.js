@@ -16,7 +16,7 @@ class Store {
 		this._data = data;
 		this._name = name;
 
-		Dispatcher.register(this._callback);
+		Dispatcher.register(this._callback.bind(this));
 	}
 
 	/**

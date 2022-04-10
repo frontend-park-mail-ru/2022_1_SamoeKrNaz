@@ -25,7 +25,7 @@ class Profile extends Store {
 	async _callback(action) {
 		switch (action.type) {
 		case ProfileActions.loadProfile:
-			await this.loadProfile();
+			await this._loadProfile();
 			break;
 		}
 	}
@@ -33,7 +33,7 @@ class Profile extends Store {
 	/**
 	 * Получение и обработка информации о профиле пользователя
 	 */
-	async loadProfile() {
+	async _loadProfile() {
 		const res = await ajaxMethods.loadProfile();
 
 		console.log(res);

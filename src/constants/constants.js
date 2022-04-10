@@ -16,5 +16,10 @@ export const Url = {
 	index: '/',
 };
 
-export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/api';
+export const ResponseStatus = {
+	unAuth: 401,
+
+};
+
+export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';
 export const frontendUrl = window.location.origin;
