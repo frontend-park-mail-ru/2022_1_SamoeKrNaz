@@ -46,31 +46,6 @@ export function basePageRender(r) {
 	document.getElementsByClassName('toggle__block')[0].addEventListener('click', toggleMenu);
 	document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
 	document.getElementById('logout').addEventListener('click', logout);
-
-	const settingsBg = document.getElementsByClassName('settings__bg')[0]; // Фон попап окна
-	const settings = document.getElementsByClassName('settings')[0]; // Само окно
-	const openSettingsButton = document.getElementsByClassName('settingsButton')[0]; // Кнопки для показа окна
-	const closeButton = document.getElementsByClassName('settings__close')[0];
-	openSettingsButton.addEventListener('click', (e) => { // Для каждой вешаем обработчик событий на клик
-		e.preventDefault(); // Предотвращаем дефолтное поведение браузера
-		settingsBg.classList.add('active'); // Добавляем класс 'active' для фона
-		settings.classList.add('active'); // И для самого окна
-	});
-
-	closeButton.addEventListener('click', () => { // Вешаем обработчик на крестик
-		settingsBg.classList.remove('active'); // Убираем активный класс с фона
-		settings.classList.remove('active'); // И с окна
-	});
-
-	const deskButton = document.getElementsByClassName('deskButton')[0];
-	deskButton.addEventListener('click', (e) => {
-		router.open(Url.boardPage);
-	});
-
-	const homeButton = document.getElementsByClassName('homeButton')[0];
-	homeButton.addEventListener('click', (e) => {
-		router.open(Url.basePage);
-	});
 }
 
 /**

@@ -35,53 +35,50 @@ router.register(Url.boardPage, boardPageRender);
 
 /* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login') {
-	// Ajax.get({url: ''})
-	// 	.then((r) => {
-	// 		if (r.status == 401) {
-	// 			router.open(Url.loginPage);
-	// 		}
-	// 		if (r.status === 200) {
-	// 			router.open(Url.basePage, r.responseText);
-	// 		};
-	// 	})
-	// 	.catch((er) => {
-	// 		console.error('error');
-	// 	});
-	router.open(Url.loginPage);
+	Ajax.get({url: ''})
+		.then((r) => {
+			if (r.status === 401) {
+				router.open(Url.loginPage);
+			}
+			if (r.status === 200) {
+				router.open(Url.basePage, r.responseText);
+			}
+		})
+		.catch((er) => {
+			console.error('error');
+		});
 } else if (getUrl === 'signup') {
-	// Ajax.get({url: ''})
-	// 	.then((r) => {
-	// 		if (r.status == 401) {
-	// 			router.open(Url.signupPage);
-	// 		}
-	// 		if (r.status === 200) {
-	// 			router.open(Url.basePage, r.responseText);
-	// 		};
-	// 	})
-	// 	.catch((er) => {
-	// 		console.error('error');
-	// 	});
-	router.open(Url.signupPage);
+	Ajax.get({url: ''})
+		.then((r) => {
+			if (r.status === 401) {
+				router.open(Url.signupPage);
+			}
+			if (r.status === 200) {
+				router.open(Url.basePage, r.responseText);
+			}
+		})
+		.catch((er) => {
+			console.error('error');
+		});
 } else if (getUrl === 'base' || getUrl === '') {
-	// Ajax.get({url: ''})
-	// 	.then((r) => {
-	// 		if (r.status === 401) {
-	// 			router.open(Url.loginPage);
-	// 		}
-	// 		if (r.status === 200) {
-	// 			Ajax.get({url: ''})
-	// 				.then((r) => {
-	// 					if (r.status === 200) {
-	// 						router.open(Url.basePage, r.responseText);
-	// 					}
-	// 				})
-	// 				.catch((er) =>{
-	// 					console.error('error');
-	// 				});
-	// 		};
-	// 	})
-	// 	.catch((er) => {
-	// 		console.error('error');
-	// 	});
-	router.open(Url.basePage);
+	Ajax.get({url: ''})
+		.then((r) => {
+			if (r.status === 401) {
+				router.open(Url.loginPage);
+			}
+			if (r.status === 200) {
+				Ajax.get({url: ''})
+					.then((r) => {
+						if (r.status === 200) {
+							router.open(Url.basePage, r.responseText);
+						}
+					})
+					.catch((er) =>{
+						console.error('error');
+					});
+			}
+		})
+		.catch((er) => {
+			console.error('error');
+		});
 }

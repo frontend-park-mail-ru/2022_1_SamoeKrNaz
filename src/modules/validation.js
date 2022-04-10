@@ -13,6 +13,7 @@ import router from './router.js';
 export function validateLoginPage() {
 	const inpLogin = document.getElementById('input_login').value;
 	const inpPass = document.getElementById('input_pass').value;
+
 	if ((inpLogin.length <= 6 || inpLogin.length > 20) && (inpPass.length <= 6 || inpPass.length > 20)) {
 		addError(Messages['shortLoginPassword']);
 		return false;
@@ -57,6 +58,7 @@ export function validateSignUpPage() {
 	const inpLogin = document.getElementById('input_login').value;
 	const inpPass = document.getElementById('input_pass').value;
 	const inpPassRep = document.getElementById('input_pass_rep').value;
+
 	if ((inpLogin.length <= 6 || inpLogin.length > 20) && (inpPass.length <= 6 || inpPass.length > 20)) {
 		addError(Messages['shortLoginPassword']);
 		return false;
@@ -73,26 +75,25 @@ export function validateSignUpPage() {
 		addError(Messages['repeatPassword']);
 		return false;
 	}
-	router.open(Url.basePage);
-	// Ajax.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
-	// 	.then((r) => {
-	// 		if (r.status === 409) {
-	// 			addError(Messages['alreadyRegister']);
-	// 		}
-	// 		if (r.status === 201) {
-	// 			Ajax.get({url: ''})
-	// 				.then((r) => {
-	// 					if (r.status === 200) {
-	// 						router.open(Url.basePage, r.responseText);
-	// 					}
-	// 				})
-	// 				.catch((er) => {
-	// 					console.error('error');
-	// 				});
-	// 		};
-	// 	})
-	// 	.catch((er) => {
-	// 		console.error('error');
-	// 	});
+	Ajax.post({url: '/register', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+		.then((r) => {
+			if (r.status === 409) {
+				addError(Messages['alreadyRegister']);
+			}
+			if (r.status === 201) {
+				Ajax.get({url: ''})
+					.then((r) => {
+						if (r.status === 200) {
+							router.open(Url.basePage, r.responseText);
+						}
+					})
+					.catch((er) => {
+						console.error('error');
+					});
+			}
+		})
+		.catch((er) => {
+			console.error('error');
+		});
 	return false;
 }
