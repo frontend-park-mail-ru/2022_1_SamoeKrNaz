@@ -19,41 +19,41 @@ $shadow: 0 0 10px #00000005;
 $button-size: 44px;
 
 body {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto, sans-serif;
-  font-size: 14px;
-  line-height: 1;
-  background: $bg-color;
+	padding: 0;
+	margin: 0;
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	background: $bg-color;
 }
 
 .header1 {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 28px;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 28px;
 }
 
 .header2 {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 21px;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 21px;
 }
 
 .paragraph {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 .header_important {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
 }
 
 .container {
-  height: 100vh;
-  width: 100%;
-  background-color: $blue-color;
-  display: flex;
+	height: 100vh;
+	width: 100%;
+	background-color: $blue-color;
+	display: flex;
 }
