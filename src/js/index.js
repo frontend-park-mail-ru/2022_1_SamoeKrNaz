@@ -18,10 +18,10 @@ if (!Profile.isLoad()) {
 	});
 }
 
-router.register(Url.index, LoginPage.render);
-router.register(Url.base, basePageRender);
-router.register(Url.login, LoginPage.render);
-router.register(Url.signup, signupPageRender);
-router.register(Url.board, boardPageRender);
+router.register(Url.index, LoginPage);
+// router.register(Url.base, basePageRender);
+router.register(Url.login, LoginPage);
+// router.register(Url.signup, signupPageRender);
+// router.register(Url.board, boardPageRender);
 
 router.open(window.location.pathname);

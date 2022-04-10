@@ -90,7 +90,7 @@ class Router {
 			window.history.pushState('', '', path);
 		}
 		// рендерим страницу
-		view(context);
+		view.render(context);
 	}
 
 	/**

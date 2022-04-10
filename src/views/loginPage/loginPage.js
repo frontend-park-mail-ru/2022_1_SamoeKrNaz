@@ -48,17 +48,7 @@ export default new class LoginPage extends BaseView {
 		document.body.appendChild(container);
 		document.getElementsByClassName('container')[0].innerHTML += html;
 
-		/* Навешивание обработчика валидации данных для формы логина */
-		const form = document.getElementById('input_form');
-		form.onsubmit = () => {
-			Dispatcher.dispatch({
-				type: ProfileActions.login,
-				login: document.getElementById('input_login').value,
-				password: document.getElementById('input_pass').value,
-			});
-
-			return false;
-		};
+		this._createListeners();
 	}
 
 	/**
