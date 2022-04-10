@@ -21,33 +21,34 @@ export function validateLoginPage() {
 	if (inpLogin.length <= 6 || inpLogin.length > 20) {
 		addError(Messages['shortLogin']);
 		return false;
-	};
+	}
 	if (inpPass.length <= 6 || inpPass.length > 20) {
 		addError(Messages['shortPassword']);
 		return false;
-	};
-	Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
-		.then((r) => {
-			if (r.status === 401) {
-				addError(Messages['notLogin']);
-			}
-			if (r.status === 200) {
-				Ajax.get({url: ''})
-					.then((r) => {
-						if (r.status === 200) {
-							router.open(Url.basePage, r.responseText);
-						}
-					})
-					.catch((er) => {
-						console.error('error');
-					});
-			};
-		})
-		.catch((er) => {
-			console.error('error');
-		});
+	}
+	// Ajax.post({url: '/login', opt: JSON.stringify({Username: inpLogin, Password: inpPass})})
+	// 	.then((r) => {
+	// 		if (r.status === 401) {
+	// 			addError(Messages['notLogin']);
+	// 		}
+	// 		if (r.status === 200) {
+	// 			Ajax.get({url: ''})
+	// 				.then((r) => {
+	// 					if (r.status === 200) {
+	// 						router.open(Url.basePage, r.responseText);
+	// 					}
+	// 				})
+	// 				.catch((er) => {
+	// 					console.error('error');
+	// 				});
+	// 		};
+	// 	})
+	// 	.catch((er) => {
+	// 		console.error('error');
+	// 	});
+	router.open(Url.basePage);
 	return false;
-};
+}
 
 /**
  * Функция, осуществляющая валидацию регистрации пользователя.

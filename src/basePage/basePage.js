@@ -4,6 +4,8 @@ import * as render from './basePage.templ.js';
 import Ajax from '../modules/ajax.js';
 import {loginPageRender} from '../loginPage/loginPage.js';
 import {deleteListeners} from '../modules/deleteEventListeners.js';
+import router from '../modules/router.js';
+import {Url} from '../constants/constants.js';
 
 /**
  * Функция, осуществляющая выход пользователя из системы.
@@ -28,10 +30,10 @@ export function basePageRender(r) {
 	/* Регистрация всех компонентов для страницы */
 	Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 	Handlebars.registerPartial('cap', Handlebars.templates['cap']);
-	Handlebars.registerPartial('desk', Handlebars.templates['desk']);
 	Handlebars.registerPartial('activeTask', Handlebars.templates['activeTask']);
 	Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 	Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
+	Handlebars.registerPartial('settings', Handlebars.templates['settings']);
 
 	/* Рендер шаблона с входными данными */
 	const basePage = Handlebars.templates.basePage;

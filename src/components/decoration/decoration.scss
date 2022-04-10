@@ -1,0 +1,17 @@
+.auth{
+  &__decoration {
+    background-color:$blue-color;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -700px;
+    margin-left: -500px;
+  }
+}

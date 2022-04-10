@@ -1,24 +1,2 @@
 {{> decoration}}
-<div class="auth__form">
-    <div class="auth__block">
-        <div class="auth__block_logo">
-            {{> logo}}
-        </div>
-        {{> headTitle  headTitleText="Регистрация в "}}
-        {{> descp descpText="Авторизация необходима для работы в команде. Зарегистрируйся и начинай работать эффективней!"}}
-        <form method="POST" id="input_form" class="auth__block_form">
-            {{> input inputPlaceholder="Укажите логин" inputType="text" inputId="input_login"}}
-            {{> input inputPlaceholder="Введите пароль" inputType="password" inputId="input_pass"}}
-            {{> input inputPlaceholder="Повторите пароль" inputType="password" inputId="input_pass_rep"}}
-            {{> button buttonText="Зарегистрироваться"}}
-        </form>
-        <div class="auth__block_signup">
-            <div class="auth__block_dont">
-                Уже зарегистрированы?
-            </div>
-            <div>
-                <a class="auth__block_link" href="login">Войти</a>
-            </div>
-        </div>
-    </div>
-</div>
+{{> signupBlock}}

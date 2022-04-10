@@ -1,5 +1,22 @@
 <div class="main__content">
     {{#each boards}}
-        {{>desk}}
-{{/each}}
+        <div class="desk">
+            <div class="desk__title header2">{{title}}</div>
+            <div class="desk__description">
+                {{description}}
+            </div>
+            <div class="desk__date">
+                {{date}}
+            </div>
+        </div>
+    {{/each}}
+    <div class="desk deskButton">
+        <div class="desk__title">Доска для важных дел</div>
+        <div class="desk__description">
+            Тут будет подробное описания таблицы и то зачем она. Но тут текст будет длиннее, чтобы можно было посмотреть, как увеличится блок.
+        </div>
+        <div class="desk__date">
+            11 Декабря, 2022
+        </div>
+    </div>
 </div>

@@ -6,6 +6,7 @@ import {signupPageRender} from '../signupPage/signupPage.js';
 import Ajax from '../modules/ajax.js';
 import {domainSize, Url} from '../constants/constants.js';
 import router from '../modules/router.js';
+import {boardPageRender} from '../boardPage/boardPage.js';
 
 /* Структура для вызова методов в зависимости от урла */
 const configApp = {
@@ -30,6 +31,7 @@ router.register(Url.index, loginPageRender);
 router.register(Url.basePage, basePageRender);
 router.register(Url.loginPage, loginPageRender);
 router.register(Url.signupPage, signupPageRender);
+router.register(Url.boardPage, boardPageRender);
 
 /* Обработка текущего урла и переход по страницам в зависимости от куки */
 if (getUrl === 'login') {
