@@ -10,4 +10,18 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	loginProfile: async (data) => {
+		try {
+			return await Ajax.post({url: 'api/login', opt: data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	registerProfile: async (data) => {
+		try {
+			return await Ajax.post({url: 'api/register', opt: data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

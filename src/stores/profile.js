@@ -74,6 +74,18 @@ class Profile extends Store {
 			this._publish(ProfileEvents.login);
 			return;
 		}
+
+		const res = await ajaxMethods.registerProfile({Username: data.login, Password: data.password});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			console.log(res)
+			break;
+		case ResponseStatus.badRequest:
+			this._data.validation.errorMsg = Messages['notLogin'];
+			this._publish(ProfileEvents.login);
+			break;
+		}
 	}
 
 	/**
