@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard",
+  "customSyntax": "postcss-less",
   "rules": {
     "indentation": "tab",
     "selector-class-pattern": "^([a-z][a-z0-9-]*)(_?_[a-z0-9-]+)*$",
