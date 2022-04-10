@@ -34,10 +34,13 @@ class Router {
 	start(data) {
 		this.body.addEventListener('click', (event) => {
 			const {target} = event;
-			if (target instanceof HTMLAnchorElement) {
-				event.preventDefault();
-				this.open(target.pathname);
-			}
+
+			event.path.map((el) => {
+				if (el instanceof HTMLAnchorElement) {
+					event.preventDefault();
+					this.open(el.pathname);
+				}
+			});
 		});
 
 		// popstate при нажатии кнопок вперед/назад
@@ -73,6 +76,7 @@ class Router {
 				this.open(target.pathname);
 			}
 		});
+
 		const view = this.routes[path];
 
 		// зарегистрировал ли такой путь
