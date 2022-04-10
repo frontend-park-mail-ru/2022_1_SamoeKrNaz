@@ -33,7 +33,7 @@ class Store {
 	 * @param {string} event название события
 	 */
 	_publish(event) {
-		EventBus.publish(this._name + event, this._data);
+		EventBus.publish(event, this._data);
 	}
 }
 

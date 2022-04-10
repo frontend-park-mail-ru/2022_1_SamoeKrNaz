@@ -1,4 +1,6 @@
 import {Url} from '../constants/constants.js';
+import EventBus from './eventBus.js';
+import {ProfileEvents} from './actions.js';
 
 /**
  * Класс, реализующий смену страниц и историю перемещений по странице
@@ -10,6 +12,8 @@ class Router {
 	constructor() {
 		this.routes = {}; // маршруты, куда будем складывать путь-View
 		this.body = document.body; // берем тело index.html
+
+		EventBus.subscribe(ProfileEvents.load, this.start.bind(this));
 	}
 
 	/**
@@ -25,8 +29,9 @@ class Router {
 
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
+	 * @param {object} data состояние стора пользователя
 	 */
-	start() {
+	start(data) {
 		this.body.addEventListener('click', (event) => {
 			const {target} = event;
 			if (target instanceof HTMLAnchorElement) {
@@ -40,7 +45,19 @@ class Router {
 			this.open(window.location.pathname);
 		});
 
-		this.open(window.location.pathname);
+		if (data.isAuth) {
+			if (window.location.pathname === Url.login || window.location.pathname === Url.signup) {
+				this.open(Url.base);
+			} else {
+				this.open(window.location.pathname);
+			}
+		} else {
+			if (window.location.pathname === Url.login || window.location.pathname === Url.signup) {
+				this.open(window.location.pathname);
+			} else {
+				this.open(Url.login);
+			}
+		}
 	}
 
 	/**

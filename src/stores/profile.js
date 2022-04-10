@@ -1,8 +1,8 @@
 'use strict';
 
 import Store from './baseStore.js';
-import {ProfileActions} from '../modules/actions.js';
-import Ajax from '../ajax/ajax.js';
+import {ProfileActions, ProfileEvents} from '../modules/actions.js';
+import {ResponseStatus} from '../constants/constants.js';
 import {ajaxMethods} from '../ajax/profile.js';
 
 /**
@@ -36,7 +36,13 @@ class Profile extends Store {
 	async _loadProfile() {
 		const res = await ajaxMethods.loadProfile();
 
-		console.log(res);
+		switch (res.status) {
+		case ResponseStatus.unAuth:
+			this._data.isAuth = false;
+			break;
+		}
+
+		this._publish(ProfileEvents.load);
 	}
 
 	/**
