@@ -2,8 +2,9 @@
 
 import Store from './baseStore.js';
 import {ProfileActions, ProfileEvents} from '../modules/actions.js';
-import {Messages, ResponseStatus} from '../constants/constants.js';
+import {Messages, ResponseStatus, Url} from '../constants/constants.js';
 import {ajaxMethods} from '../ajax/profile.js';
+import router from '../modules/router.js';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -87,6 +88,7 @@ class Profile extends Store {
 		switch (res.status) {
 		case ResponseStatus.success:
 			this._loadInfo(res.body);
+			router.open(Url.base);
 			break;
 		case ResponseStatus.badRequest:
 			this._data.validation.errorMsg = Messages['notLogin'];
@@ -126,6 +128,7 @@ class Profile extends Store {
 		switch (res.status) {
 		case ResponseStatus.created:
 			this._loadInfo(res.body);
+			router.open(Url.base);
 			break;
 		case ResponseStatus.conflict:
 			this._data.validation.errorMsg = Messages['alreadyRegister'];

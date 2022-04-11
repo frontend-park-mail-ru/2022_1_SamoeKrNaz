@@ -12,6 +12,7 @@ class Router {
 	constructor() {
 		this.routes = {}; // маршруты, куда будем складывать путь-View
 		this.body = document.body; // берем тело index.html
+		this._currentView = undefined; // класс текущего вью
 
 		EventBus.subscribe(ProfileEvents.load, this.start.bind(this));
 	}
@@ -33,8 +34,6 @@ class Router {
 	 */
 	start(data) {
 		this.body.addEventListener('click', (event) => {
-			const {target} = event;
-
 			event.path.map((el) => {
 				if (el instanceof HTMLAnchorElement) {
 					event.preventDefault();
@@ -69,15 +68,21 @@ class Router {
 	 * @param {*} context Данные с бэка для рендера страницы
 	 */
 	open(path, context = null) {
+		if (this._currentView) {
+			this._currentView.removeListeners();
+		}
+
 		this.body.removeEventListener('click', (event) => {
-			const {target} = event;
-			if (target instanceof HTMLAnchorElement) {
-				event.preventDefault();
-				this.open(target.pathname);
-			}
+			event.path.map((el) => {
+				if (el instanceof HTMLAnchorElement) {
+					event.preventDefault();
+					this.open(el.pathname);
+				}
+			});
 		});
 
 		const view = this.routes[path];
+		this._currentView = view;
 
 		// зарегистрировал ли такой путь
 		if (!view) {

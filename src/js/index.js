@@ -8,7 +8,7 @@ import router from '../modules/router.js';
 import Profile from '../stores/profile.js';
 
 import LoginPage from '../views/loginPage/loginPage.js';
-import {basePageRender} from '../views/basePage/basePage.js';
+import BasePage from '../views/basePage/basePage.js';
 import SignupPage from '../views/signupPage/signupPage.js';
 import {boardPageRender} from '../views/boardPage/boardPage.js';
 
@@ -19,7 +19,7 @@ if (!Profile.isLoad()) {
 }
 
 router.register(Url.index, LoginPage);
-// router.register(Url.base, basePageRender);
+router.register(Url.base, BasePage);
 router.register(Url.login, LoginPage);
 router.register(Url.signup, SignupPage);
 // router.register(Url.board, boardPageRender);
