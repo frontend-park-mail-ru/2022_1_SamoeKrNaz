@@ -18,6 +18,14 @@ class BaseView {
 	render(data = null) {
 		console.error('Нужно переопределить метод в классе');
 	}
+
+	/**
+	 * Метод, навешивающий обработчки на страницу
+	 */
+	_createListeners() {
+		console.error('Нужно переопределить метод в классе');
+	}
 }
+
 
 export default BaseView;

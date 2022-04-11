@@ -4,7 +4,6 @@ import Store from './baseStore.js';
 import {ProfileActions, ProfileEvents} from '../modules/actions.js';
 import {Messages, ResponseStatus} from '../constants/constants.js';
 import {ajaxMethods} from '../ajax/profile.js';
-import {addError} from "../modules/errors.js";
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -34,6 +33,9 @@ class Profile extends Store {
 		case ProfileActions.login:
 			await this._loginValidation(action);
 			break;
+		case ProfileActions.register:
+			await this._registerValidation(action);
+			break;
 		}
 	}
 
@@ -53,7 +55,7 @@ class Profile extends Store {
 	}
 
 	/**
-	 * Получение и обработка информации о профиле пользователя
+	 * Получение и обработка информации о профиле пользователя при логине
 	 * @param {object} data инфорация о событии
 	 */
 	async _loginValidation(data) {
@@ -73,6 +75,47 @@ class Profile extends Store {
 			this._data.validation.errorMsg = Messages['shortPassword'];
 			this._publish(ProfileEvents.login);
 			return;
+		}
+
+		const res = await ajaxMethods.loginProfile({Username: data.login, Password: data.password});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			console.log(res)
+			break;
+		case ResponseStatus.badRequest:
+			this._data.validation.errorMsg = Messages['notLogin'];
+			this._publish(ProfileEvents.login);
+			break;
+		}
+	}
+
+	/**
+	 * Получение и обработка информации о профиле пользователя при регистрации
+	 * @param {object} data инфорация о событии
+	 */
+	async _registerValidation(data) {
+		console.log(data);
+
+		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
+			this._data.validation.errorMsg = Messages['shortLoginPassword'];
+			this._publish(ProfileEvents.register);
+			return false;
+		}
+		if (data.login.length <= 6 || data.login.length > 20) {
+			this._data.validation.errorMsg = Messages['shortLogin'];
+			this._publish(ProfileEvents.register);
+			return false;
+		}
+		if (data.password.length <= 6 || data.password.length > 20) {
+			this._data.validation.errorMsg = Messages['shortPassword'];
+			this._publish(ProfileEvents.register);
+			return false;
+		}
+		if (data.password !== data.passwordRepeat) {
+			this._data.validation.errorMsg = Messages['repeatPassword'];
+			this._publish(ProfileEvents.register);
+			return false;
 		}
 
 		const res = await ajaxMethods.registerProfile({Username: data.login, Password: data.password});
