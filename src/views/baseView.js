@@ -25,7 +25,11 @@ class BaseView {
 	 */
 	_createListeners() {
 		this._listeners.map((listener) => {
-			document.getElementsByClassName(listener.className)[0].addEventListener(listener.type, listener.func);
+			if (listener.className) {
+				document.getElementsByClassName(listener.className)[0].addEventListener(listener.type, listener.func);
+			} else {
+				document.getElementById(listener.id)[0].addEventListener(listener.type, listener.func);
+			}
 		});
 	}
 

@@ -96,8 +96,6 @@ export default new class basePage extends BaseView {
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
 	render(data = null) {
-		/* Удаляем обработчики событий для всех используемых элементов */
-		deleteListeners();
 		/* Регистрация всех компонентов для страницы */
 		Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
