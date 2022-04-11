@@ -31,15 +31,6 @@ export default new class basePage extends BaseView {
 	constructor() {
 		super([
 			{
-				type: 'click', // Тип обработчика, который навешивается
-				className: 'toggle__block', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
-					document.getElementsByClassName('header')[0].classList.toggle('header_open');
-					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
-					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
-				},
-			},
-			{
 				type: 'click',
 				className: 'toggle__block_blue',
 				func: (e) => {
@@ -74,13 +65,6 @@ export default new class basePage extends BaseView {
 			},
 			{
 				type: 'click',
-				className: 'deskButton',
-				func: (e) => {
-					router.open(Url.board);
-				},
-			},
-			{
-				type: 'click',
 				className: 'homeButton',
 				func: (e) => {
 					router.open(Url.base);
@@ -94,6 +78,10 @@ export default new class basePage extends BaseView {
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
 	render(data = null) {
+		if (document.getElementById('root')) {
+			return;
+		}
+
 		/* Регистрация всех компонентов для страницы */
 		Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 		Handlebars.registerPartial('cap', Handlebars.templates['cap']);

@@ -6,9 +6,10 @@ import {Url} from '../constants/constants.js';
 import router from '../modules/router.js';
 
 import Profile from '../stores/profile.js';
+import Boards from '../stores/boards.js';
 
 import LoginPage from '../views/loginPage/loginPage.js';
-import BasePage from '../views/basePage/basePage.js';
+import BoardsPage from '../views/boardsPage/boardsPage.js';
 import SignupPage from '../views/signupPage/signupPage.js';
 import {boardPageRender} from '../views/boardPage/boardPage.js';
 
@@ -19,7 +20,7 @@ if (!Profile.isLoad()) {
 }
 
 router.register(Url.index, LoginPage);
-router.register(Url.base, BasePage);
+router.register(Url.base, BoardsPage);
 router.register(Url.login, LoginPage);
 router.register(Url.signup, SignupPage);
 // router.register(Url.board, boardPageRender);

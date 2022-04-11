@@ -12,3 +12,12 @@ export const ProfileEvents = {
 	register: 'Profile_register',
 };
 
+
+export const BoardsActions = {
+	loadBoards: 'loadBoards',
+};
+
+export const Events = {
+	boardsUpdate: 'boards',
+};
+
