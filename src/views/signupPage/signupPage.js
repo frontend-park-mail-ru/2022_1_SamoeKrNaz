@@ -66,11 +66,9 @@ export default new class SignupPage extends BaseView {
 		/* Регистрация всех компонентов для страницы */
 		Handlebars.registerPartial('button', Handlebars.templates['button']);
 		Handlebars.registerPartial('decoration', Handlebars.templates['decoration']);
-		Handlebars.registerPartial('descp', Handlebars.templates['descp']);
 		Handlebars.registerPartial('error', Handlebars.templates['error']);
-		Handlebars.registerPartial('headTitle', Handlebars.templates['headTitle']);
 		Handlebars.registerPartial('input', Handlebars.templates['input']);
-		Handlebars.registerPartial('logo', Handlebars.templates['logo']);
+		Handlebars.registerPartial('signupBlock', Handlebars.templates['signupBlock']);
 
 		/* Рендер шаблона с входными данными */
 		const signupPage = Handlebars.templates.signupPage;

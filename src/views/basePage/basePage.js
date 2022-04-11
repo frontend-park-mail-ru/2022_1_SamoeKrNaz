@@ -97,7 +97,6 @@ export default new class basePage extends BaseView {
 		/* Регистрация всех компонентов для страницы */
 		Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
-		Handlebars.registerPartial('desk', Handlebars.templates['desk']);
 		Handlebars.registerPartial('activeTask', Handlebars.templates['activeTask']);
 		Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 		Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
