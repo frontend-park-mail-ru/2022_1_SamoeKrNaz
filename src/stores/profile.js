@@ -66,8 +66,6 @@ class Profile extends Store {
 	 * @param {object} data инфорация о событии
 	 */
 	async _loginValidation(data) {
-		console.log(data);
-
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.login);
@@ -102,8 +100,6 @@ class Profile extends Store {
 	 * @param {object} data инфорация о событии
 	 */
 	async _registerValidation(data) {
-		console.log(data);
-
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.register);

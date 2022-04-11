@@ -25,6 +25,13 @@ class BaseView {
 	_createListeners() {
 		console.error('Нужно переопределить метод в классе');
 	}
+
+	/**
+	 * Метод, удаляющий обработчки на страницы
+	 */
+	_removeListeners() {
+		console.error('Нужно переопределить метод в классе');
+	}
 }
 
 
