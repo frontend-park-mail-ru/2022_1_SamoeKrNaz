@@ -28,7 +28,7 @@ class BaseView {
 			if (listener.className) {
 				document.getElementsByClassName(listener.className)[0].addEventListener(listener.type, listener.func);
 			} else {
-				document.getElementById(listener.id)[0].addEventListener(listener.type, listener.func);
+				document.getElementById(listener.id).addEventListener(listener.type, listener.func);
 			}
 		});
 	}
@@ -41,7 +41,7 @@ class BaseView {
 			if (listener.className) {
 				document.getElementsByClassName(listener.className)[0].removeEventListener(listener.type, listener.func);
 			} else {
-				document.getElementById(listener.id)[0].removeEventListener(listener.type, listener.func);
+				document.getElementById(listener.id).removeEventListener(listener.type, listener.func);
 			}
 		});
 	}

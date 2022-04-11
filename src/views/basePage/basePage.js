@@ -1,8 +1,6 @@
 'use strict';
 
-import {validateLoginPage, validateSignUpPage} from '../../modules/validation.js';
 import * as render from './basePage.templ.js';
-import {deleteListeners} from '../../modules/deleteEventListeners.js';
 import BaseView from '../baseView.js';
 import {Url} from '../../constants/constants.js';
 import router from '../../modules/router.js';

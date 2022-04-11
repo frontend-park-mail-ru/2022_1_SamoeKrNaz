@@ -1,7 +1,6 @@
 'use strict';
 
 import * as render from './signupPage.templ.js';
-import {deleteListeners} from '../../modules/deleteEventListeners.js';
 import BaseView from '../baseView.js';
 import EventBus from '../../modules/eventBus.js';
 import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
@@ -46,7 +45,7 @@ export default new class SignupPage extends BaseView {
 			},
 			{
 				type: 'blur', // Тип обработчика, который навешивается
-				className: 'input_pass', // Класс, на который навешивается обработчки
+				id: 'input_pass', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
 					const el = document.getElementsByClassName('auth__block_prompt')[0];
 					if (el) {

@@ -2,7 +2,6 @@
 
 import * as render from './boardPage.templ.js';
 import Ajax from '../../ajax/ajax.js';
-import {deleteListeners} from '../../modules/deleteEventListeners.js';
 import router from '../../modules/router.js';
 import {Url} from '../../constants/constants.js';
 
@@ -11,8 +10,6 @@ import {Url} from '../../constants/constants.js';
  * @param {json} r данных с бэка
  */
 export function boardPageRender(r) {
-	/* Удаляем обработчики событий для всех используемых элементов */
-	deleteListeners();
 	/* Регистрация всех компонентов для страницы */
 	Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 	Handlebars.registerPartial('cap', Handlebars.templates['cap']);
