@@ -121,12 +121,12 @@ class Profile extends Store {
 		const res = await ajaxMethods.registerProfile({Username: data.login, Password: data.password});
 
 		switch (res.status) {
-		case ResponseStatus.success:
+		case ResponseStatus.created:
 			console.log(res)
 			break;
-		case ResponseStatus.badRequest:
-			this._data.validation.errorMsg = Messages['notLogin'];
-			this._publish(ProfileEvents.login);
+		case ResponseStatus.conflict:
+			this._data.validation.errorMsg = Messages['alreadyRegister'];
+			this._publish(ProfileEvents.register);
 			break;
 		}
 	}

@@ -1,6 +1,6 @@
 'use strict';
 
-import * as render from './loginPage.templ.js';
+import * as render from './signupPage.templ.js';
 import {deleteListeners} from '../../modules/deleteEventListeners.js';
 import BaseView from '../baseView.js';
 import EventBus from '../../modules/eventBus.js';
@@ -69,7 +69,7 @@ export default new class SignupPage extends BaseView {
 
 		/* Добавление подсказки при вводе пароля */
 		const inputPas = document.getElementById('input_pass');
-		inputPas.addEventListener('focus', this._addPrompt);
+		inputPas.addEventListener('focus', this._addPrompt.bind(this));
 
 		/* Удаление подсказки при снятии фокуса */
 		inputPas.addEventListener('blur', this._deletePrompt);
