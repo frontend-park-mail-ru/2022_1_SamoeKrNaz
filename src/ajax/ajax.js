@@ -29,6 +29,15 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
+	async put(params = {}) {
+		return await this._ajax('PUT', params);
+	}
+
+	/**
+	 * Метод, реализующий любые DELETE запросы к апи. Требуется задавать только URL
+	 * @param {object} params - параметры запроса
+	 * @return {promise} - результат запроса
+	 */
 	async delete(params = {}) {
 		return await this._ajax('DELETE', params);
 	}
