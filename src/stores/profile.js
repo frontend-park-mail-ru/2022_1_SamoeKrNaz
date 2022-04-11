@@ -15,6 +15,10 @@ class Profile extends Store {
 	constructor() {
 		super('Profile', {
 			isAuth: undefined,
+			id: undefined,
+			username: undefined,
+			img: undefined,
+
 			validation: {
 				errorMsg: undefined,
 			},
@@ -49,6 +53,9 @@ class Profile extends Store {
 		case ResponseStatus.unAuth:
 			this._data.isAuth = false;
 			break;
+		case ResponseStatus.success:
+			this._loadInfo(res.body);
+			break;
 		}
 
 		this._publish(ProfileEvents.load);
@@ -81,7 +88,7 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			console.log(res)
+			this._loadInfo(res.body);
 			break;
 		case ResponseStatus.badRequest:
 			this._data.validation.errorMsg = Messages['notLogin'];
@@ -122,13 +129,25 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.created:
-			console.log(res)
+			this._loadInfo(res.body);
 			break;
 		case ResponseStatus.conflict:
 			this._data.validation.errorMsg = Messages['alreadyRegister'];
 			this._publish(ProfileEvents.register);
 			break;
 		}
+	}
+
+	/**
+	 * Метод, авторизующий пользователя в сторе
+	 * @param {object} data инфа о авторизировавшимся пользователе
+	 */
+	_loadInfo(data) {
+		this._data.isAuth = true;
+
+		this._data.id = data.id;
+		this._data.username = data.username;
+		this._data.img = data.img_avatar;
 	}
 
 	/**
