@@ -1,0 +1,94 @@
+.auth {
+  &__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 350px;
+    align-items: center;
+
+    &_signup {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 300px;
+    }
+
+    &_logo {
+      margin: 20px;
+    }
+
+    &_header {
+      font-size: 28px;
+      color: $black-text;
+      margin-bottom: 20px;
+
+      &_blue{
+        color: $blue-color;
+      }
+
+      &_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+    }
+
+    &_descp {
+      color: $gray-text;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &_dont {
+      color: $gray-text;
+    }
+
+    &_link {
+      color: $blue-color;
+      text-decoration: none;
+    }
+
+    &_check {
+      height: 16px;
+      width: 16px;
+      background-color: $gray-main-dark;
+    }
+
+    &_prompt {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 15px;
+      background-color: $bg-color;
+      border: 2px solid #dfe8ef;
+      box-sizing: border-box;
+      border-radius: 10px;
+      color: $gray-text;
+      text-align: left;
+
+      &_line {
+        display: flex;
+        align-items: center;
+        margin: 10px 10px 0 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__form {
+    height: 100%;
+    width: 50%;
+    background-color: $bg-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

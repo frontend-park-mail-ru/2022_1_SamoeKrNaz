@@ -19,9 +19,12 @@ const server = createServer((req, res) => {
 	let fileName = 'index.html';
 
 	/* Если не заданные урлы, то придется отдать нужный файли */
-	if (!req.headers.accept.includes('text/html')) {
-		fileName = url;
+	if (req.headers.accept) {
+		if (!req.headers.accept.includes('text/html')) {
+			fileName = url;
+		}
 	}
+
 
 	/* Определение расширения файла */
 	const extension = fileName.split('.').pop();

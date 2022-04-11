@@ -1,23 +1,2 @@
 {{> decoration}}
-<div class="auth__form">
-    <div class="auth__block">
-        <div class="auth__block_logo">
-            {{> logo}}
-        </div>
-        {{> headTitle  headTitleText="Вход в "}}
-        {{> descp descpText="Planexa — это визуальный инструмент, который позволяет вашей команде управлять проектами, рабочими процессами и заданиями"}}
-        <form method="POST" id="input_form" class="auth__block_form">
-            {{> input inputPlaceholder="Укажите логин" inputType="text" inputId="input_login"}}
-            {{> input inputPlaceholder="Введите пароль" inputType="password" inputId="input_pass"}}
-            {{> button buttonText="Войти"}}
-        </form>
-        <div class="auth__block_signup">
-            <div class="auth__block_dont">
-                Нет аккаунта Planexa?
-            </div>
-            <div>
-                <a class="auth__block_link" href="signup">Зарегистрироваться</a>
-            </div>
-        </div>
-    </div>
-</div>
+{{> loginBlock}}

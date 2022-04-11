@@ -1,0 +1,21 @@
+
+.auth__block_input {
+  background-color: $gray-main-dark;
+  width: 300px;
+  height: 15px;
+  border: 2px solid #dfe8ef;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 7px 0;
+  padding: 15px;
+  caret-color: $gray-text;
+  font-family: Roboto, sans-serif;
+
+  &::placeholder {
+    color: $gray-menu;
+  }
+
+  &:focus-visible {
+    outline-color: $blue-color;
+  }
+}

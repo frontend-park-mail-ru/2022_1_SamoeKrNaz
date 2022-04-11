@@ -1,0 +1,59 @@
+$blue-color: #4277fa;
+$bg-color: #f1f6fa;
+$white: #f8fafd;
+$menu-gray: #abb7c0;
+$gray-color: #9d9d9d;
+$gray-text: #7f7f7f;
+$gray-main-dark: #e9f0f6;
+$gray-menu: #abb7c0;
+$error: #ff7e7e;
+
+$black-text: #2d2d2d;
+$menu-width: 75px;
+$active-task: 350px;
+$top-margin: 45px;
+$button-radius: 10px;
+$time-anim: 0.5s;
+$shadow: 0 0 10px #00000005;
+
+$button-size: 44px;
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	line-height: 1;
+	background: $bg-color;
+}
+
+.header1 {
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 28px;
+}
+
+.header2 {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 21px;
+}
+
+.paragraph {
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.header_important {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.container {
+	height: 100vh;
+	width: 100%;
+	background-color: $blue-color;
+	display: flex;
+}

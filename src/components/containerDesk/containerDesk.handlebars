@@ -1,6 +1,14 @@
 <div class="main__content">
     {{#each boards}}
-        {{>desk}}
+        <div class="desk">
+            <div class="desk__title header2">{{title}}</div>
+            <div class="desk__description">
+                {{description}}
+            </div>
+            <div class="desk__date">
+                {{date}}
+            </div>
+        </div>
     {{/each}}
     <div class="desk deskButton">
         <div class="desk__title">Доска для важных дел</div>
