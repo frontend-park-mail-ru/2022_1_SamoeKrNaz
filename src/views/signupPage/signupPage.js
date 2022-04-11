@@ -15,7 +15,7 @@ export default new class SignupPage extends BaseView {
 	 * @constructor
 	 */
 	constructor() {
-		super();
+		super([]);
 
 		EventBus.subscribe(ProfileEvents.register, this.registerError);
 	}

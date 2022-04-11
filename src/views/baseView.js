@@ -6,9 +6,10 @@
 class BaseView {
 	/**
 	 * @constructor
+	 * @param {array<object>} data информация об обработчиках, хранящаяся в переменной
 	 */
-	constructor() {
-
+	constructor(data) {
+		this._listeners = data;
 	}
 
 	/**
@@ -23,14 +24,18 @@ class BaseView {
 	 * Метод, навешивающий обработчки на страницу
 	 */
 	_createListeners() {
-		console.error('Нужно переопределить метод в классе');
+		this._listeners.map((listener) => {
+			document.getElementsByClassName(listener.className)[0].addEventListener(listener.type, listener.func);
+		});
 	}
 
 	/**
 	 * Метод, удаляющий обработчки на страницы
 	 */
-	_removeListeners() {
-		console.error('Нужно переопределить метод в классе');
+	removeListeners() {
+		this._listeners.map((listener) => {
+			document.getElementsByClassName(listener.className)[0].removeEventListener(listener.type, listener.func);
+		});
 	}
 }
 

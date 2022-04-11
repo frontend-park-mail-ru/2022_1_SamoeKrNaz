@@ -16,7 +16,7 @@ export default new class LoginPage extends BaseView {
 	 * @constructor
 	 */
 	constructor() {
-		super();
+		super([]);
 
 		EventBus.subscribe(ProfileEvents.login, this.loginError);
 	}
@@ -25,7 +25,7 @@ export default new class LoginPage extends BaseView {
 	 * Метод отвечающий за генерацию View
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data= null) {
+	render(data = null) {
 		/* Удаляем обработчики событий для всех используемых элементов */
 		deleteListeners();
 		/* Регистрация всех компонентов для страницы */
