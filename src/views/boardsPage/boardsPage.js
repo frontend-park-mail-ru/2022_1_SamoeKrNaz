@@ -26,6 +26,29 @@ export default new class BoardsPage extends BaseView {
 					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
 				},
 			},
+			{
+				type: 'click',
+				className: 'createDeskButtonUnic',
+				func: (e) => {
+					const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
+					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
+
+					e.preventDefault(); // Предотвращаем дефолтное поведение браузера
+					createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
+					createDesk.classList.add('active'); // И для самого окна;
+				},
+			},
+			{
+				type: 'click',
+				className: 'createDesk__close',
+				func: (e) => {
+					const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
+					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
+
+					createDeskBg.classList.remove('active'); // Убираем активный класс с фона
+					createDesk.classList.remove('active'); // И с окна
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.boardsUpdate, this.onUpdate.bind(this));
