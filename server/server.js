@@ -27,10 +27,11 @@ const server = createServer((req, res) => {
 
 
 	/* Определение расширения файла */
+	fileName = fileName.split('?')[0];
 	const extension = fileName.split('.').pop();
 
 	if (extension === 'webp') {
-		readFile(`${__dirname}/../../../go-2/2022_1_SamoeKrNaz/${fileName}`, (err, file) => {
+		readFile(`${__dirname}/../../../go-2/2022_1_SamoeKrNaz/avatars/${fileName}`, (err, file) => {
 			/* Обработка ошибки*/
 			if (err) {
 				res.write('404 not found');
