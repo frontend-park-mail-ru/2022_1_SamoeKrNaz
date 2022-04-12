@@ -18,6 +18,9 @@ export const ProfileEvents = {
 	updateAvatarUnSuccess: 'Profile_avatar_unsuccessful',
 };
 
+export const BoardActions = {
+	loadBoard: 'loadBoard',
+};
 
 export const BoardsActions = {
 	loadBoards: 'loadBoards',
@@ -27,5 +30,6 @@ export const BoardsActions = {
 export const Events = {
 	boardsUpdate: 'boards',
 	boardsCreateError: 'boardsError',
+	boardUpdate: 'board',
 };
 

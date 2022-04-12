@@ -1,7 +1,7 @@
 'use strict';
 
 import Store from './baseStore.js';
-import {BoardsActions, Events, ProfileActions} from '../modules/actions.js';
+import {BoardActions, BoardsActions, Events, ProfileActions} from '../modules/actions.js';
 import {ajaxMethods} from '../ajax/boards.js';
 import {Messages, ResponseStatus} from '../constants/constants.js';
 import router from '../modules/router.js';
@@ -22,7 +22,7 @@ export default new class Board extends Store {
 	 */
 	async _callback(action) {
 		switch (action.type) {
-		case BoardsActions.loadBoard:
+		case BoardActions.loadBoard:
 			await this._loadBoard(action);
 			break;
 		}

@@ -5,7 +5,7 @@ import * as render from './boardPage.templ.js';
 import BaseView from '../baseView.js';
 import BasePage from '../basePage/basePage.js';
 import EventBus from '../../modules/eventBus.js';
-import {BoardsActions, Events} from '../../modules/actions.js';
+import {BoardActions, BoardsActions, Events} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
 
 /**
@@ -47,6 +47,8 @@ export default new class BoardPage extends BaseView {
 				},
 			},
 		]);
+
+		EventBus.subscribe(Events.boardUpdate, this.onUpdate.bind());
 	}
 
 	/**
@@ -57,6 +59,10 @@ export default new class BoardPage extends BaseView {
 		BasePage.render();
 
 		this.onUpdate();
+
+		Dispatcher.dispatch({
+			type: BoardActions.loadBoard,
+		});
 	}
 
 	/**
