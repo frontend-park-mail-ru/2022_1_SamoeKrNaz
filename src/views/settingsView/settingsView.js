@@ -85,8 +85,10 @@ export default new class SettingsView extends BaseView {
 	 * @param {object} data состояние стора
 	 */
 	onUpdate(data) {
-		document.getElementById('input_login').value = data.username;
-		document.getElementsByClassName('settings__avatar')[0].src = data.img;
+		if (data.username) {
+			document.getElementById('input_login').value = data.username;
+			document.getElementsByClassName('settings__avatar')[0].src = data.img;
+		}
 	}
 
 	/**
