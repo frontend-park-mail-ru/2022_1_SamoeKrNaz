@@ -86,7 +86,7 @@ class Router {
 
 		// зарегистрировал ли такой путь
 		if (!view) {
-			this.open(Url.index);
+			this.open(Url.notFound);
 			return;
 		}
 

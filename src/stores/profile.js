@@ -155,6 +155,9 @@ class Profile extends Store {
 	 * @param {object} data инфорация о событии
 	 */
 	async _updateInformation(data) {
+		if (data.login === this._data.username && data.password.length === 0 && data.passwordRepeat.length === 0) {
+			return false;
+		}
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.updateUnSuccess);
@@ -165,7 +168,7 @@ class Profile extends Store {
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;
 		}
-		if (data.password.length !== 0 && (data.password.length <= 6 || data.password.length > 20)) {
+		if ((data.password.length !== 0 || data.passwordRepeat.length !== 0) && (data.password.length <= 6 || data.password.length > 20)) {
 			this._data.validation.errorMsg = Messages['shortPassword'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;

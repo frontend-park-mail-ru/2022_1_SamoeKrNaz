@@ -7,8 +7,7 @@ import router from '../../modules/router.js';
 import EventBus from '../../modules/eventBus.js';
 import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
-import settingsView from "../settingsView/settingsView.js";
-import SettingsView from "../settingsView/settingsView.js";
+import SettingsView from '../settingsView/settingsView.js';
 
 /**
  * Класс, реализующий страницу логина.

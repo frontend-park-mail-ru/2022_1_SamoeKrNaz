@@ -16,6 +16,7 @@ export const Url = {
 	signup: '/signup',
 	board: '/board',
 	index: '/',
+	notFound: '404',
 };
 
 export const ResponseStatus = {
