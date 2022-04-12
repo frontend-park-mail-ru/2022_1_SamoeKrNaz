@@ -26,9 +26,9 @@ class BaseView {
 	_createListeners() {
 		this._listeners.map((listener) => {
 			if (listener.className) {
-				document.getElementsByClassName(listener.className)[0].addEventListener(listener.type, listener.func);
+				document.getElementsByClassName(listener.className)[0]?.addEventListener(listener.type, listener.func);
 			} else {
-				document.getElementById(listener.id).addEventListener(listener.type, listener.func);
+				document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
 			}
 		});
 	}

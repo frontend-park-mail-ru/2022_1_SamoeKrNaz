@@ -209,6 +209,7 @@ class Profile extends Store {
 		const formData = new FormData();
 		formData.append('avatar', data.data);
 		const res = await ajaxMethods.uploadAvatar(formData);
+
 		switch (res.status) {
 		case ResponseStatus.success:
 			this._data.avatar.successAv = Messages['updateSuccess'];

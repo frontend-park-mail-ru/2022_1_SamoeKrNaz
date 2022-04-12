@@ -7,6 +7,7 @@ import router from '../modules/router.js';
 
 import Profile from '../stores/profile.js';
 import Boards from '../stores/boards.js';
+import Board from '../stores/board.js';
 
 import LoginPage from '../views/loginPage/loginPage.js';
 import BoardsPage from '../views/boardsPage/boardsPage.js';

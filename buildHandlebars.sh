@@ -22,15 +22,11 @@ handlebars src/components/createDesk/createDesk.handlebars >> src/views/basePage
 handlebars src/components/success/success.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/views/basePage/basePage.handlebars >> src/views/basePage/basePage.templ.js
 
-handlebars src/components/leftMenu/leftMenu.handlebars > src/views/boardPage/boardPage.templ.js &&
-handlebars src/components/cap/cap.handlebars >> src/views/boardPage/boardPage.templ.js &&
-handlebars src/components/containerDesk/containerDesk.handlebars >> src/views/boardPage/boardPage.templ.js &&
-handlebars src/components/activeTask/activeTask.handlebars >> src/views/boardPage/boardPage.templ.js &&
-handlebars src/components/rightMenu/rightMenu.handlebars >> src/views/boardPage/boardPage.templ.js &&
-handlebars src/components/settings/settings.handlebars >> src/views/boardPage/boardPage.templ.js &&
+handlebars src/components/cap/cap.handlebars > src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/list/list.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/listDelete/listDelete.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/card/card.handlebars >> src/views/boardPage/boardPage.templ.js &&
+handlebars src/components/boardModal/boardModal.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/views/boardPage/boardPage.handlebars >> src/views/boardPage/boardPage.templ.js
 
 handlebars src/components/cap/cap.handlebars >> src/views/boardsPage/boardsPage.templ.js &&

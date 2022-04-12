@@ -99,7 +99,8 @@ export default new class SettingsView extends BaseView {
 
 		/* Навешивание обработчика валидации данных для формы регистрации */
 		const form = document.getElementById('input_form_settings');
-		form.onsubmit = () => {
+		form.onsubmit = (e) => {
+			console.log(e);
 			Dispatcher.dispatch({
 				type: ProfileActions.update,
 				login: document.getElementById('input_login').value,

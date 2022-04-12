@@ -11,8 +11,17 @@
 <!--            </svg>-->
 <!--            <input class="search__input" placeholder="Поиск" readonly>-->
 <!--        </div>-->
-        <div class="button createDeskButtonUnic">
-            Новая доска
-        </div>
+        {{#if board}}
+            <div class="button desk__settings">
+                Настройки
+            </div>
+            <div class="button desl__newList">
+                Новый список
+            </div>
+        {{else}}
+            <div class="button createDeskButtonUnic">
+                Новая доска
+            </div>
+        {{/if}}
     </div>
 </div>

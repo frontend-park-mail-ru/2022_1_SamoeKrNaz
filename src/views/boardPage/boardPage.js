@@ -46,9 +46,18 @@ export default new class BoardPage extends BaseView {
 					document.getElementsByClassName('card')[0].classList.add('active'); // И для самого окна
 				},
 			},
+			{
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desl__newList', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this._openModal({
+						title: 'Создать список',
+					});
+				},
+			},
 		]);
 
-		EventBus.subscribe(Events.boardUpdate, this.onUpdate.bind());
+		EventBus.subscribe(Events.boardUpdate, this.onUpdate.bind(this));
 	}
 
 	/**
@@ -69,7 +78,7 @@ export default new class BoardPage extends BaseView {
 	 * Метод, вызывающийся при обновлении стора досок
 	 * @param {object} data состояние стора
 	 */
-	onUpdate(data = {boards: undefined}) {
+	onUpdate(data = {board: null}) {
 		this.removeListeners();
 
 		/* Регистрация всех компонентов для страницы */
@@ -77,11 +86,13 @@ export default new class BoardPage extends BaseView {
 		Handlebars.registerPartial('list', Handlebars.templates['list']);
 		Handlebars.registerPartial('listDelete', Handlebars.templates['listDelete']);
 		Handlebars.registerPartial('card', Handlebars.templates['card']);
+		Handlebars.registerPartial('boardModal', Handlebars.templates['boardModal']);
 
 		/* Рендер шаблона с входными данными */
 		const boardPage = Handlebars.templates.boardPage;
 		const html = boardPage({
 			pageStatus: BasePage.pageStatus,
+			board: data.board,
 		});
 
 		const root = document.getElementById('root');
@@ -90,6 +101,22 @@ export default new class BoardPage extends BaseView {
 		root.innerHTML = html;
 
 		this._createListeners();
+	}
+
+	/**
+	 * Метод позволяющий открывать модальные окна, по массиву
+	 * @param {object} data
+	 */
+	_openModal(data) {
+		const modal = Handlebars.templates.boardModal;
+		const html = modal(data);
+		document.getElementById('root').innerHTML += html;
+
+		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
+		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
+
+		createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
+		createDesk.classList.add('active'); // И для самого окна;
 	}
 };
 

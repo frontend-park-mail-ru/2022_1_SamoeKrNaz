@@ -170,6 +170,10 @@ body {
   cursor: pointer;
 }
 
+.desk__settings {
+  margin-right: 30px;
+}
+
 .card {
   position: absolute;
   top: 50%;
@@ -453,8 +457,8 @@ body {
 .column {
   display: flex;
   overflow-x: auto;
-  margin: 0 15px;
-  height: calc(100vh - 146px);
+  padding: 0 15px;
+  height: calc(100vh - 131px);
 }
 
 .desk__column {
@@ -931,6 +935,113 @@ body {
   justify-content: center;
 }
 .createDesk__settings_cancel {
+  background-color: #e9f0f6;
+  display: flex;
+  align-items: center;
+  border: 2px solid #e9f0f6;
+  border-radius: 8px;
+  color: #7f7f7f;
+  padding: 10px 30px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.createModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: flex;
+  width: 350px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px;
+  flex-direction: column;
+}
+.createModal.active {
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0.5s all;
+}
+.createModal__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s all;
+  z-index: 100;
+}
+.createModal__bg.active {
+  pointer-events: all;
+  opacity: 1;
+  transition: 0.5s all;
+}
+.createModal__separator {
+  border-radius: 5px;
+  background-color: #abb7c0;
+  height: 1px;
+  margin: 20px 0;
+}
+.createModal_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.createModal__settings {
+  display: flex;
+  flex-direction: column;
+  color: #7f7f7f;
+}
+.createModal__settings_input {
+  background-color: #e9f0f6;
+  height: 36px;
+  border: 2px solid #dfe8ef;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 8px 0;
+  padding: 15px;
+  caret-color: #7f7f7f;
+  font-family: Roboto, sans-serif;
+}
+.createModal__settings_input::placeholder {
+  color: #abb7c0;
+}
+.createModal__settings_input:focus-visible {
+  outline-color: #4277fa;
+}
+.createModal__settings_textarea {
+  background-color: #fff;
+  border: 2px solid #dfe8ef;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 8px 0;
+  padding: 15px;
+  caret-color: #7f7f7f;
+  font-family: Roboto, sans-serif;
+  resize: none;
+  height: 100px;
+}
+.createModal__settings_textarea::placeholder {
+  color: #abb7c0;
+}
+.createModal__settings_textarea:focus-visible {
+  outline-color: #4277fa;
+}
+.createModal__settings_save {
+  background-color: #4277fa;
+  display: flex;
+  align-items: center;
+  border: 2px solid #4277fa;
+  border-radius: 8px;
+  color: #f1f6fa;
+  padding: 10px 30px;
+  margin-top: 15px;
+  justify-content: center;
+}
+.createModal__settings_cancel {
   background-color: #e9f0f6;
   display: flex;
   align-items: center;

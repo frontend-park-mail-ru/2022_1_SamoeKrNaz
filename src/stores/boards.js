@@ -3,7 +3,7 @@
 import Store from './baseStore.js';
 import {BoardsActions, Events, ProfileActions} from '../modules/actions.js';
 import {ajaxMethods} from '../ajax/boards.js';
-import {Messages, ResponseStatus} from '../constants/constants.js';
+import {Messages, ResponseStatus, Url} from '../constants/constants.js';
 import router from '../modules/router.js';
 
 export default new class Boards extends Store {
@@ -83,13 +83,14 @@ export default new class Boards extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.created:
-			this._data.boards.push(res.body);
+			this._data.boards?.push(res.body);
 			break;
 
 		default:
 			console.error('Что-то пошло не по плану');
 		}
 
+		router.open(Url.base);
 		this._publish(Events.boardsUpdate);
 	}
 };
