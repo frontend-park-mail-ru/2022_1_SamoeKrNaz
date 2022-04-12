@@ -81,6 +81,10 @@
     justify-content: left;
     width: 300px;
 
+    &_input{
+      display: none;
+    }
+
     &_upload {
       background-color: $blue-color;
       display: flex;

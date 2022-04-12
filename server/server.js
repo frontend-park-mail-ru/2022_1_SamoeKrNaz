@@ -27,26 +27,41 @@ const server = createServer((req, res) => {
 
 
 	/* Определение расширения файла */
+	fileName = fileName.split('?')[0];
 	const extension = fileName.split('.').pop();
 
-	readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+	if (extension === 'webp') {
+		readFile(`${__dirname}/../../backend${fileName}`, (err, file) => {
+			/* Обработка ошибки*/
+			if (err) {
+				res.write('404 not found');
+				res.end();
+				return;
+			}
 
-		/* Обработка ошибки*/
-		if (err) {
-			res.write('404 not found');
+			/* Запись данных*/
+			res.write(file);
 			res.end();
-			return;
-		}
+		});
+	} else {
+		readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+		/* Обработка ошибки*/
+			if (err) {
+				res.write('404 not found');
+				res.end();
+				return;
+			}
 
-		/* При расширении .js необходимо установить заголовок */
-		if (extension === 'js') {
-			res.setHeader('Content-type', 'text/javascript');
-		}
+			/* При расширении .js необходимо установить заголовок */
+			if (extension === 'js') {
+				res.setHeader('Content-type', 'text/javascript');
+			}
 
-		/* Запись данных*/
-		res.write(file);
-		res.end();
-	});
+			/* Запись данных*/
+			res.write(file);
+			res.end();
+		});
+	}
 });
 
 /* Прослушивание порта*/

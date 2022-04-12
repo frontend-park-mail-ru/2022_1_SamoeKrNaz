@@ -3,7 +3,7 @@
 import Store from './baseStore.js';
 import {BoardsActions, Events, ProfileActions} from '../modules/actions.js';
 import {ajaxMethods} from '../ajax/boards.js';
-import {ResponseStatus} from "../constants/constants.js";
+import {ResponseStatus} from '../constants/constants.js';
 
 export default new class Boards extends Store {
 	/**

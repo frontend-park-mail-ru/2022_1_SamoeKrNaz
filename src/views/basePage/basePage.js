@@ -7,19 +7,8 @@ import router from '../../modules/router.js';
 import EventBus from '../../modules/eventBus.js';
 import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
-
-/**
- * Функция, осуществляющая выход пользователя из системы.
- */
-// export function logout() {
-// 	Ajax.delete({url: 'logout'})
-// 		.then((r) => {
-// 			loginPageRender();
-// 		})
-// 		.catch((er) => {
-// 			console.error('error');
-// 		});
-// }
+import settingsView from "../settingsView/settingsView.js";
+import SettingsView from "../settingsView/settingsView.js";
 
 /**
  * Класс, реализующий страницу логина.
@@ -89,6 +78,8 @@ export default new class basePage extends BaseView {
 		Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 		Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
 		Handlebars.registerPartial('settings', Handlebars.templates['settings']);
+		Handlebars.registerPartial('success', Handlebars.templates['success']);
+		Handlebars.registerPartial('error', Handlebars.templates['error']);
 
 		/* Рендер шаблона с входными данными */
 		const basePage = Handlebars.templates.basePage;
@@ -100,9 +91,11 @@ export default new class basePage extends BaseView {
 			},
 		});
 
+
 		/* Добавление контента в DOM */
 		document.body.innerHTML = html;
 
 		this._createListeners();
+		SettingsView.render();
 	}
 };
