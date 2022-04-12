@@ -266,6 +266,8 @@ body {
   padding: 20px;
   margin: 15px;
   width: 275px;
+  text-decoration: none;
+  color: var(--color-black);
 }
 .desk__title {
   font-weight: 500;

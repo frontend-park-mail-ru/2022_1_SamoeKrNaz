@@ -28,10 +28,6 @@ export function boardPageRender(r) {
 	/* Добавление контента в DOM */
 	document.body.innerHTML = html;
 
-	/* Навешивание обработчиков событий на кнопки */
-	document.getElementsByClassName('toggle__block')[0].addEventListener('click', toggleMenu);
-	document.getElementsByClassName('toggle__block_blue')[0].addEventListener('click', toggleActiveTasks);
-	document.getElementById('logout').addEventListener('click', logout);
 
 	const deleteListBg = document.getElementsByClassName('delete__bg')[0]; // Фон попап окна
 	const deleteList = document.getElementsByClassName('delete')[0]; // Само окно

@@ -90,7 +90,6 @@ export default new class basePage extends BaseView {
 			},
 		});
 
-
 		/* Добавление контента в DOM */
 		document.body.innerHTML = html;
 

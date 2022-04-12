@@ -32,6 +32,10 @@ handlebars src/components/listDelete/listDelete.handlebars >> src/views/boardPag
 handlebars src/components/card/card.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/views/boardPage/boardPage.handlebars >> src/views/boardPage/boardPage.templ.js
 
+handlebars src/components/cap/cap.handlebars >> src/views/boardsPage/boardsPage.templ.js &&
+handlebars src/components/containerDesk/containerDesk.handlebars >> src/views/boardsPage/boardsPage.templ.js &&
+handlebars src/views/boardsPage/boardsPage.handlebars >> src/views/boardsPage/boardsPage.templ.js
+
 handlebars src/components/decoration/decoration.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&
 handlebars src/components/notFoundBlock/notFoundBlock.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&
 handlebars src/views/notFoundPage/notFoundPage.handlebars >> src/views/notFoundPage/notFoundPage.templ.js

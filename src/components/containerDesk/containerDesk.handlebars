@@ -1,6 +1,6 @@
 <div class="main__content">
     {{#each boards}}
-        <div class="desk">
+        <a class="desk" href="board/{{idb}}" data-id="{{idb}}">
             <div class="desk__title header2">{{title}}</div>
             <div class="desk__description">
                 {{description}}
@@ -8,6 +8,6 @@
             <div class="desk__date">
                 {{date}}
             </div>
-        </div>
+        </a>
     {{/each}}
 </div>
