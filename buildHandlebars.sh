@@ -17,6 +17,8 @@ handlebars src/components/cap/cap.handlebars >> src/views/basePage/basePage.temp
 handlebars src/components/containerDesk/containerDesk.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/activeTask/activeTask.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/rightMenu/rightMenu.handlebars >> src/views/basePage/basePage.templ.js &&
+handlebars src/components/error/error.handlebars >> src/views/basePage/basePage.templ.js &&
+handlebars src/components/success/success.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/settings/settings.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/views/basePage/basePage.handlebars >> src/views/basePage/basePage.templ.js
 

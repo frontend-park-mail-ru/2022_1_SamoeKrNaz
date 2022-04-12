@@ -56,7 +56,7 @@ class Ajax {
 			headers: {
 				Origin: this.frontendUrl,
 			},
-			body: JSON.stringify(params.opt),
+			body: params.opt,
 		});
 
 		const status = response.status;

@@ -22,6 +22,13 @@ class Profile extends Store {
 
 			validation: {
 				errorMsg: undefined,
+				successMsg: undefined,
+			},
+
+			avatar: {
+				successAv: undefined,
+				unSuccessAv: undefined,
+				avatarPath: undefined,
 			},
 		});
 	}
@@ -40,6 +47,12 @@ class Profile extends Store {
 			break;
 		case ProfileActions.register:
 			await this._registerValidation(action);
+			break;
+		case ProfileActions.update:
+			await this._updateInformation(action);
+			break;
+		case ProfileActions.uploadAvatar:
+			await this._uploadAvatar(action);
 			break;
 		}
 	}
@@ -133,6 +146,68 @@ class Profile extends Store {
 		case ResponseStatus.conflict:
 			this._data.validation.errorMsg = Messages['alreadyRegister'];
 			this._publish(ProfileEvents.register);
+			break;
+		}
+	}
+
+	/**
+	 * Получение и обработка информации о профиле пользователя при регистрации
+	 * @param {object} data инфорация о событии
+	 */
+	async _updateInformation(data) {
+		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
+			this._data.validation.errorMsg = Messages['shortLoginPassword'];
+			this._publish(ProfileEvents.updateUnSuccess);
+			return false;
+		}
+		if (data.login.length <= 6 || data.login.length > 20) {
+			this._data.validation.errorMsg = Messages['shortLogin'];
+			this._publish(ProfileEvents.updateUnSuccess);
+			return false;
+		}
+		if (data.password.length <= 6 || data.password.length > 20) {
+			this._data.validation.errorMsg = Messages['shortPassword'];
+			this._publish(ProfileEvents.updateUnSuccess);
+			return false;
+		}
+		if (data.password !== data.passwordRepeat) {
+			this._data.validation.errorMsg = Messages['repeatPassword'];
+			this._publish(ProfileEvents.updateUnSuccess);
+			return false;
+		}
+
+		const res = await ajaxMethods.updateProfile({username: data.login, password: data.password});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.validation.successMsg = Messages['updateSuccess'];
+			this._publish(ProfileEvents.updateSuccess);
+			break;
+		case ResponseStatus.badRequest:
+			this._data.validation.errorMsg = Messages['alreadyRegister'];
+			this._publish(ProfileEvents.updateUnSuccess);
+			break;
+		}
+	}
+
+	/**
+	 * Загрузка аватара и дальнейшее обновление
+	 * @param {Object} data инфорация о событии
+	 */
+	async _uploadAvatar(data) {
+		const formData = new FormData();
+		formData.append('avatar', data.data);
+		const res = await ajaxMethods.uploadAvatar(formData);
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.avatar.successAv = Messages['updateSuccess'];
+			this._data.avatar.avatarPath = res.body.avatar_path;
+			this._publish(ProfileEvents.updateAvatarSuccess);
+			break;
+		case ResponseStatus.badRequest:
+			this._data.avatar.unSuccessAv = Messages['updateUnSuccess'];
+			console.log(res);
+			this._publish(ProfileEvents.updateAvatarUnSuccess);
 			break;
 		}
 	}

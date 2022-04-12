@@ -6,6 +6,8 @@ export const Messages = {
 	alreadyRegister: 'Пользователь с таким именем уже зарегистрирован',
 	repeatPassword: 'Введенные пароли не совпадают',
 	shortLoginPassword: 'Логин и пароль должны составлять от 7 до 20 символов',
+	updateSuccess: 'Изменения успешно сохранены',
+	updateUnSuccess: 'Выбранный Вами формат файла не поддерживается',
 };
 
 export const Url = {
