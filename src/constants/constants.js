@@ -8,13 +8,16 @@ export const Messages = {
 	shortLoginPassword: 'Логин и пароль должны составлять от 7 до 20 символов',
 	updateSuccess: 'Изменения успешно сохранены',
 	updateUnSuccess: 'Выбранный Вами формат файла не поддерживается',
+
+	shortTitle: 'Длина названия должна быть от 3 до 30 символов',
+	shortDescription: 'Длина описания должна быть от 10 до 150 символов',
 };
 
 export const Url = {
 	login: '/login',
 	base: '/base',
 	signup: '/signup',
-	board: '/board',
+	board: '/board/<id>',
 	index: '/',
 	notFound: '404',
 };

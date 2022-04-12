@@ -21,6 +21,8 @@ export default new class BoardsPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'toggle__block', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
+					BasePage.pageStatus.isLeftMenu = !BasePage.pageStatus.isLeftMenu;
+
 					document.getElementsByClassName('header')[0].classList.toggle('header_open');
 					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
 					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
@@ -36,17 +38,6 @@ export default new class BoardsPage extends BaseView {
 					e.preventDefault(); // Предотвращаем дефолтное поведение браузера
 					createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
 					createDesk.classList.add('active'); // И для самого окна;
-				},
-			},
-			{
-				type: 'click',
-				className: 'createDesk__close',
-				func: (e) => {
-					const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
-					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
-
-					createDeskBg.classList.remove('active'); // Убираем активный класс с фона
-					createDesk.classList.remove('active'); // И с окна
 				},
 			},
 		]);
@@ -83,10 +74,7 @@ export default new class BoardsPage extends BaseView {
 		const boardsPage = Handlebars.templates.boardsPage;
 
 		root.innerHTML = boardsPage({
-			pageStatus: {
-				isRightMenu: true,
-				isLeftMenu: false,
-			},
+			pageStatus: BasePage.pageStatus,
 			boards: data.boards,
 		});
 

@@ -136,9 +136,6 @@ body {
 .search-new {
   display: flex;
 }
-.search-new * {
-  cursor: not-allowed !important;
-}
 
 .search {
   display: flex;
@@ -250,12 +247,12 @@ body {
 }
 
 .main__content {
-  height: 70vh;
-  padding: 15px;
-  margin-top: 15px;
+  height: calc(100vh - 147px);
+  padding: 0 15px 15px;
   display: flex;
   flex-flow: column wrap;
   align-content: flex-start;
+  overflow-x: auto;
 }
 
 .desk {
@@ -289,6 +286,14 @@ body {
   line-height: 15px;
   letter-spacing: 0.02em;
   color: #9d9d9d;
+}
+.desk__globalTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.02em;
+  padding: 15px 0 0 15px;
+  margin: 15px 0 0 15px;
 }
 
 .toggle__block {

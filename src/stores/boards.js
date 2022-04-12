@@ -3,7 +3,8 @@
 import Store from './baseStore.js';
 import {BoardsActions, Events, ProfileActions} from '../modules/actions.js';
 import {ajaxMethods} from '../ajax/boards.js';
-import {ResponseStatus} from '../constants/constants.js';
+import {Messages, ResponseStatus} from '../constants/constants.js';
+import router from '../modules/router.js';
 
 export default new class Boards extends Store {
 	/**
@@ -12,6 +13,10 @@ export default new class Boards extends Store {
 	constructor() {
 		super('Boards', {
 			boards: undefined,
+
+			validation: {
+				errorMsg: null,
+			},
 		});
 	}
 
@@ -23,6 +28,9 @@ export default new class Boards extends Store {
 		switch (action.type) {
 		case BoardsActions.loadBoards:
 			await this._loadBoards();
+			break;
+		case BoardsActions.createDesk:
+			await this._createDesk(action);
 			break;
 		}
 	}
@@ -42,6 +50,45 @@ export default new class Boards extends Store {
 			console.error('Что-то пошло не по плану');
 		}
 
+
+		this._publish(Events.boardsUpdate);
+	}
+
+	/**
+	 * Метод реализующий загрузку досок пользователя
+	 * @param {object} data информация о событии
+	 */
+	async _createDesk(data) {
+		if (data.title.length <= 3 || data.title.length >= 30) {
+			this._data.validation.errorMsg = Messages.shortTitle;
+			this._publish(Events.boardsCreateError);
+			return false;
+		}
+
+		if (data.description.length !== 0 && (data.description.length <= 10 || data.description.length >= 150)) {
+			this._data.validation.errorMsg = Messages.shortDescription;
+			this._publish(Events.boardsCreateError);
+			return false;
+		}
+
+		const payload = {
+			title: data.title,
+		};
+
+		if (data.description.length !== 0) {
+			payload.description = data.description;
+		}
+
+		const res = await ajaxMethods.createBoard(payload);
+
+		switch (res.status) {
+		case ResponseStatus.created:
+			this._data.boards.push(res.body);
+			break;
+
+		default:
+			console.error('Что-то пошло не по плану');
+		}
 
 		this._publish(Events.boardsUpdate);
 	}

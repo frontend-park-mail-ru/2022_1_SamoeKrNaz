@@ -11,7 +11,7 @@ import Boards from '../stores/boards.js';
 import LoginPage from '../views/loginPage/loginPage.js';
 import BoardsPage from '../views/boardsPage/boardsPage.js';
 import SignupPage from '../views/signupPage/signupPage.js';
-import {boardPageRender} from '../views/boardPage/boardPage.js';
+import BoardPage from '../views/boardPage/boardPage.js';
 import NotFoundPage from '../views/notFoundPage/notFoundPage.js';
 
 if (!Profile.isLoad()) {
@@ -25,6 +25,7 @@ router.register(Url.base, BoardsPage);
 router.register(Url.login, LoginPage);
 router.register(Url.signup, SignupPage);
 router.register(Url.notFound, NotFoundPage);
+router.register(Url.board, BoardPage);
 // router.register(Url.board, boardPageRender);
 
 router.open(window.location.pathname);

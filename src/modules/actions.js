@@ -21,9 +21,11 @@ export const ProfileEvents = {
 
 export const BoardsActions = {
 	loadBoards: 'loadBoards',
+	createDesk: 'createDesk',
 };
 
 export const Events = {
 	boardsUpdate: 'boards',
+	boardsCreateError: 'boardsError',
 };
 
