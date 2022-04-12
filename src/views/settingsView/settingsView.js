@@ -160,8 +160,9 @@ export default new class SettingsView extends BaseView {
 		const successBlock = Handlebars.templates.success;
 		const html = successBlock({successText: data.avatar.successAv});
 		sep.outerHTML += html;
+		const randomString = performance.now();
 		const avatar = document.getElementsByClassName('settings__avatar')[0];
-		avatar.src = data.avatar.avatarPath;
+		avatar.src = data.avatar.avatarPath + '?' + randomString;
 	}
 
 	/**
