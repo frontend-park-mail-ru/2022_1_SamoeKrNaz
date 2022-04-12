@@ -18,6 +18,7 @@ handlebars src/components/containerDesk/containerDesk.handlebars >> src/views/ba
 handlebars src/components/activeTask/activeTask.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/rightMenu/rightMenu.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/settings/settings.handlebars >> src/views/basePage/basePage.templ.js &&
+handlebars src/components/createDesk/createDesk.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/success/success.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/views/basePage/basePage.handlebars >> src/views/basePage/basePage.templ.js
 
@@ -31,6 +32,10 @@ handlebars src/components/list/list.handlebars >> src/views/boardPage/boardPage.
 handlebars src/components/listDelete/listDelete.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/card/card.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/views/boardPage/boardPage.handlebars >> src/views/boardPage/boardPage.templ.js
+
+handlebars src/components/cap/cap.handlebars >> src/views/boardsPage/boardsPage.templ.js &&
+handlebars src/components/containerDesk/containerDesk.handlebars >> src/views/boardsPage/boardsPage.templ.js &&
+handlebars src/views/boardsPage/boardsPage.handlebars >> src/views/boardsPage/boardsPage.templ.js
 
 handlebars src/components/decoration/decoration.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&
 handlebars src/components/notFoundBlock/notFoundBlock.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&

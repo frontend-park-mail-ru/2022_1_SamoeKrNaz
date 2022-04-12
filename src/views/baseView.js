@@ -39,9 +39,9 @@ class BaseView {
 	removeListeners() {
 		this._listeners.map((listener) => {
 			if (listener.className) {
-				document.getElementsByClassName(listener.className)[0].removeEventListener(listener.type, listener.func);
+				document.getElementsByClassName(listener.className)[0]?.removeEventListener(listener.type, listener.func);
 			} else {
-				document.getElementById(listener.id).removeEventListener(listener.type, listener.func);
+				document.getElementById(listener.id)?.removeEventListener(listener.type, listener.func);
 			}
 		});
 	}

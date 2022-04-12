@@ -79,6 +79,7 @@ export default new class basePage extends BaseView {
 		Handlebars.registerPartial('settings', Handlebars.templates['settings']);
 		Handlebars.registerPartial('success', Handlebars.templates['success']);
 		Handlebars.registerPartial('error', Handlebars.templates['error']);
+		Handlebars.registerPartial('createDesk', Handlebars.templates['createDesk']);
 
 		/* Рендер шаблона с входными данными */
 		const basePage = Handlebars.templates.basePage;
