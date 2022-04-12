@@ -50,7 +50,7 @@ export default new class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desl__newList', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
-					this._openModal({
+					this.openModal({
 						title: 'Создать список',
 					});
 				},
@@ -107,16 +107,35 @@ export default new class BoardPage extends BaseView {
 	 * Метод позволяющий открывать модальные окна, по массиву
 	 * @param {object} data
 	 */
-	_openModal(data) {
+	openModal(data) {
+		document.getElementsByClassName('createModal__bg')[0]?.remove();
+
 		const modal = Handlebars.templates.boardModal;
 		const html = modal(data);
 		document.getElementById('root').innerHTML += html;
+
+		document.getElementsByClassName('createModal__settings_cancel')[0].addEventListener('click', this.modalClose);
+		document.getElementsByClassName('createModal__close')[0].addEventListener('click', this.modalClose);
 
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
 		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
 
 		createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
 		createDesk.classList.add('active'); // И для самого окна;
+	}
+
+	/**
+	 * Функция закрытия модального окна
+	 */
+	modalClose() {
+		// document.getElementsByClassName('createModal__settings_cancel')[0].removeEventListener('click', this.modalClose);
+		// document.getElementsByClassName('createModal__close')[0].removeEventListener('click', this.modalClose);
+
+		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
+		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
+
+		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
+		createDesk.classList.remove('active'); // И с окна
 	}
 };
 

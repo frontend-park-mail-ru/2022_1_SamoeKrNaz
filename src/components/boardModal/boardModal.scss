@@ -9,6 +9,7 @@
   border-radius: 8px;
   padding: 25px;
   flex-direction: column;
+  transition: 0.5s all;
 
   &.active {
     transform: translate(-50%, -50%) scale(1);
