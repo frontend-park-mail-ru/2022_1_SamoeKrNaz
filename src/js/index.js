@@ -26,6 +26,3 @@ router.register(Url.login, LoginPage);
 router.register(Url.signup, SignupPage);
 router.register(Url.notFound, NotFoundPage);
 router.register(Url.board, BoardPage);
-// router.register(Url.board, boardPageRender);
-
-router.open(window.location.pathname);

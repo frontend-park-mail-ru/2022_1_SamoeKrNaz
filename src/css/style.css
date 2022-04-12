@@ -247,7 +247,7 @@ body {
 }
 
 .main__content {
-  height: calc(100vh - 147px);
+  height: calc(100vh - 146px);
   padding: 0 15px 15px;
   display: flex;
   flex-flow: column wrap;
@@ -453,6 +453,8 @@ body {
 .column {
   display: flex;
   overflow-x: auto;
+  margin: 0 15px;
+  height: calc(100vh - 146px);
 }
 
 .desk__column {

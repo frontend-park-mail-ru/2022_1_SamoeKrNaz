@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js",
+    "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js && sass src/css/style.scss src/css/style.css",
     "buildScss": "sass src/css/style.scss src/css/style.css",
     "checkLinters": "npx eslint src/*/*/*/*.js && npx stylelint src/*/*.scss src/css/*.css",
     "checkLintersFix": "npx eslint src/*/*/*/*.js --fix && npx stylelint src/*/*.scss src/css/*.css --fix",

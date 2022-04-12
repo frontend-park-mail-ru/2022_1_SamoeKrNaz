@@ -81,7 +81,7 @@ class Router {
 			});
 		});
 
-		const view = this.routes[path.replace(/\/\d/g, '/<id>')];
+		const view = this.routes[path.replace(/\/\d+/g, '/<id>')];
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь

@@ -57,10 +57,6 @@ export default new class BoardPage extends BaseView {
 		BasePage.render();
 
 		this.onUpdate();
-
-		// Dispatcher.dispatch({
-		// 	type: BoardsActions.loadBoards,
-		// });
 	}
 
 	/**
@@ -82,8 +78,10 @@ export default new class BoardPage extends BaseView {
 			pageStatus: BasePage.pageStatus,
 		});
 
+		const root = document.getElementById('root');
+
 		/* Добавление контента в DOM */
-		document.body.innerHTML = html;
+		root.innerHTML = html;
 
 		this._createListeners();
 	}

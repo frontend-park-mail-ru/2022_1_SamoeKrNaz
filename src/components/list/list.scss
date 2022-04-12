@@ -1,6 +1,8 @@
 .column {
   display: flex;
   overflow-x: auto;
+  margin: 0 15px;
+  height: calc(100vh - 146px);
 }
 
 .desk {

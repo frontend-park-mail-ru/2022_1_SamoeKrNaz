@@ -232,7 +232,7 @@ class Profile extends Store {
 
 		this._data.id = data.id;
 		this._data.username = data.username;
-		this._data.img = data.img_avatar;
+		this._data.img = '../' + data.img_avatar;
 	}
 
 	/**
