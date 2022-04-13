@@ -25,6 +25,7 @@ export default new class Boards extends Store {
 	 * @param {object} action событие
 	 */
 	async _callback(action) {
+
 		switch (action.type) {
 		case BoardsActions.loadBoards:
 			await this._loadBoards();
@@ -42,17 +43,17 @@ export default new class Boards extends Store {
 		const res = await ajaxMethods.loadBoards();
 
 		switch (res.status) {
-		case ResponseStatus.success:
-			this._data.boards = res.body;
-			break;
+			case ResponseStatus.success:
+				this._data.boards = res.body;
+				break;
 
-		default:
-			console.error('Что-то пошло не по плану');
+			default:
+				console.error('Что-то пошло не по плану');
 		}
 
 
 		this._publish(Events.boardsUpdate);
-	}
+		}
 
 	/**
 	 * Метод реализующий загрузку досок пользователя

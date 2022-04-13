@@ -36,3 +36,7 @@ handlebars src/views/boardsPage/boardsPage.handlebars >> src/views/boardsPage/bo
 handlebars src/components/decoration/decoration.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&
 handlebars src/components/notFoundBlock/notFoundBlock.handlebars >> src/views/notFoundPage/notFoundPage.templ.js &&
 handlebars src/views/notFoundPage/notFoundPage.handlebars >> src/views/notFoundPage/notFoundPage.templ.js
+
+handlebars src/components/decoration/decoration.handlebars >> src/views/noNetworkPage/noNetworkPage.templ.js &&
+handlebars src/components/noNetworkBlock/noNetworkBlock.handlebars >> src/views/noNetworkPage/noNetworkPage.templ.js &&
+handlebars src/views/noNetworkPage/noNetworkPage.handlebars >> src/views/noNetworkPage/noNetworkPage.templ.js

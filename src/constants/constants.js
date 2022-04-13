@@ -20,6 +20,7 @@ export const Url = {
 	board: '/board/<id>',
 	index: '/',
 	notFound: '404',
+	noNetwork: '/noNetwork'
 };
 
 export const ResponseStatus = {
