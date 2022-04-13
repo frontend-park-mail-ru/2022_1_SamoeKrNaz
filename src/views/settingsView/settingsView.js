@@ -112,14 +112,6 @@ export default new class SettingsView extends BaseView {
 	}
 
 	/**
-	 * Метод загружающий картинку на сервер
-	 * @param {object} data состояние пользователя
-	 */
-	uploadAvatar(data) {
-
-	}
-
-	/**
 	 * Метод выводящий сообщение об успешной валидации в настройках
 	 * @param {object} data состояние пользователя
 	 */

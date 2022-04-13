@@ -28,16 +28,6 @@ if (!Profile.isLoad()) {
 	});
 }
 
-// if ('serviceWorker' in navigator) {
-// 	navigator.serviceWorker.register('sw.js', {scope: '/'})
-// 		.then((registration) => {
-// 			console.log('sw registration on scope:', registration.scope);
-// 		})
-// 		.catch((err) => {
-// 			console.error(err);
-// 		});
-// }
-
 router.register(Url.index, LoginPage);
 router.register(Url.base, BoardsPage);
 router.register(Url.login, LoginPage);
