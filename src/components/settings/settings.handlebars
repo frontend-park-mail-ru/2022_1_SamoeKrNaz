@@ -7,6 +7,7 @@
             </svg>
         </div>
         <div class="settings__separator"></div>
+        <form method="POST" id="input_form_settings" class="settings__settings">
         <div class="settings__photo">
             <img src="image.jpg" alt="" class="settings__avatar">
             <div class="settings__avatar_settings">
@@ -14,29 +15,20 @@
                     Чтобы поставленные задачи стали узнаваемыми и легко отличимыми от других, рекомендуем вам установить аватар.
                 </div>
                 <div class="settings__buttons">
-                    <div class="settings__buttons_upload">
-                        Загрузить
-                    </div>
-                    <div class="settings__buttons_delete">
-                        Удалить
-                    </div>
+                    <input class="settings__buttons_input" type="file" id="fileUpload">
+                    <label class="settings__buttons_upload" for="fileUpload">Загрузить</label>
                 </div>
             </div>
         </div>
         <div class="settings__separator"></div>
-        <div class="settings__settings">
-            <input class="settings__settings_input" placeholder="MaksimGalkin" type="text">
-            <input class="settings__settings_input" placeholder="Старый пароль" type="text">
-            <input class="settings__settings_input" placeholder="Новый пароль" type="text">
-            <input class="settings__settings_input" placeholder="Повторите пароль" type="text">
-        </div>
-        <div class="settings__buttons">
-            <div class="settings__settings_save">
-                Сохранить
+                <input class="settings__settings_input" value="MaksimGalkin" type="text" id="input_login">
+                <input class="settings__settings_input" placeholder="Новый пароль" type="password" id="input_pass">
+                <input class="settings__settings_input" placeholder="Повторите пароль" type="password" id="input_pass_rep">
+            <div class="settings__buttons">
+                <button class="settings__settings_save" type="submit">
+                    Сохранить
+                </button>
             </div>
-            <div class="settings__settings_cancel">
-                Отменить
-            </div>
-        </div>
+        </form>
     </div>
 </div>

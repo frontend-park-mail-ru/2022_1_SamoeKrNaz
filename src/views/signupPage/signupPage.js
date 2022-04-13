@@ -5,6 +5,9 @@ import BaseView from '../baseView.js';
 import EventBus from '../../modules/eventBus.js';
 import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
+import Profile from '../../stores/profile.js';
+import router from '../../modules/router.js';
+import {Url} from '../../constants/constants.js';
 
 /**
  * Класс, реализующий страницу логина.
@@ -82,6 +85,10 @@ export default new class SignupPage extends BaseView {
 		document.getElementsByClassName('container')[0].innerHTML += html;
 
 		this._createListeners();
+
+		if (Profile.isLoad()) {
+			router.open(Url.base);
+		}
 	}
 
 	/**

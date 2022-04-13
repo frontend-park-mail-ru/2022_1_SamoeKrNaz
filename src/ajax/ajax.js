@@ -1,4 +1,6 @@
 import {backendUrl, frontendUrl} from '../constants/constants.js';
+import router from '../modules/router.js';
+import {Url} from '../constants/constants.js';
 
 /**
  * Класс, реализующий методы доступа к апи
@@ -49,23 +51,27 @@ class Ajax {
 	 * @return {promise} - результат запроса
 	 */
 	async _ajax(method, params = {}) {
-		const response = await fetch(this.backendUrl + params.url, {
-			method: method,
-			mode: 'cors',
-			credentials: 'include',
-			headers: {
-				Origin: this.frontendUrl,
-			},
-			body: JSON.stringify(params.opt),
-		});
+		try {
+			const response = await fetch(this.backendUrl + params.url, {
+				method: method,
+				mode: 'cors',
+				credentials: 'include',
+				headers: {
+					Origin: this.frontendUrl,
+				},
+				body: params.opt,
+			});
 
-		const status = response.status;
-		const body = await response.json();
+			const status = response.status;
+			const body = await response.json();
 
-		return {
-			status,
-			body,
-		};
+			return {
+				status,
+				body,
+			};
+		} catch (e) {
+			router.open(Url.noNetwork);
+		}
 	}
 }
 

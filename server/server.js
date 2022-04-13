@@ -1,17 +1,15 @@
 'use strict';
 
-import {createServer} from 'http';
-import {readFile} from 'fs';
-import {resolve} from 'path';
+
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 /* Порт, на котором разворачиваемся */
 const SERVER_PORT = 3000;
 
-/* Получение текущей директории */
-const __dirname = resolve();
-
 /* Обработка запросов */
-const server = createServer((req, res) => {
+const server = http.createServer((req, res) => {
 	/* Получение урла */
 	const {url} = req;
 
@@ -27,26 +25,41 @@ const server = createServer((req, res) => {
 
 
 	/* Определение расширения файла */
+	fileName = fileName.split('?')[0];
 	const extension = fileName.split('.').pop();
 
-	readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+	if (extension === 'webp') {
+		fs.readFile(`${__dirname}/../../backend${fileName}`, (err, file) => {
+			/* Обработка ошибки*/
+			if (err) {
+				res.write('404 not found');
+				res.end();
+				return;
+			}
 
-		/* Обработка ошибки*/
-		if (err) {
-			res.write('404 not found');
+			/* Запись данных*/
+			res.write(file);
 			res.end();
-			return;
-		}
+		});
+	} else {
+		fs.readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+		/* Обработка ошибки*/
+			if (err) {
+				res.write('404 not found');
+				res.end();
+				return;
+			}
 
-		/* При расширении .js необходимо установить заголовок */
-		if (extension === 'js') {
-			res.setHeader('Content-type', 'text/javascript');
-		}
+			/* При расширении .js необходимо установить заголовок */
+			if (extension === 'js') {
+				res.setHeader('Content-type', 'text/javascript');
+			}
 
-		/* Запись данных*/
-		res.write(file);
-		res.end();
-	});
+			/* Запись данных*/
+			res.write(file);
+			res.end();
+		});
+	}
 });
 
 /* Прослушивание порта*/

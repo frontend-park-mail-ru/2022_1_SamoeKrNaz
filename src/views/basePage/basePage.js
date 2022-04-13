@@ -5,21 +5,9 @@ import BaseView from '../baseView.js';
 import {Url} from '../../constants/constants.js';
 import router from '../../modules/router.js';
 import EventBus from '../../modules/eventBus.js';
-import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
+import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
-
-/**
- * Функция, осуществляющая выход пользователя из системы.
- */
-// export function logout() {
-// 	Ajax.delete({url: 'logout'})
-// 		.then((r) => {
-// 			loginPageRender();
-// 		})
-// 		.catch((er) => {
-// 			console.error('error');
-// 		});
-// }
+import SettingsView from '../settingsView/settingsView.js';
 
 /**
  * Класс, реализующий страницу логина.
@@ -31,18 +19,23 @@ export default new class basePage extends BaseView {
 	constructor() {
 		super([
 			{
-				type: 'click', // Тип обработчика, который навешивается
-				className: 'toggle__block', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
-					document.getElementsByClassName('header')[0].classList.toggle('header_open');
-					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
-					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
+				type: 'click',
+				className: 'newDeskButton',
+				func: (e) => {
+					const sBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
+					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
+
+					e.preventDefault(); // Предотвращаем дефолтное поведение браузера
+					createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
+					createDesk.classList.add('active'); // И для самого окна;
 				},
 			},
 			{
 				type: 'click',
 				className: 'toggle__block_blue',
 				func: (e) => {
+					this.pageStatus.isRightMenu = !this.pageStatus.isRightMenu;
+
 					document.getElementsByClassName('main')[0].classList.toggle('active-tasks-open');
 					document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
 					document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
@@ -74,19 +67,54 @@ export default new class basePage extends BaseView {
 			},
 			{
 				type: 'click',
-				className: 'deskButton',
-				func: (e) => {
-					router.open(Url.board);
-				},
-			},
-			{
-				type: 'click',
 				className: 'homeButton',
 				func: (e) => {
 					router.open(Url.base);
 				},
 			},
+			{
+				type: 'click',
+				className: 'createDesk__close',
+				func: (e) => {
+					this.modalClose();
+				},
+			},
+			{
+				type: 'click',
+				className: 'createDesk__settings_cancel',
+				func: (e) => {
+					this.modalClose();
+				},
+			},
+			{
+				type: 'click',
+				className: 'createDesk__settings_save',
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: BoardsActions.createBoard,
+						title: document.getElementsByClassName('createDesk__settings_input')[0].value,
+						description: document.getElementsByClassName('createDesk__settings_textarea')[0].value,
+					});
+				},
+			},
+			{
+				type: 'click',
+				id: 'logout',
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: ProfileActions.logout,
+					});
+				},
+			},
 		]);
+
+		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
+		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
+
+		this.pageStatus = {
+			isRightMenu: true,
+			isLeftMenu: false,
+		};
 	}
 
 	/**
@@ -94,6 +122,10 @@ export default new class basePage extends BaseView {
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
 	render(data = null) {
+		if (document.getElementById('root')) {
+			return;
+		}
+
 		/* Регистрация всех компонентов для страницы */
 		Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
 		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
@@ -101,20 +133,48 @@ export default new class basePage extends BaseView {
 		Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
 		Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
 		Handlebars.registerPartial('settings', Handlebars.templates['settings']);
+		Handlebars.registerPartial('success', Handlebars.templates['success']);
+		Handlebars.registerPartial('error', Handlebars.templates['error']);
+		Handlebars.registerPartial('createDesk', Handlebars.templates['createDesk']);
 
 		/* Рендер шаблона с входными данными */
 		const basePage = Handlebars.templates.basePage;
 
 		const html = basePage({
-			pageStatus: {
-				isRightMenu: true,
-				isLeftMenu: false,
-			},
+			pageStatus: this.pageStatus,
 		});
 
 		/* Добавление контента в DOM */
 		document.body.innerHTML = html;
 
 		this._createListeners();
+		SettingsView.render();
+	}
+
+	/**
+	 * Функция закрытия модального окна
+	 */
+	modalClose() {
+		const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
+		const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
+
+		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
+		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Добавление ошибки в форму
+	 * @param {object} data
+	 */
+	errorRender(data) {
+		const err = document.getElementsByClassName('auth__block_error')[0];
+		if (err) {
+			err.remove();
+		}
+
+		const sep = document.getElementsByClassName('createDesk__separator')[0];
+		const error = Handlebars.templates.error;
+		const html = error({settings: true, errorText: data.validation.errorMsg});
+		sep.outerHTML += html;
 	}
 };

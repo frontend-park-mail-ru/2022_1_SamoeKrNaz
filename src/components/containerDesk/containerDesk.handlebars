@@ -1,6 +1,10 @@
+<div class="desk__globalTitle">
+    Список ваших досок
+</div>
+
 <div class="main__content">
     {{#each boards}}
-        <div class="desk">
+        <a class="desk" href="board/{{idb}}" data-id="{{idb}}">
             <div class="desk__title header2">{{title}}</div>
             <div class="desk__description">
                 {{description}}
@@ -8,15 +12,6 @@
             <div class="desk__date">
                 {{date}}
             </div>
-        </div>
+        </a>
     {{/each}}
-    <div class="desk deskButton">
-        <div class="desk__title">Доска для важных дел</div>
-        <div class="desk__description">
-            Тут будет подробное описания таблицы и то зачем она. Но тут текст будет длиннее, чтобы можно было посмотреть, как увеличится блок.
-        </div>
-        <div class="desk__date">
-            11 Декабря, 2022
-        </div>
-    </div>
 </div>

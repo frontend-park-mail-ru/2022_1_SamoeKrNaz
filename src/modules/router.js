@@ -81,18 +81,18 @@ class Router {
 			});
 		});
 
-		const view = this.routes[path];
+		const view = this.routes[path.replace(/\/board\/\d+/g, '/board/<id>')];
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь
 		if (!view) {
-			this.open(Url.index);
+			this.open(Url.notFound);
 			return;
 		}
 
 		// проверяем урл, если другой, то добавляем в историю
 		if (window.location.pathname !== path) {
-			window.history.pushState('', '', path);
+			window.history.pushState('', '', '..' + path);
 		}
 		// рендерим страницу
 		view.render(context);
