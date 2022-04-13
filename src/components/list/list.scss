@@ -6,6 +6,10 @@
 }
 
 .desk {
+  &__listIcon {
+    cursor: pointer;
+  }
+  
   &__column {
     cursor: default;
 

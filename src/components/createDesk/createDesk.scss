@@ -10,6 +10,10 @@
   padding: 25px;
   flex-direction: column;
 
+  &__close {
+    cursor: pointer;
+  }
+
   &.active {
     transform: translate(-50%, -50%) scale(1);
     transition: 0.5s all;
@@ -102,6 +106,7 @@
       padding: 10px 30px;
       margin-top: 15px;
       justify-content: center;
+      cursor: pointer;
     }
 
     &_cancel {
@@ -114,6 +119,7 @@
       padding: 10px 30px;
       margin-top: 15px;
       justify-content: center;
+      cursor: pointer;
     }
   }
 }
