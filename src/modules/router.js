@@ -92,7 +92,6 @@ class Router {
 
 		// проверяем урл, если другой, то добавляем в историю
 		if (window.location.pathname !== path) {
-			console.log(path)
 			window.history.pushState('', '', '..' + path);
 		}
 		// рендерим страницу
