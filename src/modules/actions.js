@@ -34,7 +34,7 @@ export const BoardActions = {
 
 export const BoardsActions = {
 	loadBoards: 'loadBoards',
-	createDesk: 'createDesk',
+	createBoard: 'createBoard',
 };
 
 export const Events = {

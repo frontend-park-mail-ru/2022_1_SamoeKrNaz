@@ -29,8 +29,8 @@ export default new class Boards extends Store {
 		case BoardsActions.loadBoards:
 			await this._loadBoards();
 			break;
-		case BoardsActions.createDesk:
-			await this._createDesk(action);
+		case BoardsActions.createBoard:
+			await this._createBoard(action);
 			break;
 		}
 	}
@@ -58,7 +58,7 @@ export default new class Boards extends Store {
 	 * Метод реализующий загрузку досок пользователя
 	 * @param {object} data информация о событии
 	 */
-	async _createDesk(data) {
+	async _createBoard(data) {
 		if (data.title.length <= 3 || data.title.length >= 30) {
 			this._data.validation.errorMsg = Messages.shortTitle;
 			this._publish(Events.boardsCreateError);

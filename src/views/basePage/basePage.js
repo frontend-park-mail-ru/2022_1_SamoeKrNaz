@@ -22,7 +22,7 @@ export default new class basePage extends BaseView {
 				type: 'click',
 				className: 'newDeskButton',
 				func: (e) => {
-					const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
+					const sBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
 					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
 
 					e.preventDefault(); // Предотвращаем дефолтное поведение браузера
@@ -91,7 +91,7 @@ export default new class basePage extends BaseView {
 				className: 'createDesk__settings_save',
 				func: (e) => {
 					Dispatcher.dispatch({
-						type: BoardsActions.createDesk,
+						type: BoardsActions.createBoard,
 						title: document.getElementsByClassName('createDesk__settings_input')[0].value,
 						description: document.getElementsByClassName('createDesk__settings_textarea')[0].value,
 					});
