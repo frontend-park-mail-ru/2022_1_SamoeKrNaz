@@ -70,7 +70,7 @@
   &__task-text {
     width: 100%;
     cursor: pointer;
-    word-break: break-all;
+    word-break: break-word;;
   }
 
   &__task-close {

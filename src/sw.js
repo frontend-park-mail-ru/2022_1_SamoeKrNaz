@@ -27,7 +27,7 @@ const checkUrl = (url) => {
 
 
 this.addEventListener('fetch', (event) => {
-	if (navigator.onLine) {
+	if (!navigator.onLine) {
 		if (checkUrl(event.request.url) && event.request.method === 'GET') {
 			cacheUrls.push(event.request.url);
 			caches.open(cacheName).then((cache) =>{
