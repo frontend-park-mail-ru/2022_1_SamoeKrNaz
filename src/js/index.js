@@ -16,12 +16,6 @@ import BoardPage from '../views/boardPage/boardPage.js';
 import NotFoundPage from '../views/notFoundPage/notFoundPage.js';
 import NoNetworkPage from '../views/noNetworkPage/noNetworkPage.js';
 
-// import 'regenerator-runtime/runtime';
-// import 'core-js/stable';
-
-// import '../css/style.scss';
-
-
 if (!Profile.isLoad()) {
 	Dispatcher.dispatch({
 		type: ProfileActions.loadProfile,
