@@ -44,6 +44,12 @@ export default new class Board extends Store {
 		case BoardActions.updateList:
 			await this._updateList(action);
 			break;
+		case BoardActions.updateTask:
+			await this._updateTask(action);
+			break;
+		case BoardActions.deleteTask:
+			await this._deleteTask(action);
+			break;
 		}
 	}
 
@@ -172,6 +178,51 @@ export default new class Board extends Store {
 				if (list.idl === Number(action.id)) {
 					list.title = action.body.title;
 				}
+			});
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Загрузка в стор информации
+	 * @param {object} action
+	 */
+	async _updateTask(action) {
+		console.log(action);
+		const res = await ajaxMethods.updateTask({id: action.id, body: action.body});
+
+		switch (res.status) {
+		case ResponseStatus.created:
+			this._data.board.Lists.map((list) => {
+				list.Tasks.map((task) => {
+					if (task.idt === Number(action.id)) {
+						task.title = action.body.title;
+					}
+				});
+			});
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Загрузка в стор информации
+	 * @param {object} action
+	 */
+	async _deleteTask(action) {
+		const res = await ajaxMethods.deleteTask({id: action.id});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.board.Lists.forEach((list, j) => {
+				list.Tasks.forEach((task, i) => {
+					if (task.idt === Number(action.id)) {
+						delete this._data.board.Lists[j].Tasks[i];
+					}
+				});
 			});
 			break;
 		}

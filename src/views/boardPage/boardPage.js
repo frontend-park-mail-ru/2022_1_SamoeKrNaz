@@ -160,11 +160,35 @@ export default new class BoardPage extends BaseView {
 			{
 				isArray: true,
 				type: 'click', // Тип обработчика, который навешивается
-				className: 'desk__task', // Класс, на который навешивается обработчки
+				className: 'desk__task-text', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
-					if (e.keyCode === 13) {
-						e.target.blur();
-					}
+					this.openModal({
+						type: BoardActions.updateTask,
+						id: e.target.dataset.id,
+						title: 'Редактирование задачи',
+						inputs: [
+							{
+								isTypeInput: true,
+								name: 'title',
+								placeholder: 'Название задачи',
+								value: e.target.innerText,
+							},
+						],
+					});
+				},
+			},
+			{
+				isArray: true,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__task-close', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						isDelete: true,
+						type: BoardActions.deleteTask,
+						id: e.target.dataset.id,
+						title: 'Удалить задачу?',
+						inputs: [],
+					});
 				},
 			},
 		]);

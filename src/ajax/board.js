@@ -52,4 +52,18 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	updateTask: async (data) => {
+		try {
+			return await Ajax.put({url: 'task/' + data.id, opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	deleteTask: async (data) => {
+		try {
+			return await Ajax.delete({url: 'task/' + data.id});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

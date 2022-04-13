@@ -27,6 +27,8 @@ export const BoardActions = {
 	deleteDesk: 'deleteDesk',
 	deleteList: 'deleteList',
 	updateList: 'updateList',
+	updateTask: 'updateTask',
+	deleteTask: 'deleteTask',
 };
 
 export const BoardsActions = {
