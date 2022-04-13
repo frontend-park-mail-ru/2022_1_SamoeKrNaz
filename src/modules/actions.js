@@ -16,6 +16,7 @@ export const ProfileEvents = {
 	updateUnSuccess: 'Profile_update_unsuccessful',
 	updateAvatarSuccess: 'Profile_avatar_success',
 	updateAvatarUnSuccess: 'Profile_avatar_unsuccessful',
+	logout: 'logout',
 };
 
 export const BoardActions = {

@@ -19,7 +19,7 @@ const checkUrl = (url) => {
 	let flag = false;
 	Object.values(cacheUrls).forEach((value) => {
 		if (value === url) {
-			check = true;
+			flag = true;
 		}
 	})
 	return flag;
@@ -35,19 +35,19 @@ this.addEventListener('fetch', (event) => {
 			})
 		}
 		return fetch(event.request);
+	} else {
+		event.respondWith(
+			caches
+				.match(event.request.url)
+				.then((cachedResponse) => {
+					if (cachedResponse) {
+						return cachedResponse;
+					}
+					return fetch(event.request);
+				})
+				.catch((err) => {
+					console.error('smth went wrong with caches.match: ', err);
+				})
+		);
 	}
-
-	event.respondWith(
-		caches
-			.match(event.request.url)
-			.then((cachedResponse) => {
-				if (cachedResponse) {
-					return cachedResponse;
-				}
-				return fetch(event.request);
-			})
-			.catch((err) => {
-				console.error('smth went wrong with caches.match: ', err);
-			})
-	);
 });

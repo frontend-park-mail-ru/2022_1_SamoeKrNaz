@@ -51,27 +51,27 @@ class Ajax {
 	 * @return {promise} - результат запроса
 	 */
 	async _ajax(method, params = {}) {
-		try{
-		const response = await fetch(this.backendUrl + params.url, {
-			method: method,
-			mode: 'cors',
-			credentials: 'include',
-			headers: {
-				Origin: this.frontendUrl,
-			},
-			body: params.opt,
-		});
+		try {
+			const response = await fetch(this.backendUrl + params.url, {
+				method: method,
+				mode: 'cors',
+				credentials: 'include',
+				headers: {
+					Origin: this.frontendUrl,
+				},
+				body: params.opt,
+			});
 
-		const status = response.status;
-		const body = await response.json();
+			const status = response.status;
+			const body = await response.json();
 
-		return {
-			status,
-			body,
-		};
+			return {
+				status,
+				body,
+			};
 		} catch (e) {
-				router.open(Url.noNetwork);
-			}
+			router.open(Url.noNetwork);
+		}
 	}
 }
 

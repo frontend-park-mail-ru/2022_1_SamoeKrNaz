@@ -54,6 +54,9 @@ class Profile extends Store {
 		case ProfileActions.uploadAvatar:
 			await this._uploadAvatar(action);
 			break;
+		case ProfileActions.logout:
+			await this._uploadAvatar(action);
+			break;
 		}
 	}
 
