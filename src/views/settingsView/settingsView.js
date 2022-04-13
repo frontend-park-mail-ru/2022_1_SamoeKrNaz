@@ -1,5 +1,3 @@
-'use strict';
-
 import BaseView from '../baseView.js';
 import {Messages, ResponseStatus, Url} from '../../constants/constants.js';
 import router from '../../modules/router.js';

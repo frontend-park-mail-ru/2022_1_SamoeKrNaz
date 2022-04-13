@@ -1,5 +1,3 @@
-'use strict';
-
 import * as render from './notFoundPage.templ.js';
 import BaseView from '../baseView.js';
 

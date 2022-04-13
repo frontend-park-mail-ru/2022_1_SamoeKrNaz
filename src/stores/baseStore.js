@@ -1,5 +1,3 @@
-'use strict';
-
 import Dispatcher from '../modules/dispatcher.js';
 import EventBus from '../modules/eventBus.js';
 

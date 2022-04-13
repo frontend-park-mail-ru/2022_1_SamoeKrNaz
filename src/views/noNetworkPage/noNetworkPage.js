@@ -1,5 +1,3 @@
-'use strict';
-
 import * as render from './noNetworkPage.templ.js';
 import BaseView from '../baseView.js';
 

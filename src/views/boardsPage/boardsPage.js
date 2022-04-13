@@ -1,6 +1,3 @@
-'use strict';
-
-
 import * as render from './boardsPage.templ.js';
 import BaseView from '../baseView.js';
 import BasePage from '../basePage/basePage.js';

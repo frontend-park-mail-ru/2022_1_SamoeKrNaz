@@ -1,5 +1,3 @@
-'use strict';
-
 import * as render from './basePage.templ.js';
 import BaseView from '../baseView.js';
 import {Url} from '../../constants/constants.js';

@@ -1,5 +1,3 @@
-'use strict';
-
 import * as render from './signupPage.templ.js';
 import BaseView from '../baseView.js';
 import EventBus from '../../modules/eventBus.js';

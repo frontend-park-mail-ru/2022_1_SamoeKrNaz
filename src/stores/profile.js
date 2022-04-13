@@ -1,5 +1,3 @@
-'use strict';
-
 import Store from './baseStore.js';
 import {ProfileActions, ProfileEvents} from '../modules/actions.js';
 import {Messages, ResponseStatus, Url} from '../constants/constants.js';

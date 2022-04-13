@@ -1,5 +1,3 @@
-'use strict';
-
 import Store from './baseStore.js';
 import {BoardActions, BoardsActions, Events, ProfileActions, ProfileEvents} from '../modules/actions.js';
 import {ajaxMethods} from '../ajax/board.js';
