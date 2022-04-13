@@ -1,6 +1,6 @@
 const cacheName = 'planexa'
 const cacheUrls = [
-	'/noNetwork',
+	'index.html',
 ];
 
 this.addEventListener('install', (event) => {
