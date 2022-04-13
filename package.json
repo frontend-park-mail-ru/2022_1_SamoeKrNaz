@@ -6,10 +6,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js && cd server && node server.js ",
-    "checkLinters": "npx eslint src/*/*.js && npx stylelint src/*/*.scss src/css/*.css",
-    "checkLintersFix": "npx eslint src/*/*.js --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
-    "start": "cd server && node server.js"
+    "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js && sass src/css/style.scss src/css/style.css",
+    "buildScss": "sass src/css/style.scss src/css/style.css",
+    "checkLinters": "npx eslint src/*/*/*/*.js && npx stylelint src/*/*.scss src/css/*.css",
+    "checkLintersFix": "npx eslint src/*/*/*/*.js --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
+    "start": "cd server && node server.js",
+    "startDev": "cd server && node server_dev.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -22,13 +25,34 @@
   },
   "homepage": "https://github.com/frontend-park-mail-ru/2022_1_SamoeKrNaz#readme",
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "@babel/polyfill": "^7.12.1",
+    "core-js": "^3.21.1",
+    "handlebars": "^4.7.7",
+    "handlebars-webpack-plugin": "^2.2.1",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^6.7.1",
     "eslint": "^8.10.0",
     "eslint-config-google": "^0.14.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "postcss-less": "^6.0.0",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
     "stylelint": "^14.5.3",
-    "stylelint-config-standard": "^25.0.0"
+    "stylelint-config-standard": "^25.0.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   }
 }

@@ -1,9 +1,15 @@
 .column {
   display: flex;
   overflow-x: auto;
+  padding: 0 15px;
+  height: calc(100vh - 131px);
 }
 
 .desk {
+  &__listIcon {
+    cursor: pointer;
+  }
+  
   &__column {
     cursor: default;
 
@@ -57,10 +63,25 @@
     margin: 12px 0;
     background: #e9f0f6;
     border-radius: $button-radius;
-    padding: 12px 15px;
+    padding: 12px 30px 12px 15px;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.02em;
+    position: relative;
+  }
+
+  &__task-text {
+    width: 100%;
+    cursor: pointer;
+    word-break: break-word;;
+  }
+
+  &__task-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    margin-top: -8px;
+    cursor: pointer;
   }
 }

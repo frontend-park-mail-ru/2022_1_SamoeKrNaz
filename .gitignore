@@ -3,3 +3,4 @@
 node_modules
 *.templ.js
 *.css.map
+*.css

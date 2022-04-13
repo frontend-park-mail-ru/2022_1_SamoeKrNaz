@@ -15,6 +15,10 @@
     transition: 0.5s all;
   }
 
+  &__close {
+    cursor: pointer;
+  }
+
   &__bg{
     position: fixed;
     top: 0;
@@ -81,6 +85,10 @@
     justify-content: left;
     width: 300px;
 
+    &_input{
+      display: none;
+    }
+
     &_upload {
       background-color: $blue-color;
       display: flex;
@@ -91,6 +99,7 @@
       padding: 7px 25px;
       margin-top: 10px;
       margin-right: 20px;
+      cursor: pointer;
     }
 
     &_delete {
@@ -156,6 +165,7 @@
       margin-top: 15px;
       margin-right: 30px;
       justify-content: center;
+      cursor: pointer;
     }
 
     &_cancel {

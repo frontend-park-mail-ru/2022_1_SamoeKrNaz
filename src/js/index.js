@@ -1,84 +1,41 @@
 'use strict';
 
-import {loginPageRender} from '../loginPage/loginPage.js';
-import {basePageRender} from '../basePage/basePage.js';
-import {signupPageRender} from '../signupPage/signupPage.js';
-import Ajax from '../modules/ajax.js';
-import {domainSize, Url} from '../constants/constants.js';
+import Dispatcher from '../modules/dispatcher.js';
+import {ProfileActions} from '../modules/actions.js';
+import {Url} from '../constants/constants.js';
 import router from '../modules/router.js';
-import {boardPageRender} from '../boardPage/boardPage.js';
 
-/* Структура для вызова методов в зависимости от урла */
-const configApp = {
-	signup: {
-		href: '/signup',
-		openMethod: signupPageRender,
-	},
-	login: {
-		href: '/login',
-		openMethod: loginPageRender,
-	},
-	base: {
-		href: '/base',
-		openMethod: basePageRender,
-	},
-};
+import Profile from '../stores/profile.js';
+import Boards from '../stores/boards.js';
+import Board from '../stores/board.js';
 
-/* Получение текущего адреса без домена */
-const getUrl = window.location.href.slice(domainSize);
+import LoginPage from '../views/loginPage/loginPage.js';
+import BoardsPage from '../views/boardsPage/boardsPage.js';
+import SignupPage from '../views/signupPage/signupPage.js';
+import BoardPage from '../views/boardPage/boardPage.js';
+import NotFoundPage from '../views/notFoundPage/notFoundPage.js';
+import NoNetworkPage from '../views/noNetworkPage/noNetworkPage.js';
 
-router.register(Url.index, loginPageRender);
-router.register(Url.basePage, basePageRender);
-router.register(Url.loginPage, loginPageRender);
-router.register(Url.signupPage, signupPageRender);
-router.register(Url.boardPage, boardPageRender);
+if (!Profile.isLoad()) {
+	Dispatcher.dispatch({
+		type: ProfileActions.loadProfile,
+	});
+}
 
-/* Обработка текущего урла и переход по страницам в зависимости от куки */
-if (getUrl === 'login') {
-	Ajax.get({url: ''})
-		.then((r) => {
-			if (r.status === 401) {
-				router.open(Url.loginPage);
-			}
-			if (r.status === 200) {
-				router.open(Url.basePage, r.responseText);
-			}
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js', {scope: '/'})
+		.then((registration) => {
+			console.log('sw registration on scope:', registration.scope);
 		})
-		.catch((er) => {
-			console.error('error');
-		});
-} else if (getUrl === 'signup') {
-	Ajax.get({url: ''})
-		.then((r) => {
-			if (r.status === 401) {
-				router.open(Url.signupPage);
-			}
-			if (r.status === 200) {
-				router.open(Url.basePage, r.responseText);
-			}
-		})
-		.catch((er) => {
-			console.error('error');
-		});
-} else if (getUrl === 'base' || getUrl === '') {
-	Ajax.get({url: ''})
-		.then((r) => {
-			if (r.status === 401) {
-				router.open(Url.loginPage);
-			}
-			if (r.status === 200) {
-				Ajax.get({url: ''})
-					.then((r) => {
-						if (r.status === 200) {
-							router.open(Url.basePage, r.responseText);
-						}
-					})
-					.catch((er) =>{
-						console.error('error');
-					});
-			}
-		})
-		.catch((er) => {
-			console.error('error');
+		.catch((err) => {
+			console.error(err);
 		});
 }
+
+router.register(Url.index, LoginPage);
+router.register(Url.base, BoardsPage);
+router.register(Url.login, LoginPage);
+router.register(Url.signup, SignupPage);
+router.register(Url.notFound, NotFoundPage);
+router.register(Url.board, BoardPage);
+router.register(Url.noNetwork, NoNetworkPage);
