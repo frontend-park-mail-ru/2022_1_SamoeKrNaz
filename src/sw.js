@@ -20,7 +20,7 @@ this.addEventListener('fetch', (event) => {
 	if (navigator.onLine) {
 		if (cacheUrls.find(event.request.url) == undefined) {
 			cacheUrls.push(event.request.url);
-			caches.open(cacheUrls).then((cache) =>{
+			caches.open(cacheName).then((cache) =>{
 				cache.add(event.request.url);
 			})
 		}
