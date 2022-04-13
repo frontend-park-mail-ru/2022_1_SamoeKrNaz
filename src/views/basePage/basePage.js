@@ -23,11 +23,11 @@ export default new class basePage extends BaseView {
 				className: 'newDeskButton',
 				func: (e) => {
 					const sBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
-					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
+					const createDeskBg = document.getElementsByClassName('createDesk')[0]; // Само окно
 
 					e.preventDefault(); // Предотвращаем дефолтное поведение браузера
-					createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
-					createDesk.classList.add('active'); // И для самого окна;
+					sBg.classList.add('active'); // Добавляем класс 'active' для фона
+					createDeskBg.classList.add('active'); // И для самого окна;
 				},
 			},
 			{
