@@ -6,6 +6,7 @@ import Dispatcher from '../../modules/dispatcher.js';
 import router from '../../modules/router.js';
 import Profile from '../../stores/profile.js';
 import {Url} from '../../constants/constants.js';
+import BasePage from "../basePage/basePage.js";
 
 /**
  * Класс, реализующий страницу логина.
@@ -15,7 +16,22 @@ export default new class LoginPage extends BaseView {
 	 * @constructor
 	 */
 	constructor() {
-		super([]);
+		super([
+			{
+				type: 'submit', // Тип обработчика, который навешивается
+				id: 'input_form', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					e.preventDefault();
+					Dispatcher.dispatch({
+						type: ProfileActions.login,
+						login: document.getElementById('input_login').value,
+						password: document.getElementById('input_pass').value,
+					});
+
+					return false;
+				},
+			},
+		]);
 
 		EventBus.subscribe(ProfileEvents.login, this.loginError);
 	}
@@ -48,23 +64,6 @@ export default new class LoginPage extends BaseView {
 		if (Profile.isLoad()) {
 			router.open(Url.base);
 		}
-	}
-
-	/**
-	 * Метод, навешивающий обработчки на страницу
-	 */
-	_createListeners() {
-		/* Навешивание обработчика валидации данных для формы логина */
-		const form = document.getElementById('input_form');
-		form.onsubmit = () => {
-			Dispatcher.dispatch({
-				type: ProfileActions.login,
-				login: document.getElementById('input_login').value,
-				password: document.getElementById('input_pass').value,
-			});
-
-			return false;
-		};
 	}
 
 	/**

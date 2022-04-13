@@ -54,6 +54,21 @@ export default new class SignupPage extends BaseView {
 					}
 				},
 			},
+			{
+				type: 'submit', // Тип обработчика, который навешивается
+				id: 'input_form', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					e.preventDefault();
+					Dispatcher.dispatch({
+						type: ProfileActions.register,
+						login: document.getElementById('input_login').value,
+						password: document.getElementById('input_pass').value,
+						passwordRepeat: document.getElementById('input_pass_rep').value,
+					});
+
+					return false;
+				},
+			},
 		]);
 
 		EventBus.subscribe(ProfileEvents.register, this.registerError);
@@ -87,26 +102,6 @@ export default new class SignupPage extends BaseView {
 		if (Profile.isLoad()) {
 			router.open(Url.base);
 		}
-	}
-
-	/**
-	 * Метод, навешивающий обработчки на страницу
-	 */
-	_createListeners() {
-		super._createListeners();
-
-		/* Навешивание обработчика валидации данных для формы регистрации */
-		const form = document.getElementById('input_form');
-		form.onsubmit = () => {
-			Dispatcher.dispatch({
-				type: ProfileActions.register,
-				login: document.getElementById('input_login').value,
-				password: document.getElementById('input_pass').value,
-				passwordRepeat: document.getElementById('input_pass_rep').value,
-			});
-
-			return false;
-		};
 	}
 
 	/**
