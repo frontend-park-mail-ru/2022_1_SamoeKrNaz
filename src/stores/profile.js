@@ -216,7 +216,7 @@ class Profile extends Store {
 		switch (res.status) {
 		case ResponseStatus.success:
 			this._data.avatar.successAv = Messages['updateSuccess'];
-			this._data.avatar.avatarPath = 'avatars/' + res.body.avatar_path;
+			this._data.avatar.avatarPath = '../avatars/' + res.body.avatar_path;
 			this._publish(ProfileEvents.updateAvatarSuccess);
 			break;
 		case ResponseStatus.badRequest:

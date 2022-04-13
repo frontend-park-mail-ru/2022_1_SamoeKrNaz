@@ -81,7 +81,7 @@ class Router {
 			});
 		});
 
-		const view = this.routes[path.replace(/\/\d+/g, '/<id>')];
+		const view = this.routes[path.replace(/\/board\/\d+/g, '/board/<id>')];
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь
@@ -92,7 +92,8 @@ class Router {
 
 		// проверяем урл, если другой, то добавляем в историю
 		if (window.location.pathname !== path) {
-			window.history.pushState('', '', path);
+			console.log(path)
+			window.history.pushState('', '', '..' + path);
 		}
 		// рендерим страницу
 		view.render(context);

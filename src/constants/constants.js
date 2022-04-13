@@ -19,7 +19,7 @@ export const Url = {
 	signup: '/signup',
 	board: '/board/<id>',
 	index: '/',
-	notFound: '404',
+	notFound: '/404',
 	noNetwork: '/noNetwork',
 };
 

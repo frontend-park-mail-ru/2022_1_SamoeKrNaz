@@ -66,6 +66,9 @@ export default new class Board extends Store {
 		case ResponseStatus.forbidden:
 			this._data.board = res.body;
 			break;
+		default:
+			router.open(Url.notFound);
+			return;
 		}
 
 		this._publish(Events.boardUpdate);

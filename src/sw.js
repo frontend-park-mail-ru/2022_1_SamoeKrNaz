@@ -10,8 +10,8 @@ this.addEventListener('install', (event) => {
 				return cache.addAll(cacheUrls);
 			})
 			.catch((err) => {
-				console.error('smth went wrong with caches.open: ', err);
-			})
+				console.error('caches open err: ', err);
+			}),
 	);
 });
 
@@ -21,20 +21,20 @@ const checkUrl = (url) => {
 		if (value === url) {
 			flag = true;
 		}
-	})
+	});
 	return flag;
-}
+};
 
 
 this.addEventListener('fetch', (event) => {
 	if (navigator.onLine) {
-		if (checkUrl(event.request.url)) {
+		if (checkUrl(event.request.url) && event.request.method === 'GET') {
 			cacheUrls.push(event.request.url);
 			caches.open(cacheName).then((cache) =>{
 				cache.add(event.request.url);
-			})
+			});
+			return fetch(event.request);
 		}
-		return fetch(event.request);
 	} else {
 		event.respondWith(
 			caches
@@ -42,12 +42,13 @@ this.addEventListener('fetch', (event) => {
 				.then((cachedResponse) => {
 					if (cachedResponse) {
 						return cachedResponse;
+					} else {
+						return fetch(event.request);
 					}
-					return fetch(event.request);
 				})
 				.catch((err) => {
-					console.error('smth went wrong with caches.match: ', err);
-				})
+					console.error('caches mathes err: ', err);
+				}),
 		);
 	}
 });
