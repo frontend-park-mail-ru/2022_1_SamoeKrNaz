@@ -1,4 +1,4 @@
-const cacheName = 'planexa'
+const cacheName = 'planexa';
 const cacheUrls = [
 	'index.html',
 ];
