@@ -4,7 +4,7 @@ const timeout = 400;
 self.addEventListener('install', (event) => {
 	event.waitUntil(
 		caches.open(cacheName).then((cache) => cache.addAll([
-				'/img/background'
+				'/noNetwork'
 			])
 		));
 });
