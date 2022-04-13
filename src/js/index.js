@@ -14,6 +14,7 @@ import BoardsPage from '../views/boardsPage/boardsPage.js';
 import SignupPage from '../views/signupPage/signupPage.js';
 import BoardPage from '../views/boardPage/boardPage.js';
 import NotFoundPage from '../views/notFoundPage/notFoundPage.js';
+import NoNetworkPage from '../views/noNetworkPage/noNetworkPage.js';
 
 // import 'regenerator-runtime/runtime';
 // import 'core-js/stable';
@@ -27,9 +28,20 @@ if (!Profile.isLoad()) {
 	});
 }
 
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js', {scope: '/'})
+		.then((registration) => {
+			console.log('sw registration on scope:', registration.scope);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
 router.register(Url.index, LoginPage);
 router.register(Url.base, BoardsPage);
 router.register(Url.login, LoginPage);
 router.register(Url.signup, SignupPage);
 router.register(Url.notFound, NotFoundPage);
 router.register(Url.board, BoardPage);
+router.register(Url.noNetwork, NoNetworkPage);

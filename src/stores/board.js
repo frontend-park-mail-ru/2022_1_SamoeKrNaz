@@ -57,18 +57,18 @@ export default new class Board extends Store {
 	 * Загрузка в стор информации
 	 */
 	async _loadBoard() {
-		const res = await ajaxMethods.loadBoard(window.location.pathname.split('/').pop());
+			const res = await ajaxMethods.loadBoard(window.location.pathname.split('/').pop());
 
-		switch (res.status) {
-		case ResponseStatus.success:
-			this._data.board = res.body;
-			break;
-		case ResponseStatus.forbidden:
-			this._data.board = res.body;
-			break;
-		}
+			switch (res.status) {
+				case ResponseStatus.success:
+					this._data.board = res.body;
+					break;
+				case ResponseStatus.forbidden:
+					this._data.board = res.body;
+					break;
 
-		this._publish(Events.boardUpdate);
+					this._publish(Events.boardUpdate);
+			}
 	}
 
 	/**
