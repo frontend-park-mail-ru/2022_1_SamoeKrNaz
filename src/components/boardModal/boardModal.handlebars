@@ -11,9 +11,9 @@
             <div class="createModal__settings">
                 {{# each inputs}}
                     {{#if isTypeInput}}
-                        <input class="createModal__settings_input" data-name="{{name}}" placeholder="{{placeholder}}" value="{{value}}" type="text">
+                    <input class="createModal__settings_input" data-name="{{name}}" {{#if len}}maxlength="150"{{else}}maxlength="30"{{/if}} placeholder="{{placeholder}}" value="{{value}}" type="text">
                     {{else}}
-                        <textarea class="createModal__settings_textarea" data-name="{{name}}" placeholder="{{placeholder}}">{{value}}</textarea>
+                        <textarea class="createModal__settings_textarea" maxlength="150" data-name="{{name}}" placeholder="{{placeholder}}">{{value}}</textarea>
                     {{/if}}
                 {{/each}}
             </div>

@@ -6,7 +6,7 @@
     position: relative;
 
     &::before {
-      content: "Скоро в релизе";
+      content: "";
       font-size: 20px;
       line-height: 90px;
       vertical-align: middle;
@@ -16,7 +16,8 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background-color: #ff000057;
+      border-radius: 16px;
+      background-color: rgba(255, 0, 0, 0.24);
       color: black;
       opacity: 0;
       transition: 0.3s;

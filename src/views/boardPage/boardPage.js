@@ -53,12 +53,12 @@ export default new class BoardPage extends BaseView {
 				func: (e) => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						type: BoardActions.createList,
-						title: 'Создать список',
+						title: 'Создать колонку',
 						inputs: [
 							{
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название списка',
+								placeholder: 'Название колонки',
 								value: undefined,
 							},
 						],
@@ -97,12 +97,13 @@ export default new class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.addTask,
 						id: e.target.dataset.id,
-						title: 'Добавить задачу',
+						title: 'Добавить карточку',
 						inputs: [
 							{
+								len: true,
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название задачи',
+								placeholder: 'Название карточки',
 							},
 						],
 					});
@@ -128,7 +129,7 @@ export default new class BoardPage extends BaseView {
 						isDelete: true,
 						type: BoardActions.deleteList,
 						id: e.target.dataset.id,
-						title: 'Удалить список?',
+						title: 'Удалить колонку?',
 						inputs: [],
 					});
 				},
@@ -165,12 +166,13 @@ export default new class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.updateTask,
 						id: e.target.dataset.id,
-						title: 'Редактирование задачи',
+						title: 'Редактирование карточки',
 						inputs: [
 							{
+								len: true,
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название задачи',
+								placeholder: 'Название карточки',
 								value: e.target.innerText,
 							},
 						],
@@ -186,7 +188,7 @@ export default new class BoardPage extends BaseView {
 						isDelete: true,
 						type: BoardActions.deleteTask,
 						id: e.target.dataset.id,
-						title: 'Удалить задачу?',
+						title: 'Удалить карточку?',
 						inputs: [],
 					});
 				},

@@ -59,7 +59,7 @@ export default new class Boards extends Store {
 	 * @param {object} data информация о событии
 	 */
 	async _createBoard(data) {
-		if (data.title.length <= 3 || data.title.length >= 30) {
+		if (data.title.length === 0 || data.title.length >= 30) {
 			this._data.validation.errorMsg = Messages.shortTitle;
 			this._publish(Events.boardsCreateError);
 			return false;

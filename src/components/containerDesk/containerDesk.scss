@@ -34,6 +34,7 @@
     letter-spacing: 0.02em;
     margin: 20px 0;
     color: $gray-color;
+    word-break: break-all;
   }
 
   &__date {
