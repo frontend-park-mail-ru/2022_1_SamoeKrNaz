@@ -55,7 +55,7 @@ class Profile extends Store {
 			await this._uploadAvatar(action);
 			break;
 		case ProfileActions.logout:
-			await this._uploadAvatar(action);
+			await this._logout();
 			break;
 		}
 	}
@@ -223,6 +223,21 @@ class Profile extends Store {
 			this._data.avatar.unSuccessAv = Messages['updateUnSuccess'];
 			console.log(res);
 			this._publish(ProfileEvents.updateAvatarUnSuccess);
+			break;
+		}
+	}
+
+	/**
+	 * Загрузка аватара и дальнейшее обновление
+	 */
+	async _logout() {
+		const res = await ajaxMethods.logout();
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.isAuth = false;
+			this._data.username = null;
+			router.open(Url.login);
 			break;
 		}
 	}

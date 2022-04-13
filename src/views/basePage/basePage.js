@@ -97,6 +97,15 @@ export default new class basePage extends BaseView {
 					});
 				},
 			},
+			{
+				type: 'click',
+				id: 'logout',
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: ProfileActions.logout,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);

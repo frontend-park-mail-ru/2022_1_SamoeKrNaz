@@ -38,4 +38,11 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	logout: async () => {
+		try {
+			return await Ajax.delete({url: 'api/logout'});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };
