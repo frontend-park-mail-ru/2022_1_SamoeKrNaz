@@ -12,7 +12,7 @@ class Router {
 	constructor() {
 		this.routes = {}; // маршруты, куда будем складывать путь-View
 		this.body = document.body; // берем тело index.html
-		this._currentView = undefined; // класс текущего вью
+		this._currentView = null; // класс текущего вью
 
 		EventBus.subscribe(ProfileEvents.load, this.start.bind(this));
 	}
