@@ -1,37 +1,43 @@
-const cacheName = 'planexa-cache';
-const timeout = 400;
+const cacheName = 'planexa'
+const cacheUrls = [
+	'/noNetwork',
+];
 
-self.addEventListener('install', (event) => {
+this.addEventListener('install', (event) => {
 	event.waitUntil(
-		caches.open(cacheName).then((cache) => cache.addAll([
-				'/noNetwork'
-			])
-		));
+		caches.open(cacheName)
+			.then((cache) => {
+				return cache.addAll(cacheUrls);
+			})
+			.catch((err) => {
+				console.error('smth went wrong with caches.open: ', err);
+			})
+	);
 });
 
 
-self.addEventListener('fetch', (event) => {
-	event.respondWith(fromNetwork(event.request, timeout)
-		.catch((err) => {
-			console.log(`Error: ${err.message()}`);
-			return fromCache(event.request);
-		}));
+this.addEventListener('fetch', (event) => {
+	if (navigator.onLine) {
+		if (cacheUrls.find(event.request.url) == undefined) {
+			cacheUrls.push(event.request.url);
+			caches.open(cacheUrls).then((cache) =>{
+				cache.add(event.request.url);
+			})
+		}
+		return fetch(event.request);
+	}
+
+	event.respondWith(
+		caches
+			.match(event.request)
+			.then((cachedResponse) => {
+				if (cachedResponse) {
+					return cachedResponse;
+				}
+				return fetch(event.request);
+			})
+			.catch((err) => {
+				console.error('smth went wrong with caches.match: ', err);
+			})
+	);
 });
-
-
-function fromNetwork(request, timeout) {
-	return new Promise((fulfill, reject) => {
-		var timeoutId = setTimeout(reject, timeout);
-		fetch(request).then((response) => {
-			clearTimeout(timeoutId);
-			fulfill(response);
-		}, reject);
-	});
-}
-
-function fromCache(request) {
-	return caches.open(cacheName).then((cache) =>
-		cache.match(request).then((matching) =>
-			matching || Promise.reject('no-match')
-		));
-}
