@@ -209,6 +209,12 @@ class Profile extends Store {
 	 * @param {Object} data инфорация о событии
 	 */
 	async _uploadAvatar(data) {
+		if (data.data.size > 5000 * 1024) {
+			this._data.avatar.unSuccessAv = Messages['bigSize'];
+			this._publish(ProfileEvents.updateAvatarUnSuccess);
+			return;
+		}
+
 		const formData = new FormData();
 		formData.append('avatar', data.data);
 		const res = await ajaxMethods.uploadAvatar(formData);
@@ -221,7 +227,6 @@ class Profile extends Store {
 			break;
 		case ResponseStatus.badRequest:
 			this._data.avatar.unSuccessAv = Messages['updateUnSuccess'];
-			console.log(res);
 			this._publish(ProfileEvents.updateAvatarUnSuccess);
 			break;
 		}

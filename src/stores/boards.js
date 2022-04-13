@@ -65,12 +65,6 @@ export default new class Boards extends Store {
 			return false;
 		}
 
-		if (data.description.length !== 0 && (data.description.length <= 10 || data.description.length >= 150)) {
-			this._data.validation.errorMsg = Messages.shortDescription;
-			this._publish(Events.boardsCreateError);
-			return false;
-		}
-
 		const payload = {
 			title: data.title,
 		};

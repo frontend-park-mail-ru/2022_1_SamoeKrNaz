@@ -8,9 +8,9 @@ export const Messages = {
 	shortLoginPassword: 'Логин и пароль должны составлять от 7 до 20 символов',
 	updateSuccess: 'Изменения успешно сохранены',
 	updateUnSuccess: 'Выбранный Вами формат файла не поддерживается',
+	bigSize: 'Ваша картинка превышает размер 5 МБ',
 
 	shortTitle: 'Длина названия должна быть от 3 до 30 символов',
-	shortDescription: 'Длина описания должна быть от 10 до 150 символов',
 };
 
 export const Url = {
