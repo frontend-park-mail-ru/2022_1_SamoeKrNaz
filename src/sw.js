@@ -15,10 +15,20 @@ this.addEventListener('install', (event) => {
 	);
 });
 
+const checkUrl = (url) => {
+	let flag = false;
+	Object.values(cacheUrls).forEach((value) => {
+		if (value === url) {
+			check = true;
+		}
+	})
+	return flag;
+}
+
 
 this.addEventListener('fetch', (event) => {
 	if (navigator.onLine) {
-		if (cacheUrls.find(event.request.url) == undefined) {
+		if (checkUrl(event.request.url)) {
 			cacheUrls.push(event.request.url);
 			caches.open(cacheName).then((cache) =>{
 				cache.add(event.request.url);
@@ -29,7 +39,7 @@ this.addEventListener('fetch', (event) => {
 
 	event.respondWith(
 		caches
-			.match(event.request)
+			.match(event.request.url)
 			.then((cachedResponse) => {
 				if (cachedResponse) {
 					return cachedResponse;
