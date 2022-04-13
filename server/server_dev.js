@@ -19,10 +19,8 @@ const server = createServer((req, res) => {
 	let fileName = 'index_dev.html';
 
 	/* Если не заданные урлы, то придется отдать нужный файли */
-	if (req.headers.accept) {
-		if (!req.headers.accept.includes('text/html')) {
-			fileName = url;
-		}
+	if (!req.headers.accept?.includes('text/html')) {
+		fileName = url;
 	}
 
 
