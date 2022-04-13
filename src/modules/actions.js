@@ -20,6 +20,13 @@ export const ProfileEvents = {
 
 export const BoardActions = {
 	loadBoard: 'loadBoard',
+	updateState: 'updateState',
+	createList: 'createList',
+	updateBoard: 'updateBoard',
+	addTask: 'addTask',
+	deleteDesk: 'deleteDesk',
+	deleteList: 'deleteList',
+	updateList: 'updateList',
 };
 
 export const BoardsActions = {

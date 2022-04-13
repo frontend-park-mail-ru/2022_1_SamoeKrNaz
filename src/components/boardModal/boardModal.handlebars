@@ -7,7 +7,7 @@
             </svg>
         </div>
         <div class="createModal__separator"></div>
-        <form method="post" id="boardModal">
+        <form method="post" id="boardModal" data-id="{{id}}" data-type="{{type}}">
             <div class="createModal__settings">
                 {{# each inputs}}
                     {{#if isTypeInput}}
@@ -18,9 +18,16 @@
                 {{/each}}
             </div>
             <div class="createModal__buttons">
-                <buttin type="submit" class="createModal__settings_save">
-                    Сохранить
-                </buttin>
+                {{#if isDelete}}
+                    <button type="submit" class="createModal__settings_save desk__delete">
+                        Удалить
+                    </button>
+                {{else}}
+                    <button type="submit" class="createModal__settings_save">
+                        Сохранить
+                    </button>
+                {{/if}}
+
                 <div class="createModal__settings_cancel">
                     Отменить
                 </div>

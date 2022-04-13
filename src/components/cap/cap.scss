@@ -82,3 +82,11 @@
 .desk__settings {
   margin-right: 30px;
 }
+
+.desk__delete {
+  margin-right: 30px;
+  background: $white;
+  outline: 2px solid $error;
+  color: $error;
+  border: none;
+}

@@ -29,6 +29,7 @@ export const ResponseStatus = {
 	conflict: 409,
 	created: 201,
 	forbidden: 403,
+	noContent: 204,
 };
 
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';

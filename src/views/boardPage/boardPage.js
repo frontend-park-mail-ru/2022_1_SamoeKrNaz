@@ -7,6 +7,7 @@ import BasePage from '../basePage/basePage.js';
 import EventBus from '../../modules/eventBus.js';
 import {BoardActions, BoardsActions, Events} from '../../modules/actions.js';
 import Dispatcher from '../../modules/dispatcher.js';
+import Board from '../../stores/board.js';
 
 /**
  * Класс, реализующий страницу списка досок
@@ -51,8 +52,119 @@ export default new class BoardPage extends BaseView {
 				className: 'desl__newList', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
 					this.openModal({
+						type: BoardActions.createList,
 						title: 'Создать список',
+						inputs: [
+							{
+								isTypeInput: true,
+								name: 'title',
+								placeholder: 'Название списка',
+								value: undefined,
+							},
+						],
 					});
+				},
+			},
+			{
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__settings', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						type: BoardActions.updateBoard,
+						title: 'Настройки доски',
+						inputs: [
+							{
+								isTypeInput: true,
+								name: 'title',
+								placeholder: 'Название доски',
+								value: Board.getTitle(),
+							},
+							{
+								isTypeInput: false,
+								name: 'description',
+								placeholder: 'Описание доски',
+								value: Board.getDescription(),
+							},
+						],
+					});
+				},
+			},
+			{
+				isArray: true,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__newButton', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						type: BoardActions.addTask,
+						id: e.target.dataset.id,
+						title: 'Добавить задачу',
+						inputs: [
+							{
+								isTypeInput: true,
+								name: 'title',
+								placeholder: 'Название задачи',
+							},
+						],
+					});
+				},
+			},
+			{
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__delete', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						isDelete: true,
+						type: BoardActions.deleteDesk,
+						title: 'Удалить доску?',
+					});
+				},
+			},
+			{
+				isArray: true,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__listIcon', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						isDelete: true,
+						type: BoardActions.deleteList,
+						id: e.target.dataset.id,
+						title: 'Удалить список?',
+						inputs: [],
+					});
+				},
+			},
+			{
+				isArray: true,
+				type: 'blur', // Тип обработчика, который навешивается
+				className: 'desk__title-input', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					Dispatcher.dispatch({
+						type: BoardActions.updateList,
+						id: e.target.dataset.id,
+						body: {
+							title: e.target.value,
+						},
+					});
+				},
+			},
+			{
+				isArray: true,
+				type: 'keydown', // Тип обработчика, который навешивается
+				className: 'desk__title-input', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					if (e.keyCode === 13) {
+						e.target.blur();
+					}
+				},
+			},
+			{
+				isArray: true,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk__task', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					if (e.keyCode === 13) {
+						e.target.blur();
+					}
 				},
 			},
 		]);
@@ -72,6 +184,8 @@ export default new class BoardPage extends BaseView {
 		Dispatcher.dispatch({
 			type: BoardActions.loadBoard,
 		});
+
+		this._createListeners();
 	}
 
 	/**
@@ -108,14 +222,12 @@ export default new class BoardPage extends BaseView {
 	 * @param {object} data
 	 */
 	openModal(data) {
-		document.getElementsByClassName('createModal__bg')[0]?.remove();
-
 		const modal = Handlebars.templates.boardModal;
-		const html = modal(data);
-		document.getElementById('root').innerHTML += html;
+		document.getElementById('modalBlock').innerHTML = modal(data);
 
 		document.getElementsByClassName('createModal__settings_cancel')[0].addEventListener('click', this.modalClose);
 		document.getElementsByClassName('createModal__close')[0].addEventListener('click', this.modalClose);
+		document.getElementById('boardModal').addEventListener('submit', this.modalParse);
 
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
 		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
@@ -128,14 +240,45 @@ export default new class BoardPage extends BaseView {
 	 * Функция закрытия модального окна
 	 */
 	modalClose() {
-		// document.getElementsByClassName('createModal__settings_cancel')[0].removeEventListener('click', this.modalClose);
-		// document.getElementsByClassName('createModal__close')[0].removeEventListener('click', this.modalClose);
+		document.getElementsByClassName('createModal__settings_cancel')[0].removeEventListener('click', this.modalClose);
+		document.getElementsByClassName('createModal__close')[0].removeEventListener('click', this.modalClose);
+		document.getElementById('boardModal').removeEventListener('submit', this.modalParse);
 
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
 		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Парсит форму отправки модального окна
+	 * @param {object} e
+	 */
+	modalParse(e) {
+		e.preventDefault();
+
+		const payload = {};
+
+		for (const key in e.target) {
+			if (e.target.hasOwnProperty(key)) {
+				const el = e.target[key];
+
+				if (el.type !== 'submit') {
+					payload[el.dataset.name] = el.value;
+				}
+			}
+		}
+
+		if (payload.title?.length === 0) {
+			return;
+		}
+
+		Dispatcher.dispatch({
+			type: e.path[0].dataset.type,
+			body: payload,
+			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
+		});
 	}
 };
 

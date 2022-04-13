@@ -25,10 +25,20 @@ class BaseView {
 	 */
 	_createListeners() {
 		this._listeners.map((listener) => {
-			if (listener.className) {
-				document.getElementsByClassName(listener.className)[0]?.addEventListener(listener.type, listener.func);
+			if (!listener.isArray) {
+				if (listener.className) {
+					document.getElementsByClassName(listener.className)[0]?.addEventListener(listener.type, listener.func);
+				} else {
+					document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
+				}
 			} else {
-				document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
+				const els = document.getElementsByClassName(listener.className);
+
+				for (const key in els) {
+					if (els.hasOwnProperty(key)) {
+						els[key].addEventListener(listener.type, listener.func);
+					}
+				}
 			}
 		});
 	}
@@ -38,10 +48,20 @@ class BaseView {
 	 */
 	removeListeners() {
 		this._listeners.map((listener) => {
-			if (listener.className) {
-				document.getElementsByClassName(listener.className)[0]?.removeEventListener(listener.type, listener.func);
+			if (!listener.isArray) {
+				if (listener.className) {
+					document.getElementsByClassName(listener.className)[0]?.removeEventListener(listener.type, listener.func);
+				} else {
+					document.getElementById(listener.id)?.removeEventListener(listener.type, listener.func);
+				}
 			} else {
-				document.getElementById(listener.id)?.removeEventListener(listener.type, listener.func);
+				const els = document.getElementsByClassName(listener.className);
+
+				for (const key in els) {
+					if (els.hasOwnProperty(key)) {
+						els[key].removeEventListener(listener.type, listener.func);
+					}
+				}
 			}
 		});
 	}
