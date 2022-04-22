@@ -1,87 +1,83 @@
 .column {
-  display: flex;
-  overflow-x: auto;
-  padding: 0 15px;
-  height: calc(100vh - 131px);
+	display: flex;
+	overflow-x: auto;
+	padding: 0 15px;
+	height: calc(100vh - 131px);
 }
 
 .desk {
-  &__listIcon {
-    cursor: pointer;
-  }
-  
-  &__column {
-    cursor: default;
 
-    &-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: -5px 0 18px;
-    }
-  }
+	&__listIcon {
+		cursor: pointer;
+	}
+	&__column {
+		cursor: default;
 
-  &__title{
-    &-input{
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 21px;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      background: inherit;
-      border: none;
-      outline: none;
-      padding: 3px 0;
-      border-radius: 2px;
+		&-title {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: -5px 0 18px;
+		}
+	}
+	&__title {
 
-      &:focus {
-        border-bottom: solid 2px $blue-color;
-        margin-bottom: -2px;
-        cursor: text;
-      }
-    }
-  }
+		&-input {
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 21px;
+			letter-spacing: 0.02em;
+			cursor: pointer;
+			background: inherit;
+			border: none;
+			outline: none;
+			padding: 3px 0;
+			border-radius: 2px;
 
-  &__new-task {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    cursor: pointer;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 16px;
-    letter-spacing: 0.02em;
-    color: #7f7f7f;
+			&:focus {
+				border-bottom: solid 2px $blue-color;
+				margin-bottom: -2px;
+				cursor: text;
+			}
+		}
+	}
+	&__new-task {
+		display: flex;
+		align-items: center;
+		margin-top: 20px;
+		cursor: pointer;
+		font-style: normal;
+		font-weight: 300;
+		font-size: 14px;
+		line-height: 16px;
+		letter-spacing: 0.02em;
+		color: #7f7f7f;
 
-    & > span {
-      margin-left: 10px;
-    }
-  }
-
-  &__task {
-    margin: 12px 0;
-    background: #e9f0f6;
-    border-radius: $button-radius;
-    padding: 12px 30px 12px 15px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.02em;
-    position: relative;
-  }
-
-  &__task-text {
-    width: 100%;
-    cursor: pointer;
-    word-break: break-word;;
-  }
-
-  &__task-close {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    margin-top: -8px;
-    cursor: pointer;
-  }
+		& > span {
+			margin-left: 10px;
+		}
+	}
+	&__task {
+		margin: 12px 0;
+		background: #e9f0f6;
+		border-radius: $button-radius;
+		padding: 12px 30px 12px 15px;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		letter-spacing: 0.02em;
+		position: relative;
+	}
+	&__task-text {
+		width: 100%;
+		cursor: pointer;
+		word-break: break-word;
+	}
+	&__task-close {
+		position: absolute;
+		right: 12px;
+		top: 50%;
+		margin-top: -8px;
+		cursor: pointer;
+	}
 }

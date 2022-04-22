@@ -6,7 +6,7 @@ import Dispatcher from '../../modules/dispatcher.js';
 import router from '../../modules/router.js';
 import Profile from '../../stores/profile.js';
 import {Url} from '../../constants/constants.js';
-import BasePage from "../basePage/basePage.js";
+import BasePage from '../basePage/basePage.js';
 
 /**
  * Класс, реализующий страницу логина.
