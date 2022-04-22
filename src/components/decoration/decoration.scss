@@ -5,6 +5,10 @@
     width: 50%;
     position: relative;
     overflow: hidden;
+
+    @include media("max", "md") {
+      width: 100%;
+    }
   }
 
   &__svg {
@@ -13,5 +17,9 @@
     top: 50%;
     margin-top: -700px;
     margin-left: -500px;
+
+    @include media("max", "md") {
+      transform: scale(0.5);
+    }
   }
 }
