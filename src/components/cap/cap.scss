@@ -14,6 +14,11 @@
 
   &__container {
     display: block;
+
+    @include media("max", "lg") {
+      max-width: 600px;
+      margin: $mobileHeader auto 0;
+    }
   }
   &__cap {
     display: flex;
@@ -25,6 +30,14 @@
       margin-right: 70px;
       transition: $time-anim;
     }
+
+    @include media("max", "lg") {
+      display: none;
+    }
+  }
+
+  @include media("max", "lg") {
+    padding: 0;
   }
 }
 

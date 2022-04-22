@@ -1,0 +1,33 @@
+.mobileHeader {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: $mobileHeader;
+	background: $white;
+	box-shadow: $blackShadow;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__title {
+		font-weight: 500;
+		font-size: 28px;
+		line-height: 33px;
+		text-decoration: none;
+		color: $blue-color;
+	}
+
+	&__icon {
+		margin: 0 20px;
+		cursor: pointer;
+	}
+
+	&__underTitle {
+		color: $black-text;
+	}
+
+	@include media("min", "lg") {
+		display: none;
+	}
+}

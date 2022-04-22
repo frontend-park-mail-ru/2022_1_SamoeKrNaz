@@ -20,6 +20,7 @@ handlebars src/components/rightMenu/rightMenu.handlebars >> src/views/basePage/b
 handlebars src/components/settings/settings.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/createDesk/createDesk.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/components/success/success.handlebars >> src/views/basePage/basePage.templ.js &&
+handlebars src/components/mobileHeader/mobileHeader.handlebars >> src/views/basePage/basePage.templ.js &&
 handlebars src/views/basePage/basePage.handlebars >> src/views/basePage/basePage.templ.js
 
 handlebars src/components/cap/cap.handlebars > src/views/boardPage/boardPage.templ.js &&

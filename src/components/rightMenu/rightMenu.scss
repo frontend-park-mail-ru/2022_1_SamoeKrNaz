@@ -31,6 +31,10 @@
     padding: 15px 30px 0;
     cursor: not-allowed;
   }
+
+  @include media("max", "lg") {
+    left: 100vw;
+  }
 }
 
 .toggle {
@@ -39,5 +43,9 @@
     position: fixed;
     top: 40px;
     right: 30px;
+
+    @include media("max", "lg") {
+      display: none;
+    }
   }
 }

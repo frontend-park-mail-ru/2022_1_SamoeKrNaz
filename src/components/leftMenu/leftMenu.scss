@@ -82,4 +82,9 @@
     margin-left: calc($button-size / 4 + 1px);
     white-space: nowrap;
   }
+
+  @include media("max", "lg") {
+    width: 220px;
+    left: -220px;
+  }
 }
