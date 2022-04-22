@@ -5,6 +5,10 @@
   &.menu-open {
     padding-left: 220px;
     transition: $time-anim;
+
+    @include media("max", "lg") {
+      padding: 0;
+    }
   }
 
   &.active-tasks-open {

@@ -1,3 +1,5 @@
+$leftMobile: 70vw;
+
 .header {
   background: $white;
   box-shadow: $shadow;
@@ -5,14 +7,26 @@
   height: 100%;
   width: $menu-width;
   left: 0;
+  top: 0;
   transition: $time-anim;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  @include media("max", "lg") {
+    width: $leftMobile;
+    left: -$leftMobile;
+    z-index: 101;
+  }
+
   &_open {
     transition: $time-anim;
     width: 220px;
+
+    @include media("max", "lg") {
+      left: 0;
+      width: $leftMobile;
+    }
   }
 
   &__logo {
@@ -81,10 +95,5 @@
     font-size: 15px;
     margin-left: calc($button-size / 4 + 1px);
     white-space: nowrap;
-  }
-
-  @include media("max", "lg") {
-    width: 220px;
-    left: -220px;
   }
 }

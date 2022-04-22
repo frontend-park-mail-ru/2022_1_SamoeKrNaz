@@ -32,12 +32,18 @@ export default new class basePage extends BaseView {
 				type: 'click',
 				className: 'toggle__block_blue',
 				func: (e) => {
-					this.pageStatus.isRightMenu = !this.pageStatus.isRightMenu;
+					this.toggleRight();
+				},
+			},
+			{
+				type: 'click',
+				className: 'mobileHeader__leftOpen',
+				func: (e) => {
+					this.pageStatus.isLeftMenu = !this.pageStatus.isLeftMenu;
 
-					document.getElementsByClassName('main')[0].classList.toggle('active-tasks-open');
-					document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
-					document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
-					document.getElementById('active-closer').classList.toggle('toggle__icon_open');
+					document.getElementsByClassName('header')[0].classList.toggle('header_open');
+					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
+					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
 				},
 			},
 			{
@@ -159,6 +165,18 @@ export default new class basePage extends BaseView {
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Функция открытия/закрытия левого меню
+	 */
+	toggleRight() {
+		this.pageStatus.isRightMenu = !this.pageStatus.isRightMenu;
+
+		document.getElementsByClassName('main')[0].classList.toggle('active-tasks-open');
+		document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
+		document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
+		document.getElementById('active-closer').classList.toggle('toggle__icon_open');
 	}
 
 	/**
