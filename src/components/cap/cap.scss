@@ -20,7 +20,6 @@
     display: block;
 
     @include media("max", "lg") {
-      max-width: 600px;
       margin: $mobileHeader auto 0;
     }
   }
