@@ -1,6 +1,6 @@
 import * as render from './basePage.templ.js';
 import BaseView from '../baseView.js';
-import {Url} from '../../constants/constants.js';
+import {Url, Sizes} from '../../constants/constants.js';
 import router from '../../modules/router.js';
 import EventBus from '../../modules/eventBus.js';
 import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions.js';
@@ -39,11 +39,24 @@ export default new class basePage extends BaseView {
 				type: 'click',
 				className: 'mobileHeader__leftOpen',
 				func: (e) => {
-					this.pageStatus.isLeftMenu = !this.pageStatus.isLeftMenu;
-
-					document.getElementsByClassName('header')[0].classList.toggle('header_open');
-					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
-					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
+					this.toggleLeft();
+				},
+			},
+			{
+				type: 'click',
+				className: 'header__background',
+				func: (e) => {
+					this.toggleLeft();
+				},
+			},
+			{
+				type: 'click',
+				className: 'header__part-block',
+				isArray: true,
+				func: (e) => {
+					if (document.documentElement.clientWidth < Sizes.lg) {
+						this.toggleLeft();
+					}
 				},
 			},
 			{
@@ -168,7 +181,7 @@ export default new class basePage extends BaseView {
 	}
 
 	/**
-	 * Функция открытия/закрытия левого меню
+	 * Функция открытия/закрытия правого меню
 	 */
 	toggleRight() {
 		this.pageStatus.isRightMenu = !this.pageStatus.isRightMenu;
@@ -177,6 +190,25 @@ export default new class basePage extends BaseView {
 		document.getElementsByClassName('active-tasks')[0].classList.toggle('close');
 		document.getElementsByClassName('main__cap')[0].classList.toggle('active-close');
 		document.getElementById('active-closer').classList.toggle('toggle__icon_open');
+	}
+
+	/**
+	 * Функция открытия/закрытия левого меню
+	 */
+	toggleLeft() {
+		this.pageStatus.isLeftMenu = !this.pageStatus.isLeftMenu;
+
+		document.getElementsByClassName('header')[0].classList.toggle('header_open');
+		document.getElementsByClassName('main')[0].classList.toggle('menu-open');
+		document.getElementById('search-icon').classList.toggle('toggle__icon_open');
+		const bg = document.getElementsByClassName('header__background')[0];
+		if (this.pageStatus.isLeftMenu) {
+			bg.classList.add('header__background_block');
+			bg.classList.add('header__background_active');
+		} else {
+			bg.classList.remove('header__background_active');
+			bg.classList.remove('header__background_block');
+		}
 	}
 
 	/**

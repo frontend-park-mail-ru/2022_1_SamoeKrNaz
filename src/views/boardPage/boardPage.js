@@ -19,11 +19,7 @@ export default new class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'toggle__block', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
-					BasePage.pageStatus.isLeftMenu = !BasePage.pageStatus.isLeftMenu;
-
-					document.getElementsByClassName('header')[0].classList.toggle('header_open');
-					document.getElementsByClassName('main')[0].classList.toggle('menu-open');
-					document.getElementById('search-icon').classList.toggle('toggle__icon_open');
+					BasePage.toggleLeft();
 				},
 			},
 			{

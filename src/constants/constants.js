@@ -33,5 +33,13 @@ export const ResponseStatus = {
 	noContent: 204,
 };
 
+export const Sizes = {
+	xs: 320,
+	sm: 576,
+	md: 768,
+	lg: 992,
+	xl: 1200,
+};
+
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';
 export const frontendUrl = window.location.origin;
