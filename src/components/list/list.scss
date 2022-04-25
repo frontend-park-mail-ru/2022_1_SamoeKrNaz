@@ -48,6 +48,10 @@
         margin-bottom: -2px;
         cursor: text;
       }
+
+      @include media("max", "lg") {
+        width: 220px;
+      }
     }
   }
 
