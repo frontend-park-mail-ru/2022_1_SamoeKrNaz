@@ -1,0 +1,21 @@
+.buttonsList {
+	display: flex;
+	margin: 15px 20px 5px;
+	background: $blue-color;
+	border-radius: 8px;
+	overflow: hidden;
+
+	&__button {
+		margin-left: -1px;
+		height: 40px;
+		width: 100%;
+		border-left: 1px solid #9ac2ff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	@include media("min", "lg") {
+		display: none;
+	}
+}

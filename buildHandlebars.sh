@@ -28,6 +28,7 @@ handlebars src/components/list/list.handlebars >> src/views/boardPage/boardPage.
 handlebars src/components/listDelete/listDelete.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/card/card.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/components/boardModal/boardModal.handlebars >> src/views/boardPage/boardPage.templ.js &&
+handlebars src/components/buttonsList/buttonsList.handlebars >> src/views/boardPage/boardPage.templ.js &&
 handlebars src/views/boardPage/boardPage.handlebars >> src/views/boardPage/boardPage.templ.js
 
 handlebars src/components/cap/cap.handlebars >> src/views/boardsPage/boardsPage.templ.js &&

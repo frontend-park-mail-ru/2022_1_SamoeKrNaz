@@ -42,7 +42,8 @@ export default new class BoardPage extends BaseView {
 			},
 			{
 				type: 'click', // Тип обработчика, который навешивается
-				className: 'desl__newList', // Класс, на который навешивается обработчки
+				className: 'desk-newList', // Класс, на который навешивается обработчки
+				isArray: true,
 				func: (e) => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						type: BoardActions.createList,
@@ -60,7 +61,8 @@ export default new class BoardPage extends BaseView {
 			},
 			{
 				type: 'click', // Тип обработчика, который навешивается
-				className: 'desk__settings', // Класс, на который навешивается обработчки
+				className: 'desk-settings', // Класс, на который навешивается обработчки
+				isArray: true,
 				func: (e) => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						type: BoardActions.updateBoard,
@@ -104,7 +106,8 @@ export default new class BoardPage extends BaseView {
 			},
 			{
 				type: 'click', // Тип обработчика, который навешивается
-				className: 'desk__delete', // Класс, на который навешивается обработчки
+				className: 'desk-delete', // Класс, на который навешивается обработчки
+				isArray: true,
 				func: (e) => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						isDelete: true,
@@ -220,6 +223,7 @@ export default new class BoardPage extends BaseView {
 		Handlebars.registerPartial('listDelete', Handlebars.templates['listDelete']);
 		Handlebars.registerPartial('card', Handlebars.templates['card']);
 		Handlebars.registerPartial('boardModal', Handlebars.templates['boardModal']);
+		Handlebars.registerPartial('buttonsList', Handlebars.templates['buttonsList']);
 
 		/* Рендер шаблона с входными данными */
 		const boardPage = Handlebars.templates.boardPage;
