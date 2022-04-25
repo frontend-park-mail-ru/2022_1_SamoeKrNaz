@@ -32,17 +32,27 @@ $leftMobile: 70vw;
 	&__logo {
 		margin: $top-margin 0;
 
-		@include media("min", "lg") {
+		@include media("max", "lg") {
 			display: none;
 		}
 	}
 
 	&__mobile {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
+		width: 100%;
+		margin: 20px 0 $top-margin;
 
-		@include media("max", "lg") {
+		&Title {
+			margin: 0 15px;
+		}
+
+		&Icon {
+			margin: 0 15px;
+		}
+
+		@include media("min", "lg") {
 			display: none;
 		}
 	}

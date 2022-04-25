@@ -51,6 +51,13 @@ export default new class basePage extends BaseView {
 			},
 			{
 				type: 'click',
+				className: 'header__mobileIcon',
+				func: (e) => {
+					this.toggleLeft();
+				},
+			},
+			{
+				type: 'click',
 				className: 'header__part-block',
 				isArray: true,
 				func: (e) => {
