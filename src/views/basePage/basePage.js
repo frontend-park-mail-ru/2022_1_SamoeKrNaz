@@ -58,7 +58,7 @@ export default new class basePage extends BaseView {
 			},
 			{
 				type: 'click',
-				className: 'header__part-block',
+				className: 'header__menu-part',
 				isArray: true,
 				func: (e) => {
 					if (document.documentElement.clientWidth < Sizes.lg) {
