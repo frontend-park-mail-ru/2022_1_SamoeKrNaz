@@ -10,8 +10,11 @@ class Router {
 	 * @constructor
 	 */
 	constructor() {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
 		this.routes = {}; // маршруты, куда будем складывать путь-View
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
 		this.body = document.body; // берем тело index.html
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 		this._currentView = null; // класс текущего вью
 
 		EventBus.subscribe(ProfileEvents.load, this.start.bind(this));
@@ -24,6 +27,7 @@ class Router {
 	 * @return {Router} ссылка на объект роутера
 	 */
 	register(path, view) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
 		this.routes[path] = view;
 		return this;
 	}
@@ -33,6 +37,7 @@ class Router {
 	 * @param {object} data состояние стора пользователя
 	 */
 	start(data) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
 		this.body.addEventListener('click', (event) => {
 			event.path.map((el) => {
 				if (el instanceof HTMLAnchorElement) {
@@ -68,10 +73,13 @@ class Router {
 	 * @param {*} context Данные с бэка для рендера страницы
 	 */
 	open(path, context = null) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 		if (this._currentView) {
+			// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 			this._currentView.removeListeners();
 		}
 
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
 		this.body.removeEventListener('click', (event) => {
 			event.path.map((el) => {
 				if (el instanceof HTMLAnchorElement) {
@@ -81,7 +89,9 @@ class Router {
 			});
 		});
 
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
 		const view = this.routes[path.replace(/\/board\/\d+/g, '/board/<id>')];
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь

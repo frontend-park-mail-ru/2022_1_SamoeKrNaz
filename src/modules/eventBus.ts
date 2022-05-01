@@ -6,7 +6,9 @@ class EventBus {
 	 * @constructor
 	 */
 	constructor() {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_events' does not exist on type 'EventBu... Remove this comment to see the full error message
 		this._events = new Map();
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_i' does not exist on type 'EventBus'.
 		this._i = 0;
 	}
 
@@ -17,10 +19,13 @@ class EventBus {
 	 * @return {function(): void} функция, удаляющая подписку на событие
 	 */
 	subscribe(event, callback) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_events' does not exist on type 'EventBu... Remove this comment to see the full error message
 		const eventMap = this._events.get(event);
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_i' does not exist on type 'EventBus'.
 		const id = this._i++;
 
 		if (eventMap === undefined) {
+			// @ts-expect-error ts-migrate(2339) FIXME: Property '_events' does not exist on type 'EventBu... Remove this comment to see the full error message
 			this._events.set(event, new Map([
 				[id, callback],
 			]));
@@ -39,6 +44,7 @@ class EventBus {
 	 * @param {object} arg данные, которые передаются в callback
 	 */
 	publish(event, arg) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_events' does not exist on type 'EventBu... Remove this comment to see the full error message
 		const eventMap = this._events.get(event);
 
 		if (eventMap !== undefined) {

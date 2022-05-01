@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './signupPage.templ.js' or its ... Remove this comment to see the full error message
 import * as render from './signupPage.templ.js';
 import BaseView from '../baseView.js';
 import EventBus from '../../modules/eventBus.js';
@@ -10,7 +11,7 @@ import {Url} from '../../constants/constants.js';
 /**
  * Класс, реализующий страницу логина.
  */
-export default new class SignupPage extends BaseView {
+export default new (class SignupPage extends BaseView {
 	/**
 	 * @constructor
 	 */
@@ -40,6 +41,7 @@ export default new class SignupPage extends BaseView {
 					firstReq.innerHTML += '7 и более символов';
 					inputPass.parentNode.insertBefore(promptBlock, inputPass.nextSibling);
 
+					// @ts-expect-error ts-migrate(2740) FIXME: Type 'Element' is missing the following properties... Remove this comment to see the full error message
 					promptBlock = document.getElementsByClassName('auth__block_prompt')[0];
 					promptBlock.appendChild(firstReq);
 				},
@@ -61,8 +63,11 @@ export default new class SignupPage extends BaseView {
 					e.preventDefault();
 					Dispatcher.dispatch({
 						type: ProfileActions.register,
+						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 						login: document.getElementById('input_login').value,
+						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 						password: document.getElementById('input_pass').value,
+						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 						passwordRepeat: document.getElementById('input_pass_rep').value,
 					});
 
@@ -80,13 +85,19 @@ export default new class SignupPage extends BaseView {
 	 */
 	render(data = null) {
 		/* Регистрация всех компонентов для страницы */
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('button', Handlebars.templates['button']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('decoration', Handlebars.templates['decoration']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('error', Handlebars.templates['error']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('input', Handlebars.templates['input']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('signupBlock', Handlebars.templates['signupBlock']);
 
 		/* Рендер шаблона с входными данными */
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const signupPage = Handlebars.templates.signupPage;
 		const html = signupPage({});
 
@@ -115,8 +126,9 @@ export default new class SignupPage extends BaseView {
 		}
 
 		const authDescp = document.getElementsByClassName('auth__block_descp')[0];
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const error = Handlebars.templates.error;
 		const html = error({errorText: data.validation.errorMsg});
 		authDescp.outerHTML += html;
 	}
-};
+});

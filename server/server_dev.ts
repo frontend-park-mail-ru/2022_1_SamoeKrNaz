@@ -1,7 +1,10 @@
 'use strict';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'http' or its corresponding typ... Remove this comment to see the full error message
 import {createServer} from 'http';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'fs' or its corresponding type ... Remove this comment to see the full error message
 import {readFile} from 'fs';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'path' or its corresponding typ... Remove this comment to see the full error message
 import {resolve} from 'path';
 
 /* Порт, на котором разворачиваемся */

@@ -1,8 +1,11 @@
 'use strict';
 
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const http = require('http');
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const fs = require('fs');
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'path'.
 const path = require('path');
 
 /* Порт, на котором разворачиваемся */
@@ -27,6 +30,7 @@ const server = http.createServer((req, res) => {
 	const extension = fileName.split('.').pop();
 
 	if (extension === 'webp') {
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
 		fs.readFile(`${__dirname}/../../backend${fileName}`, (err, file) => {
 			/* Обработка ошибки*/
 			if (err) {
@@ -40,6 +44,7 @@ const server = http.createServer((req, res) => {
 			res.end();
 		});
 	} else {
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
 		fs.readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
 		/* Обработка ошибки*/
 			if (err) {

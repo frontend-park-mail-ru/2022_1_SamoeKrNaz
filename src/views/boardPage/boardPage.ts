@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './boardPage.templ.js' or its c... Remove this comment to see the full error message
 import * as render from './boardPage.templ.js';
 import BaseView from '../baseView.js';
 import BasePage from '../basePage/basePage.js';
@@ -9,7 +10,7 @@ import Board from '../../stores/board.js';
 /**
  * Класс, реализующий страницу списка досок
  */
-export default new class BoardPage extends BaseView {
+export default new (class BoardPage extends BaseView {
 	/**
 	 * @constructor
 	 */
@@ -218,16 +219,24 @@ export default new class BoardPage extends BaseView {
 		this.removeListeners();
 
 		/* Регистрация всех компонентов для страницы */
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('list', Handlebars.templates['list']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('listDelete', Handlebars.templates['listDelete']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('card', Handlebars.templates['card']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('boardModal', Handlebars.templates['boardModal']);
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		Handlebars.registerPartial('buttonsList', Handlebars.templates['buttonsList']);
 
 		/* Рендер шаблона с входными данными */
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const boardPage = Handlebars.templates.boardPage;
 		const html = boardPage({
+			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
 		});
@@ -245,6 +254,7 @@ export default new class BoardPage extends BaseView {
 	 * @param {object} data
 	 */
 	openModal(data) {
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const modal = Handlebars.templates.boardModal;
 		document.getElementById('modalBlock').innerHTML = modal(data);
 
@@ -293,6 +303,7 @@ export default new class BoardPage extends BaseView {
 			}
 		}
 
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type '{}'.
 		if (payload.title?.length === 0) {
 			return;
 		}
@@ -303,5 +314,5 @@ export default new class BoardPage extends BaseView {
 			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
 		});
 	}
-};
+});
 

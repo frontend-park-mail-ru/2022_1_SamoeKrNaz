@@ -10,7 +10,7 @@ import {ajaxMethods} from '../../ajax/profile.js';
 /**
  * Класс, реализующий страницу логина.
  */
-export default new class SettingsView extends BaseView {
+export default new (class SettingsView extends BaseView {
 	/**
 	 * @constructor
 	 */
@@ -50,6 +50,7 @@ export default new class SettingsView extends BaseView {
 			{
 				type: 'change',
 				id: 'fileUpload',
+				// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 				func: async (e) => {
 					Dispatcher.dispatch({
 						type: ProfileActions.uploadAvatar,
@@ -84,7 +85,9 @@ export default new class SettingsView extends BaseView {
 	 */
 	onUpdate(data) {
 		if (data.username) {
+			// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 			document.getElementById('input_login').value = data.username;
+			// @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type 'Element'.
 			document.getElementsByClassName('settings__avatar')[0].src = data.img;
 		}
 	}
@@ -101,8 +104,11 @@ export default new class SettingsView extends BaseView {
 			console.log(e);
 			Dispatcher.dispatch({
 				type: ProfileActions.update,
+				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 				login: document.getElementById('input_login').value,
+				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 				password: document.getElementById('input_pass').value,
+				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
 				passwordRepeat: document.getElementById('input_pass_rep').value,
 			});
 			return false;
@@ -124,6 +130,7 @@ export default new class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const successBlock = Handlebars.templates.success;
 		const html = successBlock({successText: data.validation.successMsg});
 		sep.outerHTML += html;
@@ -144,6 +151,7 @@ export default new class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const error = Handlebars.templates.error;
 		const html = error({settings: true, errorText: data.validation.errorMsg});
 		sep.outerHTML += html;
@@ -164,11 +172,13 @@ export default new class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const successBlock = Handlebars.templates.success;
 		const html = successBlock({successText: data.avatar.successAv});
 		sep.outerHTML += html;
 		const randomString = performance.now();
 		const avatar = document.getElementsByClassName('settings__avatar')[0];
+		// @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type 'Element'.
 		avatar.src = data.avatar.avatarPath + '?' + randomString;
 	}
 
@@ -187,8 +197,9 @@ export default new class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
+		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
 		const error = Handlebars.templates.error;
 		const html = error({settings: true, errorText: data.avatar.unSuccessAv});
 		sep.outerHTML += html;
 	}
-};
+});

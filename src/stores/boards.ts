@@ -4,7 +4,7 @@ import {ajaxMethods} from '../ajax/boards.js';
 import {Messages, ResponseStatus, Url} from '../constants/constants.js';
 import router from '../modules/router.js';
 
-export default new class Boards extends Store {
+export default new (class Boards extends Store {
 	/**
 	 * @constructor
 	 */
@@ -36,11 +36,13 @@ export default new class Boards extends Store {
 	/**
 	 * Метод реализующий загрузку досок пользователя
 	 */
+	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _loadBoards() {
 		const res = await ajaxMethods.loadBoards();
 
 		switch (res.status) {
 		case ResponseStatus.success:
+			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.boards = res.body;
 			break;
 
@@ -58,6 +60,7 @@ export default new class Boards extends Store {
 	 */
 	async _createBoard(data) {
 		if (data.title.length === 0 || data.title.length >= 30) {
+			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.validation.errorMsg = Messages.shortTitle;
 			this._publish(Events.boardsCreateError);
 			return false;
@@ -68,6 +71,7 @@ export default new class Boards extends Store {
 		};
 
 		if (data.description.length !== 0) {
+			// @ts-expect-error ts-migrate(2339) FIXME: Property 'description' does not exist on type '{ t... Remove this comment to see the full error message
 			payload.description = data.description;
 		}
 
@@ -75,6 +79,7 @@ export default new class Boards extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.created:
+			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.boards?.push(res.body);
 			break;
 
@@ -85,4 +90,4 @@ export default new class Boards extends Store {
 		router.open(Url.base);
 		this._publish(Events.boardsUpdate);
 	}
-};
+});

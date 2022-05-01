@@ -11,7 +11,9 @@ class Store {
 	 * @param {object} data состояние стора
 	 */
 	constructor(name, data) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Store'.
 		this._data = data;
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_name' does not exist on type 'Store'.
 		this._name = name;
 
 		Dispatcher.register(this._callback.bind(this));
@@ -31,6 +33,7 @@ class Store {
 	 * @param {string} event название события
 	 */
 	_publish(event) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Store'.
 		EventBus.publish(event, this._data);
 	}
 }

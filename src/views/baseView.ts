@@ -9,6 +9,7 @@ class BaseView {
 	 * @param {array<object>} data информация об обработчиках, хранящаяся в переменной
 	 */
 	constructor(data) {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_listeners' does not exist on type 'Base... Remove this comment to see the full error message
 		this._listeners = data;
 	}
 
@@ -24,6 +25,7 @@ class BaseView {
 	 * Метод, навешивающий обработчки на страницу
 	 */
 	_createListeners() {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_listeners' does not exist on type 'Base... Remove this comment to see the full error message
 		this._listeners.map((listener) => {
 			if (!listener.isArray) {
 				if (listener.className) {
@@ -47,6 +49,7 @@ class BaseView {
 	 * Метод, удаляющий обработчки на страницы
 	 */
 	removeListeners() {
+		// @ts-expect-error ts-migrate(2339) FIXME: Property '_listeners' does not exist on type 'Base... Remove this comment to see the full error message
 		this._listeners.map((listener) => {
 			if (!listener.isArray) {
 				if (listener.className) {
