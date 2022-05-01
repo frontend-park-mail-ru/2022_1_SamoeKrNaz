@@ -1,13 +1,14 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './loginPage.templ.js' or its c... Remove this comment to see the full error message
-import * as render from './loginPage.templ.js';
-import BaseView from '../baseView.js';
-import EventBus from '../../modules/eventBus.js';
-import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
-import Dispatcher from '../../modules/dispatcher.js';
-import router from '../../modules/router.js';
-import Profile from '../../stores/profile.js';
-import {Url} from '../../constants/constants.js';
-import BasePage from '../basePage/basePage.js';
+import loginPageTemp from './loginPage.hbs';
+import error from '../../components/error/error.hbs';
+
+import BaseView from '../baseView';
+import EventBus from '../../modules/eventBus';
+import {ProfileActions, ProfileEvents} from '../../modules/actions';
+import Dispatcher from '../../modules/dispatcher';
+import router from '../../modules/router';
+import Profile from '../../stores/profile';
+import {Url} from '../../constants/constants';
+import BasePage from '../basePage/basePage';
 
 /**
  * Класс, реализующий страницу логина.
@@ -44,22 +45,7 @@ export default new (class LoginPage extends BaseView {
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
 	render(data = null) {
-		/* Регистрация всех компонентов для страницы */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('button', Handlebars.templates['button']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('decoration', Handlebars.templates['decoration']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('error', Handlebars.templates['error']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('input', Handlebars.templates['input']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('loginBlock', Handlebars.templates['loginBlock']);
-
-		/* Рендер шаблона с входными данными */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const loginPage = Handlebars.templates.loginPage;
-		const html = loginPage({});
+		const html = loginPageTemp();
 
 		/* Создание контейнера для вставки в DOM */
 		document.body.innerHTML = '';
@@ -86,8 +72,6 @@ export default new (class LoginPage extends BaseView {
 		}
 
 		const authDescp = document.getElementsByClassName('auth__block_descp')[0];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const error = Handlebars.templates.error;
 		const html = error({errorText: data.validation.errorMsg});
 		authDescp.outerHTML += html;
 	}

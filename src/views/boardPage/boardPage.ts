@@ -1,11 +1,12 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './boardPage.templ.js' or its c... Remove this comment to see the full error message
-import * as render from './boardPage.templ.js';
-import BaseView from '../baseView.js';
-import BasePage from '../basePage/basePage.js';
-import EventBus from '../../modules/eventBus.js';
-import {BoardActions, BoardsActions, Events} from '../../modules/actions.js';
-import Dispatcher from '../../modules/dispatcher.js';
-import Board from '../../stores/board.js';
+import boardPageTemp from './boardPage.hbs';
+import boardModal from '../../components/boardModal/boardModal.hbs';
+
+import BaseView from '../baseView';
+import BasePage from '../basePage/basePage';
+import EventBus from '../../modules/eventBus';
+import {BoardActions, BoardsActions, Events} from '../../modules/actions';
+import Dispatcher from '../../modules/dispatcher';
+import Board from '../../stores/board';
 
 /**
  * Класс, реализующий страницу списка досок
@@ -218,24 +219,7 @@ export default new (class BoardPage extends BaseView {
 	onUpdate(data = {board: null}) {
 		this.removeListeners();
 
-		/* Регистрация всех компонентов для страницы */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('list', Handlebars.templates['list']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('listDelete', Handlebars.templates['listDelete']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('card', Handlebars.templates['card']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('boardModal', Handlebars.templates['boardModal']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('buttonsList', Handlebars.templates['buttonsList']);
-
-		/* Рендер шаблона с входными данными */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const boardPage = Handlebars.templates.boardPage;
-		const html = boardPage({
+		const html = boardPageTemp({
 			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
@@ -254,9 +238,7 @@ export default new (class BoardPage extends BaseView {
 	 * @param {object} data
 	 */
 	openModal(data) {
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const modal = Handlebars.templates.boardModal;
-		document.getElementById('modalBlock').innerHTML = modal(data);
+		document.getElementById('modalBlock').innerHTML = boardModal(data);
 
 		document.getElementsByClassName('createModal__settings_cancel')[0].addEventListener('click', this.modalClose);
 		document.getElementsByClassName('createModal__close')[0].addEventListener('click', this.modalClose);

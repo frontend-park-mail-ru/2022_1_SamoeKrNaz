@@ -1,6 +1,6 @@
 'use strict';
 
-import Ajax from '../ajax/ajax.js';
+import Ajax from '../ajax/ajax';
 
 export const ajaxMethods = {
 	loadBoards: async () => {

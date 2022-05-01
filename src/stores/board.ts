@@ -1,16 +1,16 @@
-import Store from './baseStore.js';
-import {BoardActions, BoardsActions, Events, ProfileActions, ProfileEvents} from '../modules/actions.js';
-import {ajaxMethods} from '../ajax/board.js';
-import {Messages, ResponseStatus} from '../constants/constants.js';
-import router from '../modules/router.js';
-import {Url} from '../constants/constants.js';
+import Store from './baseStore';
+import {BoardActions, BoardsActions, Events, ProfileActions, ProfileEvents} from '../modules/actions';
+import {ajaxMethods} from '../ajax/board';
+import {Messages, ResponseStatus} from '../constants/constants';
+import router from '../modules/router';
+import {Url} from '../constants/constants';
 
 export default new (class Board extends Store {
 	/**
 	 * @constructor
 	 */
 	constructor() {
-		super('Boards', {
+		super('Board', {
 			board: null,
 		});
 	}
@@ -54,7 +54,6 @@ export default new (class Board extends Store {
 	/**
 	 * Загрузка в стор информации
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _loadBoard() {
 		const res = await ajaxMethods.loadBoard(window.location.pathname.split('/').pop());
 
@@ -79,7 +78,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _createList(action) {
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Board'.
 		const res = await ajaxMethods.createList({id: this._data.board.idb, body: action.body});
@@ -101,7 +99,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _updateBoard(action) {
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Board'.
 		const res = await ajaxMethods.updateBoard({id: this._data.board.idb, body: action.body});
@@ -122,7 +119,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _addTask(action) {
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Board'.
 		const res = await ajaxMethods.addTask({idb: this._data.board.idb, idl: action.id, body: action.body});
@@ -148,7 +144,6 @@ export default new (class Board extends Store {
 	/**
 	 * Загрузка в стор информации
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _deleteDesk() {
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Board'.
 		const res = await ajaxMethods.deleteDesk({id: this._data.board.idb});
@@ -164,7 +159,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _deleteList(action) {
 		const res = await ajaxMethods.deleteList({id: action.id});
 
@@ -187,7 +181,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _updateList(action) {
 		console.log(action);
 		const res = await ajaxMethods.updateList({id: action.id, body: action.body});
@@ -210,7 +203,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _updateTask(action) {
 		console.log(action);
 		const res = await ajaxMethods.updateTask({id: action.id, body: action.body});
@@ -235,7 +227,6 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 * @param {object} action
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _deleteTask(action) {
 		const res = await ajaxMethods.deleteTask({id: action.id});
 

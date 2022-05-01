@@ -1,12 +1,11 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './basePage.templ.js' or its co... Remove this comment to see the full error message
-import * as render from './basePage.templ.js';
-import BaseView from '../baseView.js';
-import {Url, Sizes} from '../../constants/constants.js';
-import router from '../../modules/router.js';
-import EventBus from '../../modules/eventBus.js';
-import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions.js';
-import Dispatcher from '../../modules/dispatcher.js';
-import SettingsView from '../settingsView/settingsView.js';
+import basePageTemp from './basePage.hbs';
+import BaseView from '../baseView';
+import {Url, Sizes} from '../../constants/constants';
+import router from '../../modules/router';
+import EventBus from '../../modules/eventBus';
+import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
+import Dispatcher from '../../modules/dispatcher';
+import SettingsView from '../settingsView/settingsView';
 
 /**
  * Класс, реализующий страницу логина.
@@ -115,6 +114,7 @@ export default new (class basePage extends BaseView {
 				type: 'click',
 				className: 'createDesk__settings_save',
 				func: (e) => {
+					console.log(1)
 					Dispatcher.dispatch({
 						type: BoardsActions.createBoard,
 						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'Element'.
@@ -154,33 +154,7 @@ export default new (class basePage extends BaseView {
 			return;
 		}
 
-		/* Регистрация всех компонентов для страницы */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('leftMenu', Handlebars.templates['leftMenu']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('mobileHeader', Handlebars.templates['mobileHeader']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('activeTask', Handlebars.templates['activeTask']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('rightMenu', Handlebars.templates['rightMenu']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('settings', Handlebars.templates['settings']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('success', Handlebars.templates['success']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('error', Handlebars.templates['error']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('createDesk', Handlebars.templates['createDesk']);
-
-		/* Рендер шаблона с входными данными */
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const basePage = Handlebars.templates.basePage;
-
-		const html = basePage({
+		const html = basePageTemp({
 			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: this.pageStatus,
 		});

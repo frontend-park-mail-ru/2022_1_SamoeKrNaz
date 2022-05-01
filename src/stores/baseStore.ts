@@ -1,5 +1,5 @@
-import Dispatcher from '../modules/dispatcher.js';
-import EventBus from '../modules/eventBus.js';
+import Dispatcher from '../modules/dispatcher';
+import EventBus from '../modules/eventBus';
 
 /**
  * Базовый класс стора, от которого будут наследоваться все остальные сторы
@@ -15,7 +15,7 @@ class Store {
 		this._data = data;
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_name' does not exist on type 'Store'.
 		this._name = name;
-
+		console.log(name)
 		Dispatcher.register(this._callback.bind(this));
 	}
 

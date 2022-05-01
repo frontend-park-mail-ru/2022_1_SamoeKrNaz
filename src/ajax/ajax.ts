@@ -1,6 +1,6 @@
-import {backendUrl, frontendUrl} from '../constants/constants.js';
-import router from '../modules/router.js';
-import {Url} from '../constants/constants.js';
+import {backendUrl, frontendUrl} from '../constants/constants';
+import router from '../modules/router';
+import {Url} from '../constants/constants';
 
 /**
  * Класс, реализующий методы доступа к апи

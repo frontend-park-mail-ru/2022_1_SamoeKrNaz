@@ -1,10 +1,9 @@
-// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './boardsPage.templ.js' or its ... Remove this comment to see the full error message
-import * as render from './boardsPage.templ.js';
-import BaseView from '../baseView.js';
-import BasePage from '../basePage/basePage.js';
-import EventBus from '../../modules/eventBus.js';
-import {BoardsActions, Events} from '../../modules/actions.js';
-import Dispatcher from '../../modules/dispatcher.js';
+import boardsPageTemp from './boardsPage.hbs';
+import BaseView from '../baseView';
+import BasePage from '../basePage/basePage';
+import EventBus from '../../modules/eventBus';
+import {BoardsActions, Events} from '../../modules/actions';
+import Dispatcher from '../../modules/dispatcher';
 
 /**
  * Класс, реализующий страницу списка досок
@@ -60,17 +59,9 @@ export default new (class BoardsPage extends BaseView {
 	onUpdate(data = {boards: undefined}) {
 		this.removeListeners();
 
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('cap', Handlebars.templates['cap']);
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		Handlebars.registerPartial('containerDesk', Handlebars.templates['containerDesk']);
-
 		const root = document.getElementById('root');
 
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const boardsPage = Handlebars.templates.boardsPage;
-
-		root.innerHTML = boardsPage({
+		root.innerHTML = boardsPageTemp({
 			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: BasePage.pageStatus,
 			boards: data.boards,

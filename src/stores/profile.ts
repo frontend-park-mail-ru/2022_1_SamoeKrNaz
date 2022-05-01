@@ -1,8 +1,8 @@
-import Store from './baseStore.js';
-import {ProfileActions, ProfileEvents} from '../modules/actions.js';
-import {Messages, ResponseStatus, Url} from '../constants/constants.js';
-import {ajaxMethods} from '../ajax/profile.js';
-import router from '../modules/router.js';
+import Store from './baseStore';
+import {ProfileActions, ProfileEvents} from '../modules/actions';
+import {Messages, ResponseStatus, Url} from '../constants/constants';
+import {ajaxMethods} from '../ajax/profile';
+import router from '../modules/router';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -61,7 +61,6 @@ class Profile extends Store {
 	/**
 	 * Получение и обработка информации о профиле пользователя
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _loadProfile() {
 		const res = await ajaxMethods.loadProfile();
 
@@ -82,7 +81,6 @@ class Profile extends Store {
 	 * Получение и обработка информации о профиле пользователя при логине
 	 * @param {object} data инфорация о событии
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _loginValidation(data) {
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
 			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
@@ -226,7 +224,6 @@ class Profile extends Store {
 	 * Загрузка аватара и дальнейшее обновление
 	 * @param {Object} data инфорация о событии
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _uploadAvatar(data) {
 		if (data.data.size > 5000 * 1024) {
 			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
@@ -258,7 +255,6 @@ class Profile extends Store {
 	/**
 	 * Загрузка аватара и дальнейшее обновление
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _logout() {
 		const res = await ajaxMethods.logout();
 

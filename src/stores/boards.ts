@@ -1,8 +1,8 @@
-import Store from './baseStore.js';
-import {BoardsActions, Events, ProfileActions} from '../modules/actions.js';
-import {ajaxMethods} from '../ajax/boards.js';
-import {Messages, ResponseStatus, Url} from '../constants/constants.js';
-import router from '../modules/router.js';
+import Store from './baseStore';
+import {BoardsActions, Events, ProfileActions} from '../modules/actions';
+import {ajaxMethods} from '../ajax/boards';
+import {Messages, ResponseStatus, Url} from '../constants/constants';
+import router from '../modules/router';
 
 export default new (class Boards extends Store {
 	/**
@@ -10,7 +10,7 @@ export default new (class Boards extends Store {
 	 */
 	constructor() {
 		super('Boards', {
-			boards: undefined,
+			boards: null,
 
 			validation: {
 				errorMsg: null,
@@ -36,7 +36,6 @@ export default new (class Boards extends Store {
 	/**
 	 * Метод реализующий загрузку досок пользователя
 	 */
-	// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 	async _loadBoards() {
 		const res = await ajaxMethods.loadBoards();
 

@@ -1,11 +1,14 @@
-import BaseView from '../baseView.js';
-import {Messages, ResponseStatus, Url} from '../../constants/constants.js';
-import router from '../../modules/router.js';
-import EventBus from '../../modules/eventBus.js';
-import {ProfileActions, ProfileEvents} from '../../modules/actions.js';
-import Dispatcher from '../../modules/dispatcher.js';
-import Profile from '../../stores/profile.js';
-import {ajaxMethods} from '../../ajax/profile.js';
+import successBlock from '../../components/success/success.hbs';
+import error from '../../components/error/error.hbs';
+
+import BaseView from '../baseView';
+import {Messages, ResponseStatus, Url} from '../../constants/constants';
+import router from '../../modules/router';
+import EventBus from '../../modules/eventBus';
+import {ProfileActions, ProfileEvents} from '../../modules/actions';
+import Dispatcher from '../../modules/dispatcher';
+import Profile from '../../stores/profile';
+import {ajaxMethods} from '../../ajax/profile';
 
 /**
  * Класс, реализующий страницу логина.
@@ -50,7 +53,6 @@ export default new (class SettingsView extends BaseView {
 			{
 				type: 'change',
 				id: 'fileUpload',
-				// @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
 				func: async (e) => {
 					Dispatcher.dispatch({
 						type: ProfileActions.uploadAvatar,
@@ -130,8 +132,6 @@ export default new (class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const successBlock = Handlebars.templates.success;
 		const html = successBlock({successText: data.validation.successMsg});
 		sep.outerHTML += html;
 	}
@@ -151,8 +151,6 @@ export default new (class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const error = Handlebars.templates.error;
 		const html = error({settings: true, errorText: data.validation.errorMsg});
 		sep.outerHTML += html;
 	}
@@ -172,8 +170,6 @@ export default new (class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const successBlock = Handlebars.templates.success;
 		const html = successBlock({successText: data.avatar.successAv});
 		sep.outerHTML += html;
 		const randomString = performance.now();

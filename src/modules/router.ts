@@ -1,6 +1,6 @@
-import {Url} from '../constants/constants.js';
-import EventBus from './eventBus.js';
-import {ProfileEvents} from './actions.js';
+import {Url} from '../constants/constants';
+import EventBus from './eventBus';
+import {ProfileEvents} from './actions';
 
 /**
  * Класс, реализующий смену страниц и историю перемещений по странице

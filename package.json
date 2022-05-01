@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "2022_1_samoekrnaz",
   "version": "1.0.0",
   "description": "Проект Trello команды \"Самое крутое название\"",
@@ -12,7 +11,7 @@
     "checkLintersFix": "npx eslint src/*/*/*/*.js --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
     "start": "cd server && node server.js",
     "startDev": "cd server && node server_dev.js",
-    "build": "webpack"
+    "build": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -28,8 +27,10 @@
     "@babel/polyfill": "^7.12.1",
     "core-js": "^3.21.1",
     "handlebars": "^4.7.7",
-    "handlebars-webpack-plugin": "^2.2.1",
-    "regenerator-runtime": "^0.13.9"
+    "handlebars-loader": "^1.7.1",
+    "regenerator-runtime": "^0.13.9",
+    "source-map-loader": "^3.0.1",
+    "ts-loader": "^9.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -53,6 +54,7 @@
     "stylelint": "^14.5.3",
     "stylelint-config-standard": "^25.0.0",
     "ts-migrate": "^0.1.28",
+    "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2"
   }

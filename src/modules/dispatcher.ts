@@ -24,6 +24,8 @@ class Dispatcher {
 			isWait: false,
 		});
 
+		console.log(callback)
+
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_i' does not exist on type 'Dispatcher'.
 		return this._i++;
 	}
@@ -33,6 +35,7 @@ class Dispatcher {
 	 * @param {object} action функция, которую будет вызывать диспетчер
 	 */
 	dispatch(action) {
+
 		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentAction' does not exist on type '... Remove this comment to see the full error message
 		this._currentAction = action;
 
