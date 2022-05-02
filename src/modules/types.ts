@@ -30,10 +30,30 @@ export interface ProfileStore {
 	},
 }
 
-export type EventListener = Array<{
+export interface Event {
 	type: string,
 	className?: string,
 	id?: string,
 	func: (e?: any) => void,
 	isArray?: boolean,
+};
+
+export type EventListener = Array<Event>;
+
+export type Task = Array<{
+	idt: number,
+	title: string,
 }>;
+
+export type List = Array<{
+	title: string,
+	idl: number,
+	Tasks: Task,
+}>;
+
+export interface BoardStore {
+	idb: number,
+	title: string,
+	description: string,
+	Lists: List,
+};

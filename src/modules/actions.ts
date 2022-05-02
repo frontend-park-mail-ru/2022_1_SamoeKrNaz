@@ -30,6 +30,8 @@ export const BoardActions = {
 	updateList: 'updateList',
 	updateTask: 'updateTask',
 	deleteTask: 'deleteTask',
+	addUser: 'addUser',
+	findUsers: 'findUsers',
 };
 
 export const BoardsActions = {

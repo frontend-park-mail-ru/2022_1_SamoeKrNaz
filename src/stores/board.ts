@@ -4,23 +4,11 @@ import {ajaxMethods} from '../ajax/board';
 import {ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
-import {DispatcherAction} from '../modules/types';
+import {BoardStore, DispatcherAction} from '../modules/types';
 
 export default new (class Board extends Store {
 	_data: {
-		board: {
-			idb: number,
-			title: string,
-			description: string,
-			Lists: Array<{
-				title: string,
-				idl: number,
-				Tasks: Array<{
-					idt: number,
-					title: string,
-				}>,
-			}>,
-		}
+		board: BoardStore,
 	};
 
 	/**
@@ -64,6 +52,9 @@ export default new (class Board extends Store {
 			break;
 		case BoardActions.deleteTask:
 			await this._deleteTask(action);
+			break;
+		case BoardActions.findUsers:
+			await this._findUsers(action);
 			break;
 		}
 	}
@@ -230,6 +221,28 @@ export default new (class Board extends Store {
 	 */
 	async _deleteTask(action: DispatcherAction) {
 		const res = await ajaxMethods.deleteTask({id: action.id});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.board.Lists.forEach((list, j) => {
+				list.Tasks.forEach((task, i) => {
+					if (task.idt === Number(action.id)) {
+						delete this._data.board.Lists[j].Tasks[i];
+					}
+				});
+			});
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Поиск пользователей
+	 * @param {DispatcherAction} action
+	 */
+	async _findUsers(action: DispatcherAction) {
+		const res = await ajaxMethods.findUsers({id: action.id});
 
 		switch (res.status) {
 		case ResponseStatus.success:

@@ -38,8 +38,7 @@ class Router {
 	 */
 	start(data: ProfileStore): void {
 		this._body.addEventListener('click', (event) => {
-			// @ts-ignore
-			event.path.map((el) => { // path существует в типе MouseEvent, а ts думает, что нет
+			event.composedPath().map((el) => {
 				if (el instanceof HTMLAnchorElement) {
 					event.preventDefault();
 					this.open(el.pathname);

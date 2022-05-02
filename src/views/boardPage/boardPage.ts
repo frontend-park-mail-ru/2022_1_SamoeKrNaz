@@ -7,12 +7,14 @@ import EventBus from '../../modules/eventBus';
 import {BoardActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
+import {Event} from '../../modules/types';
 
 type ModalSettings = {
 	type: string,
 	id?: string,
 	title: string,
 	isDelete?: boolean,
+	onChange?: Array<Event>,
 	inputs?: Array<{
 		len?: boolean,
 		isTypeInput: boolean,
@@ -192,6 +194,35 @@ export default new (class BoardPage extends BaseView {
 				},
 			},
 			{
+				isArray: false,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'desk-invite', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					this.openModal({
+						type: BoardActions.addUser,
+						id: '',
+						title: 'Пригласить пользователя',
+						inputs: [
+							{
+								isTypeInput: true,
+								name: 'title',
+								placeholder: 'Имя пользователя',
+							},
+						],
+						onChange: [{
+							type: 'change', // Тип обработчика, который навешивается
+							className: 'createModal__settings_input', // Класс, на который навешивается обработчки
+							func: (e) => {
+								Dispatcher.dispatch({
+									type: BoardActions.findUsers,
+									data: e.target.value,
+								});
+							},
+						}],
+					});
+				},
+			},
+			{
 				isArray: true,
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk__task-close', // Класс, на который навешивается обработчки
@@ -258,6 +289,8 @@ export default new (class BoardPage extends BaseView {
 
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
 		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
+
+		data.onChange?.map((el) => this._addListener(el));
 
 		createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
 		createDesk.classList.add('active'); // И для самого окна;

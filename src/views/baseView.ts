@@ -1,6 +1,6 @@
 'use strict';
 
-import {EventListener} from '../modules/types';
+import {EventListener, Event} from '../modules/types';
 
 /**
  * Базовый класс View
@@ -28,22 +28,52 @@ class BaseView {
 	 */
 	_createListeners() {
 		this._listeners.map((listener) => {
-			if (!listener.isArray) {
-				if (listener.className) {
-					document.getElementsByClassName(listener.className)[0]?.addEventListener(listener.type, listener.func);
-				} else {
-					document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
-				}
-			} else {
-				const els = document.getElementsByClassName(listener.className);
+			this._addListener(listener);
+		});
+	}
 
-				for (const key in els) {
-					if (els.hasOwnProperty(key)) {
-						els[key].addEventListener(listener.type, listener.func);
-					}
+	/**
+	 * Метод, позволяющий наложить новый обработчки событий
+	 * @param {Event} listener
+	 */
+	_addListener(listener: Event): void {
+		if (!listener.isArray) {
+			if (listener.className) {
+				document.getElementsByClassName(listener.className)[0]?.addEventListener(listener.type, listener.func);
+			} else {
+				document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
+			}
+		} else {
+			const els = document.getElementsByClassName(listener.className);
+
+			for (const key in els) {
+				if (els.hasOwnProperty(key)) {
+					els[key].addEventListener(listener.type, listener.func);
 				}
 			}
-		});
+		}
+	}
+
+	/**
+	 * Метод, позволяющий убрать обработчки событий
+	 * @param {Event} listener
+	 */
+	_removeListener(listener: Event): void {
+		if (!listener.isArray) {
+			if (listener.className) {
+				document.getElementsByClassName(listener.className)[0]?.removeEventListener(listener.type, listener.func);
+			} else {
+				document.getElementById(listener.id)?.removeEventListener(listener.type, listener.func);
+			}
+		} else {
+			const els = document.getElementsByClassName(listener.className);
+
+			for (const key in els) {
+				if (els.hasOwnProperty(key)) {
+					els[key].removeEventListener(listener.type, listener.func);
+				}
+			}
+		}
 	}
 
 	/**
@@ -51,21 +81,7 @@ class BaseView {
 	 */
 	removeListeners() {
 		this._listeners.map((listener) => {
-			if (!listener.isArray) {
-				if (listener.className) {
-					document.getElementsByClassName(listener.className)[0]?.removeEventListener(listener.type, listener.func);
-				} else {
-					document.getElementById(listener.id)?.removeEventListener(listener.type, listener.func);
-				}
-			} else {
-				const els = document.getElementsByClassName(listener.className);
-
-				for (const key in els) {
-					if (els.hasOwnProperty(key)) {
-						els[key].removeEventListener(listener.type, listener.func);
-					}
-				}
-			}
+			this._removeListener(listener);
 		});
 	}
 }

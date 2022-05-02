@@ -66,4 +66,11 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	findUsers: async (data) => {
+		try {
+			return await Ajax.delete({url: 'task/' + data.id});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };
