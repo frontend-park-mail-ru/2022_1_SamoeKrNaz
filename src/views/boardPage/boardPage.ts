@@ -1,5 +1,6 @@
 import boardPageTemp from './boardPage.hbs';
 import boardModal from '../../components/boardModal/boardModal.hbs';
+import error from '../../components/error/error.hbs';
 
 import BaseView from '../baseView';
 import BasePage from '../basePage/basePage';
@@ -239,6 +240,7 @@ export default new (class BoardPage extends BaseView {
 		]);
 
 		EventBus.subscribe(Events.boardUpdate, this.onUpdate.bind(this));
+		EventBus.subscribe(Events.boardError, this._boardError);
 	}
 
 	/**
@@ -309,6 +311,21 @@ export default new (class BoardPage extends BaseView {
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Функция закрытия модального окна
+	 * @param {object} data
+	 */
+	_boardError(data): void {
+		const el = document.getElementsByClassName('auth__block_error')[0];
+		if (el) {
+			el.remove();
+		}
+
+		const authDescp = document.getElementsByClassName('createModal__separator')[0];
+		const html = error({errorText: data.validation.errorMsg});
+		authDescp.outerHTML += html;
 	}
 
 	/**

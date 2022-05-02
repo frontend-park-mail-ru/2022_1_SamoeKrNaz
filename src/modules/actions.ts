@@ -43,5 +43,6 @@ export const Events = {
 	boardsUpdate: 'boards',
 	boardsCreateError: 'boardsError',
 	boardUpdate: 'board',
+	boardError: 'boardError',
 };
 

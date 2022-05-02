@@ -9,6 +9,9 @@ import {BoardStore, DispatcherAction} from '../modules/types';
 export default new (class Board extends Store {
 	_data: {
 		board: BoardStore,
+		validation: {
+			errorMsg: string,
+		}
 	};
 
 	/**
@@ -17,6 +20,9 @@ export default new (class Board extends Store {
 	constructor() {
 		super('Board', {
 			board: null,
+			validation: {
+				errorMsg: null,
+			},
 		});
 	}
 
@@ -242,21 +248,36 @@ export default new (class Board extends Store {
 	 * @param {DispatcherAction} action
 	 */
 	async _findUsers(action: DispatcherAction) {
-		const res = await ajaxMethods.findUsers({id: action.id});
+		let isAlredyAdd = false;
+
+		this._data.board.Users.map((user) => {
+			if (user.username === action.data) {
+				this._data.validation.errorMsg = 'Пользователь уже добавлен';
+				this._publish(Events.boardError);
+				isAlredyAdd = true;
+			}
+		});
+
+		if (isAlredyAdd) {
+			return;
+		}
+
+		const res = await ajaxMethods.findUsers({body: {username: action.data}});
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			this._data.board.Lists.forEach((list, j) => {
-				list.Tasks.forEach((task, i) => {
-					if (task.idt === Number(action.id)) {
-						delete this._data.board.Lists[j].Tasks[i];
-					}
-				});
-			});
+			if (res.body.length === 0) {
+				this._data.validation.errorMsg = 'Такого пользователя не существует';
+				this._publish(Events.boardError);
+			} else {
+				this._data.board.Users.push(res.body);
+
+				this._publish(Events.boardUpdate);
+
+				await ajaxMethods.addUser({id: this._data.board.idb, body: res.body[0].idu});
+			}
 			break;
 		}
-
-		this._publish(Events.boardUpdate);
 	}
 
 	/**

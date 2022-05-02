@@ -80,7 +80,7 @@ export default new (class SignupPage extends BaseView {
 	 * Метод отвечающий за генерацию View
 	 */
 	render(): void {
-		const html = new SignupPageTemp();
+		const html = SignupPageTemp();
 
 		/* Создание контейнера для вставки в DOM */
 		document.body.innerHTML = '';

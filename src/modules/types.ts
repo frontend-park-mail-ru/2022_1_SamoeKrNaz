@@ -55,5 +55,10 @@ export interface BoardStore {
 	idb: number,
 	title: string,
 	description: string,
+	Users: Array<{
+		idu: number,
+		username: string,
+		img_avatar: string,
+	}>,
 	Lists: List,
 };

@@ -68,7 +68,14 @@ export const ajaxMethods = {
 	},
 	findUsers: async (data) => {
 		try {
-			return await Ajax.delete({url: 'task/' + data.id});
+			return await Ajax.post({url: 'api/get/profile/like', opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	addUser: async (data) => {
+		try {
+			return await Ajax.post({url: 'board/' + data.id + '/' + data.body});
 		} catch (err) {
 			console.error('Error connection: ' + err);
 		}
