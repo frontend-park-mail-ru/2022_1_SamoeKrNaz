@@ -8,6 +8,20 @@ import {BoardActions, BoardsActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 
+type ModalSettings = {
+	type: string,
+	id?: string,
+	title: string,
+	isDelete?: boolean,
+	inputs?: Array<{
+		len?: boolean,
+		isTypeInput: boolean,
+		name: string,
+		placeholder: string,
+		value?: string,
+	}>,
+};
+
 /**
  * Класс, реализующий страницу списка досок
  */
@@ -234,9 +248,9 @@ export default new (class BoardPage extends BaseView {
 
 	/**
 	 * Метод позволяющий открывать модальные окна, по массиву
-	 * @param {object} data
+	 * @param {ModalSettings} data
 	 */
-	openModal(data) {
+	openModal(data: ModalSettings): void {
 		document.getElementById('modalBlock').innerHTML = boardModal(data);
 
 		document.getElementsByClassName('createModal__settings_cancel')[0].addEventListener('click', this.modalClose);
@@ -253,7 +267,7 @@ export default new (class BoardPage extends BaseView {
 	/**
 	 * Функция закрытия модального окна
 	 */
-	modalClose() {
+	modalClose(): void {
 		document.getElementsByClassName('createModal__settings_cancel')[0].removeEventListener('click', this.modalClose);
 		document.getElementsByClassName('createModal__close')[0].removeEventListener('click', this.modalClose);
 		document.getElementById('boardModal').removeEventListener('submit', this.modalParse);
@@ -269,10 +283,13 @@ export default new (class BoardPage extends BaseView {
 	 * Парсит форму отправки модального окна
 	 * @param {object} e
 	 */
-	modalParse(e) {
+	modalParse(e): void {
 		e.preventDefault();
 
-		const payload = {};
+		const payload = {
+			title: null,
+			description: null,
+		};
 
 		for (const key in e.target) {
 			if (e.target.hasOwnProperty(key)) {
@@ -284,7 +301,6 @@ export default new (class BoardPage extends BaseView {
 			}
 		}
 
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'title' does not exist on type '{}'.
 		if (payload.title?.length === 0) {
 			return;
 		}
