@@ -3,8 +3,17 @@ import {BoardsActions, Events, ProfileActions} from '../modules/actions';
 import {ajaxMethods} from '../ajax/boards';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import router from '../modules/router';
+import { DispatcherAction } from '../modules/types';
 
 export default new (class Boards extends Store {
+	_data: {
+		boards: Array<any>,
+
+		validation: {
+			errorMsg: string,
+		},
+	};
+
 	/**
 	 * @constructor
 	 */
@@ -20,9 +29,9 @@ export default new (class Boards extends Store {
 
 	/**
 	 * Метод, который переопределяют в субклассах, чтобы передавать в диспетчер
-	 * @param {object} action событие
+	 * @param {DispatcherAction} action событие
 	 */
-	async _callback(action) {
+	async _callback(action: DispatcherAction) {
 		switch (action.type) {
 		case BoardsActions.loadBoards:
 			await this._loadBoards();
@@ -41,7 +50,6 @@ export default new (class Boards extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.boards = res.body;
 			break;
 
@@ -55,11 +63,10 @@ export default new (class Boards extends Store {
 
 	/**
 	 * Метод реализующий загрузку досок пользователя
-	 * @param {object} data информация о событии
+	 * @param {DispatcherAction} data информация о событии
 	 */
-	async _createBoard(data) {
+	async _createBoard(data: DispatcherAction) {
 		if (data.title.length === 0 || data.title.length >= 30) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.validation.errorMsg = Messages.shortTitle;
 			this._publish(Events.boardsCreateError);
 			return false;
@@ -67,10 +74,11 @@ export default new (class Boards extends Store {
 
 		const payload = {
 			title: data.title,
+			description: null,
+
 		};
 
 		if (data.description.length !== 0) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'description' does not exist on type '{ t... Remove this comment to see the full error message
 			payload.description = data.description;
 		}
 
@@ -78,7 +86,6 @@ export default new (class Boards extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.created:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Boards'.
 			this._data.boards?.push(res.body);
 			break;
 
