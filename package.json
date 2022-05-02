@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js && sass src/css/style.scss src/css/style.css",
     "buildScss": "sass src/css/style.scss src/css/style.css",
-    "checkLinters": "npx eslint ./src/. --ext .ts && npx stylelint src/*/*.scss src/css/*.css",
+    "checkLinters": "npx eslint ./src/. --ext .ts && npx stylelint src/*/*.scss",
     "checkLintersFix": "npx eslint ./src/. --ext .ts --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
     "start": "cd server && node server.js",
     "startDev": "cd server && node server_dev.js",

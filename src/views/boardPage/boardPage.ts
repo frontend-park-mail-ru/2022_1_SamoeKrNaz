@@ -4,7 +4,7 @@ import boardModal from '../../components/boardModal/boardModal.hbs';
 import BaseView from '../baseView';
 import BasePage from '../basePage/basePage';
 import EventBus from '../../modules/eventBus';
-import {BoardActions, BoardsActions, Events} from '../../modules/actions';
+import {BoardActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 
@@ -34,7 +34,7 @@ export default new (class BoardPage extends BaseView {
 			{
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'toggle__block', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					BasePage.toggleLeft();
 				},
 			},
@@ -60,7 +60,7 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk-newList', // Класс, на который навешивается обработчки
 				isArray: true,
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						type: BoardActions.createList,
 						title: 'Создать колонку',
@@ -79,7 +79,7 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk-settings', // Класс, на который навешивается обработчки
 				isArray: true,
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						type: BoardActions.updateBoard,
 						title: 'Настройки доски',
@@ -124,7 +124,7 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk-delete', // Класс, на который навешивается обработчки
 				isArray: true,
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					this.openModal({
 						isDelete: true,
 						type: BoardActions.deleteDesk,
@@ -212,9 +212,8 @@ export default new (class BoardPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render() {
 		BasePage.render();
 
 		this.onUpdate();

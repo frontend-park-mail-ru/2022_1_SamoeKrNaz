@@ -5,7 +5,7 @@ import BaseView from '../baseView';
 import {Url, Sizes} from '../../constants/constants';
 import router from '../../modules/router';
 import EventBus from '../../modules/eventBus';
-import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
+import {BoardsActions, Events, ProfileActions} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import SettingsView from '../settingsView/settingsView';
 
@@ -38,28 +38,28 @@ export default new (class basePage extends BaseView {
 			{
 				type: 'click',
 				className: 'toggle__block_blue',
-				func: (e) => {
+				func: () => {
 					this.toggleRight();
 				},
 			},
 			{
 				type: 'click',
 				className: 'mobileHeader__leftOpen',
-				func: (e) => {
+				func: () => {
 					this.toggleLeft();
 				},
 			},
 			{
 				type: 'click',
 				className: 'header__background',
-				func: (e) => {
+				func: () => {
 					this.toggleLeft();
 				},
 			},
 			{
 				type: 'click',
 				className: 'header__mobileIcon',
-				func: (e) => {
+				func: () => {
 					this.toggleLeft();
 				},
 			},
@@ -67,7 +67,7 @@ export default new (class basePage extends BaseView {
 				type: 'click',
 				className: 'header__menu-part',
 				isArray: true,
-				func: (e) => {
+				func: () => {
 					if (document.documentElement.clientWidth < Sizes.lg) {
 						this.toggleLeft();
 					}
@@ -88,7 +88,7 @@ export default new (class basePage extends BaseView {
 			{
 				type: 'click',
 				className: 'settings__close',
-				func: (e) => {
+				func: () => {
 					const settingsBg = document.getElementsByClassName('settings__bg')[0]; // Фон попап окна
 					const settings = document.getElementsByClassName('settings')[0]; // Само окно
 
@@ -99,28 +99,28 @@ export default new (class basePage extends BaseView {
 			{
 				type: 'click',
 				className: 'homeButton',
-				func: (e) => {
+				func: () => {
 					router.open(Url.base);
 				},
 			},
 			{
 				type: 'click',
 				className: 'createDesk__close',
-				func: (e) => {
+				func: () => {
 					this.modalClose();
 				},
 			},
 			{
 				type: 'click',
 				className: 'createDesk__settings_cancel',
-				func: (e) => {
+				func: () => {
 					this.modalClose();
 				},
 			},
 			{
 				type: 'click',
 				className: 'createDesk__settings_save',
-				func: (e) => {
+				func: () => {
 					Dispatcher.dispatch({
 						type: BoardsActions.createBoard,
 						title: (<HTMLInputElement>document.getElementsByClassName('createDesk__settings_input')[0]).value,
@@ -131,7 +131,7 @@ export default new (class basePage extends BaseView {
 			{
 				type: 'click',
 				id: 'logout',
-				func: (e) => {
+				func: () => {
 					Dispatcher.dispatch({
 						type: ProfileActions.logout,
 					});
@@ -150,9 +150,8 @@ export default new (class basePage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render() {
 		if (document.getElementById('root')) {
 			return;
 		}

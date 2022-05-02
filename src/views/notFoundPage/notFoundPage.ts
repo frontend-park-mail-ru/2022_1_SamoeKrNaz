@@ -14,9 +14,8 @@ export default new (class NotFoundPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render() {
 		const html = notFoundPageTemp({});
 
 		/* Создание контейнера для вставки в DOM */

@@ -1,5 +1,5 @@
 import Store from './baseStore';
-import {BoardsActions, Events, ProfileActions} from '../modules/actions';
+import {BoardsActions, Events} from '../modules/actions';
 import {ajaxMethods} from '../ajax/boards';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import router from '../modules/router';

@@ -22,7 +22,7 @@ export default new (class SignupPage extends BaseView {
 			{
 				type: 'focus', // Тип обработчика, который навешивается
 				id: 'input_pass', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					const el = document.getElementsByClassName('auth__block_prompt')[0];
 					if (el) {
 						el.remove();
@@ -49,7 +49,7 @@ export default new (class SignupPage extends BaseView {
 			{
 				type: 'blur', // Тип обработчика, который навешивается
 				id: 'input_pass', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					const el = document.getElementsByClassName('auth__block_prompt')[0];
 					if (el) {
 						el.remove();
@@ -78,10 +78,9 @@ export default new (class SignupPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {ProfileStore} data данные, на основе которых будет формироваться страница
 	 */
-	render(data: ProfileStore = null): void {
-		const html = SignupPageTemp({});
+	render(): void {
+		const html = new SignupPageTemp();
 
 		/* Создание контейнера для вставки в DOM */
 		document.body.innerHTML = '';

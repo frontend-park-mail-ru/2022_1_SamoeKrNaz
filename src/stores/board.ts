@@ -1,7 +1,7 @@
 import Store from './baseStore';
-import {BoardActions, BoardsActions, Events, ProfileActions, ProfileEvents} from '../modules/actions';
+import {BoardActions, Events} from '../modules/actions';
 import {ajaxMethods} from '../ajax/board';
-import {Messages, ResponseStatus} from '../constants/constants';
+import {ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
 import {DispatcherAction} from '../modules/types';
@@ -110,6 +110,7 @@ export default new (class Board extends Store {
 
 	/**
 	 * Загрузка в стор информации
+	 * @param {DispatcherAction} action
 	 */
 	async _updateBoard(action: DispatcherAction) {
 		const res = await ajaxMethods.updateBoard({id: this._data.board.idb, body: action.body});
@@ -127,6 +128,7 @@ export default new (class Board extends Store {
 
 	/**
 	 * Загрузка в стор информации
+	 * @param {DispatcherAction} action
 	 */
 	async _addTask(action: DispatcherAction) {
 		const res = await ajaxMethods.addTask({idb: this._data.board.idb, idl: action.id, body: action.body});
@@ -162,6 +164,7 @@ export default new (class Board extends Store {
 
 	/**
 	 * Загрузка в стор информации
+	 * @param {DispatcherAction} action
 	 */
 	async _deleteList(action: DispatcherAction) {
 		const res = await ajaxMethods.deleteList({id: action.id});
@@ -188,7 +191,7 @@ export default new (class Board extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.created:
-			this._data.board.Lists.forEach((list, i) => {
+			this._data.board.Lists.forEach((list) => {
 				if (list.idl === Number(action.id)) {
 					list.title = action.body.title;
 				}

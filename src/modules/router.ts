@@ -101,7 +101,7 @@ class Router {
 			window.history.pushState('', '', '..' + path);
 		}
 		// рендерим страницу
-		view.render(context);
+		view.render();
 	}
 
 	/**

@@ -18,9 +18,8 @@ class BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render() {
 		console.error('Нужно переопределить метод в классе');
 	}
 

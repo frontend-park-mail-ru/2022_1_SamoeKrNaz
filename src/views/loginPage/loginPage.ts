@@ -8,7 +8,6 @@ import Dispatcher from '../../modules/dispatcher';
 import router from '../../modules/router';
 import Profile from '../../stores/profile';
 import {Url} from '../../constants/constants';
-import BasePage from '../basePage/basePage';
 import {ProfileStore} from '../../modules/types';
 
 /**
@@ -43,9 +42,8 @@ export default new (class LoginPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data: ProfileStore = null) {
+	render() {
 		const html = loginPageTemp();
 
 		/* Создание контейнера для вставки в DOM */

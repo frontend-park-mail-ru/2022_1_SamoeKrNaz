@@ -2,13 +2,10 @@ import successBlock from '../../components/success/success.hbs';
 import error from '../../components/error/error.hbs';
 
 import BaseView from '../baseView';
-import {Messages, ResponseStatus, Url} from '../../constants/constants';
-import router from '../../modules/router';
 import EventBus from '../../modules/eventBus';
 import {ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
-import {ajaxMethods} from '../../ajax/profile';
 import {ProfileStore} from '../../modules/types';
 
 /**
@@ -35,7 +32,7 @@ export default new (class SettingsView extends BaseView {
 			{
 				type: 'click',
 				className: 'settings__close',
-				func: (e) => {
+				func: () => {
 					const success = document.getElementsByClassName('success_block')[0];
 					if (success) {
 						success.remove();
@@ -74,9 +71,8 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {ProfileStore} data данные, на основе которых будет формироваться страница
 	 */
-	render(data: ProfileStore = null): void {
+	render(): void {
 		this.onUpdate(Profile.getState());
 
 		this._createListeners();

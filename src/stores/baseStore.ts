@@ -1,5 +1,6 @@
 import Dispatcher from '../modules/dispatcher';
 import EventBus from '../modules/eventBus';
+import {DispatcherAction} from '../modules/types';
 
 /**
  * Базовый класс стора, от которого будут наследоваться все остальные сторы
@@ -22,8 +23,9 @@ class Store {
 
 	/**
 	 * Фукнция, которую переопределяют в субклассах, чтобы передавать в диспетчер
+	 * @param {DispatcherAction} action
 	 */
-	_callback() {
+	_callback(action: DispatcherAction) {
 		console.error('Нужно переопределить метод в классе');
 	}
 

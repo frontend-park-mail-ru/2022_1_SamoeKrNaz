@@ -17,7 +17,7 @@ export default new (class BoardsPage extends BaseView {
 			{
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'toggle__block', // Класс, на который навешивается обработчки
-				func: (e) => { // Функция, которая вызывается обработчиком
+				func: () => { // Функция, которая вызывается обработчиком
 					BasePage.toggleLeft();
 				},
 			},
@@ -40,9 +40,8 @@ export default new (class BoardsPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render() {
 		BasePage.render();
 
 		this.onUpdate();
