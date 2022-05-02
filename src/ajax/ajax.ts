@@ -2,6 +2,11 @@ import {backendUrl, frontendUrl} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
 
+type RequestParams = {
+	url: string,
+	opt?,
+};
+
 /**
  * Класс, реализующий методы доступа к апи
  */
@@ -10,37 +15,37 @@ class Ajax {
 	backendUrl = backendUrl;
 	/**
 	 * Метод, реализующий любые GET запросы к апи. Требуется задавать только URL
-	 * @param {object} params - параметры запроса
+	 * @param {RequestParams} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	async get(params = {}) {
+	async get(params: RequestParams) {
 		return await this._ajax('GET', params);
 	}
 
 	/**
 	 * Метод, реализующий любые POST запросы к апи. Требуется задавать URL и OPT данные, которые передаются
-	 * @param {object} params - параметры запроса
+	 * @param {RequestParams} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	async post(params = {}) {
+	async post(params: RequestParams) {
 		return await this._ajax('POST', params);
 	}
 
 	/**
 	 * Метод, реализующий любые DELETE запросы к апи. Требуется задавать только URL
-	 * @param {object} params - параметры запроса
+	 * @param {RequestParams} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	async put(params = {}) {
+	async put(params: RequestParams) {
 		return await this._ajax('PUT', params);
 	}
 
 	/**
 	 * Метод, реализующий любые DELETE запросы к апи. Требуется задавать только URL
-	 * @param {object} params - параметры запроса
+	 * @param {RequestParams} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	async delete(params = {}) {
+	async delete(params: RequestParams) {
 		return await this._ajax('DELETE', params);
 	}
 
@@ -50,9 +55,8 @@ class Ajax {
 	 * @param {object} params - параметры запроса
 	 * @return {promise} - результат запроса
 	 */
-	async _ajax(method, params = {}) {
+	async _ajax(method: string, params: RequestParams) {
 		try {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type '{}'.
 			const response = await fetch(this.backendUrl + params.url, {
 				method: method,
 				mode: 'cors',
@@ -60,7 +64,6 @@ class Ajax {
 				headers: {
 					Origin: this.frontendUrl,
 				},
-				// @ts-expect-error ts-migrate(2339) FIXME: Property 'opt' does not exist on type '{}'.
 				body: params.opt,
 			});
 
