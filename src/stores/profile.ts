@@ -3,7 +3,7 @@ import {ProfileActions, ProfileEvents} from '../modules/actions';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
 import router from '../modules/router';
-import { DispatcherAction, ProfileStore } from '../modules/types';
+import {DispatcherAction, ProfileStore} from '../modules/types';
 
 /**
  * Класс реализующий стор для профиля пользователя

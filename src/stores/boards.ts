@@ -3,7 +3,7 @@ import {BoardsActions, Events, ProfileActions} from '../modules/actions';
 import {ajaxMethods} from '../ajax/boards';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import router from '../modules/router';
-import { DispatcherAction } from '../modules/types';
+import {DispatcherAction} from '../modules/types';
 
 export default new (class Boards extends Store {
 	_data: {

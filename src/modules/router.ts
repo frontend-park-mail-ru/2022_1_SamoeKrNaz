@@ -1,7 +1,7 @@
 import {Url} from '../constants/constants';
 import EventBus from './eventBus';
 import {ProfileEvents} from './actions';
-import { ProfileStore } from './types';
+import {ProfileStore} from './types';
 import BaseView from '../views/baseView';
 
 /**

@@ -1,6 +1,6 @@
 'use strict';
 
-import { EventListener } from '../modules/types';
+import {EventListener} from '../modules/types';
 
 /**
  * Базовый класс View

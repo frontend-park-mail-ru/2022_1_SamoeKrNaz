@@ -1,5 +1,5 @@
 import SignupPageTemp from './signupPage.hbs';
-import error from '../../components/error/error.hbs'
+import error from '../../components/error/error.hbs';
 
 import BaseView from '../baseView';
 import EventBus from '../../modules/eventBus';
@@ -8,7 +8,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
 import router from '../../modules/router';
 import {Url} from '../../constants/constants';
-import { ProfileStore } from '../../modules/types';
+import {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -30,7 +30,7 @@ export default new (class SignupPage extends BaseView {
 
 					const inputPass = document.getElementById('input_pass_rep');
 
-					let promptBlock = document.createElement('div');
+					const promptBlock = document.createElement('div');
 					promptBlock.className = 'auth__block_prompt';
 					promptBlock.innerHTML = 'Для защиты ваших данных необходимо придумать безопасный пароль. Он должен содержать:';
 

@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildHandleBars": "bash buildHandlebars.sh && npx eslint src/*/*.js && sass src/css/style.scss src/css/style.css",
     "buildScss": "sass src/css/style.scss src/css/style.css",
-    "checkLinters": "npx eslint src/*/*/*/*.ts && npx stylelint src/*/*.scss src/css/*.css",
-    "checkLintersFix": "npx eslint src/*/*/*/*.js --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
+    "checkLinters": "npx eslint ./src/. --ext .ts && npx stylelint src/*/*.scss src/css/*.css",
+    "checkLintersFix": "npx eslint ./src/. --ext .ts --fix && npx stylelint src/*/*.scss src/css/*.css --fix",
     "start": "cd server && node server.js",
     "startDev": "cd server && node server_dev.js",
     "build": "webpack --watch"
@@ -56,6 +56,7 @@
     "stylelint": "^14.5.3",
     "stylelint-config-standard": "^25.0.0",
     "ts-migrate": "^0.1.28",
+    "tslint": "^6.1.3",
     "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2"

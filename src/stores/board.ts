@@ -4,7 +4,7 @@ import {ajaxMethods} from '../ajax/board';
 import {Messages, ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
-import { DispatcherAction } from '../modules/types';
+import {DispatcherAction} from '../modules/types';
 
 export default new (class Board extends Store {
 	_data: {
@@ -21,7 +21,7 @@ export default new (class Board extends Store {
 				}>,
 			}>,
 		}
-	}
+	};
 
 	/**
 	 * @constructor

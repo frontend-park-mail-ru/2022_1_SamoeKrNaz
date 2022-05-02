@@ -52,7 +52,7 @@ class Ajax {
 	 */
 	async _ajax(method, params = {}) {
 		try {
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type '{}'.
+			// @ts-expect-error ts-migrate(2339) FIXME: Property 'url' does not exist on type '{}'.
 			const response = await fetch(this.backendUrl + params.url, {
 				method: method,
 				mode: 'cors',
@@ -60,7 +60,7 @@ class Ajax {
 				headers: {
 					Origin: this.frontendUrl,
 				},
-// @ts-expect-error ts-migrate(2339) FIXME: Property 'opt' does not exist on type '{}'.
+				// @ts-expect-error ts-migrate(2339) FIXME: Property 'opt' does not exist on type '{}'.
 				body: params.opt,
 			});
 

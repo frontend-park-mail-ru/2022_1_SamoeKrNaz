@@ -9,7 +9,7 @@ import router from '../../modules/router';
 import Profile from '../../stores/profile';
 import {Url} from '../../constants/constants';
 import BasePage from '../basePage/basePage';
-import { ProfileStore } from '../../modules/types';
+import {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.

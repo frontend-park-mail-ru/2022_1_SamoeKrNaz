@@ -1,4 +1,4 @@
-import { DispatcherAction } from './types';
+import {DispatcherAction} from './types';
 
 type Callback = (action: DispatcherAction) => void;
 

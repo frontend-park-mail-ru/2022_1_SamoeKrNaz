@@ -9,7 +9,7 @@ import {ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
 import {ajaxMethods} from '../../ajax/profile';
-import { ProfileStore } from '../../modules/types';
+import {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
