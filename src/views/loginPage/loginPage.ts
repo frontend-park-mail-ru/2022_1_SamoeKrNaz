@@ -9,6 +9,7 @@ import router from '../../modules/router';
 import Profile from '../../stores/profile';
 import {Url} from '../../constants/constants';
 import BasePage from '../basePage/basePage';
+import { ProfileStore } from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -44,7 +45,7 @@ export default new (class LoginPage extends BaseView {
 	 * Метод отвечающий за генерацию View
 	 * @param {object} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render(data: ProfileStore = null) {
 		const html = loginPageTemp();
 
 		/* Создание контейнера для вставки в DOM */
@@ -65,7 +66,7 @@ export default new (class LoginPage extends BaseView {
 	 * Метод выводящий сообщение об ошибке на страницу логина
 	 * @param {object} data состояние пользователя
 	 */
-	loginError(data) {
+	loginError(data: ProfileStore) {
 		const el = document.getElementsByClassName('auth__block_error')[0];
 		if (el) {
 			el.remove();

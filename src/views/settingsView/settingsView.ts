@@ -9,6 +9,7 @@ import {ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
 import {ajaxMethods} from '../../ajax/profile';
+import { ProfileStore } from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -73,9 +74,9 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
+	 * @param {ProfileStore} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render(data: ProfileStore = null): void {
 		this.onUpdate(Profile.getState());
 
 		this._createListeners();
@@ -83,21 +84,19 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод, вызывающийся при обновлении стора досок
-	 * @param {object} data состояние стора
+	 * @param {ProfileStore} data состояние стора
 	 */
-	onUpdate(data) {
+	onUpdate(data: ProfileStore): void {
 		if (data.username) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-			document.getElementById('input_login').value = data.username;
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type 'Element'.
-			document.getElementsByClassName('settings__avatar')[0].src = data.img;
+			(<HTMLInputElement>document.getElementById('input_login')).value = data.username;
+			(<HTMLInputElement>document.getElementsByClassName('settings__avatar')[0]).src = data.img;
 		}
 	}
 
 	/**
 	 * Метод, навешивающий обработчки на страницу
 	 */
-	_createListeners() {
+	_createListeners(): void {
 		super._createListeners();
 
 		/* Навешивание обработчика валидации данных для формы регистрации */
@@ -106,12 +105,9 @@ export default new (class SettingsView extends BaseView {
 			console.log(e);
 			Dispatcher.dispatch({
 				type: ProfileActions.update,
-				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-				login: document.getElementById('input_login').value,
-				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-				password: document.getElementById('input_pass').value,
-				// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-				passwordRepeat: document.getElementById('input_pass_rep').value,
+				login: (<HTMLInputElement>document.getElementById('input_login')).value,
+				password: (<HTMLInputElement>document.getElementById('input_pass')).value,
+				passwordRepeat: (<HTMLInputElement>document.getElementById('input_pass_rep')).value,
 			});
 			return false;
 		};
@@ -119,9 +115,9 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод выводящий сообщение об успешной валидации в настройках
-	 * @param {object} data состояние пользователя
+	 * @param {ProfileStore} data состояние пользователя
 	 */
-	saveSuccess(data) {
+	saveSuccess(data: ProfileStore): void {
 		const success = document.getElementsByClassName('success_block')[0];
 		if (success) {
 			success.remove();
@@ -138,9 +134,9 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод выводящий сообщение об ошибке валидации в настройках
-	 * @param {object} data состояние пользователя
+	 * @param {ProfileStore} data состояние пользователя
 	 */
-	saveUnSuccess(data) {
+	saveUnSuccess(data: ProfileStore): void {
 		const success = document.getElementsByClassName('success_block')[0];
 		if (success) {
 			success.remove();
@@ -157,9 +153,9 @@ export default new (class SettingsView extends BaseView {
 
 	/**
 	 * Метод обновляющий аватарку при удачном запросе
-	 * @param {object} data состояние пользователя
+	 * @param {ProfileStore} data состояние пользователя
 	 */
-	avatarSuccess(data) {
+	avatarSuccess(data: ProfileStore): void {
 		const success = document.getElementsByClassName('success_block')[0];
 		if (success) {
 			success.remove();
@@ -173,16 +169,15 @@ export default new (class SettingsView extends BaseView {
 		const html = successBlock({successText: data.avatar.successAv});
 		sep.outerHTML += html;
 		const randomString = performance.now();
-		const avatar = document.getElementsByClassName('settings__avatar')[0];
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type 'Element'.
+		const avatar = (<HTMLInputElement>document.getElementsByClassName('settings__avatar')[0]);
 		avatar.src = data.avatar.avatarPath + '?' + randomString;
 	}
 
 	/**
 	 * Метод выводящий сообщение об ошибке загрузки аватарки
-	 * @param {object} data состояние пользователя
+	 * @param {ProfileStore} data состояние пользователя
 	 */
-	avatarUnSuccess(data) {
+	avatarUnSuccess(data: ProfileStore): void {
 		const success = document.getElementsByClassName('success_block')[0];
 		if (success) {
 			success.remove();
@@ -193,8 +188,6 @@ export default new (class SettingsView extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('settings__separator')[1];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const error = Handlebars.templates.error;
 		const html = error({settings: true, errorText: data.avatar.unSuccessAv});
 		sep.outerHTML += html;
 	}

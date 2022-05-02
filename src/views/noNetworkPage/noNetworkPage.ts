@@ -9,8 +9,7 @@ export default new (class NoNetworkPage extends BaseView {
 	 * @constructor
 	 */
 	constructor() {
-		super([
-		]);
+		super([]);
 	}
 
 	/**

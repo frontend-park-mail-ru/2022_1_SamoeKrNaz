@@ -8,6 +8,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
 import router from '../../modules/router';
 import {Url} from '../../constants/constants';
+import { ProfileStore } from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -82,9 +83,9 @@ export default new (class SignupPage extends BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
-	 * @param {object} data данные, на основе которых будет формироваться страница
+	 * @param {ProfileStore} data данные, на основе которых будет формироваться страница
 	 */
-	render(data = null) {
+	render(data: ProfileStore = null): void {
 		const html = SignupPageTemp({});
 
 		/* Создание контейнера для вставки в DOM */
@@ -103,9 +104,9 @@ export default new (class SignupPage extends BaseView {
 
 	/**
 	 * Метод выводящий сообщение об ошибке на страницу логина
-	 * @param {object} data состояние пользователя
+	 * @param {ProfileStore} data состояние пользователя
 	 */
-	registerError(data) {
+	registerError(data: ProfileStore): void {
 		const el = document.getElementsByClassName('auth__block_error')[0];
 		if (el) {
 			el.remove();

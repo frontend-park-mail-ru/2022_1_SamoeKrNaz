@@ -3,29 +3,13 @@ import {ProfileActions, ProfileEvents} from '../modules/actions';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
 import router from '../modules/router';
-import { DispatcherAction } from '../modules/types';
+import { DispatcherAction, ProfileStore } from '../modules/types';
 
 /**
  * Класс реализующий стор для профиля пользователя
  */
 class Profile extends Store {
-	_data: {
-		isAuth: boolean,
-		id: number,
-		username: string,
-		img: string,
-
-		validation: {
-			errorMsg: string,
-			successMsg: string,
-		},
-
-		avatar: {
-			successAv: string,
-			unSuccessAv: string,
-			avatarPath: string,
-		},
-	};
+	_data: ProfileStore;
 
 	/**
 	 * @constructor

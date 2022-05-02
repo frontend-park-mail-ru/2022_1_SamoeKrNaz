@@ -9,8 +9,7 @@ export default new (class NotFoundPage extends BaseView {
 	 * @constructor
 	 */
 	constructor() {
-		super([
-		]);
+		super([]);
 	}
 
 	/**
