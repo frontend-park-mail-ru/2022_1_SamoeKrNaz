@@ -3,6 +3,7 @@ import boardModal from '../../components/boardModal/boardModal.hbs';
 import error from '../../components/error/error.hbs';
 
 import BaseView from '../baseView';
+import TaskView from '../taskView/taskView';
 import BasePage from '../basePage/basePage';
 import EventBus from '../../modules/eventBus';
 import {BoardActions, Events} from '../../modules/actions';
@@ -178,20 +179,7 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk__task-text', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
-					this.openModal({
-						type: BoardActions.updateTask,
-						id: e.target.dataset.id,
-						title: 'Редактирование карточки',
-						inputs: [
-							{
-								len: true,
-								isTypeInput: true,
-								name: 'title',
-								placeholder: 'Название карточки',
-								value: e.target.innerText,
-							},
-						],
-					});
+					TaskView.render(e);
 				},
 			},
 			{

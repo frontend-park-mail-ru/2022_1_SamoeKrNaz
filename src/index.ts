@@ -8,6 +8,7 @@ import router from './modules/router';
 import Profile from './stores/profile';
 import Boards from './stores/boards';
 import Board from './stores/board';
+import Task from './stores/task';
 
 import LoginPage from './views/loginPage/loginPage';
 import BoardsPage from './views/boardsPage/boardsPage';
@@ -21,6 +22,7 @@ import NoNetworkPage from './views/noNetworkPage/noNetworkPage';
 // названия классов, чьи конструкторы должны сработать при импорте
 Board;
 Boards;
+Task;
 
 if (!Profile.isLoad()) {
 	Dispatcher.dispatch({

@@ -62,3 +62,7 @@ export interface BoardStore {
 	}>,
 	Lists: List,
 };
+
+export interface TaskStore {
+	title: string,
+}

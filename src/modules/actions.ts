@@ -34,6 +34,10 @@ export const BoardActions = {
 	findUsers: 'findUsers',
 };
 
+export const TaskActions = {
+	loadTask: 'loadTask',
+};
+
 export const BoardsActions = {
 	loadBoards: 'loadBoards',
 	createBoard: 'createBoard',
@@ -44,5 +48,6 @@ export const Events = {
 	boardsCreateError: 'boardsError',
 	boardUpdate: 'board',
 	boardError: 'boardError',
+	taskUpdate: 'taskUpdate',
 };
 
