@@ -1,29 +1,31 @@
 import Dispatcher from '../modules/dispatcher';
 import EventBus from '../modules/eventBus';
+import { DispatcherAction } from '../modules/types';
 
 /**
  * Базовый класс стора, от которого будут наследоваться все остальные сторы
  */
 class Store {
+	_data: any;
+	_name: string;
+
 	/**
 	 * @constructor
 	 * @param {string} name название события
-	 * @param {object} data состояние стора
+	 * @param {any} data состояние стора
 	 */
-	constructor(name, data) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Store'.
+	constructor(name: string, data: any) {
 		this._data = data;
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_name' does not exist on type 'Store'.
 		this._name = name;
-		console.log(name)
+
 		Dispatcher.register(this._callback.bind(this));
 	}
 
 	/**
 	 * Фукнция, которую переопределяют в субклассах, чтобы передавать в диспетчер
-	 * @param {object} action событие
+	 * @param {DispatcherAction} action событие
 	 */
-	_callback(action) {
+	_callback(action: DispatcherAction) {
 		console.error('Нужно переопределить метод в классе');
 	}
 
@@ -32,8 +34,7 @@ class Store {
 	 * сторов. Она формирует название с названием стора и передает состояние хранилища
 	 * @param {string} event название события
 	 */
-	_publish(event) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Store'.
+	_publish(event: string) {
 		EventBus.publish(event, this._data);
 	}
 }
