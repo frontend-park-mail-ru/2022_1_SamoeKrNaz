@@ -1,11 +1,15 @@
 {
-
     "env": {
         "browser": true,
         "es2021": true
     },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "extends": [
-        "google"
+        "google",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",

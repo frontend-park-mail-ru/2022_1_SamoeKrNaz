@@ -114,7 +114,6 @@ export default new (class basePage extends BaseView {
 				type: 'click',
 				className: 'createDesk__settings_save',
 				func: (e) => {
-					console.log(1)
 					Dispatcher.dispatch({
 						type: BoardsActions.createBoard,
 						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'Element'.
