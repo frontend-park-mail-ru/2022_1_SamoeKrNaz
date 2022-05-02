@@ -1,6 +1,7 @@
 import {Url} from '../constants/constants';
 import EventBus from './eventBus';
 import {ProfileEvents} from './actions';
+import { ProfileStore } from './types';
 import BaseView from '../views/baseView';
 
 /**
@@ -33,9 +34,9 @@ class Router {
 
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
-	 * @param {object} data состояние стора пользователя
+	 * @param {ProfileStore} data состояние стора пользователя
 	 */
-	start(data) {
+	start(data: ProfileStore): void {
 		this._body.addEventListener('click', (event) => {
 			// @ts-ignore
 			event.path.map((el) => { // path существует в типе MouseEvent, а ts думает, что нет
@@ -69,9 +70,9 @@ class Router {
 	/**
 	 * Старт роутера, регистрируем на все ссылки переключение с помощью роутера
 	 * @param {string} path Урл для рендера
-	 * @param {*} context Данные с бэка для рендера страницы
+	 * @param {object} context Данные с бэка для рендера страницы
 	 */
-	open(path, context = null) {
+	open(path: string, context: object = null): void {
 		if (this._currentView) {
 			this._currentView.removeListeners();
 		}
@@ -106,14 +107,14 @@ class Router {
 	/**
 	 * Переключение страницы назад
 	 */
-	back() {
+	back(): void {
 		window.history.back();
 	}
 
 	/**
 	 * Переключение страницы вперед
 	 */
-	forward() {
+	forward(): void {
 		window.history.forward();
 	}
 }
