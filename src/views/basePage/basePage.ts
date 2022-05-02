@@ -1,4 +1,6 @@
 import basePageTemp from './basePage.hbs';
+import error from '../../components/error/error';
+
 import BaseView from '../baseView';
 import {Url, Sizes} from '../../constants/constants';
 import router from '../../modules/router';
@@ -11,6 +13,11 @@ import SettingsView from '../settingsView/settingsView';
  * Класс, реализующий страницу логина.
  */
 export default new (class basePage extends BaseView {
+	pageStatus: {
+		isRightMenu: boolean,
+		isLeftMenu: boolean,
+	};
+
 	/**
 	 * @constructor
 	 */
@@ -116,10 +123,8 @@ export default new (class basePage extends BaseView {
 				func: (e) => {
 					Dispatcher.dispatch({
 						type: BoardsActions.createBoard,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'Element'.
-						title: document.getElementsByClassName('createDesk__settings_input')[0].value,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'Element'.
-						description: document.getElementsByClassName('createDesk__settings_textarea')[0].value,
+						title: (<HTMLInputElement>document.getElementsByClassName('createDesk__settings_input')[0]).value,
+						description: (<HTMLInputElement>document.getElementsByClassName('createDesk__settings_textarea')[0]).value,
 					});
 				},
 			},
@@ -137,7 +142,6 @@ export default new (class basePage extends BaseView {
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
 
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 		this.pageStatus = {
 			isRightMenu: true,
 			isLeftMenu: false,
@@ -154,7 +158,6 @@ export default new (class basePage extends BaseView {
 		}
 
 		const html = basePageTemp({
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: this.pageStatus,
 		});
 
@@ -180,7 +183,6 @@ export default new (class basePage extends BaseView {
 	 * Функция открытия/закрытия правого меню
 	 */
 	toggleRight() {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 		this.pageStatus.isRightMenu = !this.pageStatus.isRightMenu;
 
 		document.getElementsByClassName('main')[0].classList.toggle('active-tasks-open');
@@ -193,14 +195,13 @@ export default new (class basePage extends BaseView {
 	 * Функция открытия/закрытия левого меню
 	 */
 	toggleLeft() {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 		this.pageStatus.isLeftMenu = !this.pageStatus.isLeftMenu;
 
 		document.getElementsByClassName('header')[0].classList.toggle('header_open');
 		document.getElementsByClassName('main')[0].classList.toggle('menu-open');
 		document.getElementById('search-icon').classList.toggle('toggle__icon_open');
 		const bg = document.getElementsByClassName('header__background')[0];
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
+
 		if (this.pageStatus.isLeftMenu) {
 			bg.classList.add('header__background_block');
 			bg.classList.add('header__background_active');
@@ -221,8 +222,7 @@ export default new (class basePage extends BaseView {
 		}
 
 		const sep = document.getElementsByClassName('createDesk__separator')[0];
-		// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'Handlebars'.
-		const error = Handlebars.templates.error;
+
 		const html = error({settings: true, errorText: data.validation.errorMsg});
 		sep.outerHTML += html;
 	}

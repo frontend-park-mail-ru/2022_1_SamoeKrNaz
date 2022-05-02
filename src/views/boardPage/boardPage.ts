@@ -220,7 +220,6 @@ export default new (class BoardPage extends BaseView {
 		this.removeListeners();
 
 		const html = boardPageTemp({
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'pageStatus' does not exist on type 'base... Remove this comment to see the full error message
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
 		});
