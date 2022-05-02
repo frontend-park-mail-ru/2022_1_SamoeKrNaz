@@ -1,20 +1,22 @@
 import {Url} from '../constants/constants';
 import EventBus from './eventBus';
 import {ProfileEvents} from './actions';
+import BaseView from '../views/baseView';
 
 /**
  * Класс, реализующий смену страниц и историю перемещений по странице
  */
 class Router {
+	_routes: Map<string, BaseView>;
+	_body: HTMLElement;
+	_currentView: BaseView;
+
 	/**
 	 * @constructor
 	 */
 	constructor() {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
-		this.routes = {}; // маршруты, куда будем складывать путь-View
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
-		this.body = document.body; // берем тело index.html
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
+		this._routes = new Map(); // маршруты, куда будем складывать путь-View
+		this._body = document.body; // берем тело index.html
 		this._currentView = null; // класс текущего вью
 
 		EventBus.subscribe(ProfileEvents.load, this.start.bind(this));
@@ -23,13 +25,10 @@ class Router {
 	/**
 	 * Регистрация пути path и View к этому пути
 	 * @param {string} path для регистрации
-	 * @param {*} view View, которую регистрируем
-	 * @return {Router} ссылка на объект роутера
+	 * @param {BaseView} view View, которую регистрируем
 	 */
-	register(path, view) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
-		this.routes[path] = view;
-		return this;
+	register(path: string, view: BaseView): void {
+		this._routes.set(path, view);
 	}
 
 	/**
@@ -37,9 +36,9 @@ class Router {
 	 * @param {object} data состояние стора пользователя
 	 */
 	start(data) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
-		this.body.addEventListener('click', (event) => {
-			event.path.map((el) => {
+		this._body.addEventListener('click', (event) => {
+			// @ts-ignore
+			event.path.map((el) => { // path существует в типе MouseEvent, а ts думает, что нет
 				if (el instanceof HTMLAnchorElement) {
 					event.preventDefault();
 					this.open(el.pathname);
@@ -73,14 +72,12 @@ class Router {
 	 * @param {*} context Данные с бэка для рендера страницы
 	 */
 	open(path, context = null) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 		if (this._currentView) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
 			this._currentView.removeListeners();
 		}
 
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'body' does not exist on type 'Router'.
-		this.body.removeEventListener('click', (event) => {
+		this._body.removeEventListener('click', (event) => {
+			// @ts-ignore
 			event.path.map((el) => {
 				if (el instanceof HTMLAnchorElement) {
 					event.preventDefault();
@@ -89,9 +86,7 @@ class Router {
 			});
 		});
 
-		// @ts-expect-error ts-migrate(2339) FIXME: Property 'routes' does not exist on type 'Router'.
-		const view = this.routes[path.replace(/\/board\/\d+/g, '/board/<id>')];
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_currentView' does not exist on type 'Ro... Remove this comment to see the full error message
+		const view = this._routes.get(path.replace(/\/board\/\d+/g, '/board/<id>'));
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь
