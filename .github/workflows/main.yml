@@ -25,6 +25,6 @@ jobs:
       - name: Install
         run: npm install
       - name: Start eslint
-        run: npx eslint src/*/*.js
+        run: npx eslint src/**/*.js
       - name: Start stylelint
-        run: npx stylelint src/css/*.css src/*/*.scss
+        run: npx stylelint src/**/*.css src/**/*.scss

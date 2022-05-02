@@ -1,5 +1,4 @@
 {
-
     "env": {
         "browser": true,
         "es2021": true
@@ -15,9 +14,10 @@
     "rules": {
         "semi": [2, "always"],
         "linebreak-style": ["error", "unix"],
-        "indent": [1, "tab"],
+        "indent": ["error", "tab"],
         "no-tabs": 0,
         "no-unused-vars": 0,
+        "no-invalid-this": "off",
         "max-len": [1, 500]
     }
 }
