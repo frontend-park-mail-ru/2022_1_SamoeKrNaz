@@ -3,39 +3,51 @@ import {ProfileActions, ProfileEvents} from '../modules/actions';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
 import router from '../modules/router';
+import { DispatcherAction } from '../modules/types';
 
 /**
  * Класс реализующий стор для профиля пользователя
  */
 class Profile extends Store {
+	_data: {
+		isAuth: boolean,
+		id: number,
+		username: string,
+		img: string,
+
+		validation: {
+			errorMsg: string,
+			successMsg: string,
+		},
+
+		avatar: {
+			successAv: string,
+			unSuccessAv: string,
+			avatarPath: string,
+		},
+	};
+
 	/**
 	 * @constructor
 	 */
 	constructor() {
 		super('Profile', {
-			isAuth: undefined,
-			id: undefined,
-			username: undefined,
-			img: undefined,
+			isAuth: null,
+			id: null,
+			username: null,
+			img: null,
 
-			validation: {
-				errorMsg: undefined,
-				successMsg: undefined,
-			},
+			validation: {},
 
-			avatar: {
-				successAv: undefined,
-				unSuccessAv: undefined,
-				avatarPath: undefined,
-			},
+			avatar: {},
 		});
 	}
 
 	/**
 	 * Метод, который переопределяют в субклассах, чтобы передавать в диспетчер
-	 * @param {object} action событие
+	 * @param {DispatcherAction} action событие
 	 */
-	async _callback(action) {
+	async _callback(action: DispatcherAction) {
 		switch (action.type) {
 		case ProfileActions.loadProfile:
 			await this._loadProfile();
@@ -66,7 +78,6 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.unAuth:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.isAuth = false;
 			break;
 		case ResponseStatus.success:
@@ -79,23 +90,20 @@ class Profile extends Store {
 
 	/**
 	 * Получение и обработка информации о профиле пользователя при логине
-	 * @param {object} data инфорация о событии
+	 * @param {DispatcherAction} data инфорация о событии
 	 */
-	async _loginValidation(data) {
+	async _loginValidation(data: DispatcherAction) {
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.login);
 			return;
 		}
 		if (data.login.length <= 6 || data.login.length > 20) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLogin'];
 			this._publish(ProfileEvents.login);
 			return;
 		}
 		if (data.password.length <= 6 || data.password.length > 20) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortPassword'];
 			this._publish(ProfileEvents.login);
 			return;
@@ -109,7 +117,6 @@ class Profile extends Store {
 			router.open(Url.base);
 			break;
 		case ResponseStatus.badRequest:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['notLogin'];
 			this._publish(ProfileEvents.login);
 			break;
@@ -118,29 +125,25 @@ class Profile extends Store {
 
 	/**
 	 * Получение и обработка информации о профиле пользователя при регистрации
-	 * @param {object} data инфорация о событии
+	 * @param {DispatcherAction} data инфорация о событии
 	 */
-	async _registerValidation(data) {
+	async _registerValidation(data: DispatcherAction) {
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.register);
 			return false;
 		}
 		if (data.login.length <= 6 || data.login.length > 20) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLogin'];
 			this._publish(ProfileEvents.register);
 			return false;
 		}
 		if (data.password.length <= 6 || data.password.length > 20) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortPassword'];
 			this._publish(ProfileEvents.register);
 			return false;
 		}
 		if (data.password !== data.passwordRepeat) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['repeatPassword'];
 			this._publish(ProfileEvents.register);
 			return false;
@@ -154,7 +157,6 @@ class Profile extends Store {
 			router.open(Url.base);
 			break;
 		case ResponseStatus.conflict:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['alreadyRegister'];
 			this._publish(ProfileEvents.register);
 			break;
@@ -163,33 +165,28 @@ class Profile extends Store {
 
 	/**
 	 * Получение и обработка информации о профиле пользователя при регистрации
-	 * @param {object} data инфорация о событии
+	 * @param {DispatcherAction} data инфорация о событии
 	 */
-	async _updateInformation(data) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
+	async _updateInformation(data: DispatcherAction) {
 		if (data.login === this._data.username && data.password.length === 0 && data.passwordRepeat.length === 0) {
 			return false;
 		}
 		if ((data.login.length <= 6 || data.login.length > 20) && (data.login.length <= 6 || data.login.length > 20)) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLoginPassword'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;
 		}
 		if (data.login.length <= 6 || data.login.length > 20) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortLogin'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;
 		}
 		if ((data.password.length !== 0 || data.passwordRepeat.length !== 0) && (data.password.length <= 6 || data.password.length > 20)) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['shortPassword'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;
 		}
 		if (data.password !== data.passwordRepeat) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['repeatPassword'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			return false;
@@ -197,10 +194,10 @@ class Profile extends Store {
 
 		const payload = {
 			username: data.login,
+			password: null,
 		};
 
 		if (data.password.length !== 0) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property 'password' does not exist on type '{ user... Remove this comment to see the full error message
 			payload.password = data.password;
 		}
 
@@ -208,12 +205,10 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.successMsg = Messages['updateSuccess'];
 			this._publish(ProfileEvents.updateSuccess);
 			break;
 		case ResponseStatus.badRequest:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.validation.errorMsg = Messages['alreadyRegister'];
 			this._publish(ProfileEvents.updateUnSuccess);
 			break;
@@ -222,11 +217,10 @@ class Profile extends Store {
 
 	/**
 	 * Загрузка аватара и дальнейшее обновление
-	 * @param {Object} data инфорация о событии
+	 * @param {DispatcherAction} data инфорация о событии
 	 */
-	async _uploadAvatar(data) {
+	async _uploadAvatar(data: DispatcherAction) {
 		if (data.data.size > 5000 * 1024) {
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.avatar.unSuccessAv = Messages['bigSize'];
 			this._publish(ProfileEvents.updateAvatarUnSuccess);
 			return;
@@ -238,14 +232,11 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.avatar.successAv = Messages['updateSuccess'];
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.avatar.avatarPath = '../avatars/' + res.body.avatar_path;
 			this._publish(ProfileEvents.updateAvatarSuccess);
 			break;
 		case ResponseStatus.badRequest:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.avatar.unSuccessAv = Messages['updateUnSuccess'];
 			this._publish(ProfileEvents.updateAvatarUnSuccess);
 			break;
@@ -260,9 +251,7 @@ class Profile extends Store {
 
 		switch (res.status) {
 		case ResponseStatus.success:
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.isAuth = false;
-			// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 			this._data.username = null;
 			router.open(Url.login);
 			break;
@@ -271,17 +260,13 @@ class Profile extends Store {
 
 	/**
 	 * Метод, авторизующий пользователя в сторе
-	 * @param {object} data инфа о авторизировавшимся пользователе
+	 * @param {DispatcherAction} data инфа о авторизировавшимся пользователе
 	 */
-	_loadInfo(data) {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
+	_loadInfo(data: DispatcherAction) {
 		this._data.isAuth = true;
 
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 		this._data.id = data.id;
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 		this._data.username = data.username;
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 		this._data.img = '../' + data.img_avatar;
 	}
 
@@ -290,7 +275,6 @@ class Profile extends Store {
 	 * @return {string}
 	 */
 	isLoad() {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 		return this._data.isAuth;
 	}
 
@@ -299,7 +283,6 @@ class Profile extends Store {
 	 * @return {object}
 	 */
 	getState() {
-		// @ts-expect-error ts-migrate(2339) FIXME: Property '_data' does not exist on type 'Profile'.
 		return this._data;
 	}
 }
