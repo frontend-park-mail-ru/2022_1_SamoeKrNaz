@@ -4,6 +4,9 @@
     "target": "es6",
     "allowJs": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
+  "include": [
+    "./src/**/**/**/*",
+  ]
 }

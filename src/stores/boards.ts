@@ -75,7 +75,6 @@ export default new (class Boards extends Store {
 		const payload = {
 			title: data.title,
 			description: null,
-
 		};
 
 		if (data.description.length !== 0) {
