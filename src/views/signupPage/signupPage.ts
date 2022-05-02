@@ -43,9 +43,7 @@ export default new (class SignupPage extends BaseView {
 					firstReq.innerHTML += '7 и более символов';
 					inputPass.parentNode.insertBefore(promptBlock, inputPass.nextSibling);
 
-					// @ts-expect-error ts-migrate(2740) FIXME: Type 'Element' is missing the following properties... Remove this comment to see the full error message
-					promptBlock = document.getElementsByClassName('auth__block_prompt')[0];
-					promptBlock.appendChild(firstReq);
+					document.getElementsByClassName('auth__block_prompt')[0]?.appendChild(firstReq);
 				},
 			},
 			{
@@ -65,12 +63,9 @@ export default new (class SignupPage extends BaseView {
 					e.preventDefault();
 					Dispatcher.dispatch({
 						type: ProfileActions.register,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-						login: document.getElementById('input_login').value,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-						password: document.getElementById('input_pass').value,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-						passwordRepeat: document.getElementById('input_pass_rep').value,
+						login: (<HTMLInputElement>document.getElementById('input_login')).value,
+						password: (<HTMLInputElement>document.getElementById('input_pass')).value,
+						passwordRepeat: (<HTMLInputElement>document.getElementById('input_pass_rep')).value,
 					});
 
 					return false;
