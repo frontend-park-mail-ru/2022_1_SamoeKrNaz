@@ -26,10 +26,8 @@ export default new (class LoginPage extends BaseView {
 					e.preventDefault();
 					Dispatcher.dispatch({
 						type: ProfileActions.login,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-						login: document.getElementById('input_login').value,
-						// @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-						password: document.getElementById('input_pass').value,
+						login: (<HTMLInputElement>document.getElementById('input_login')).value,
+						password: (<HTMLInputElement>document.getElementById('input_pass')).value,
 					});
 
 					return false;
