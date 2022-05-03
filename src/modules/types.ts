@@ -68,4 +68,5 @@ export interface BoardStore {
 export interface TaskStore {
 	title: string,
 	append_users: Users,
+	idt: number,
 }
