@@ -28,16 +28,16 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.tsx?$/,
-				loader: 'ts-loader',
-				exclude: path.resolve(__dirname, 'node_modules/'),
-			},
-			{
 				test: /\.hbs$/,
 				loader: 'handlebars-loader',
 				options: {
 					partialDirs: path.resolve(__dirname, 'src/components'),
 				},
+			},
+			{
+				test: /\.tsx?$/,
+				loader: 'ts-loader',
+				exclude: path.resolve(__dirname, 'node_modules/'),
 			},
 			{
 				test: /\.js$/,
