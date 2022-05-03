@@ -1,69 +1,85 @@
 .main {
+  &__content {
+    height: calc(100vh - 146px);
+    padding: 0 15px 15px;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    overflow-x: auto;
 
-	&__content {
-		height: calc(100vh - 146px);
-		padding: 0 15px 15px;
-		display: flex;
-		flex-flow: column wrap;
-		align-content: flex-start;
-		overflow-x: auto;
-	}
+    @include media("max", "lg") {
+      overflow-x: unset;
+      flex-direction: row;
+      padding: 0 5px 15px;
+      height: auto;
+    }
+  }
 }
 
 .desk {
-	background: $white;
-	border-radius: $button-radius;
-	box-shadow: $shadow;
-	cursor: pointer;
-	padding: 20px;
-	margin: 15px;
-	width: 275px;
-	text-decoration: none;
-	color: var(--color-black);
+  background: $white;
+  border-radius: $button-radius;
+  box-shadow: $shadow;
+  cursor: pointer;
+  padding: 20px;
+  margin: 15px;
+  width: 275px;
+  text-decoration: none;
+  color: var(--color-black);
 
-	&__title {
-		font-weight: 500;
-		font-size: 18px;
-		line-height: 21px;
-		letter-spacing: 0.02em;
-	}
-	&__description {
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 16px;
-		letter-spacing: 0.02em;
-		margin: 20px 0;
-		color: $gray-color;
-		word-break: break-word;
-	}
-	&__date {
-		font-weight: 400;
-		font-size: 13px;
-		line-height: 15px;
-		letter-spacing: 0.02em;
-		color: $gray-color;
-	}
-	&__globalTitle {
-		font-weight: 500;
-		font-size: 18px;
-		line-height: 21px;
-		letter-spacing: 0.02em;
-		padding: 15px 0 0 15px;
-		margin: 15px 0 0 15px;
-	}
+  &__title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.02em;
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    margin: 20px 0;
+    color: $gray-color;
+    word-break: break-word;;
+  }
+
+  &__date {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    color: $gray-color;
+  }
+
+  &__globalTitle {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.02em;
+    padding: 15px 0 0 15px;
+    margin: 15px 0 0 15px;
+
+    @include media("max", "lg") {
+      margin: 0 5px;
+    }
+  }
+
+  @include media("max", "lg") {
+    width: 100%;
+  }
 }
 
-.toggle {
-
-	&__block {
-		background: $white;
-		box-shadow: $shadow;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 40px;
-		width: 40px;
-		border-radius: 20px;
-		cursor: pointer;
-	}
+.toggle{
+  &__block {
+    background: $white;
+    box-shadow: $shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
 }

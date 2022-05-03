@@ -4,7 +4,7 @@
   "rules": {
     "at-rule-no-unknown": null,
     "indentation": "tab",
-    "selector-class-pattern": "^([a-z][a-z0-9-]*)(_?_[a-z0-9-]+)*",
+    "selector-class-pattern": "^([a-z][a-z0-9-]*)(_?_[a-z0-9-]+)*$",
     "rule-empty-line-before": [
       "always", {
         "except": ["inside-block-and-after-rule"]
