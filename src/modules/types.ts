@@ -51,18 +51,21 @@ export type List = Array<{
 	Tasks: Task,
 }>;
 
+export type Users = Array<{
+	idu: number,
+	username: string,
+	img_avatar: string,
+}>;
+
 export interface BoardStore {
 	idb: number,
 	title: string,
 	description: string,
-	Users: Array<{
-		idu: number,
-		username: string,
-		img_avatar: string,
-	}>,
+	Users: Users,
 	Lists: List,
 };
 
 export interface TaskStore {
 	title: string,
+	append_users: Users,
 }

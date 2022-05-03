@@ -4,7 +4,7 @@ import {ajaxMethods} from '../ajax/board';
 import {ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
-import {BoardStore, DispatcherAction} from '../modules/types';
+import {BoardStore, DispatcherAction, Users} from '../modules/types';
 
 export default new (class Board extends Store {
 	_data: {
@@ -279,6 +279,15 @@ export default new (class Board extends Store {
 			break;
 		}
 	}
+
+	/**
+	 * Получение title
+	 * @return {string}
+	 */
+	getUsers(): Users {
+		return this._data.board.Users;
+	}
+
 
 	/**
 	 * Получение title
