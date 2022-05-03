@@ -1,4 +1,4 @@
-import SignupPageTemp from './signupPage.hbs';
+import signupPageTemp from './signupPage.hbs';
 import error from '../../components/error/error.hbs';
 
 import BaseView from '../baseView';
@@ -8,7 +8,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Profile from '../../stores/profile';
 import router from '../../modules/router';
 import {Url} from '../../constants/constants';
-import {ProfileStore} from '../../modules/types';
+import type {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -80,7 +80,7 @@ export default new (class SignupPage extends BaseView {
 	 * Метод отвечающий за генерацию View
 	 */
 	render(): void {
-		const html = SignupPageTemp();
+		const html = signupPageTemp();
 
 		/* Создание контейнера для вставки в DOM */
 		document.body.innerHTML = '';

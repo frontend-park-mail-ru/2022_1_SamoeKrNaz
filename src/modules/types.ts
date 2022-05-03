@@ -36,7 +36,7 @@ export interface Event {
 	id?: string,
 	func: (e?: any) => void,
 	isArray?: boolean,
-};
+}
 
 export type EventListener = Array<Event>;
 
@@ -63,7 +63,7 @@ export interface BoardStore {
 	description: string,
 	Users: Users,
 	Lists: List,
-};
+}
 
 export interface TaskStore {
 	title: string,

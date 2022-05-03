@@ -18,6 +18,7 @@ class BaseView {
 
 	/**
 	 * Метод отвечающий за генерацию View
+	 * @param {MouseEvent} e
 	 */
 	render(e?: MouseEvent) {
 		console.error('Нужно переопределить метод в классе');
