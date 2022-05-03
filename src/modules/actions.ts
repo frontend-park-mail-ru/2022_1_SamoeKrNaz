@@ -40,6 +40,14 @@ export const TaskActions = {
 	addUser: 'adduser',
 	removeUser: 'removeUser',
 	changeDate: 'changeDate',
+	changeDescription: 'changeDescription',
+	addChecklist: 'addChecklist',
+	addItem: 'addItem',
+	removeChecklist: 'removeChecklist',
+	removeItem: 'removeItem',
+	checkItem: 'checkItem',
+	changeCheckList: 'changeCheckList',
+	changeCheckListTitle: 'changeCheckListTitle',
 };
 
 export const BoardsActions = {

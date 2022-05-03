@@ -67,6 +67,16 @@ export interface BoardStore {
 
 export interface TaskStore {
 	title: string,
+	description: string,
 	append_users: Users,
 	idt: number,
+	checkList: Array<{
+		title: string,
+		id_cl: number,
+		CheckListItems: Array<{
+			id_clit: number,
+			isready: boolean,
+			title: string,
+		}>,
+	}>,
 }

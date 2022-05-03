@@ -80,7 +80,7 @@
 
     &_textarea {
       background-color: #fff;
-      border: 2px solid #dfe8ef;
+      border: 1px solid #dfe8ef;
       box-sizing: border-box;
       border-radius: 10px;
       margin: 8px 0;
@@ -95,7 +95,7 @@
       }
 
       &:focus-visible {
-        outline-color: $blue-color;
+        outline: 1px solid $blue-color;
       }
     }
 
