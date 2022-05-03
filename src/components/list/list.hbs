@@ -1,0 +1,41 @@
+<div class="desk__globalTitle">
+    {{board.title}}
+</div>
+
+{{> buttonsList/buttonsList }}
+
+<div class="column">
+    {{#each board.Lists}}
+        <div>
+            <div class="desk desk__column">
+                <div class="desk__column-title">
+                    <input data-id="{{idl}}" class="desk__title-input header2" type="text" value="{{title}}">
+                    <svg class="desk__listIcon" data-id="{{idl}}"  width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path data-id="{{idl}}" d="M1.92326 11.9188C2.05648 13.1846 2.1231 13.8175 2.4126 14.2954C2.6676 14.7163 3.04118 15.0527 3.48653 15.2622C3.99212 15.5001 4.6285 15.5001 5.90128 15.5001H8.09918C9.37193 15.5001 10.0083 15.5001 10.5139 15.2622C10.9592 15.0527 11.3328 14.7164 11.5878 14.2954C11.8773 13.8175 11.944 13.1846 12.0772 11.9189L12.6073 6.88376C12.6395 6.57769 12.6556 6.42466 12.6058 6.3063C12.5622 6.20233 12.4846 6.11619 12.3858 6.06186C12.2733 6 12.1194 6 11.8117 6H2.18891C1.88116 6 1.72729 6 1.61478 6.06186C1.51597 6.11619 1.43842 6.20233 1.39473 6.30629C1.34499 6.42465 1.3611 6.57768 1.39331 6.88374L1.92326 11.9188Z" fill="#7F7F7F"/>
+                        <path data-id="{{idl}}" d="M1 4.5H13C13.5523 4.5 14 4.05229 14 3.50002C14 2.94772 13.5523 2.5 13 2.5H9.64648C9.32002 1.34575 8.25878 0.5 7 0.5C5.74122 0.5 4.67998 1.34575 4.35352 2.5H1C0.447715 2.5 0 2.94772 0 3.5C0 4.05228 0.447715 4.5 1 4.5Z" fill="#7F7F7F"/>
+                    </svg>
+                </div>
+                {{#each Tasks}}
+                <div class="desk__task">
+                    <div data-id="{{idt}}" class="desk__task-text">
+                        {{title}}
+                    </div>
+                    <div data-id="{{idt}}" class="desk__task-close">
+                        <svg data-id="{{idt}}" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path data-id="{{idt}}" fill-rule="evenodd" clip-rule="evenodd" d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5ZM8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z" fill="#7F7F7F"/>
+                            <path data-id="{{idt}}" d="M6.28033 5.21967C5.98744 4.92678 5.51256 4.92678 5.21967 5.21967C4.92678 5.51256 4.92678 5.98744 5.21967 6.28033L6.93934 8L5.21968 9.71967C4.92678 10.0126 4.92679 10.4874 5.21968 10.7803C5.51257 11.0732 5.98745 11.0732 6.28034 10.7803L8 9.06067L9.71966 10.7803C10.0126 11.0732 10.4874 11.0732 10.7803 10.7803C11.0732 10.4874 11.0732 10.0126 10.7803 9.71967L9.06066 8L10.7803 6.28033C11.0732 5.98744 11.0732 5.51256 10.7803 5.21967C10.4874 4.92678 10.0126 4.92678 9.71967 5.21967L8 6.93934L6.28033 5.21967Z" fill="#7F7F7F"/>
+                        </svg>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="desk__new-task">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 1L7 13" stroke="#7F7F7F" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M13 7L1 7" stroke="#7F7F7F" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="desk__newButton" data-id="{{idl}}">Добавить карточку</span>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

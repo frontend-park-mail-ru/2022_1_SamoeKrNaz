@@ -1,15 +1,17 @@
 'use strict';
 
-
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import {createServer} from 'http';
+import {readFile} from 'fs';
+import {resolve} from 'path';
 
 /* Порт, на котором разворачиваемся */
 const SERVER_PORT = 3000;
 
+/* Получение текущей директории */
+const __dirname = resolve();
+
 /* Обработка запросов */
-const server = http.createServer((req, res) => {
+const server = createServer((req, res) => {
 	/* Получение урла */
 	const {url} = req;
 
@@ -27,7 +29,7 @@ const server = http.createServer((req, res) => {
 	const extension = fileName.split('.').pop();
 
 	if (extension === 'webp') {
-		fs.readFile(`${__dirname}/../../backend${fileName}`, (err, file) => {
+		readFile(`${__dirname}/../../backend${fileName}`, (err, file) => {
 			/* Обработка ошибки*/
 			if (err) {
 				res.write('404 not found');
@@ -40,8 +42,8 @@ const server = http.createServer((req, res) => {
 			res.end();
 		});
 	} else {
-		fs.readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
-		/* Обработка ошибки*/
+		readFile(`${__dirname}/../src/${fileName}`, (err, file) => {
+			/* Обработка ошибки*/
 			if (err) {
 				res.write('404 not found');
 				res.end();
