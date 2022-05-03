@@ -1,5 +1,6 @@
 .taskBlock {
-	position: absolute;
+	margin: 50px auto;
+	position: relative;
 	z-index: 121;
 	display: flex;
 	width: calc(100% - 50px);
@@ -14,9 +15,11 @@
 	}
 	&__bg {
 		z-index: 112;
-		position: absolute;
-		width: 100%;
-		height: 100%;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
 		background: rgb(0 0 0 / 20%);
 	}
 	&__separator {
@@ -42,6 +45,7 @@
 	&__textarea {
 		width: calc(100% - 5px);
 		margin: 15px 0 0;
+		height: 80px;
 	}
 	&__content {
 		margin-left: 15px;
@@ -54,19 +58,24 @@
 			letter-spacing: 0.02em;
 			margin-top: 11px;
 		}
+
 		&-dop {
 			display: flex;
-			margin-top: 35px;
+			margin-top: 15px;
+			flex-wrap: wrap;
 
 			&-users {
+				margin-top: 15px;
+				margin-right: 40px;
 
 				&-avatars {
 					display: flex;
 					margin: 15px -2.5px 0;
 				}
 			}
+
 			&-date {
-				margin-left: 40px;
+				margin-top: 15px;
 			}
 		}
 	}
@@ -284,7 +293,7 @@
 	}
 	&__comment {
 		display: flex;
-		margin-top: 5px;
+		margin: 5px 0 15px;
 
 		&-img {
 			width: 35px;
@@ -292,10 +301,73 @@
 			border-radius: 18px;
 			margin-right: 8px;
 		}
+
 		&-textarea {
 			width: calc(100% - 5px);
 			margin: 0;
 			height: 80px;
+		}
+
+		&-body {
+			background: #fff;
+			box-shadow: $blackShadow;
+			border-radius: 8px;
+			padding: 10px 15px;
+			width: 100%;
+		}
+
+		&-text {
+			margin: 10px 0 0;
+			font-weight: 400;
+			font-size: 12.5px;
+			line-height: 14px;
+			color: #7F7F7F;
+
+			&-delete {
+				margin-left: 20px;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+
+		&-textarea-add[disabled] {
+			background: #fff;
+			color: black;
+		}
+
+		&-textarea-add {
+			width: 100%;
+			border: none;
+			outline: none;
+			font-family: Roboto, sans-serif;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 17px;
+			min-height: 17px !important;
+			letter-spacing: 0.02em;
+			resize: none;
+			overflow-y: hidden;
+			overflow-wrap: break-word;
+
+			&:focus {
+				border-bottom: solid 2px #4277fa;
+				margin-bottom: -2px;
+				cursor: text;
+			}
+
+			&-hidden {
+				visibility: hidden;
+				position: absolute;
+				overflow-wrap: break-word;
+				font-family: Roboto, sans-serif;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 17px;
+				letter-spacing: 0.02em;
+				padding-right: 40px;
+			}
 		}
 	}
 }
@@ -307,12 +379,10 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 111;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	z-index: 113;
+	overflow-y: auto;
 }
 
 .taskBlock_active {

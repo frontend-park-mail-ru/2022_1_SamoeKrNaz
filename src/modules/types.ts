@@ -79,4 +79,13 @@ export interface TaskStore {
 			title: string,
 		}>,
 	}>,
+	comment: Array<{
+		isYou: boolean,
+		idu: number,
+		idcm: number,
+		title: string,
+		user: {
+			username: string,
+		},
+	}>,
 }

@@ -48,6 +48,9 @@ export const TaskActions = {
 	checkItem: 'checkItem',
 	changeCheckList: 'changeCheckList',
 	changeCheckListTitle: 'changeCheckListTitle',
+	addComment: 'addComment',
+	changeComment: 'changeComment',
+	deleteComment: 'deleteComment',
 };
 
 export const BoardsActions = {

@@ -94,4 +94,25 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	addComment: async (data) => {
+		try {
+			return await Ajax.post({url: 'task/' + data.id + '/comment', opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	changeComment: async (data) => {
+		try {
+			return await Ajax.put({url: 'comment/' + data.id, opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	deleteComment: async (data) => {
+		try {
+			return await Ajax.delete({url: 'comment/' + data.id});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

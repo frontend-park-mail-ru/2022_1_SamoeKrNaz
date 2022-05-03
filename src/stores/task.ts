@@ -5,6 +5,7 @@ import {ajaxMethods} from '../ajax/task';
 import router from '../modules/router';
 import {DispatcherAction, ProfileStore, TaskStore} from '../modules/types';
 import Dispatcher from '../modules/dispatcher';
+import Profile from './profile';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -65,6 +66,15 @@ class Task extends Store {
 			break;
 		case TaskActions.changeCheckListTitle:
 			await this._changeCheckListTitle(action);
+			break;
+		case TaskActions.addComment:
+			await this._addComment(action);
+			break;
+		case TaskActions.changeComment:
+			await this._changeComment(action);
+			break;
+		case TaskActions.deleteComment:
+			await this._deleteComment(action);
 			break;
 		}
 	}
@@ -136,6 +146,62 @@ class Task extends Store {
 					list.CheckListItems.push(res.body);
 				}
 			});
+			break;
+		}
+
+		this._publish(Events.taskUpdate);
+	}
+
+	/**
+	 * Добавление comment чек-листа
+	 * @param {DispatcherAction} action
+	 */
+	async _addComment(action: DispatcherAction) {
+		const res = await ajaxMethods.addComment({id: this._data.idt, body: {title: action.title}});
+
+		switch (res.status) {
+			case ResponseStatus.success:
+				res.body.user.img_avatar = Profile.getState().img;
+				res.body.user.username = Profile.getState().username;
+				this._data.comment.push(res.body);
+			break;
+		}
+
+		this._publish(Events.taskUpdate);
+	}
+
+	/**
+	 * Добавление comment чек-листа
+	 * @param {DispatcherAction} action
+	 */
+	async _changeComment(action: DispatcherAction) {
+		const res = await ajaxMethods.changeComment({id: action.id, body: {title: action.title}});
+
+		switch (res.status) {
+			case ResponseStatus.created:
+				this._data.comment.map((comm) => {
+					if (comm.idcm === Number(action.id)) {
+						comm.title = action.title;
+					}
+				});
+			break;
+		}
+	}
+
+	/**
+	 * Добавление comment чек-листа
+	 * @param {DispatcherAction} action
+	 */
+	async _deleteComment(action: DispatcherAction) {
+		const res = await ajaxMethods.deleteComment({id: action.id});
+
+		switch (res.status) {
+			case ResponseStatus.success:
+				this._data.comment.forEach((comm, i) => {
+					if (comm.idcm === Number(action.id)) {
+						this._data.comment.splice(i, 1);
+					}
+				});
 			break;
 		}
 

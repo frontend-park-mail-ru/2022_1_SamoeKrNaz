@@ -42,6 +42,15 @@ export default new (class TaskView extends BaseView {
 				},
 			},
 			{
+				type: 'input',
+				className: 'taskBlock__comment-textarea-add',
+				func: (e) => {
+					const hidden = (<HTMLSpanElement>document.querySelector('[data-hidden="' + e.target.dataset.id + '"]'));
+					hidden.innerText = e.target.value;
+					e.target.style.height = hidden.getClientRects()[0].height + 'px';
+				},
+			},
+			{
 				type: 'blur',
 				className: 'taskBlock__title-input',
 				func: (e) => {
@@ -124,6 +133,45 @@ export default new (class TaskView extends BaseView {
 				},
 			},
 			{
+				type: 'blur',
+				className: 'taskBlock__comment-textarea-add',
+				isArray: true,
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.changeComment,
+						title: e.target.value,
+						id: e.target.dataset.id,
+					});
+				},
+			},
+			{
+				type: 'keydown',
+				className: 'taskBlock__comment-textarea-add',
+				isArray: true,
+				func: (e) => {
+					if (e.keyCode === 13) {
+						e.target.blur();
+					}
+				},
+			},
+			{
+				type: 'keydown',
+				className: 'taskBlock__comment-textarea',
+				isArray: true,
+				func: (e) => {
+					if (e.keyCode === 13) {
+						e.target.blur();
+						if (e.target.value != '') {
+							Dispatcher.dispatch({
+								type: TaskActions.addComment,
+								title: e.target.value,
+							});
+						}
+						e.target.value = '';
+					}
+				},
+			},
+			{
 				type: 'click',
 				className: 'taskBlock__user',
 				isArray: true,
@@ -199,6 +247,17 @@ export default new (class TaskView extends BaseView {
 				},
 			},
 			{
+				type: 'click',
+				className: 'taskBlock__comment-text-delete',
+				isArray: true,
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.deleteComment,
+						id: e.target.dataset.id,
+					});
+				},
+			},
+			{
 				type: 'change',
 				className: 'taskBlock__date',
 				isArray: true,
@@ -241,11 +300,19 @@ export default new (class TaskView extends BaseView {
 		const addUsers = Board.getUsers().slice(0);
 
 		addUsers.forEach((user, i) => {
-			data.append_users.map((userTwo) => {
+			data.append_users?.map((userTwo) => {
 				if (userTwo.idu === user.idu) {
 					delete addUsers[i];
 				}
 			});
+		});
+
+		data.comment.map((comm) => {
+			if (comm.user.username === Profile.getState().username) {
+				comm.isYou = true;
+			} else {
+				comm.isYou = false;
+			}
 		});
 
 		const block = document.querySelector('.taskBlockContainer');
@@ -253,13 +320,24 @@ export default new (class TaskView extends BaseView {
 			...data,
 			deskTitle: Board.getTitle(),
 			addUsers: addUsers,
-			user: Profile.getState(),
+			thisUser: Profile.getState(),
 		});
 
 		const textarea = (<HTMLTextAreaElement>document.querySelector('.taskBlock__title-input'));
 		const hidden = (<HTMLSpanElement>document.querySelector('.taskBlock__hidden'));
 		hidden.innerText = textarea.value;
 		textarea.style.height = hidden.getClientRects()[0].height + 'px';
+
+		const areaItems = document.querySelectorAll('.taskBlock__comment-textarea-add');
+
+		for (const key in areaItems) {
+			if (areaItems.hasOwnProperty(key)) {
+				const textarea2 = (<HTMLTextAreaElement>areaItems[key]);
+				const hidden2 = (<HTMLSpanElement>document.querySelector('[data-hidden="' + textarea2.dataset.id + '"]'));
+				hidden2.innerText = textarea2.value;
+				textarea2.style.height = hidden2.getClientRects()[0].height + 'px';
+			}
+		}
 
 		this._createListeners();
 	}

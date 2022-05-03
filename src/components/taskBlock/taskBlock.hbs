@@ -124,8 +124,25 @@
 
     <div class="taskBlock__comment">
         <div class="taskBlock__comment-avatar">
-            <img class="taskBlock__comment-img" src="../{{ user.img }}">
+            <img class="taskBlock__comment-img" src="../{{ thisUser.img }}">
         </div>
         <textarea class="taskBlock__comment-textarea createModal__settings_textarea" placeholder="Ваш комментарий"></textarea>
     </div>
+    {{#each comment }}
+        <div class="taskBlock__comment">
+            <div class="taskBlock__comment-avatar">
+                <img class="taskBlock__comment-img" src="../{{ user.img_avatar }}">
+            </div>
+            <div class="taskBlock__comment-body">
+                <p data-hidden="{{ idcm }}" class="taskBlock__comment-textarea-add-hidden"></p>
+                <textarea data-id="{{ idcm }}" class="taskBlock__comment-textarea-add" {{#unless isYou }}disabled{{/unless}}>{{ title }}</textarea>
+                <p class="taskBlock__comment-text">
+                    <span>{{ date }}</span>
+                    {{#if isYou}}
+                        <span data-id="{{ idcm }}" class="taskBlock__comment-text-delete">Удалить</span>
+                    {{/if}}
+                </p>
+            </div>
+        </div>
+    {{/each}}
 </div>
