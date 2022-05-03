@@ -1,21 +1,23 @@
 .auth {
-  &__block{
-    &_button {
-      background-color: $blue-color;
-      border: 2px solid $blue-color;
-      border-radius: 10px;
-      width: 300px;
-      height: 40px;
-      color: $bg-color;
-      font-size: 14px;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: 0.3s;
 
-      &:hover {
-        box-shadow: 0 0 7px $blue-color;
-        transition: 0.3s;
-      }
-    }
-  }
+	&__block {
+
+		&_button {
+			background-color: $blue-color;
+			border: 2px solid $blue-color;
+			border-radius: 10px;
+			width: 300px;
+			height: 40px;
+			color: $bg-color;
+			font-size: 14px;
+			margin-top: 20px;
+			cursor: pointer;
+			transition: 0.3s;
+
+			&:hover {
+				box-shadow: 0 0 7px $blue-color;
+				transition: 0.3s;
+			}
+		}
+	}
 }
