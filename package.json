@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildScss": "sass src/css/style.scss src/css/style.css",
-    "checkLinters": "npx eslint ./src/. --ext .ts --fix && npx stylelint src/*/*.scss --fix",
+    "checkLinters": "npx eslint ./src/. --ext .ts --fix && npx stylelint ./src/*/**/*.scss --fix",
     "start": "cd server && node server.js",
     "build": "webpack --watch"
   },

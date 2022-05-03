@@ -1,4 +1,5 @@
 .auth {
+
 	&__block {
 		display: flex;
 		flex-direction: column;
@@ -12,7 +13,6 @@
 			margin-top: 20px;
 			width: 300px;
 		}
-
 		&_logo {
 			margin: 20px;
 
@@ -20,23 +20,20 @@
 				display: none;
 			}
 		}
-
 		&_header {
 			font-size: 28px;
 			color: $black-text;
 			margin-bottom: 20px;
 
-			&_blue{
+			&_blue {
 				color: $blue-color;
 			}
 		}
-
 		&_form {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 		}
-
 		&_descp {
 			color: $gray-text;
 			font-size: 14px;
@@ -46,22 +43,18 @@
 			justify-content: center;
 			align-items: center;
 		}
-
 		&_dont {
 			color: $gray-text;
 		}
-
 		&_link {
 			color: $blue-color;
 			text-decoration: none;
 		}
-
 		&_check {
 			height: 16px;
 			width: 16px;
 			background-color: $gray-main-dark;
 		}
-
 		&_prompt {
 			width: 300px;
 			display: flex;
@@ -84,7 +77,6 @@
 			}
 		}
 	}
-
 	&__form {
 		height: 100%;
 		width: 50%;

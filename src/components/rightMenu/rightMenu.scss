@@ -1,51 +1,50 @@
 .active-tasks {
-  background: $white;
-  box-shadow: $shadow;
-  position: fixed;
-  height: 100%;
-  left: calc(100vw - $active-task);
-  top: 0;
-  width: $active-task;
-  transition: $time-anim;
+	background: $white;
+	box-shadow: $shadow;
+	position: fixed;
+	height: 100%;
+	left: calc(100vw - $active-task);
+	top: 0;
+	width: $active-task;
+	transition: $time-anim;
 
-  .active-tasks__text-block-time {
-    color: #656f77;
-    font-size: 13px;
-  }
-  &.close {
-    left: 100vw;
-    transition: $time-anim;
-  }
+	.active-tasks__text-block-time {
+		color: #656f77;
+		font-size: 13px;
+	}
+	&.close {
+		left: 100vw;
+		transition: $time-anim;
+	}
+	&__title {
+		font-size: 18px;
+		line-height: 40px;
+		font-weight: 500;
+		padding: calc($top-margin - 5px) 30px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__block {
+		padding: 15px 30px 0;
+		cursor: not-allowed;
+	}
 
-  &__title {
-    font-size: 18px;
-    line-height: 40px;
-    font-weight: 500;
-    padding: calc($top-margin - 5px) 30px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__block {
-    padding: 15px 30px 0;
-    cursor: not-allowed;
-  }
-
-  @include media("max", "lg") {
-    left: 100vw;
-  }
+	@include media("max", "lg") {
+		left: 100vw;
+	}
 }
 
 .toggle {
-  &__block_blue {
-    background: $blue-color;
-    position: fixed;
-    top: 40px;
-    right: 30px;
 
-    @include media("max", "lg") {
-      display: none;
-    }
-  }
+	&__block_blue {
+		background: $blue-color;
+		position: fixed;
+		top: 40px;
+		right: 30px;
+
+		@include media("max", "lg") {
+			display: none;
+		}
+	}
 }
