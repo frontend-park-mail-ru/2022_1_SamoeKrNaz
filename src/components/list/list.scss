@@ -3,6 +3,10 @@
 	overflow-x: auto;
 	padding: 0 15px;
 	height: calc(100vh - 131px);
+
+	@include media("max", "lg") {
+		height: calc(100vh - 156px);
+	}
 }
 
 .desk {
@@ -19,6 +23,11 @@
 			align-items: center;
 			margin: -5px 0 18px;
 		}
+
+		@include media("max", "lg") {
+			width: 250px;
+			margin-left: 5px;
+		}
 	}
 	&__title {
 
@@ -27,7 +36,6 @@
 			font-size: 18px;
 			line-height: 21px;
 			letter-spacing: 0.02em;
-			cursor: pointer;
 			background: inherit;
 			border: none;
 			outline: none;
@@ -38,6 +46,10 @@
 				border-bottom: solid 2px $blue-color;
 				margin-bottom: -2px;
 				cursor: text;
+			}
+
+			@include media("max", "lg") {
+				width: 220px;
 			}
 		}
 	}

@@ -4,3 +4,6 @@ node_modules
 *.templ.js
 *.css.map
 *.css
+index_bundle.js
+index_bundle.js.map
+index.html

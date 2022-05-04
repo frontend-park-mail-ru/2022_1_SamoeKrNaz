@@ -4,7 +4,8 @@
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
 	display: flex;
-	width: 450px;
+	width: calc(100vw - 50px);
+	max-width: 450px;
 	background-color: #fff;
 	border-radius: 8px;
 	padding: 25px;
@@ -40,6 +41,10 @@
 		justify-content: center;
 		flex-direction: row;
 		padding: 0;
+
+		@include media("max", "sm") {
+			flex-direction: column;
+		}
 	}
 	&__username {
 		font-size: 22px;
@@ -57,7 +62,14 @@
 			justify-content: center;
 			align-items: center;
 			flex-direction: column;
-			width: 350px;
+
+			@include media("max", "sm") {
+				margin-top: 20px;
+			}
+		}
+
+		@include media("max", "sm") {
+			margin-right: 0;
 		}
 	}
 	&__prompt {
@@ -75,7 +87,6 @@
 		font-size: 14px;
 		align-items: flex-start;
 		justify-content: left;
-		width: 300px;
 
 		&_input {
 			display: none;
@@ -88,8 +99,7 @@
 			border-radius: 8px;
 			color: $bg-color;
 			padding: 7px 25px;
-			margin-top: 10px;
-			margin-right: 20px;
+			margin-top: 15px;
 			cursor: pointer;
 		}
 		&_delete {

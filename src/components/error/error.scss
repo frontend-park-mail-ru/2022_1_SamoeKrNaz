@@ -1,5 +1,5 @@
 .auth__block_error {
-	width: 255px;
+	width: auto;
 	font-size: 13px;
 	background-color: $bg-color;
 	display: flex;
@@ -12,7 +12,7 @@
 	padding: 15px 20px;
 
 	&_text {
-		width: 220px;
+		min-width: 220px;
 		margin-left: 20px;
 	}
 }

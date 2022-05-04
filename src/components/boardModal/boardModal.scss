@@ -4,7 +4,8 @@
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
 	display: flex;
-	width: 350px;
+	width: calc(100% - 50px);
+	max-width: 350px;
 	background-color: #fff;
 	border-radius: 8px;
 	padding: 25px;
@@ -71,7 +72,7 @@
 		}
 		&_textarea {
 			background-color: #fff;
-			border: 2px solid #dfe8ef;
+			border: 1px solid #dfe8ef;
 			box-sizing: border-box;
 			border-radius: 10px;
 			margin: 8px 0;
@@ -85,7 +86,7 @@
 				color: $gray-menu;
 			}
 			&:focus-visible {
-				outline-color: $blue-color;
+				outline: 1px solid $blue-color;
 			}
 		}
 		&_save {

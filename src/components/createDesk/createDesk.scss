@@ -4,7 +4,8 @@
 	left: 50%;
 	transform: translate(-50%, -50%) scale(0);
 	display: flex;
-	width: 350px;
+	width: calc(100% - 50px);
+	max-width: 350px;
 	background-color: #fff;
 	border-radius: 8px;
 	padding: 25px;

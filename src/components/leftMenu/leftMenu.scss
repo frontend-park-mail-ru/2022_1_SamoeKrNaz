@@ -1,3 +1,5 @@
+$leftMobile: 70vw;
+
 .header {
 	background: $white;
 	box-shadow: $shadow;
@@ -5,17 +7,51 @@
 	height: 100%;
 	width: $menu-width;
 	left: 0;
+	top: 0;
 	transition: $time-anim;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
+	@include media("max", "lg") {
+		width: $leftMobile;
+		left: -$leftMobile;
+		z-index: 101;
+	}
+
 	&_open {
 		transition: $time-anim;
 		width: 220px;
+
+		@include media("max", "lg") {
+			left: 0;
+			width: $leftMobile;
+		}
 	}
 	&__logo {
 		margin: $top-margin 0;
+
+		@include media("max", "lg") {
+			display: none;
+		}
+	}
+	&__mobile {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin: 20px 0 $top-margin;
+
+		&Title {
+			margin: 0 15px;
+		}
+		&Icon {
+			margin: 0 15px;
+		}
+
+		@include media("min", "lg") {
+			display: none;
+		}
 	}
 	&__menu-block {
 		width: calc(100% - $menu-width + $button-size);
@@ -72,5 +108,29 @@
 		font-size: 15px;
 		margin-left: calc($button-size / 4 + 1px);
 		white-space: nowrap;
+	}
+	&__background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		background: $black-bg;
+		z-index: 100;
+		visibility: hidden;
+		transition: $time-anim;
+		opacity: 0;
+
+		&_block {
+			visibility: visible;
+
+			@include media("min", "lg") {
+				visibility: hidden;
+			}
+		}
+		&_active {
+			transition: $time-anim;
+			opacity: 1;
+		}
 	}
 }

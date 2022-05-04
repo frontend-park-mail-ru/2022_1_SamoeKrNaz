@@ -15,6 +15,10 @@
 		}
 		&_logo {
 			margin: 20px;
+
+			@include media("max", "md") {
+				display: none;
+			}
 		}
 		&_header {
 			font-size: 28px;
@@ -81,5 +85,11 @@
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+
+		@include media("max", "md") {
+			width: 100%;
+			height: 55%;
+			padding: 50px 0 100px;
+		}
 	}
 }

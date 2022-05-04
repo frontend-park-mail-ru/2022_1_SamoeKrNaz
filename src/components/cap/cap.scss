@@ -5,6 +5,10 @@
 	&.menu-open {
 		padding-left: 220px;
 		transition: $time-anim;
+
+		@include media("max", "lg") {
+			padding: 0;
+		}
 	}
 	&.active-tasks-open {
 		padding-right: 0;
@@ -12,6 +16,10 @@
 	}
 	&__container {
 		display: block;
+
+		@include media("max", "lg") {
+			margin: $mobileHeader auto 0;
+		}
 	}
 	&__cap {
 		display: flex;
@@ -23,6 +31,14 @@
 			margin-right: 70px;
 			transition: $time-anim;
 		}
+
+		@include media("max", "lg") {
+			display: none;
+		}
+	}
+
+	@include media("max", "lg") {
+		padding: 0;
 	}
 }
 

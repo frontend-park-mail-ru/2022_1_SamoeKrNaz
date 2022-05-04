@@ -7,6 +7,13 @@
 		flex-flow: column wrap;
 		align-content: flex-start;
 		overflow-x: auto;
+
+		@include media("max", "lg") {
+			overflow-x: unset;
+			flex-direction: row;
+			padding: 0 5px 15px;
+			height: auto;
+		}
 	}
 }
 
@@ -50,6 +57,14 @@
 		letter-spacing: 0.02em;
 		padding: 15px 0 0 15px;
 		margin: 15px 0 0 15px;
+
+		@include media("max", "lg") {
+			margin: 0 5px;
+		}
+	}
+
+	@include media("max", "lg") {
+		width: 100%;
 	}
 }
 

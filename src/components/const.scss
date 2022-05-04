@@ -8,16 +8,33 @@ $gray-main-dark: #e9f0f6;
 $gray-menu: #abb7c0;
 $error: #ff7e7e;
 $success: #46c926;
-
 $black-text: #2d2d2d;
+
+$mobileHeader: 60px;
 $menu-width: 75px;
 $active-task: 350px;
 $top-margin: 45px;
 $button-radius: 10px;
-$time-anim: 0.5s;
+$time-anim: 0.3s;
 $shadow: 0 0 10px #00000005;
+$blackShadow: 0 0 10px #0000000f;
+$black-bg: #00000025;
 
 $button-size: 44px;
+
+// Опорные точки размеров ширины экрана для адаптивной верстки
+$sizes: ("xs": 320px, "sm": 576px, "md": 768px, "lg": 992px, "xl": 1200px);
+
+// Миксин, для красивого написания медиа запросов на ширину экрана
+@mixin media($minmax, $media) {
+	@each $size, $resolution in $sizes {
+		@if $media == $size {
+			@media only screen and (#{$minmax}-width: $resolution) {
+				@content;
+			}
+		}
+	}
+}
 
 body {
 	padding: 0;
@@ -62,4 +79,8 @@ body {
 	width: 100%;
 	background-color: $blue-color;
 	display: flex;
+
+	@include media("max", "md") {
+		flex-direction: column;
+	}
 }

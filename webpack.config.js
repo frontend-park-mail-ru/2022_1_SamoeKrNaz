@@ -2,7 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/js/index.js',
+	entry: './src/index.ts',
+	resolve: {
+		extensions: ['.js', '.ts', '.hbs', '.templ.js'],
+	},
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
@@ -11,7 +15,8 @@ module.exports = {
 				use: ['style-loader', {
 					loader: 'css-loader',
 					options: {importLoaders: 1},
-				}, 'sass-loader']},
+				}, 'sass-loader'],
+			},
 			{
 				test: /\.(js)$/,
 				exclude: path.resolve(__dirname, 'node_modules/'),
@@ -20,12 +25,30 @@ module.exports = {
 					options: {
 						presets: ['@babel/preset-env'],
 					},
-				}},
+				},
+			},
+			{
+				test: /\.hbs$/,
+				loader: 'handlebars-loader',
+				options: {
+					partialDirs: path.resolve(__dirname, 'src/components'),
+				},
+			},
+			{
+				test: /\.tsx?$/,
+				loader: 'ts-loader',
+				exclude: path.resolve(__dirname, 'node_modules/'),
+			},
+			{
+				test: /\.js$/,
+				loader: 'source-map-loader',
+			},
 		],
 	},
 	output: {
+		publicPath: '../',
 		path: path.resolve(__dirname, 'src'),
-		filename: '../index_bundle.js',
+		filename: 'index_bundle.js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
