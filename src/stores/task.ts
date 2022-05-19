@@ -76,6 +76,15 @@ class Task extends Store {
 		case TaskActions.deleteComment:
 			await this._deleteComment(action);
 			break;
+		case TaskActions.uploadAttachment:
+			await this._uploadAttachment(action);
+			break;
+		case TaskActions.removeAttachment:
+			await this._removeAttachment(action);
+			break;
+		case TaskActions.downloadAttachment:
+			await this._downloadAttachment(action);
+			break;
 		}
 	}
 
@@ -160,10 +169,10 @@ class Task extends Store {
 		const res = await ajaxMethods.addComment({id: this._data.idt, body: {title: action.title}});
 
 		switch (res.status) {
-			case ResponseStatus.success:
-				res.body.user.img_avatar = Profile.getState().img;
-				res.body.user.username = Profile.getState().username;
-				this._data.comment.push(res.body);
+		case ResponseStatus.success:
+			res.body.user.img_avatar = Profile.getState().img;
+			res.body.user.username = Profile.getState().username;
+			this._data.comment.push(res.body);
 			break;
 		}
 
@@ -178,12 +187,12 @@ class Task extends Store {
 		const res = await ajaxMethods.changeComment({id: action.id, body: {title: action.title}});
 
 		switch (res.status) {
-			case ResponseStatus.created:
-				this._data.comment.map((comm) => {
-					if (comm.idcm === Number(action.id)) {
-						comm.title = action.title;
-					}
-				});
+		case ResponseStatus.created:
+			this._data.comment.map((comm) => {
+				if (comm.idcm === Number(action.id)) {
+					comm.title = action.title;
+				}
+			});
 			break;
 		}
 	}
@@ -196,12 +205,12 @@ class Task extends Store {
 		const res = await ajaxMethods.deleteComment({id: action.id});
 
 		switch (res.status) {
-			case ResponseStatus.success:
-				this._data.comment.forEach((comm, i) => {
-					if (comm.idcm === Number(action.id)) {
-						this._data.comment.splice(i, 1);
-					}
-				});
+		case ResponseStatus.success:
+			this._data.comment.forEach((comm, i) => {
+				if (comm.idcm === Number(action.id)) {
+					this._data.comment.splice(i, 1);
+				}
+			});
 			break;
 		}
 
@@ -355,6 +364,54 @@ class Task extends Store {
 	 */
 	async _changeDate(action: DispatcherAction) {
 		const res = await ajaxMethods.changeDate({id: this._data.idt, body: {deadline: action.data}});
+	}
+
+	/**
+	 * Загрузка вложений
+	 * @param {DispatcherAction} data
+	 */
+	async _uploadAttachment(data: DispatcherAction) {
+		const formData = new FormData();
+		formData.append('attachment', data.data);
+		const res = await ajaxMethods.uploadAttachment({id: this._data.idt, opt: formData});
+		switch (res.status) {
+		case ResponseStatus.success:
+			res.body.system_name = '../attachments/' + res.body.system_name;
+			this._data.attachments.push(res.body);
+			break;
+		}
+
+		this._publish(Events.taskUpdate);
+	}
+
+
+	/**
+	 * Удаление вложений
+	 * @param {DispatcherAction} action
+	 */
+	async _removeAttachment(action: DispatcherAction) {
+		const res = await ajaxMethods.removeAttachment({id: action.id});
+		switch (res.status) {
+		case ResponseStatus.success:
+			this._data.attachments.forEach((attach, i) => {
+				if (attach.id_a === Number(action.id)) {
+					this._data.attachments.splice(i, 1);
+				}
+			});
+			break;
+		}
+		this._publish(Events.taskUpdate);
+	}
+
+	/**
+	 * Удаление вложений
+	 * @param {DispatcherAction} action
+	 */
+	async _downloadAttachment(action: DispatcherAction) {
+		const attachment = this._data.attachments.find((attach) => {
+			return attach.id_a === Number(action.id);
+		});
+		window.open(attachment.system_name, attachment.default_name);
 	}
 
 	/**

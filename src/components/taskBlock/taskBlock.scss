@@ -58,7 +58,6 @@
 			letter-spacing: 0.02em;
 			margin-top: 11px;
 		}
-
 		&-dop {
 			display: flex;
 			margin-top: 15px;
@@ -73,7 +72,6 @@
 					margin: 15px -2.5px 0;
 				}
 			}
-
 			&-date {
 				margin-top: 15px;
 			}
@@ -127,6 +125,31 @@
 		cursor: pointer;
 		width: fit-content;
 		margin-bottom: 10px;
+	}
+	&__attachmentButton {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 16px;
+		color: #7f7f7f;
+		border-radius: 8px;
+		background: #dfe8ef;
+		cursor: pointer;
+		width: fit-content;
+
+		&-input {
+			display: none;
+		}
+		&-upload {
+			background-color: $blue-color;
+			display: flex;
+			align-items: center;
+			border: 1px solid $blue-color;
+			border-radius: 8px;
+			color: $bg-color;
+			padding: 7px 25px;
+			margin-top: 15px;
+			cursor: pointer;
+		}
 	}
 	&__add-user {
 		position: relative;
@@ -291,6 +314,45 @@
 			margin-left: 30px;
 		}
 	}
+	&__attachment {
+		margin: 15px 0;
+		padding: 10px;
+		background: $gray-main-dark;
+		border-radius: 10px;
+		display: inline-block;
+
+		&-icon {
+			margin-left: 10px;
+			cursor: pointer;
+		}
+		&-item {
+			display: flex;
+			align-items: center;
+
+			&-icon {
+				margin-right: 10px;
+			}
+		}
+		&-title {
+			font-family: Roboto, sans-serif;
+			width: 100%;
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 21px;
+			letter-spacing: 0.02em;
+			background: inherit;
+			border: none;
+			outline: none;
+			padding: 0 0 3px;
+			border-radius: 2px;
+
+			&:focus {
+				border-bottom: solid 2px #4277fa;
+				margin-bottom: -2px;
+				cursor: text;
+			}
+		}
+	}
 	&__comment {
 		display: flex;
 		margin: 5px 0 15px;
@@ -301,13 +363,11 @@
 			border-radius: 18px;
 			margin-right: 8px;
 		}
-
 		&-textarea {
 			width: calc(100% - 5px);
 			margin: 0;
 			height: 80px;
 		}
-
 		&-body {
 			background: #fff;
 			box-shadow: $blackShadow;
@@ -315,13 +375,12 @@
 			padding: 10px 15px;
 			width: 100%;
 		}
-
 		&-text {
 			margin: 10px 0 0;
 			font-weight: 400;
 			font-size: 12.5px;
 			line-height: 14px;
-			color: #7F7F7F;
+			color: #7f7f7f;
 
 			&-delete {
 				margin-left: 20px;
@@ -329,12 +388,10 @@
 				cursor: pointer;
 			}
 		}
-
 		&-textarea-add[disabled] {
 			background: #fff;
 			color: black;
 		}
-
 		&-textarea-add {
 			width: 100%;
 			border: none;
@@ -355,7 +412,6 @@
 				margin-bottom: -2px;
 				cursor: text;
 			}
-
 			&-hidden {
 				visibility: hidden;
 				position: absolute;

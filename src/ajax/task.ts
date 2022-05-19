@@ -115,4 +115,18 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	uploadAttachment: async (data) => {
+		try {
+			return await Ajax.put({url: 'task/' + data.id + '/attachment', opt: data.opt});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	removeAttachment: async (data) => {
+		try {
+			return await Ajax.delete({url: 'attachment/' + data.id});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

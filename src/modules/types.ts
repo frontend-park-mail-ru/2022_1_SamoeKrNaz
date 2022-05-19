@@ -88,4 +88,9 @@ export interface TaskStore {
 			username: string,
 		},
 	}>,
+	attachments: Array<{
+		id_a: number,
+		default_name: string,
+		system_name: string,
+	}>,
 }
