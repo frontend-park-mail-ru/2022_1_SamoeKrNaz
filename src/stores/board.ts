@@ -102,6 +102,9 @@ export default new (class Board extends Store {
 				...res.body,
 				Tasks: [],
 			});
+			this._data.board.Lists.forEach((el, i) => {
+				el.position = i + 1;
+			});
 			break;
 		}
 
@@ -192,6 +195,9 @@ export default new (class Board extends Store {
 				if (list.idl === Number(action.id)) {
 					delete this._data.board.Lists[i];
 				}
+			});
+			this._data.board.Lists.forEach((el, i) => {
+				el.position = i + 1;
 			});
 			break;
 		}
