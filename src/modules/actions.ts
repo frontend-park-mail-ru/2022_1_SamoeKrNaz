@@ -20,6 +20,7 @@ export const ProfileEvents = {
 };
 
 export const BoardActions = {
+	moveList: 'moveList',
 	loadBoard: 'loadBoard',
 	updateState: 'updateState',
 	createList: 'createList',

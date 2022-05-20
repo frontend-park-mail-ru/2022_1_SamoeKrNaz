@@ -49,6 +49,7 @@ export type List = Array<{
 	title: string,
 	idl: number,
 	Tasks: Task,
+	position: number,
 }>;
 
 export type Users = Array<{

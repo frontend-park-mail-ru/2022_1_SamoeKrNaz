@@ -1,5 +1,6 @@
 .column {
 	display: flex;
+	position: relative;
 	overflow-x: auto;
 	padding: 0 15px;
 	height: calc(100vh - 131px);
@@ -16,12 +17,29 @@
 	}
 	&__column {
 		cursor: default;
+		position: absolute;
+
+		&-block {
+			min-width: 345px;
+			height: calc(100vh - 150px);
+
+			@include media("max", "lg") {
+				min-width: 310px;
+				height: calc(100vh - 180px);
+			}
+		}
+
+		&-dragged {
+			box-shadow: 0 0 15px 5px rgba(0,0,0,0.1);
+			z-index: 150;
+		}
 
 		&-title {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			margin: -5px 0 18px;
+			cursor: pointer;
 		}
 
 		@include media("max", "lg") {
@@ -41,6 +59,7 @@
 			outline: none;
 			padding: 3px 0;
 			border-radius: 2px;
+			cursor: pointer;
 
 			&:focus {
 				border-bottom: solid 2px $blue-color;

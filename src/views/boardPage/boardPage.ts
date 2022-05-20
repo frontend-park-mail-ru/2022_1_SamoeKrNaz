@@ -10,7 +10,7 @@ import {BoardActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {Event} from '../../modules/types';
-import {dndEvent} from '../../modules/dndEvent';
+import {DndEvent} from '../../modules/dndEvent';
 
 type ModalSettings = {
 	type: string,
@@ -264,7 +264,7 @@ export default new (class BoardPage extends BaseView {
 		/* Добавление контента в DOM */
 		root.innerHTML = html;
 
-		this.addDNDEvents();
+		const dndEvents = new DndEvent('desk__column', 'desk__column-title');
 		this._createListeners();
 	}
 
@@ -349,19 +349,6 @@ export default new (class BoardPage extends BaseView {
 			body: payload,
 			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
 		});
-	}
-
-	/**
-	 * Добавляет events на нужные элементы для drag and drop
-	 */
-	addDNDEvents(): void {
-		const columns = document.querySelectorAll('.desk__column');
-
-		for (const key in columns) {
-			if (columns.hasOwnProperty(key)) {
-				dndEvent((<HTMLElement> columns[key]), columns[key].querySelector('.desk__column-title'));
-			}
-		}
 	}
 });
 
