@@ -21,6 +21,7 @@ export const ProfileEvents = {
 
 export const BoardActions = {
 	moveList: 'moveList',
+	moveTask: 'moveTask',
 	loadBoard: 'loadBoard',
 	updateState: 'updateState',
 	createList: 'createList',

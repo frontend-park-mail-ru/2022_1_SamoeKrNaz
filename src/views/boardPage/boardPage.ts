@@ -10,7 +10,7 @@ import {BoardActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {Event} from '../../modules/types';
-import {DndEvent} from '../../modules/dndEvent';
+import {DndEvent, DndEventForTask} from '../../modules/dndEvent';
 
 type ModalSettings = {
 	type: string,
@@ -265,6 +265,7 @@ export default new (class BoardPage extends BaseView {
 		root.innerHTML = html;
 
 		const dndEvents = new DndEvent('desk__column', 'desk__column-title');
+		const dndEventForTask = new DndEventForTask('desk__task');
 		this._createListeners();
 	}
 

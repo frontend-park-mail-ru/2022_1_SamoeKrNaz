@@ -47,6 +47,9 @@ export default new (class Board extends Store {
 		case BoardActions.moveList:
 			await this._moveList(action);
 			break;
+		case BoardActions.moveTask:
+			await this._moveTask(action);
+			break;
 		case BoardActions.deleteDesk:
 			await this._deleteDesk();
 			break;
@@ -126,6 +129,36 @@ export default new (class Board extends Store {
 		this._publish(Events.boardUpdate);
 
 		await ajaxMethods.moveList({id: action.id, body: {position: action.data.new}});
+	}
+
+	/**
+	 * Перемещение таски
+	 * @param {DispatcherAction} action
+	 */
+	async _moveTask(action: DispatcherAction) {
+		let task;
+
+		this._data.board.Lists.map((el) => {
+			if (el.idl === action.data.oldList) {
+				task = el.Tasks[action.data.oldPos - 1];
+				el.Tasks.splice(action.data.oldPos - 1, 1);
+				el.Tasks.forEach((el, i) => el.position = i + 1);
+			}
+		});
+
+		this._data.board.Lists.map((el) => {
+			if (el.idl === action.data.newList) {
+				task.position = action.data.newPos;
+				task.IdL = action.data.newList;
+
+				el.Tasks.splice(action.data.newPos - 1, 0, task);
+				el.Tasks.forEach((el, i) => el.position = i + 1);
+			}
+		});
+
+		this._publish(Events.boardUpdate);
+
+		// await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, IdL: action.data.newList}});
 	}
 
 	/**

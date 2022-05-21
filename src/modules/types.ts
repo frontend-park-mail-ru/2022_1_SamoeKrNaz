@@ -43,6 +43,8 @@ export type EventListener = Array<Event>;
 export type Task = Array<{
 	idt: number,
 	title: string,
+	position: number,
+	IdL: number,
 }>;
 
 export type List = Array<{
