@@ -16,6 +16,7 @@ import SignupPage from './views/signupPage/signupPage';
 import BoardPage from './views/boardPage/boardPage';
 import NotFoundPage from './views/notFoundPage/notFoundPage';
 import NoNetworkPage from './views/noNetworkPage/noNetworkPage';
+import InvitePage from './views/invitePage/invitePage';
 
 
 // ts-loader не импортит файлы, который никак не используются. Поэтому ниже прописаны
@@ -47,3 +48,6 @@ router.register(Url.signup, SignupPage);
 router.register(Url.notFound, NotFoundPage);
 router.register(Url.board, BoardPage);
 router.register(Url.noNetwork, NoNetworkPage);
+router.register(Url.inviteBoard, BoardPage);
+router.register(Url.inviteTask, BoardPage);
+router.register(Url.invitePage, InvitePage);

@@ -32,6 +32,9 @@ export const BoardActions = {
 	deleteTask: 'deleteTask',
 	addUser: 'addUser',
 	findUsers: 'findUsers',
+	copyLink: 'copyLink',
+	loadBoardInvite: 'loadBoardInvite',
+	loadTaskInvite: 'loadTaskInvite',
 };
 
 export const TaskActions = {
@@ -51,6 +54,8 @@ export const TaskActions = {
 	addComment: 'addComment',
 	changeComment: 'changeComment',
 	deleteComment: 'deleteComment',
+	loadInvite: 'loadInvite',
+	copyLink: 'copyLink',
 };
 
 export const BoardsActions = {

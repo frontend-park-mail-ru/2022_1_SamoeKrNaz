@@ -80,4 +80,18 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	loadBoardInvite: async (data) => {
+		try {
+			return await Ajax.post({url: 'board/append/' + data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	loadTaskInvite: async (data) => {
+		try {
+			return await Ajax.post({url: 'task/append/' + data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

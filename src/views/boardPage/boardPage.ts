@@ -6,23 +6,27 @@ import BaseView from '../baseView';
 import TaskView from '../taskView/taskView';
 import BasePage from '../basePage/basePage';
 import EventBus from '../../modules/eventBus';
-import {BoardActions, Events} from '../../modules/actions';
+import {BoardActions, Events, TaskActions} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
-import {Event} from '../../modules/types';
+import {DispatcherAction, Event} from '../../modules/types';
 
 type ModalSettings = {
 	type: string,
 	id?: string,
 	title: string,
 	isDelete?: boolean,
+	isInvite?: boolean,
+	isSave?: boolean,
+	link?: string,
 	onChange?: Array<Event>,
 	inputs?: Array<{
 		len?: boolean,
 		isTypeInput: boolean,
 		name: string,
-		placeholder: string,
 		value?: string,
+		title?: string,
+		isInvite?: boolean,
 	}>,
 };
 
@@ -68,11 +72,12 @@ export default new (class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.createList,
 						title: 'Создать колонку',
+						isSave: true,
 						inputs: [
 							{
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название колонки',
+								title: 'Название колонки',
 								value: undefined,
 							},
 						],
@@ -87,17 +92,18 @@ export default new (class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.updateBoard,
 						title: 'Настройки доски',
+						isSave: true,
 						inputs: [
 							{
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название доски',
 								value: Board.getTitle(),
+								title: 'Название:',
 							},
 							{
 								isTypeInput: false,
 								name: 'description',
-								placeholder: 'Описание доски',
+								title: 'Описание:',
 								value: Board.getDescription(),
 							},
 						],
@@ -112,13 +118,14 @@ export default new (class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.addTask,
 						id: e.target.dataset.id,
+						isSave: true,
 						title: 'Добавить карточку',
 						inputs: [
 							{
 								len: true,
 								isTypeInput: true,
 								name: 'title',
-								placeholder: 'Название карточки',
+								title: 'Название карточки:',
 							},
 						],
 					});
@@ -190,12 +197,21 @@ export default new (class BoardPage extends BaseView {
 					this.openModal({
 						type: BoardActions.addUser,
 						id: '',
+						isInvite: true,
 						title: 'Пригласить пользователя',
 						inputs: [
 							{
 								isTypeInput: true,
+								isInvite: false,
 								name: 'title',
-								placeholder: 'Имя пользователя',
+								title: 'Имя пользователя:',
+							},
+							{
+								isTypeInput: true,
+								isInvite: true,
+								name: 'link',
+								title: 'Ссылка для приглашения:',
+								value: Board.getLink(),
 							},
 						],
 						onChange: [{
@@ -234,14 +250,25 @@ export default new (class BoardPage extends BaseView {
 	/**
 	 * Метод отвечающий за генерацию View
 	 */
-	render() {
+	render():void {
 		BasePage.render();
 
 		this.onUpdate();
 
-		Dispatcher.dispatch({
-			type: BoardActions.loadBoard,
-		});
+		const currentUrl = window.location.href;
+		if (currentUrl.includes('boardappend/')) {
+			Dispatcher.dispatch({
+				type: BoardActions.loadBoardInvite,
+			});
+		} else if (currentUrl.includes('taskappend/')) {
+			Dispatcher.dispatch({
+				type: BoardActions.loadTaskInvite,
+			});
+		} else {
+			Dispatcher.dispatch({
+				type: BoardActions.loadBoard,
+			});
+		}
 
 		this._createListeners();
 	}
@@ -275,6 +302,10 @@ export default new (class BoardPage extends BaseView {
 
 		document.getElementsByClassName('createModal__settings_cancel')[0].addEventListener('click', this.modalClose);
 		document.getElementsByClassName('createModal__close')[0].addEventListener('click', this.modalClose);
+		const icon = document.getElementsByClassName('createModal__settings_link_icon');
+		if (icon.length > 0) {
+			icon[0].addEventListener('click', this.copyLink);
+		}
 		document.getElementById('boardModal').addEventListener('submit', this.modalParse);
 
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
@@ -293,7 +324,10 @@ export default new (class BoardPage extends BaseView {
 		document.getElementsByClassName('createModal__settings_cancel')[0].removeEventListener('click', this.modalClose);
 		document.getElementsByClassName('createModal__close')[0].removeEventListener('click', this.modalClose);
 		document.getElementById('boardModal').removeEventListener('submit', this.modalParse);
-
+		const icon = document.getElementsByClassName('createModal__settings_link_icon');
+		if (icon.length > 0) {
+			icon[0].removeEventListener('click', this.copyLink);
+		}
 		const createDeskBg = document.getElementsByClassName('createModal__bg')[0]; // Фон попап окна
 		const createDesk = document.getElementsByClassName('createModal')[0]; // Само окно
 
@@ -347,6 +381,18 @@ export default new (class BoardPage extends BaseView {
 			body: payload,
 			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
 		});
+	}
+
+	/**
+	 * Копирование ссылки для присоединения
+	 */
+	copyLink() {
+		const copyText = document.getElementsByClassName('createModal__settings_input_link')[0] as HTMLInputElement;
+
+		copyText.select();
+		copyText.setSelectionRange(0, 99999);
+
+		navigator.clipboard.writeText(copyText.value);
 	}
 });
 

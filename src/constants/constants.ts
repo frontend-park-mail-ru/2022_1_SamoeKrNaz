@@ -21,6 +21,9 @@ export const Url = {
 	index: '/',
 	notFound: '/404',
 	noNetwork: '/noNetwork',
+	inviteBoard: '/boardappend/<token>',
+	inviteTask: '/taskappend/<token>',
+	invitePage: '/invite',
 };
 
 export const ResponseStatus = {

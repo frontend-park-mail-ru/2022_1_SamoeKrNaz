@@ -1,10 +1,11 @@
 import Store from './baseStore';
 import {BoardActions, Events} from '../modules/actions';
 import {ajaxMethods} from '../ajax/board';
-import {ResponseStatus} from '../constants/constants';
+import {backendUrl, frontendUrl, ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
 import {BoardStore, DispatcherAction, Users} from '../modules/types';
+import TaskView from '../views/taskView/taskView';
 
 export default new (class Board extends Store {
 	_data: {
@@ -62,6 +63,15 @@ export default new (class Board extends Store {
 		case BoardActions.findUsers:
 			await this._findUsers(action);
 			break;
+		case BoardActions.loadBoardInvite:
+			await this._loadBoardInvite();
+			break;
+		case BoardActions.loadTaskInvite:
+			await this._loadTaskInvite();
+			break;
+		case BoardActions.copyLink:
+			this._copyLink();
+			break;
 		}
 	}
 
@@ -82,8 +92,7 @@ export default new (class Board extends Store {
 			router.open(Url.notFound);
 			return;
 		}
-
-		this._publish(Events.boardUpdate);
+		await this._publish(Events.boardUpdate);
 	}
 
 	/**
@@ -281,6 +290,60 @@ export default new (class Board extends Store {
 	}
 
 	/**
+	 * Загрузка инвайта доски
+	 */
+	async _loadBoardInvite() {
+		const res = await ajaxMethods.loadBoardInvite(window.location.pathname.split('/').pop());
+		console.log(res.body);
+		switch (res.status) {
+		case ResponseStatus.success:
+			window.history.pushState('', '', '/board/'+res.body.idb);
+			await this._loadBoard();
+			break;
+		default:
+			router.open(Url.invitePage);
+			return;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Загрузка инвайта карточки
+	 */
+	async _loadTaskInvite() {
+		const res = await ajaxMethods.loadTaskInvite(window.location.pathname.split('/').pop());
+		console.log(res.body);
+		switch (res.status) {
+		case ResponseStatus.success:
+			window.history.pushState('', '', '/board/'+res.body.IdB);
+			await this._loadBoard();
+			setTimeout(()=>{
+				TaskView.renderLink(res.body.idt);
+			}, 100);
+			break;
+		default:
+			router.open(Url.invitePage);
+			return;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Копирование ссылки для присоединения
+	 */
+	_copyLink() {
+		const copyText = document.getElementsByClassName('createModal__settings_input_link')[0] as HTMLInputElement;
+
+		copyText.select();
+		copyText.setSelectionRange(0, 99999);
+
+		navigator.clipboard.writeText(copyText.value);
+	}
+
+
+	/**
 	 * Получение title
 	 * @return {string}
 	 */
@@ -303,5 +366,13 @@ export default new (class Board extends Store {
 	 */
 	getDescription(): string {
 		return this._data.board.description;
+	}
+
+	/**
+	 * Получение link
+	 * @return {string}
+	 */
+	getLink(): string {
+		return frontendUrl + '/boardappend/' + this._data.board.link;
 	}
 });

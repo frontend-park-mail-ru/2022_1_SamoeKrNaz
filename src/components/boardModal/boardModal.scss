@@ -40,7 +40,8 @@
 		border-radius: 5px;
 		background-color: $gray-menu;
 		height: 1px;
-		margin: 20px 0;
+		margin-top: 20px;
+		margin-bottom: 10px;
 	}
 	&_header {
 		display: flex;
@@ -52,6 +53,24 @@
 		flex-direction: column;
 		color: $gray-text;
 
+		&_link {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			&_icon {
+				cursor: pointer;
+
+				&_task {
+					cursor: pointer;
+					margin-left: 10px;
+				}
+			}
+		}
+
+		&_title {
+			margin: 10px 0;
+		}
 		&_input {
 			background-color: $gray-main-dark;
 			height: 36px;
@@ -63,6 +82,9 @@
 			caret-color: $gray-text;
 			font-family: Roboto, sans-serif;
 
+			&_link {
+				width: 90%;
+			}
 			&::placeholder {
 				color: $gray-menu;
 			}

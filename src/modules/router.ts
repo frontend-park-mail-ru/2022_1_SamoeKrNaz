@@ -86,7 +86,13 @@ class Router {
 			});
 		});
 
-		const view = this._routes.get(path.replace(/\/board\/\d+/g, '/board/<id>'));
+		let view = this._routes.get(path.replace(/\/board\/\d+/g, '/board/<id>'));
+		if (view === undefined) {
+			view = this._routes.get(path.replace(/\/boardappend\/.+/g, '/boardappend/<token>'));
+			if (view === undefined) {
+				view = this._routes.get(path.replace(/\/taskappend\/.+/g, '/taskappend/<token>'));
+			}
+		}
 		this._currentView = view;
 
 		// зарегистрировал ли такой путь
