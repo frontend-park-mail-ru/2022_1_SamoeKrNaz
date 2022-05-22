@@ -158,7 +158,7 @@ export default new (class Board extends Store {
 
 		this._publish(Events.boardUpdate);
 
-		// await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, IdL: action.data.newList}});
+		await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, IdL: action.data.newList}});
 	}
 
 	/**
