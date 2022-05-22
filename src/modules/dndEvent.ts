@@ -134,7 +134,7 @@ export class DndEventForTask {
 	 * @param {string} targetClass Класс элемента, который является блоком dnd
 	 */
 	constructor(targetClass: string) {
-		const columns = document.querySelectorAll('.' + targetClass);
+		const columns = document.querySelectorAll(targetClass);
 
 		this.targets = [];
 
@@ -147,7 +147,9 @@ export class DndEventForTask {
 
 				this.targets.push(newTarget);
 
-				this.addEventsForTask(newTarget.target);
+				if (newTarget.target.classList.contains('desk__task')) {
+					this.addEventsForTask(newTarget.target);
+				}
 			}
 		}
 	}
@@ -162,6 +164,7 @@ export class DndEventForTask {
 		const position = Number(target.dataset.position) - 1;
 		let newPosition = Number(target.dataset.position);
 		let newList = Number(target.dataset.idl);
+		let currentThing: HTMLElement = null;
 
 		const onMouseMove = (e: MouseEvent) => {
 			document.addEventListener('mouseup', onMouseUp);
@@ -171,7 +174,9 @@ export class DndEventForTask {
 			window.getSelection().removeAllRanges();
 
 			target.hidden = true;
+			if (currentThing) currentThing.style.margin = '12px 0';
 			const nowWeSee = document.elementFromPoint(e.clientX, e.clientY);
+			if (currentThing) currentThing.style.margin = (target.clientHeight + 25) + 'px 0 0';
 			target.hidden = false;
 
 			offsetPos.x = e.clientX - start.x;
@@ -180,10 +185,11 @@ export class DndEventForTask {
 			target.style.transform = 'translate(' + offsetPos.x + 'px, ' + offsetPos.y + 'px)';
 
 			this.targets.forEach((el, i) => {
-				if (nowWeSee == el.target) {
-					this.targets.map((el) => el.target.style.margin = '12px 0');
+				if (nowWeSee == el.target || nowWeSee.parentElement == el.target || nowWeSee == el.targetParent) {
+					currentThing = el.target;
+					currentThing.style.margin = '12px 0';
+					currentThing.style.margin = (target.clientHeight + 25) + 'px 0 0';
 
-					el.target.style.margin = (target.clientHeight + 25) + 'px 0 0';
 					newPosition = Number(el.target.dataset.position);
 					newList = Number(el.target.dataset.idl);
 				}

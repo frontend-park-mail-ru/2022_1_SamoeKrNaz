@@ -151,6 +151,9 @@ export default new (class Board extends Store {
 				task.position = action.data.newPos;
 				task.IdL = action.data.newList;
 
+				if (action.data.oldPos < action.data.newPos && action.data.newList === action.data.oldList) {
+					action.data.newPos -= 1;
+				}
 				el.Tasks.splice(action.data.newPos - 1, 0, task);
 				el.Tasks.forEach((el, i) => el.position = i + 1);
 			}
@@ -158,7 +161,7 @@ export default new (class Board extends Store {
 
 		this._publish(Events.boardUpdate);
 
-		await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, IdL: action.data.newList}});
+		// await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, idl: action.data.newList}});
 	}
 
 	/**

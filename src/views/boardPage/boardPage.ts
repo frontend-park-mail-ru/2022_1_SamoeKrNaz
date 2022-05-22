@@ -254,6 +254,8 @@ export default new (class BoardPage extends BaseView {
 	onUpdate(data = {board: null}) {
 		this.removeListeners();
 
+		data.board?.Lists.map((el) => el.countTasks = el.Tasks.length + 1);
+
 		const html = boardPageTemp({
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
@@ -265,7 +267,7 @@ export default new (class BoardPage extends BaseView {
 		root.innerHTML = html;
 
 		const dndEvents = new DndEvent('desk__column', 'desk__column-title');
-		const dndEventForTask = new DndEventForTask('desk__task');
+		const dndEventForTask = new DndEventForTask('[data-isDnd="true"]');
 		this._createListeners();
 	}
 
