@@ -51,6 +51,9 @@ export const TaskActions = {
 	addComment: 'addComment',
 	changeComment: 'changeComment',
 	deleteComment: 'deleteComment',
+	uploadAttachment: 'uploadAttachment',
+	removeAttachment: 'removeAttachment',
+	downloadAttachment: 'downloadAttachment',
 };
 
 export const BoardsActions = {

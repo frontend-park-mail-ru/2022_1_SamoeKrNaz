@@ -268,6 +268,38 @@ export default new (class TaskView extends BaseView {
 					});
 				},
 			},
+			{
+				type: 'change',
+				id: 'attachmentUpload',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.uploadAttachment,
+						data: e.target.files[0],
+					});
+				},
+			},
+			{
+				type: 'click',
+				isArray: true,
+				className: 'taskBlock__attachment-delete',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.removeAttachment,
+						id: e.target.dataset.id,
+					});
+				},
+			},
+			{
+				type: 'click',
+				isArray: true,
+				className: 'taskBlock__attachment-download',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.downloadAttachment,
+						id: e.target.dataset.id,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.taskUpdate, this.onUpdate.bind(this));
