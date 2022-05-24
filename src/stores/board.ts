@@ -44,6 +44,12 @@ export default new (class Board extends Store {
 		case BoardActions.addTask:
 			await this._addTask(action);
 			break;
+		case BoardActions.moveList:
+			await this._moveList(action);
+			break;
+		case BoardActions.moveTask:
+			await this._moveTask(action);
+			break;
 		case BoardActions.deleteDesk:
 			await this._deleteDesk();
 			break;
@@ -99,10 +105,63 @@ export default new (class Board extends Store {
 				...res.body,
 				Tasks: [],
 			});
+			this._data.board.Lists.forEach((el, i) => {
+				el.position = i + 1;
+			});
 			break;
 		}
 
 		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Перемещение листа
+	 * @param {DispatcherAction} action
+	 */
+	async _moveList(action: DispatcherAction) {
+		const list = this._data.board.Lists[action.data.old];
+		this._data.board.Lists.splice(action.data.old, 1);
+		this._data.board.Lists.splice(action.data.new - 1, 0, list);
+		this._data.board.Lists.forEach((el, i) => {
+			el.position = i + 1;
+		});
+
+		this._publish(Events.boardUpdate);
+
+		await ajaxMethods.moveList({id: action.id, body: {position: action.data.new}});
+	}
+
+	/**
+	 * Перемещение таски
+	 * @param {DispatcherAction} action
+	 */
+	async _moveTask(action: DispatcherAction) {
+		let task;
+
+		this._data.board.Lists.map((el) => {
+			if (el.idl === action.data.oldList) {
+				task = el.Tasks[action.data.oldPos - 1];
+				el.Tasks.splice(action.data.oldPos - 1, 1);
+				el.Tasks.forEach((el, i) => el.position = i + 1);
+			}
+		});
+
+		this._data.board.Lists.map((el) => {
+			if (el.idl === action.data.newList) {
+				task.position = action.data.newPos;
+				task.IdL = action.data.newList;
+
+				if (action.data.oldPos < action.data.newPos && action.data.newList === action.data.oldList) {
+					action.data.newPos -= 1;
+				}
+				el.Tasks.splice(action.data.newPos - 1, 0, task);
+				el.Tasks.forEach((el, i) => el.position = i + 1);
+			}
+		});
+
+		this._publish(Events.boardUpdate);
+
+		await ajaxMethods.moveTask({id: action.id, body: {position: action.data.newPos, idl: action.data.newList}});
 	}
 
 	/**
@@ -172,6 +231,9 @@ export default new (class Board extends Store {
 				if (list.idl === Number(action.id)) {
 					delete this._data.board.Lists[i];
 				}
+			});
+			this._data.board.Lists.forEach((el, i) => {
+				el.position = i + 1;
 			});
 			break;
 		}

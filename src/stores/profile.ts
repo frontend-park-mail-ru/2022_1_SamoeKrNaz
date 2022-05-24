@@ -93,7 +93,7 @@ class Profile extends Store {
 			return;
 		}
 
-		const res = await ajaxMethods.loginProfile({Username: data.login, Password: data.password});
+		const res = await ajaxMethods.loginProfile({username: data.login, password: data.password});
 
 		switch (res.status) {
 		case ResponseStatus.success:
@@ -133,7 +133,7 @@ class Profile extends Store {
 			return false;
 		}
 
-		const res = await ajaxMethods.registerProfile({Username: data.login, Password: data.password});
+		const res = await ajaxMethods.registerProfile({username: data.login, password: data.password});
 
 		switch (res.status) {
 		case ResponseStatus.created:
