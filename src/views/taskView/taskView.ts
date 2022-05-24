@@ -7,7 +7,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {ProfileStore, TaskStore} from '../../modules/types';
 import Profile from '../../stores/profile';
-import {copyLength} from "../../constants/constants";
+import {copyLength} from '../../constants/constants';
 
 /**
  * Класс, реализующий страницу логина.
