@@ -1,6 +1,6 @@
 import Store from './baseStore';
 import {ProfileActions, ProfileEvents, TaskActions, Events} from '../modules/actions';
-import {Messages, ResponseStatus, Url} from '../constants/constants';
+import {backendUrl, frontendUrl, Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/task';
 import router from '../modules/router';
 import {DispatcherAction, ProfileStore, TaskStore} from '../modules/types';
@@ -93,10 +93,12 @@ class Task extends Store {
 	 * @param {DispatcherAction} action
 	 */
 	async _loadTask(action: DispatcherAction) {
+		console.log('data', action.data);
 		const res = await ajaxMethods.loadTask({id: action.data});
-
+		console.log(res);
 		switch (res.status) {
 		case ResponseStatus.success:
+			res.body.link = frontendUrl + '/taskappend/' + res.body.link;
 			this._data = res.body;
 			break;
 		}

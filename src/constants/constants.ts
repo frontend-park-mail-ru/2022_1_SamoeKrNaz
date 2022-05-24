@@ -21,6 +21,9 @@ export const Url = {
 	index: '/',
 	notFound: '/404',
 	noNetwork: '/noNetwork',
+	inviteBoard: '/boardappend/<token>',
+	inviteTask: '/taskappend/<token>',
+	invitePage: '/invite',
 };
 
 export const ResponseStatus = {
@@ -43,3 +46,5 @@ export const Sizes = {
 
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';
 export const frontendUrl = window.location.origin;
+
+export const copyLength = 100;

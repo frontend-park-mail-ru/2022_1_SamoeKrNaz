@@ -64,6 +64,7 @@ export interface BoardStore {
 	idb: number,
 	title: string,
 	description: string,
+	link: string,
 	Users: Users,
 	Lists: List,
 }

@@ -115,6 +115,13 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	loadInvite: async (data) => {
+		try {
+			return await Ajax.get({url: 'task/append/' + data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	uploadAttachment: async (data) => {
 		try {
 			return await Ajax.put({url: 'task/' + data.id + '/attachment', opt: data.opt});

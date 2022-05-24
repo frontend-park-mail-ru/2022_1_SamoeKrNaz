@@ -7,6 +7,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {ProfileStore, TaskStore} from '../../modules/types';
 import Profile from '../../stores/profile';
+import {copyLength} from '../../constants/constants';
 
 /**
  * Класс, реализующий страницу логина.
@@ -269,6 +270,14 @@ export default new (class TaskView extends BaseView {
 				},
 			},
 			{
+				type: 'click',
+				className: 'createModal__settings_link_icon_task',
+				isArray: false,
+				func: () => {
+					this.copyLink();
+				},
+			},
+			{
 				type: 'change',
 				id: 'attachmentUpload',
 				func: async (e) => {
@@ -320,6 +329,23 @@ export default new (class TaskView extends BaseView {
 			type: TaskActions.loadTask,
 			data: e.target.dataset.id,
 		});
+	}
+
+	/**
+	 * Метод отвечающий за генерацию View по ссылке
+	 * @param {number} data
+	 */
+	renderLink(data): void {
+		const block = document.querySelector('.taskBlockContainer');
+		block.innerHTML = taskBlock();
+
+		this._createListeners();
+
+		Dispatcher.dispatch({
+			type: TaskActions.loadTask,
+			data: data,
+		});
+		block.classList.add('taskBlock_active');
 	}
 
 	/**
@@ -384,5 +410,17 @@ export default new (class TaskView extends BaseView {
 		Dispatcher.dispatch({
 			type: BoardActions.loadBoard,
 		});
+	}
+
+	/**
+	 * Копирование ссылки для присоединения
+	 */
+	copyLink() {
+		const copyText = document.getElementsByClassName('createModal__settings_input_link_task')[0] as HTMLInputElement;
+
+		copyText.select();
+		copyText.setSelectionRange(0, copyLength);
+
+		navigator.clipboard.writeText(copyText.value);
 	}
 });

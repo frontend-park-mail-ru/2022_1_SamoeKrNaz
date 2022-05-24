@@ -1,10 +1,10 @@
-import notFoundPageTemp from './notFoundPage.hbs';
+import invitePageTemp from './invitePage.hbs';
 import BaseView from '../baseView';
 
 /**
  * Класс, реализующий страницу логина.
  */
-export default new (class NotFoundPage extends BaseView {
+export default new (class InvitePage extends BaseView {
 	/**
 	 * @constructor
 	 */
@@ -16,7 +16,7 @@ export default new (class NotFoundPage extends BaseView {
 	 * Метод отвечающий за генерацию View
 	 */
 	render() {
-		const html = notFoundPageTemp();
+		const html = invitePageTemp();
 
 		/* Создание контейнера для вставки в DOM */
 		document.body.innerHTML = '';
