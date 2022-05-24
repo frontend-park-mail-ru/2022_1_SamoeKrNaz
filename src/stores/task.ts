@@ -376,7 +376,6 @@ class Task extends Store {
 		const res = await ajaxMethods.uploadAttachment({id: this._data.idt, opt: formData});
 		switch (res.status) {
 		case ResponseStatus.success:
-			res.body.system_name = '../attachments/' + res.body.system_name;
 			this._data.attachments.push(res.body);
 			break;
 		}
@@ -411,7 +410,7 @@ class Task extends Store {
 		const attachment = this._data.attachments.find((attach) => {
 			return attach.id_a === Number(action.id);
 		});
-		window.open(attachment.system_name, attachment.default_name);
+		window.open('../' + attachment.system_name, attachment.default_name);
 	}
 
 	/**
