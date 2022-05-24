@@ -56,6 +56,9 @@ export const TaskActions = {
 	deleteComment: 'deleteComment',
 	loadInvite: 'loadInvite',
 	copyLink: 'copyLink',
+	uploadAttachment: 'uploadAttachment',
+	removeAttachment: 'removeAttachment',
+	downloadAttachment: 'downloadAttachment',
 };
 
 export const BoardsActions = {

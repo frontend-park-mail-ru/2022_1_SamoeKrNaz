@@ -10,7 +10,7 @@ import {BoardActions, Events, TaskActions} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {DispatcherAction, Event} from '../../modules/types';
-import {copyLength} from "../../constants/constants";
+import {copyLength} from '../../constants/constants';
 
 type ModalSettings = {
 	type: string,
@@ -396,4 +396,3 @@ export default new (class BoardPage extends BaseView {
 		navigator.clipboard.writeText(copyText.value);
 	}
 });
-

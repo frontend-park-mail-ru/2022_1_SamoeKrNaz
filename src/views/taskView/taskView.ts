@@ -7,6 +7,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {ProfileStore, TaskStore} from '../../modules/types';
 import Profile from '../../stores/profile';
+import {copyLength} from "../../constants/constants";
 
 /**
  * Класс, реализующий страницу логина.
@@ -274,6 +275,38 @@ export default new (class TaskView extends BaseView {
 				isArray: false,
 				func: () => {
 					this.copyLink();
+				},
+			},
+			{
+				type: 'change',
+				id: 'attachmentUpload',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.uploadAttachment,
+						data: e.target.files[0],
+					});
+				},
+			},
+			{
+				type: 'click',
+				isArray: true,
+				className: 'taskBlock__attachment-delete',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.removeAttachment,
+						id: e.target.dataset.id,
+					});
+				},
+			},
+			{
+				type: 'click',
+				isArray: true,
+				className: 'taskBlock__attachment-download',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.downloadAttachment,
+						id: e.target.dataset.id,
+					});
 				},
 			},
 		]);
