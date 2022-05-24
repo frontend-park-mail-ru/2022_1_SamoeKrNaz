@@ -73,6 +73,20 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	moveList: async (data) => {
+		try {
+			return await Ajax.put({url: 'list/' + data.id, opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
+	moveTask: async (data) => {
+		try {
+			return await Ajax.put({url: 'task/' + data.id, opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	addUser: async (data) => {
 		try {
 			return await Ajax.post({url: 'board/' + data.id + '/' + data.body});

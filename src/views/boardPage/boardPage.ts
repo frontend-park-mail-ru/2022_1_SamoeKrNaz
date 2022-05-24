@@ -11,6 +11,7 @@ import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {DispatcherAction, Event} from '../../modules/types';
 import {copyLength} from '../../constants/constants';
+import {DndEvent, DndEventForTask} from '../../modules/dndEvent';
 
 type ModalSettings = {
 	type: string,
@@ -281,6 +282,8 @@ export default new (class BoardPage extends BaseView {
 	onUpdate(data = {board: null}) {
 		this.removeListeners();
 
+		data.board?.Lists.map((el) => el.countTasks = el.Tasks.length + 1);
+
 		const html = boardPageTemp({
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
@@ -291,6 +294,8 @@ export default new (class BoardPage extends BaseView {
 		/* Добавление контента в DOM */
 		root.innerHTML = html;
 
+		const dndEvents = new DndEvent('desk__column', 'desk__column-title');
+		const dndEventForTask = new DndEventForTask('[data-isDnd="true"]');
 		this._createListeners();
 	}
 
@@ -378,9 +383,9 @@ export default new (class BoardPage extends BaseView {
 		}
 
 		Dispatcher.dispatch({
-			type: e.path[0].dataset.type,
+			type: e.composedPath()[0].dataset.type,
 			body: payload,
-			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
+			id: (e.composedPath()[0].dataset.id) ? e.composedPath()[0].dataset.id : null,
 		});
 	}
 
