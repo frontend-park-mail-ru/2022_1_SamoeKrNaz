@@ -1,7 +1,7 @@
 import Store from './baseStore';
 import {BoardActions, Events} from '../modules/actions';
 import {ajaxMethods} from '../ajax/board';
-import {backendUrl, frontendUrl, ResponseStatus} from '../constants/constants';
+import {backendUrl, copyLength, frontendUrl, ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
 import {Url} from '../constants/constants';
 import {BoardStore, DispatcherAction, Users} from '../modules/types';
@@ -337,7 +337,7 @@ export default new (class Board extends Store {
 		const copyText = document.getElementsByClassName('createModal__settings_input_link')[0] as HTMLInputElement;
 
 		copyText.select();
-		copyText.setSelectionRange(0, 99999);
+		copyText.setSelectionRange(0, copyLength);
 
 		navigator.clipboard.writeText(copyText.value);
 	}
