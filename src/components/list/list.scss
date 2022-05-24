@@ -28,12 +28,10 @@
 				height: calc(100vh - 180px);
 			}
 		}
-
 		&-dragged {
-			box-shadow: 0 0 15px 5px rgba(0,0,0,0.1);
+			box-shadow: 0 0 15px 5px rgb(0 0 0 / 10%);
 			z-index: 150;
 		}
-
 		&-title {
 			display: flex;
 			justify-content: space-between;
@@ -101,7 +99,7 @@
 		position: relative;
 
 		&-dragged {
-			box-shadow: 0 0 15px 5px rgba(0,0,0,0.1);
+			box-shadow: 0 0 15px 5px rgb(0 0 0 / 10%);
 			position: absolute;
 			width: 230px;
 			z-index: 150;

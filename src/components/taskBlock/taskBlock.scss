@@ -58,7 +58,6 @@
 			letter-spacing: 0.02em;
 			margin-top: 11px;
 		}
-
 		&-dop {
 			display: flex;
 			margin-top: 15px;
@@ -73,7 +72,6 @@
 					margin: 15px -2.5px 0;
 				}
 			}
-
 			&-date {
 				margin-top: 15px;
 			}
@@ -301,13 +299,11 @@
 			border-radius: 18px;
 			margin-right: 8px;
 		}
-
 		&-textarea {
 			width: calc(100% - 5px);
 			margin: 0;
 			height: 80px;
 		}
-
 		&-body {
 			background: #fff;
 			box-shadow: $blackShadow;
@@ -315,13 +311,12 @@
 			padding: 10px 15px;
 			width: 100%;
 		}
-
 		&-text {
 			margin: 10px 0 0;
 			font-weight: 400;
 			font-size: 12.5px;
 			line-height: 14px;
-			color: #7F7F7F;
+			color: #7f7f7f;
 
 			&-delete {
 				margin-left: 20px;
@@ -329,12 +324,10 @@
 				cursor: pointer;
 			}
 		}
-
 		&-textarea-add[disabled] {
 			background: #fff;
 			color: black;
 		}
-
 		&-textarea-add {
 			width: 100%;
 			border: none;
@@ -355,7 +348,6 @@
 				margin-bottom: -2px;
 				cursor: text;
 			}
-
 			&-hidden {
 				visibility: hidden;
 				position: absolute;
