@@ -410,7 +410,7 @@ class Task extends Store {
 		const attachment = this._data.attachments.find((attach) => {
 			return attach.id_a === Number(action.id);
 		});
-		window.open('../' + attachment.system_name, attachment.default_name);
+		window.open('../' + attachment.system_name + '?name=' + attachment.default_name, `Download: ${attachment.default_name}`);
 	}
 
 	/**
