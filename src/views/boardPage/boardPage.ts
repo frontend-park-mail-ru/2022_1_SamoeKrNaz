@@ -348,9 +348,9 @@ export default new (class BoardPage extends BaseView {
 		}
 
 		Dispatcher.dispatch({
-			type: e.path[0].dataset.type,
+			type: e.composedPath()[0].dataset.type,
 			body: payload,
-			id: (e.path[0].dataset.id) ? e.path[0].dataset.id : null,
+			id: (e.composedPath()[0].dataset.id) ? e.composedPath()[0].dataset.id : null,
 		});
 	}
 });
