@@ -297,7 +297,7 @@ export default new (class Board extends Store {
 		console.log(res.body);
 		switch (res.status) {
 		case ResponseStatus.success:
-			window.history.pushState('', '', '/board/'+res.body.idb);
+			window.history.pushState('', '', '/board/' + res.body.idb);
 			await this._loadBoard();
 			break;
 		default:
@@ -316,7 +316,7 @@ export default new (class Board extends Store {
 		console.log(res.body);
 		switch (res.status) {
 		case ResponseStatus.success:
-			window.history.pushState('', '', '/board/'+res.body.IdB);
+			window.history.pushState('', '', '/board/' + res.body.IdB);
 			await this._loadBoard();
 			setTimeout(()=>{
 				TaskView.renderLink(res.body.idt);

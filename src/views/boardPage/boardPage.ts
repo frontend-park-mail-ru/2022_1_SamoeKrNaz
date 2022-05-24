@@ -10,6 +10,7 @@ import {BoardActions, Events, TaskActions} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
 import {DispatcherAction, Event} from '../../modules/types';
+import {copyLength} from "../../constants/constants";
 
 type ModalSettings = {
 	type: string,
@@ -390,7 +391,7 @@ export default new (class BoardPage extends BaseView {
 		const copyText = document.getElementsByClassName('createModal__settings_input_link')[0] as HTMLInputElement;
 
 		copyText.select();
-		copyText.setSelectionRange(0, 99999);
+		copyText.setSelectionRange(0, copyLength);
 
 		navigator.clipboard.writeText(copyText.value);
 	}

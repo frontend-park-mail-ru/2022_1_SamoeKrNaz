@@ -21,7 +21,7 @@
             <textarea data-autosize="true" data-id="1" class="taskBlock__title-input header2">{{ title }}</textarea>
             <p class="taskBlock__content-text">в доске <ins>{{ deskTitle }}</ins></p>
             <div class="taskBlock__content-dop">
-                <div class="taskBlock__content-dop-users">
+                <div class="taskBlock__content-dop-">
                     <p class="taskBlock__text">Участники:</p>
                     <div class="taskBlock__content-dop-users-avatars">
                         {{#each append_users}}
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="taskBlock__content-dop-users">
+                <div class="taskBlock__content-dop-date">
                     <p class="taskBlock__text">Cрок выполнения:</p>
                     <input class="taskBlock__date" type="datetime-local" id="start" name="trip-start"
                         value="{{ deadline }}"
