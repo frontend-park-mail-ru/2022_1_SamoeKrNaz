@@ -305,7 +305,7 @@ export default new (class TaskView extends BaseView {
 				func: async (e) => {
 					Dispatcher.dispatch({
 						type: TaskActions.downloadAttachment,
-						id: e.target.dataset.id,
+						id: e.target.closest('div').dataset.id,
 					});
 				},
 			},
