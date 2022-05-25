@@ -10,6 +10,19 @@
 	padding: 25px;
 	flex-direction: column;
 
+	&__error {
+		border: 2px solid #ff7e7e;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		color: #ff7e7e;
+		margin-top: 15px;
+		margin-bottom: 10px;
+		padding: 15px 20px;
+		width: auto;
+	}
+
 	&__close {
 		cursor: pointer;
 	}
@@ -202,7 +215,6 @@
 				left: -100px;
 			}
 		}
-
 		&-block {
 			margin: 0 2.5px;
 			cursor: pointer;
@@ -219,7 +231,6 @@
 				opacity: 1;
 				transition: $time-anim;
 			}
-
 			&:hover .taskBlock__img-popover {
 				visibility: visible;
 				opacity: 1;

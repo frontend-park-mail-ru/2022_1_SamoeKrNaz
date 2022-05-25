@@ -375,14 +375,25 @@ class Task extends Store {
 	async _uploadAttachment(data: DispatcherAction) {
 		const formData = new FormData();
 		formData.append('attachment', data.data);
-		const res = await ajaxMethods.uploadAttachment({id: this._data.idt, opt: formData});
-		switch (res.status) {
-		case ResponseStatus.success:
-			this._data.attachments.push(res.body);
-			break;
+		this._data.isExec = false;
+		this._data.isLarge = false;
+		if (data.data.type === 'application/x-msdownload') {
+			this._data.isExec = true;
+			this._publish(Events.taskUpdate);
+		} else {
+			console.log(data.data.type);
+			const res = await ajaxMethods.uploadAttachment({id: this._data.idt, opt: formData});
+			switch (res.status) {
+			case ResponseStatus.success:
+				this._data.attachments.push(res.body);
+				this._publish(Events.taskUpdate);
+				break;
+			case ResponseStatus.tooLarge:
+				this._data.isLarge = true;
+				this._publish(Events.taskUpdate);
+				break;
+			}
 		}
-
-		this._publish(Events.taskUpdate);
 	}
 
 

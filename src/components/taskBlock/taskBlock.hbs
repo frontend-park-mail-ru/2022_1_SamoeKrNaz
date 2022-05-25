@@ -128,7 +128,20 @@
         </div>
         <div class="taskBlock__content">
             <p class="taskBlock__text">Вложения</p>
-
+            {{#if isExec}}
+                <div class="taskBlock__error">
+                    <span>
+                        К сожалению, прием исполняемых файлов не проводится
+                    </span>
+                </div>
+            {{/if}}
+            {{#if isLarge}}
+                <div class="taskBlock__error">
+                    <span>
+                        Размер Вашего файла слишком большой. Попробуйте загрузить другой
+                    </span>
+                </div>
+            {{/if}}
             {{#each attachments }}
                 <div class="taskBlock__attachment">
                     <div class="taskBlock__attachment-item" data-id="{{ id_a}}" >
