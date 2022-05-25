@@ -9,6 +9,7 @@ import EventBus from '../../modules/eventBus';
 import {BoardActions, Events, TaskActions} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import Board from '../../stores/board';
+import Profile from '../../stores/profile';
 import {DispatcherAction, Event} from '../../modules/types';
 import {copyLength} from '../../constants/constants';
 import {DndEvent, DndEventForTask} from '../../modules/dndEvent';
@@ -243,6 +244,17 @@ export default new (class BoardPage extends BaseView {
 					});
 				},
 			},
+			{
+				isArray: true,
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'taskBlock__img-block-delete', // Класс, на который навешивается обработчки
+				func: (e) => { // Функция, которая вызывается обработчиком
+					Dispatcher.dispatch({
+						type: BoardActions.deleteUsers,
+						data: e.target.dataset.id,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.boardUpdate, this.onUpdate.bind(this));
@@ -280,13 +292,21 @@ export default new (class BoardPage extends BaseView {
 	 * @param {object} data состояние стора
 	 */
 	onUpdate(data = {board: null}) {
+		const addUsers = [];
+
 		this.removeListeners();
 
 		data.board?.Lists.map((el) => el.countTasks = el.Tasks.length + 1);
+		data.board?.Users.map((el) => {
+			if (el.username != Profile.getState().username) {
+				addUsers.push(el);
+			}
+		});
 
 		const html = boardPageTemp({
 			pageStatus: BasePage.pageStatus,
 			board: data.board,
+			addUsers: addUsers,
 		});
 
 		const root = document.getElementById('root');

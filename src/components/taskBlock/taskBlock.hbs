@@ -26,6 +26,7 @@
                     <div class="taskBlock__content-dop-users-avatars">
                         {{#each append_users}}
                             <div class="taskBlock__img-block" data-id="{{ idu }}">
+                                <div class="taskBlock__img-popover">{{ username }}</div>
                                 <img alt="{{ username }} avatar" src="../{{ img_avatar }}" data-id="{{ idu }}" class="taskBlock__img">
                                 <div data-id="{{ idu }}" class="taskBlock__img-block-delete">
                                     <svg data-id="{{ idu }}" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -178,6 +178,31 @@
 		width: 40px;
 		border-radius: 20px;
 
+		&-popover {
+			visibility: hidden;
+			opacity: 0;
+			position: absolute;
+			z-index: 180;
+			overflow: hidden;
+			width: 150px;
+			top: -45px;
+			left: calc(50% - 75px);
+			background-color: $white;
+			box-shadow: $blackShadow;
+			border-radius: 8px;
+			transition: $time-anim;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 16px;
+			text-align: center;
+			padding: 10px 0;
+		}
+		&-block:last-child .taskBlock__img-popover {
+			@include media("max", "sm") {
+				left: -100px;
+			}
+		}
+
 		&-block {
 			margin: 0 2.5px;
 			cursor: pointer;
@@ -191,6 +216,12 @@
 				transition: $time-anim;
 			}
 			&:hover .taskBlock__img-block-delete {
+				opacity: 1;
+				transition: $time-anim;
+			}
+
+			&:hover .taskBlock__img-popover {
+				visibility: visible;
 				opacity: 1;
 				transition: $time-anim;
 			}

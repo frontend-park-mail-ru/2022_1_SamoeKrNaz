@@ -1,10 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.ts',
 	resolve: {
-		extensions: ['.js', '.ts', '.hbs', '.templ.js'],
+		extensions: ['.js', '.ts', '.hbs', '.templ.js', '.scss', '.css'],
 	},
 	devtool: 'source-map',
 	module: {
@@ -35,6 +38,17 @@ module.exports = {
 				},
 			},
 			{
+				include: [
+					path.resolve(__dirname, 'src/'),
+				],
+				test: /\.(s*)css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader',
+				],
+			},
+			{
 				test: /\.tsx?$/,
 				loader: 'ts-loader',
 				exclude: path.resolve(__dirname, 'node_modules/'),
@@ -55,6 +69,14 @@ module.exports = {
 			template: './src/template.html',
 			inject: false,
 		}),
+		new MiniCssExtractPlugin({filename: `style.css`}),
 	],
 	mode: 'production',
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserPlugin(),
+			new CssMinimizerPlugin(),
+		],
+	},
 };

@@ -3,14 +3,20 @@
 	position: relative;
 	overflow-x: auto;
 	padding: 0 15px;
-	height: calc(100vh - 131px);
+	height: calc(100vh - 151px);
 
 	@include media("max", "lg") {
-		height: calc(100vh - 156px);
+		height: calc(100vh - 180px);
 	}
 }
 
 .desk {
+	&__globalTitle-avatars {
+		display: flex;
+		height: 40px;
+		margin-left: 40px;
+		margin-right: 15px;
+	}
 
 	&__listIcon {
 		cursor: pointer;
@@ -21,7 +27,7 @@
 
 		&-block {
 			min-width: 345px;
-			height: calc(100vh - 150px);
+			height: calc(100vh - 151px);
 
 			@include media("max", "lg") {
 				min-width: 310px;

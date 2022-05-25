@@ -1,5 +1,20 @@
 <div class="desk__globalTitle">
-    {{board.title}}
+    <span>{{board.title}}</span>
+
+    <div class="desk__globalTitle-avatars">
+        {{#each addUsers}}
+            <div class="taskBlock__img-block" data-id="{{ idu }}">
+                <div class="taskBlock__img-popover">{{ username }}</div>
+                <img alt="{{ username }} avatar" src="../{{ img_avatar }}" data-id="{{ idu }}" class="taskBlock__img">
+                <div data-id="{{ idu }}" class="taskBlock__img-block-delete">
+                    <svg data-id="{{ idu }}" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle data-id="{{ idu }}" cx="20" cy="20" r="20" fill="#2D2D2D" fill-opacity="0.4"/>
+                        <path data-id="{{ idu }}" d="M15.1969 14.7406C15.4897 14.4478 15.9646 14.4478 16.2575 14.7406L20.5002 18.9833L24.7428 14.7406C25.0357 14.4478 25.5106 14.4478 25.8035 14.7406C26.0964 15.0335 26.0964 15.5084 25.8035 15.8013L21.5608 20.0439L25.8035 24.2866C26.0964 24.5795 26.0964 25.0544 25.8035 25.3472C25.5106 25.6401 25.0357 25.6401 24.7428 25.3472L20.5002 21.1046L16.2575 25.3472C15.9646 25.6401 15.4897 25.6401 15.1969 25.3472C14.904 25.0544 14.904 24.5795 15.1969 24.2866L19.4395 20.0439L15.1969 15.8013C14.904 15.5084 14.904 15.0335 15.1969 14.7406Z" fill="#F8FAFD"/>
+                    </svg>
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </div>
 
 {{> buttonsList/buttonsList }}

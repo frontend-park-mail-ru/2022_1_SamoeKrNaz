@@ -66,6 +66,9 @@ export default new (class Board extends Store {
 		case BoardActions.deleteTask:
 			await this._deleteTask(action);
 			break;
+		case BoardActions.deleteUsers:
+			await this._deleteUsers(action);
+			break;
 		case BoardActions.findUsers:
 			await this._findUsers(action);
 			break;
@@ -185,6 +188,28 @@ export default new (class Board extends Store {
 		case ResponseStatus.created:
 		case ResponseStatus.success:
 			this._data.board.title = action.body.title;
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+	}
+
+	/**
+	 * Удалить юзера с доски
+	 * @param {DispatcherAction} action
+	 */
+	async _deleteUsers(action: DispatcherAction) {
+		const res = await ajaxMethods.deleteUsers({idb: this._data.board.idb, idu: action.data});
+
+		switch (res.status) {
+		case ResponseStatus.noContent:
+		case ResponseStatus.created:
+		case ResponseStatus.success:
+			this._data.board.Users.forEach((el, i) => {
+				if (el.idu === Number(action.data)) {
+					this._data.board.Users.splice(i, 1);
+				}
+			});
 			break;
 		}
 
