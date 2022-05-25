@@ -74,6 +74,8 @@ export interface TaskStore {
 	description: string,
 	append_users: Users,
 	idt: number,
+	isExec: boolean,
+	isLarge: boolean,
 	checkList: Array<{
 		title: string,
 		id_cl: number,
