@@ -376,6 +376,7 @@ class Task extends Store {
 		const formData = new FormData();
 		formData.append('attachment', data.data);
 		this._data.isExec = false;
+		this._data.isLarge = false;
 		if (data.data.type === 'application/x-msdownload') {
 			this._data.isExec = true;
 			this._publish(Events.taskUpdate);
