@@ -57,6 +57,8 @@
 		letter-spacing: 0.02em;
 		padding: 15px 0 0 15px;
 		margin: 15px 0 0 15px;
+		display: flex;
+		align-items: center;
 
 		@include media("max", "lg") {
 			margin: 0 5px;

@@ -101,6 +101,13 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	deleteUsers: async (data) => {
+		try {
+			return await Ajax.delete({url: 'board/' + data.idb + '/' + data.idu});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	loadTaskInvite: async (data) => {
 		try {
 			return await Ajax.post({url: 'task/append/' + data});
