@@ -1,5 +1,7 @@
 'use strict';
 
+import './css/style.scss';
+
 import Dispatcher from './modules/dispatcher';
 import {ProfileActions} from './modules/actions';
 import {Url} from './constants/constants';
