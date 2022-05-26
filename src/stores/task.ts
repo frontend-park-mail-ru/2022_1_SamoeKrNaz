@@ -377,7 +377,10 @@ class Task extends Store {
 		formData.append('attachment', data.data);
 		this._data.isExec = false;
 		this._data.isLarge = false;
-		if (data.data.type === 'application/x-msdownload') {
+		if (Math.round((data.data.size / 1024)) > 1024) {
+			this._data.isLarge = true;
+			this._publish(Events.taskUpdate);
+		} else if (data.data.type === 'application/x-msdownload') {
 			this._data.isExec = true;
 			this._publish(Events.taskUpdate);
 		} else {
