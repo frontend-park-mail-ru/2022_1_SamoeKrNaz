@@ -1,5 +1,6 @@
 import Store from './baseStore';
 import {ProfileActions, ProfileEvents} from '../modules/actions';
+import Socket from '../modules/webSocket';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
 import router from '../modules/router';
@@ -240,6 +241,8 @@ class Profile extends Store {
 			router.open(Url.login);
 			break;
 		}
+
+		Socket.close();
 	}
 
 	/**
@@ -252,6 +255,8 @@ class Profile extends Store {
 		this._data.id = data.id;
 		this._data.username = data.username;
 		this._data.img = '../' + data.img_avatar;
+
+		Socket.start();
 	}
 
 	/**
