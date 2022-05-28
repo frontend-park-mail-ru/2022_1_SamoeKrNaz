@@ -46,6 +46,8 @@ export default new class Socket {
 	private msg(e): void {
 		const msg: MsgData = JSON.parse(e.data);
 
+		console.log('Пришло сообщение от сервера:', msg);
+
 		switch (msg.event_type) {
 		case WSMsg.deleteTask:
 			this.deleteTask(msg);

@@ -85,9 +85,11 @@ export default new (class Board extends Store {
 			break;
 		case BoardActions.blockUpdate:
 			this._data.isBlock = true;
+			console.log('Обновление доски заблокированно');
 			break;
 		case BoardActions.unBlockUpdate:
 			this._data.isBlock = false;
+			console.log('Обновление доски разаблокированно');
 			this._publish(Events.boardUpdate);
 			break;
 		}
