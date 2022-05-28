@@ -399,8 +399,6 @@ class Task extends Store {
 	 */
 	async _changeDate(action: DispatcherAction) {
 		const res = await ajaxMethods.changeDate({id: this._data.idt, body: {deadline: action.data}});
-
-
 	}
 
 	/**
