@@ -141,6 +141,8 @@ class Task extends Store {
 		const res = await ajaxMethods.updateTitle({id: this._data.idt, body: {title: action.title}});
 
 		this._data.title = action.title;
+
+		this._publish(Events.taskUpdate);
 	}
 
 	/**
@@ -151,6 +153,8 @@ class Task extends Store {
 		const res = await ajaxMethods.changeDescription({id: this._data.idt, body: {description: action.data}});
 
 		this._data.description = action.data;
+
+		this._publish(Events.taskUpdate);
 	}
 
 	/**
@@ -224,6 +228,8 @@ class Task extends Store {
 			});
 			break;
 		}
+
+		this._publish(Events.taskUpdate);
 	}
 
 	/**
@@ -393,6 +399,8 @@ class Task extends Store {
 	 */
 	async _changeDate(action: DispatcherAction) {
 		const res = await ajaxMethods.changeDate({id: this._data.idt, body: {deadline: action.data}});
+
+
 	}
 
 	/**
