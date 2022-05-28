@@ -5,15 +5,25 @@ on:
     branches: [ main ]
 
 jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upload files
+          uses: actions/upload-artifact@v2
+          with:
+            name: my-artifact
+            path: .
+
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Upload files
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-artifact
-          path: .
-
       - name: Download files
         uses: actions/download-artifact@v2
         with:
