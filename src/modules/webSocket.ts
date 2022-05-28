@@ -13,29 +13,39 @@ import EventBus from '../modules/eventBus';
  */
 export default new class Socket {
 	private socket: WebSocket;
+	private state: boolean;
 
 	/**
 	 * Метод, инициирующий соединения вебсокета с сервером
 	 */
 	start() {
+		this.state = true;
 		this.socket = new WebSocket(`ws${backendUrl.replace('http', '')}api/ws`);
 
 		this.socket.onopen = this.open;
 		this.socket.onmessage = this.msg.bind(this);
-		this.socket.onclose = function(event) {
-			console.log('Соединение с сервером по вебсокету ВСЕ!!!!!');
-		}
-		this.socket.onerror = function(error) {
+		this.socket.onclose = this.onClose.bind(this);
+		this.socket.onerror = (error) => {
 			alert(`[error] ${error}`);
 		};
 	}
-
 
 	/**
 	 * Метод, инициирующий соединения вебсокета с сервером
 	 */
 	close() {
+		this.state = false;
 		this.socket.close();
+	}
+
+	/**
+	 * Метод, инициирующий соединения вебсокета с сервером
+	 */
+	onClose() {
+		console.log('Соединение с сервером по вебсокету ВСЕ!!!!!');
+		if (this.state) {
+			setTimeout(this.start.bind(this), 100);
+		}
 	}
 
 	/**
