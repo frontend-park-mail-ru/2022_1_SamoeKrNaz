@@ -21,7 +21,6 @@ import NotFoundPage from './views/notFoundPage/notFoundPage';
 import NoNetworkPage from './views/noNetworkPage/noNetworkPage';
 import InvitePage from './views/invitePage/invitePage';
 
-
 // ts-loader не импортит файлы, который никак не используются. Поэтому ниже прописаны
 // названия классов, чьи конструкторы должны сработать при импорте
 Board;

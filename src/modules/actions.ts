@@ -38,10 +38,13 @@ export const BoardActions = {
 	copyLink: 'copyLink',
 	loadBoardInvite: 'loadBoardInvite',
 	loadTaskInvite: 'loadTaskInvite',
+	blockUpdate: 'blockUpdate',
+	unBlockUpdate: 'unBlockUpdate',
 };
 
 export const TaskActions = {
 	loadTask: 'loadTask',
+	updateTask: 'updateTasks',
 	updateTitle: 'updateTitle',
 	addUser: 'adduser',
 	removeUser: 'removeUser',
@@ -62,6 +65,8 @@ export const TaskActions = {
 	uploadAttachment: 'uploadAttachment',
 	removeAttachment: 'removeAttachment',
 	downloadAttachment: 'downloadAttachment',
+	blockUpdate: 'blockTaskUpdate',
+	unBlockUpdate: 'unBlockTaskUpdate',
 };
 
 export const BoardsActions = {
@@ -75,5 +80,6 @@ export const Events = {
 	boardUpdate: 'board',
 	boardError: 'boardError',
 	taskUpdate: 'taskUpdate',
+	taskDelete: 'taskDelete',
 };
 

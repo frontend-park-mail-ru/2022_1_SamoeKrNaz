@@ -12,6 +12,7 @@ import Profile from './profile';
  */
 class Task extends Store {
 	_data: TaskStore;
+	isBlock: boolean;
 
 	/**
 	 * @constructor
@@ -30,6 +31,9 @@ class Task extends Store {
 		switch (action.type) {
 		case TaskActions.loadTask:
 			await this._loadTask(action);
+			break;
+		case TaskActions.updateTask:
+			await this._updateTask();
 			break;
 		case TaskActions.updateTitle:
 			await this._updateTitle(action);
@@ -85,6 +89,12 @@ class Task extends Store {
 		case TaskActions.downloadAttachment:
 			await this._downloadAttachment(action);
 			break;
+		case TaskActions.blockUpdate:
+			this.isBlock = true;
+			break;
+		case TaskActions.unBlockUpdate:
+			this.isBlock = false;
+			break;
 		}
 	}
 
@@ -93,9 +103,8 @@ class Task extends Store {
 	 * @param {DispatcherAction} action
 	 */
 	async _loadTask(action: DispatcherAction) {
-		console.log('data', action.data);
 		const res = await ajaxMethods.loadTask({id: action.data});
-		console.log(res);
+
 		switch (res.status) {
 		case ResponseStatus.success:
 			res.body.link = frontendUrl + '/taskappend/' + res.body.link;
@@ -104,6 +113,24 @@ class Task extends Store {
 		}
 
 		this._publish(Events.taskUpdate);
+	}
+
+	/**
+	 * Получение и обработка информации о таске
+	 */
+	async _updateTask() {
+		const res = await ajaxMethods.loadTask({id: this._data.idt});
+
+		switch (res.status) {
+		case ResponseStatus.success:
+			res.body.link = frontendUrl + '/taskappend/' + res.body.link;
+			this._data = res.body;
+			break;
+		}
+
+		if (!this.isBlock) {
+			this._publish(Events.taskUpdate);
+		}
 	}
 
 	/**
@@ -396,7 +423,6 @@ class Task extends Store {
 		}
 	}
 
-
 	/**
 	 * Удаление вложений
 	 * @param {DispatcherAction} action
@@ -432,6 +458,14 @@ class Task extends Store {
 	 */
 	getState() {
 		return this._data;
+	}
+
+	/**
+	 * Получить состояние пользователя
+	 * @return {number}
+	 */
+	getId(): number {
+		return this._data.idt;
 	}
 }
 

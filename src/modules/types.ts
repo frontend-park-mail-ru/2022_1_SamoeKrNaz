@@ -33,6 +33,7 @@ export interface ProfileStore {
 export interface Event {
 	type: string,
 	className?: string,
+	querySelector?: string,
 	id?: string,
 	func: (e?: any) => void,
 	isArray?: boolean,
@@ -99,4 +100,10 @@ export interface TaskStore {
 		default_name: string,
 		system_name: string,
 	}>,
+}
+
+export interface MsgData {
+	event_type: string,
+	id_b: number,
+	id_t: number,
 }

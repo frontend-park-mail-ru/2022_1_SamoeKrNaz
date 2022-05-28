@@ -309,9 +309,30 @@ export default new (class TaskView extends BaseView {
 					});
 				},
 			},
+			{
+				type: 'focus',
+				isArray: true,
+				querySelector: '[data-block-update="true"]',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.blockUpdate,
+					});
+				},
+			},
+			{
+				type: 'blur',
+				isArray: true,
+				querySelector: '[data-block-update="true"]',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.unBlockUpdate,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.taskUpdate, this.onUpdate.bind(this));
+		EventBus.subscribe(Events.taskDelete, this.close.bind(this));
 	}
 
 	/**
@@ -406,6 +427,10 @@ export default new (class TaskView extends BaseView {
 	close() {
 		const block = document.querySelector('.taskBlockContainer');
 		block.classList.toggle('taskBlock_active');
+
+		Dispatcher.dispatch({
+			type: BoardActions.unBlockUpdate,
+		});
 
 		Dispatcher.dispatch({
 			type: BoardActions.loadBoard,

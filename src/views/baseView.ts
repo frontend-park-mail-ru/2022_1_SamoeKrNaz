@@ -45,7 +45,13 @@ class BaseView {
 				document.getElementById(listener.id)?.addEventListener(listener.type, listener.func);
 			}
 		} else {
-			const els = document.getElementsByClassName(listener.className);
+			let els;
+			if (listener.querySelector) {
+				els = document.querySelectorAll(listener.querySelector);
+			} else {
+				els = document.getElementsByClassName(listener.className);
+			}
+
 
 			for (const key in els) {
 				if (els.hasOwnProperty(key)) {
