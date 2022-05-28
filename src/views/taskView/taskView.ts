@@ -347,6 +347,10 @@ export default new (class TaskView extends BaseView {
 		this._createListeners();
 
 		Dispatcher.dispatch({
+			type: BoardActions.blockUpdate,
+		});
+
+		Dispatcher.dispatch({
 			type: TaskActions.loadTask,
 			data: e.target.dataset.id,
 		});
