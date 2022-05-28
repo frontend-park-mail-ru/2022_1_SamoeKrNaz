@@ -8,7 +8,8 @@
     "buildScss": "sass src/css/style.scss src/css/style.css",
     "checkLinters": "npx eslint ./src/. --ext .ts --fix && npx stylelint ./src/*/**/*.scss --fix",
     "start": "cd server && node server.js",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "onlyBuild": "webpack"
   },
   "repository": {
     "type": "git",
