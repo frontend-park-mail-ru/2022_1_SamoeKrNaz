@@ -211,7 +211,7 @@ export default new (class Board extends Store {
 	 * @param {DispatcherAction} action
 	 */
 	async _deleteUsers(action: DispatcherAction) {
-		console.log(action)
+		console.log(action);
 		const res = await ajaxMethods.deleteUsers({idb: this._data.board.idb, idu: action.id});
 
 		switch (res.status) {

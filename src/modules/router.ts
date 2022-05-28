@@ -125,6 +125,7 @@ class Router {
 
 	/**
 	 * Получить текущую вьюшку
+	 * @return {BaseView}
 	 */
 	getView(): BaseView {
 		return this._currentView;

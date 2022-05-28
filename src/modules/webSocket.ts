@@ -15,13 +15,6 @@ export default new class Socket {
 	private socket: WebSocket;
 
 	/**
-	 * Конструктор, вызывающий метод открытия соединения с сервером
-	 */
-	constructor() {
-
-	}
-
-	/**
 	 * Метод, инициирующий соединения вебсокета с сервером
 	 */
 	start() {
@@ -40,6 +33,7 @@ export default new class Socket {
 
 	/**
 	 * Обработка успешного открытия соединения
+	 * @param {Event} e
 	 */
 	private open(e: Event):void {
 		console.log('Соединение с вебсокетом успешно установлено:', e);
@@ -47,6 +41,7 @@ export default new class Socket {
 
 	/**
 	 * Обработка успешного открытия соединения
+	 * @param {Event} e
 	 */
 	private msg(e): void {
 		const msg: MsgData = JSON.parse(e.data);
@@ -64,6 +59,7 @@ export default new class Socket {
 
 	/**
 	 * Обработка успешного открытия соединения
+	 * @param {MsgData} msg
 	 */
 	private updateBoard(msg: MsgData): void {
 		if (Board.getId() === msg.id_b && Router.getView() === BoardPage) {
@@ -75,6 +71,7 @@ export default new class Socket {
 
 	/**
 	 * Обработка успешного открытия соединения
+	 * @param {MsgData} msg
 	 */
 	private updateTask(msg: MsgData): void {
 		if (Task.getId() === msg.id_t && Router.getView() === BoardPage) {
@@ -86,10 +83,11 @@ export default new class Socket {
 
 	/**
 	 * Обработка успешного открытия соединения
+	 * @param {MsgData} msg
 	 */
 	private deleteTask(msg: MsgData): void {
 		if (Task.getId() === msg.id_t && Router.getView() === BoardPage) {
 			EventBus.publish(Events.taskDelete, {});
 		}
 	}
-}
+};

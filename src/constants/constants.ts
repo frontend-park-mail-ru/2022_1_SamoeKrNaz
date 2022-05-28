@@ -49,7 +49,7 @@ export const WSMsg = {
 	updateBoard: 'UpdateBoard',
 	updateTask: 'UpdateTask',
 	deleteTask: 'DeleteTask',
-}
+};
 
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';
 export const frontendUrl = window.location.origin;

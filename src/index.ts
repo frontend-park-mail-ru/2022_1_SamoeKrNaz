@@ -6,7 +6,7 @@ import Dispatcher from './modules/dispatcher';
 import {ProfileActions} from './modules/actions';
 import {Url} from './constants/constants';
 import router from './modules/router';
-import Socket from './modules/webSocket'
+import Socket from './modules/webSocket';
 
 import Profile from './stores/profile';
 import Boards from './stores/boards';
