@@ -62,12 +62,13 @@ module.exports = {
 	output: {
 		publicPath: '../',
 		path: path.resolve(__dirname, 'src'),
-		filename: 'index_bundle.js',
+		filename: '[name].[contenthash].js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/template.html',
 			inject: false,
+			title: 'Caching',
 		}),
 		new MiniCssExtractPlugin({filename: `style.css`}),
 	],
