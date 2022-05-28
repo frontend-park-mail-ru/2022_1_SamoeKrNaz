@@ -26,7 +26,7 @@ export default new class Socket {
 			console.log('Соединение с сервером по вебсокету ВСЕ!!!!!');
 		}
 		this.socket.onerror = function(error) {
-			alert(`[error] ${error.message}`);
+			alert(`[error] ${error}`);
 		};
 	}
 
