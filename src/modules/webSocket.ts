@@ -51,8 +51,6 @@ export default new class Socket {
 	private msg(e): void {
 		const msg: MsgData = JSON.parse(e.data);
 
-		console.log(msg)
-
 		switch (msg.event_type) {
 		case WSMsg.updateTask:
 			this.updateTask(msg);
