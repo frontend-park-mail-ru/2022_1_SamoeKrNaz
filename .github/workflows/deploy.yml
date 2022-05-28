@@ -40,4 +40,4 @@ jobs:
           host: ${{ secrets.SSH_IP }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: cd /home/ubuntu/planexa/frontend/;npm run install;npm run onlyBuild;
+          script: cd /home/ubuntu/planexa/frontend/;npm install;npm run onlyBuild;
