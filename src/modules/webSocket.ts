@@ -22,7 +22,14 @@ export default new class Socket {
 
 		this.socket.onopen = this.open;
 		this.socket.onmessage = this.msg.bind(this);
+		this.socket.onclose = function(event) {
+			console.log('Соединение с сервером по вебсокету ВСЕ!!!!!');
+		}
+		this.socket.onerror = function(error) {
+			alert(`[error] ${error.message}`);
+		};
 	}
+
 
 	/**
 	 * Метод, инициирующий соединения вебсокета с сервером
