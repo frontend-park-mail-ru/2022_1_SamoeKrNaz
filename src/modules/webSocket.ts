@@ -47,10 +47,10 @@ export default new class Socket {
 		const msg: MsgData = JSON.parse(e.data);
 
 		switch (msg.event_type) {
-		case WSMsg.updateTask:
-			this.updateTask(msg);
 		case WSMsg.deleteTask:
 			this.deleteTask(msg);
+		case WSMsg.updateTask:
+			this.updateTask(msg);
 		case WSMsg.updateBoard:
 			this.updateBoard(msg);
 			break;
