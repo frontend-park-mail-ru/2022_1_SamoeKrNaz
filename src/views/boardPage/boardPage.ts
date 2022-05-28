@@ -166,10 +166,6 @@ export default new (class BoardPage extends BaseView {
 				className: 'desk__title-input', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
 					Dispatcher.dispatch({
-						type: BoardActions.unBlockUpdate,
-					});
-
-					Dispatcher.dispatch({
 						type: BoardActions.updateList,
 						id: e.target.dataset.id,
 						body: {
