@@ -183,10 +183,11 @@ export default new (class basePage extends BaseView {
 
 	/**
 	 * Функция закрытия модального окна
+	 * @param {ProfileStore} data
 	 */
 	loadImpTask(data: ProfileStore) {
 		const div = document.querySelector('.active-tasks');
-		console.log(data)
+		console.log(data);
 		data.impTasks.map((el) => {
 			if (el.deadline !== '') {
 				el.deadline = el.deadline.replace('-', '.').replace('-', '.').replace('T', ' ');
