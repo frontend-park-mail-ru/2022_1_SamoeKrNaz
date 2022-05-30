@@ -156,6 +156,10 @@ class Task extends Store {
 
 		const res = await ajaxMethods.setImportant({id: this._data.idt, body: {is_important: this._data.is_important}});
 
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
+
 		this._publish(Events.taskUpdate);
 	}
 

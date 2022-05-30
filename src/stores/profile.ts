@@ -65,10 +65,6 @@ class Profile extends Store {
 	 * Получение и обработка информации о профиле пользователя
 	 */
 	async _loadProfile() {
-		Dispatcher.dispatch({
-			type: ProfileActions.loadImpTask,
-		});
-
 		const res = await ajaxMethods.loadProfile();
 
 		switch (res.status) {
@@ -81,6 +77,10 @@ class Profile extends Store {
 		}
 
 		this._publish(ProfileEvents.load);
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 	}
 
 	/**

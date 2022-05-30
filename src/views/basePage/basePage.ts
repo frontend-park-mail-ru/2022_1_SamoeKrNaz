@@ -1,4 +1,5 @@
 import basePageTemp from './basePage.hbs';
+import activeTasks from '../../components/rightMenu/rightMenu.hbs';
 import error from '../../components/error/error';
 
 import BaseView from '../baseView';
@@ -8,6 +9,7 @@ import EventBus from '../../modules/eventBus';
 import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import SettingsView from '../settingsView/settingsView';
+import type {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -182,8 +184,22 @@ export default new (class basePage extends BaseView {
 	/**
 	 * Функция закрытия модального окна
 	 */
-	loadImpTask(data) {
-		console.log(data);
+	loadImpTask(data: ProfileStore) {
+		const div = document.querySelector('.active-tasks');
+		console.log(data)
+		data.impTasks.map((el) => {
+			if (el.deadline !== '') {
+				el.deadline = el.deadline.replace('-', '.').replace('-', '.').replace('T', ' ');
+			} else {
+				el.deadline = 'Без срока выполнения';
+			}
+		});
+
+		const html = activeTasks({
+			tasks: data.impTasks,
+		});
+
+		div.innerHTML = html;
 	}
 
 	/**

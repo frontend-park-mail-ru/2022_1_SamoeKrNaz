@@ -48,6 +48,7 @@ export type Task = Array<{
 	title: string,
 	position: number,
 	IdL: number,
+	deadline: string,
 }>;
 
 export type List = Array<{

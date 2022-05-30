@@ -415,9 +415,10 @@ export default new (class Board extends Store {
 	 */
 	async _loadTaskInvite() {
 		const res = await ajaxMethods.loadTaskInvite(window.location.pathname.split('/').pop());
-		console.log(res.body);
+
 		switch (res.status) {
 		case ResponseStatus.success:
+		case ResponseStatus.conflict:
 			window.history.pushState('', '', '/board/' + res.body.IdB);
 			await this._loadBoard();
 			setTimeout(()=>{
