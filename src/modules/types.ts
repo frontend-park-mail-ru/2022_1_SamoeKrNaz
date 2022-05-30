@@ -28,6 +28,8 @@ export interface ProfileStore {
 		unSuccessAv: string,
 		avatarPath: string,
 	},
+
+	impTasks: Task;
 }
 
 export interface Event {
@@ -75,6 +77,7 @@ export interface TaskStore {
 	description: string,
 	append_users: Users,
 	idt: number,
+	is_important: boolean,
 	isExec: boolean,
 	isLarge: boolean,
 	checkList: Array<{
