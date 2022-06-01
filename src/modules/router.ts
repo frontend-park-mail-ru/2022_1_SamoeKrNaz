@@ -3,6 +3,7 @@ import EventBus from './eventBus';
 import {ProfileEvents} from './actions';
 import {ProfileStore} from './types';
 import BaseView from '../views/baseView';
+import {Events} from './actions';
 
 /**
  * Класс, реализующий смену страниц и историю перемещений по странице
@@ -107,6 +108,9 @@ class Router {
 		}
 		// рендерим страницу
 		view.render();
+
+		EventBus.publish(Events.switchPage, null);
+		EventBus.publish(Events.selectPage, path);
 	}
 
 	/**

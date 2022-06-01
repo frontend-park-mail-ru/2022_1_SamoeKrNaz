@@ -88,5 +88,7 @@ export const Events = {
 	taskUpdate: 'taskUpdate',
 	taskDelete: 'taskDelete',
 	notificationUpdate: 'notificationUpdate',
+	switchPage: 'switchPage',
+	selectPage: 'selectPage',
 };
 

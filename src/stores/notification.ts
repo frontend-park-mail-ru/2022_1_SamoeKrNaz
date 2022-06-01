@@ -44,7 +44,7 @@ export default new (class Notification extends Store {
 
 		switch (res.status) {
 			case ResponseStatus.success:
-				this._data.notification = res.body;
+				this._data.notification = res.body.slice(0, 10);
 				break;
 
 			default:

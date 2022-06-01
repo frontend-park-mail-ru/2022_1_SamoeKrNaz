@@ -103,7 +103,7 @@ export default new (class basePage extends BaseView {
 				querySelector: '[data-page]',
 				isArray: true,
 				func: (e) => {
-					router.open('/' + e.target.closest('[data-page]').dataset.page);
+					router.open(e.target.closest('[data-page]').dataset.page);
 				},
 			},
 			{
@@ -143,6 +143,8 @@ export default new (class basePage extends BaseView {
 		]);
 
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
+		EventBus.subscribe(Events.switchPage, this.switchPage);
+		EventBus.subscribe(Events.selectPage, this.selectPage);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
 		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask.bind(this));
 
@@ -180,6 +182,27 @@ export default new (class basePage extends BaseView {
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Функция уберающая все активные страницы с левого меню
+	 */
+	switchPage() {
+		const menuItems = document.querySelectorAll('[data-page]');
+
+		for (const key in menuItems) {
+			if (menuItems.hasOwnProperty(key)) {
+				menuItems[key].classList.remove('header__menu-part_active');
+			}
+		}
+	}
+
+	/**
+	 * Функция делающая активной страницу на левом меню
+	 */
+	selectPage(path: string) {
+		console.log(path)
+		document.querySelector('[data-page="' + path + '"]')?.classList.add('header__menu-part_active');
 	}
 
 	/**
