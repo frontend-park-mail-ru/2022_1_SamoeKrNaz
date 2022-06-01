@@ -146,6 +146,7 @@ export default new (class basePage extends BaseView {
 		EventBus.subscribe(Events.switchPage, this.switchPage);
 		EventBus.subscribe(Events.selectPage, this.selectPage);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
+		EventBus.subscribe(Events.switchNotificationIcon, this.switchNotificationIcon);
 		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask.bind(this));
 
 		this.pageStatus = {
@@ -195,6 +196,16 @@ export default new (class basePage extends BaseView {
 				menuItems[key].classList.remove('header__menu-part_active');
 			}
 		}
+	}
+
+	/**
+	 * Функция изменяющая состояние иконки уведомлений
+	 */
+	switchNotificationIcon(data) {
+		const state = data.notification[0].is_read;
+
+		(<HTMLElement> document.querySelector('[data-notification="' + state + '"]')).style.display = 'none';
+		(<HTMLElement> document.querySelector('[data-notification="' + !state + '"]')).style.display = 'block';
 	}
 
 	/**

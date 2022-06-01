@@ -39,7 +39,7 @@ export default new (class Notification extends Store {
 	/**
 	 * Метод реализующий загрузку досок пользователя
 	 */
-	async _loadNotifications() {
+	private async _loadNotifications() {
 		const res = await ajaxMethods.loadNotifications();
 
 		switch (res.status) {
@@ -57,13 +57,15 @@ export default new (class Notification extends Store {
 			Dispatcher.dispatch({
 				type: NotificationActions.readAll,
 			});
+		} else {
+			this.switchIcon();
 		}
 	}
 
 	/**
 	 * Метод реализующий загрузку досок пользователя
 	 */
-	async _readAll() {
+	private async _readAll() {
 		const res = await ajaxMethods.readAll();
 
 		switch (res.status) {
@@ -71,10 +73,19 @@ export default new (class Notification extends Store {
 				this._data.notification?.map((el) => {
 					el.is_read = true;
 				});
+
+				this.switchIcon();
 				break;
 			default:
 				console.error('Что-то пошло не по плану');
 		}
+	}
+
+	/**
+	 * Проверить наличие непроверенных уведомлений
+	 */
+	private switchIcon() {
+		this._publish(Events.switchNotificationIcon);
 	}
 
 	/**

@@ -1,5 +1,10 @@
 $leftMobile: 70vw;
 
+svg[data-notification="true"] {
+	display: none;
+	margin-right: -3px;
+}
+
 .header {
 	background: $white;
 	box-shadow: $shadow;

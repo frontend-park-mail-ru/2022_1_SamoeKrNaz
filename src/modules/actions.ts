@@ -90,5 +90,6 @@ export const Events = {
 	notificationUpdate: 'notificationUpdate',
 	switchPage: 'switchPage',
 	selectPage: 'selectPage',
+	switchNotificationIcon: 'switchNotificationIcon',
 };
 
