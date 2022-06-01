@@ -20,6 +20,7 @@ import BoardPage from './views/boardPage/boardPage';
 import NotFoundPage from './views/notFoundPage/notFoundPage';
 import NoNetworkPage from './views/noNetworkPage/noNetworkPage';
 import InvitePage from './views/invitePage/invitePage';
+import NotificationPage from './views/notification/notification';
 
 // ts-loader не импортит файлы, который никак не используются. Поэтому ниже прописаны
 // названия классов, чьи конструкторы должны сработать при импорте
@@ -53,3 +54,4 @@ router.register(Url.noNetwork, NoNetworkPage);
 router.register(Url.inviteBoard, BoardPage);
 router.register(Url.inviteTask, BoardPage);
 router.register(Url.invitePage, InvitePage);
+router.register(Url.notifications, NotificationPage);

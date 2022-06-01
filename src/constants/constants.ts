@@ -24,6 +24,7 @@ export const Url = {
 	inviteBoard: '/boardappend/<token>',
 	inviteTask: '/taskappend/<token>',
 	invitePage: '/invite',
+	notifications: '/notifications',
 };
 
 export const ResponseStatus = {

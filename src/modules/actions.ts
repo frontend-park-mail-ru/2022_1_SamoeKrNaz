@@ -77,6 +77,10 @@ export const BoardsActions = {
 	createBoard: 'createBoard',
 };
 
+export const NotificationActions = {
+	loadNotifications: 'loadNotifications',
+};
+
 export const Events = {
 	boardsUpdate: 'boards',
 	boardsCreateError: 'boardsError',

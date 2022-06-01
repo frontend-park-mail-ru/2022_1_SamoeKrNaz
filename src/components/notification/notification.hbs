@@ -1,0 +1,17 @@
+<div class="desk__globalTitle">
+    Ваши уведомления
+</div>
+
+<div class="main__content">
+    {{#each notification}}
+        <div class="desk" data-id="{{idb}}">
+            <div class="desk__title header2">{{title}}</div>
+            <div class="desk__description">
+                {{description}}
+            </div>
+            <div class="desk__date">
+                {{date}}
+            </div>
+        </div>
+    {{/each}}
+</div>

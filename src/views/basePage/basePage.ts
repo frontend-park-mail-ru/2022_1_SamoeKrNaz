@@ -100,9 +100,10 @@ export default new (class basePage extends BaseView {
 			},
 			{
 				type: 'click',
-				className: 'homeButton',
-				func: () => {
-					router.open(Url.base);
+				querySelector: '[data-page]',
+				isArray: true,
+				func: (e) => {
+					router.open('/' + e.target.closest('[data-page]').dataset.page);
 				},
 			},
 			{

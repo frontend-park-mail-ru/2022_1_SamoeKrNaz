@@ -1,5 +1,5 @@
 import Store from './baseStore';
-import {ProfileActions, ProfileEvents} from '../modules/actions';
+import {ProfileActions, ProfileEvents, NotificationActions} from '../modules/actions';
 import Socket from '../modules/webSocket';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
@@ -80,6 +80,10 @@ class Profile extends Store {
 
 		Dispatcher.dispatch({
 			type: ProfileActions.loadImpTask,
+		});
+
+		Dispatcher.dispatch({
+			type: NotificationActions.loadNotifications,
 		});
 	}
 

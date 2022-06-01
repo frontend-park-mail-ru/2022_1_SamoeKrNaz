@@ -112,6 +112,7 @@ class Task extends Store {
 		case ResponseStatus.success:
 			res.body.link = frontendUrl + '/taskappend/' + res.body.link;
 			this._data = res.body;
+			this._data.is_important = (res.body.is_important === 'false') ? false : true;
 			break;
 		}
 
@@ -154,7 +155,7 @@ class Task extends Store {
 	async _setImportant() {
 		this._data.is_important = !this._data.is_important;
 
-		const res = await ajaxMethods.setImportant({id: this._data.idt, body: {is_important: this._data.is_important}});
+		const res = await ajaxMethods.setImportant({id: this._data.idt, body: {is_important: String(this._data.is_important)}});
 
 		Dispatcher.dispatch({
 			type: ProfileActions.loadImpTask,
@@ -417,6 +418,10 @@ class Task extends Store {
 	 */
 	async _changeDate(action: DispatcherAction) {
 		const res = await ajaxMethods.changeDate({id: this._data.idt, body: {deadline: action.data}});
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 	}
 
 	/**

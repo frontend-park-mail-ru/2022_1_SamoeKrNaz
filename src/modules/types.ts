@@ -112,3 +112,7 @@ export interface MsgData {
 	id_b: number,
 	id_t: number,
 }
+
+export type Notifications = Array<{
+	notification_type: string,
+}>;
