@@ -1,17 +1,18 @@
 <div class="desk__globalTitle">
-    Ваши уведомления
+    Список ваших уведомлений
 </div>
 
 <div class="main__content">
     {{#each notification}}
-        <div class="desk" data-id="{{idb}}">
+        <div class="notification">
             <div class="desk__title header2">{{title}}</div>
-            <div class="desk__description">
-                {{description}}
+            <div class="desk__description notification__description">
+                {{{description}}}
             </div>
-            <div class="desk__date">
-                {{date}}
-            </div>
+
+            {{#if hasButton}}
+                {{{button}}}
+            {{/if}}
         </div>
     {{/each}}
 </div>

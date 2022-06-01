@@ -29,7 +29,7 @@ export interface ProfileStore {
 		avatarPath: string,
 	},
 
-	impTasks: Task;
+	impTasks: Tasks;
 }
 
 export interface Event {
@@ -43,27 +43,31 @@ export interface Event {
 
 export type EventListener = Array<Event>;
 
-export type Task = Array<{
+export interface Task {
 	idt: number,
 	title: string,
 	position: number,
 	IdL: number,
 	deadline: string,
 	IdB: number,
-}>;
+};
+
+export type Tasks = Array<Task>;
 
 export type List = Array<{
 	title: string,
 	idl: number,
-	Tasks: Task,
+	Tasks: Tasks,
 	position: number,
 }>;
 
-export type Users = Array<{
+export interface User {
 	idu: number,
 	username: string,
 	img_avatar: string,
-}>;
+};
+
+export type Users = Array<User>;
 
 export interface BoardStore {
 	idb: number,
@@ -113,6 +117,13 @@ export interface MsgData {
 	id_t: number,
 }
 
-export type Notifications = Array<{
+export interface NotificationType {
 	notification_type: string,
-}>;
+	date: string,
+	user_who: User,
+	board: BoardStore,
+	is_read: boolean,
+	task: Task,
+};
+
+export type Notifications = Array<NotificationType>;

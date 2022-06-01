@@ -52,6 +52,14 @@ export const WSMsg = {
 	deleteTask: 'DeleteTask',
 };
 
+export const NotificationTypes = {
+	inviteUser: 'InviteUser',
+	appendToTask: 'AppendUserToTask',
+	appendToBoard: 'AppendUserToBoard',
+	deleteFromTask: 'DeleteUserFromTask',
+	deleteFromBoard: 'DeleteUserFromBoard',
+};
+
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';
 export const frontendUrl = window.location.origin;
 

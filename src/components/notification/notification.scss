@@ -1,0 +1,48 @@
+.notification {
+	background: $white;
+	border-radius: $button-radius;
+	box-shadow: $shadow;
+	padding: 20px;
+	margin: 15px;
+	width: 540px;
+	text-decoration: none;
+	color: var(--color-black);
+
+	&__description-black {
+		color: #383838;
+		text-decoration: none;
+	}
+
+	a.notification__description-black:hover {
+		text-decoration: underline;
+	}
+
+	&__description {
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 19px;
+		letter-spacing: 0.02em;
+		color: #898989;
+		margin-bottom: 0;
+	}
+
+	&__button {
+		padding: 7px 30px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 16px;
+		color: $white;
+		border-radius: 8px;
+		background: $blue-color;
+		cursor: pointer;
+		width: fit-content;
+		margin-top: 22.5px;
+		text-decoration: none;
+		display: block;
+	}
+
+	@include media("max", "lg") {
+		width: 100%;
+	}
+}

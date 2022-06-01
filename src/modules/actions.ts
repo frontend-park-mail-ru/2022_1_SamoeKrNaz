@@ -1,5 +1,3 @@
-'use strict';
-
 export const ProfileActions = {
 	loadProfile: 'loadProfile',
 	login: 'loginProfile',
@@ -88,5 +86,6 @@ export const Events = {
 	boardError: 'boardError',
 	taskUpdate: 'taskUpdate',
 	taskDelete: 'taskDelete',
+	notificationUpdate: 'notificationUpdate',
 };
 

@@ -4,6 +4,7 @@ import {ajaxMethods} from '../ajax/notifications';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import router from '../modules/router';
 import {Notifications, DispatcherAction} from '../modules/types';
+import NotificationPage from '../views/notification/notification';
 
 export default new (class Notification extends Store {
 	_data: {
@@ -44,6 +45,10 @@ export default new (class Notification extends Store {
 
 			default:
 				console.error('Что-то пошло не по плану');
+		}
+
+		if (router.getView() === NotificationPage) {
+			this._publish(Events.notificationUpdate);
 		}
 	}
 
