@@ -1,13 +1,15 @@
 import basePageTemp from './basePage.hbs';
+import activeTasks from '../../components/rightMenu/rightMenu.hbs';
 import error from '../../components/error/error';
 
 import BaseView from '../baseView';
 import {Url, Sizes} from '../../constants/constants';
 import router from '../../modules/router';
 import EventBus from '../../modules/eventBus';
-import {BoardsActions, Events, ProfileActions} from '../../modules/actions';
+import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import SettingsView from '../settingsView/settingsView';
+import type {ProfileStore} from '../../modules/types';
 
 /**
  * Класс, реализующий страницу логина.
@@ -141,6 +143,7 @@ export default new (class basePage extends BaseView {
 
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
+		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask);
 
 		this.pageStatus = {
 			isRightMenu: true,
@@ -176,6 +179,28 @@ export default new (class basePage extends BaseView {
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+	}
+
+	/**
+	 * Функция закрытия модального окна
+	 * @param {ProfileStore} data
+	 */
+	loadImpTask(data: ProfileStore) {
+		const div = document.querySelector('.active-tasks');
+		console.log(data);
+		data.impTasks.map((el) => {
+			if (el.deadline !== '') {
+				el.deadline = el.deadline.replace('-', '.').replace('-', '.').replace('T', ' ');
+			} else {
+				el.deadline = 'Без срока выполнения';
+			}
+		});
+
+		const html = activeTasks({
+			tasks: data.impTasks,
+		});
+
+		div.innerHTML = html;
 	}
 
 	/**

@@ -18,7 +18,7 @@
         </div>
         <div class="taskBlock__content">
             <p class="taskBlock__hidden"></p>
-            <textarea data-autosize="true" data-id="1" class="taskBlock__title-input header2">{{ title }}</textarea>
+            <textarea data-autosize="true" data-block-update="true" data-id="1" class="taskBlock__title-input header2">{{ title }}</textarea>
             <p class="taskBlock__content-text">в доске <ins>{{ deskTitle }}</ins></p>
             <div class="taskBlock__content-dop">
                 <div class="taskBlock__content-dop-date">
@@ -71,6 +71,14 @@
                         </svg>
                     </div>
                 </div>
+                <div class="taskBlock__content-dop-date">
+                    <p class="taskBlock__text">Отметить как важное:</p>
+                    {{#if is_important}}
+                        <div class="taskBlock__important-task">Задача отмечена</div>
+                    {{else}}
+                        <div class="taskBlock__important-task taskBlock__not-important-task">Отметить задачу</div>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +90,7 @@
         </div>
         <div class="taskBlock__content">
             <p class="taskBlock__text">Описание</p>
-            <textarea class="taskBlock__textarea createModal__settings_textarea" maxlength="150" data-name="description" placeholder="Описание таски">{{ description }}</textarea>
+            <textarea class="taskBlock__textarea createModal__settings_textarea" data-block-update="true" maxlength="150" data-name="description" placeholder="Описание таски">{{ description }}</textarea>
         </div>
     </div>
 
@@ -98,7 +106,7 @@
             {{#each checkList }}
                 <div class="taskBlock__checklist">
                     <div class="taskBlock__checklist-item">
-                        <input data-id="{{ id_cl }}" class="taskBlock__checklist-title" type="text" value="{{ title }}">
+                        <input data-id="{{ id_cl }}" data-block-update="true" class="taskBlock__checklist-title" type="text" value="{{ title }}">
                         <svg data-id="{{ id_cl }}" class="taskBlock__checklist-icon taskBlock__checklist-delete" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path data-id="{{ id_cl }}" d="M0.656854 1.07068C0.969274 0.758265 1.47581 0.758265 1.78823 1.07068L6.31371 5.59617L10.8392 1.07068C11.1516 0.758265 11.6581 0.758265 11.9706 1.07068C12.283 1.3831 12.283 1.88964 11.9706 2.20206L7.44508 6.72754L11.9706 11.253C12.283 11.5654 12.283 12.072 11.9706 12.3844C11.6581 12.6968 11.1516 12.6968 10.8392 12.3844L6.31371 7.85891L1.78823 12.3844C1.47581 12.6968 0.969274 12.6968 0.656854 12.3844C0.344435 12.072 0.344435 11.5654 0.656854 11.253L5.18234 6.72754L0.656854 2.20206C0.344435 1.88964 0.344435 1.3831 0.656854 1.07068Z" fill="#2D2D2D"/>
                         </svg>
@@ -107,7 +115,7 @@
                     {{#each CheckListItems }}
                         <div class="taskBlock__checklist-item">
                             <input data-id="{{ id_clit }}" class="taskBlock__item-check" type="checkbox" id="scales" name="scales" {{#if isready}}checked{{/if}}>
-                            <input data-id="{{ id_clit }}" class="taskBlock__checklist-item-text" type="text" value="{{ title }}">
+                            <input data-id="{{ id_clit }}" data-block-update="true" class="taskBlock__checklist-item-text" type="text" value="{{ title }}">
                             <svg data-id="{{ id_clit }}" class="taskBlock__checklist-icon taskBlock__item-delete" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path data-id="{{ id_clit }}" d="M0.656854 1.07068C0.969274 0.758265 1.47581 0.758265 1.78823 1.07068L6.31371 5.59617L10.8392 1.07068C11.1516 0.758265 11.6581 0.758265 11.9706 1.07068C12.283 1.3831 12.283 1.88964 11.9706 2.20206L7.44508 6.72754L11.9706 11.253C12.283 11.5654 12.283 12.072 11.9706 12.3844C11.6581 12.6968 11.1516 12.6968 10.8392 12.3844L6.31371 7.85891L1.78823 12.3844C1.47581 12.6968 0.969274 12.6968 0.656854 12.3844C0.344435 12.072 0.344435 11.5654 0.656854 11.253L5.18234 6.72754L0.656854 2.20206C0.344435 1.88964 0.344435 1.3831 0.656854 1.07068Z" fill="#2D2D2D"/>
                             </svg>
@@ -181,7 +189,7 @@
         <div class="taskBlock__comment-avatar">
             <img class="taskBlock__comment-img" src="../{{ thisUser.img }}">
         </div>
-        <textarea class="taskBlock__comment-textarea createModal__settings_textarea" placeholder="Ваш комментарий"></textarea>
+        <textarea data-block-update="true" class="taskBlock__comment-textarea createModal__settings_textarea" placeholder="Ваш комментарий"></textarea>
     </div>
     {{#each comment }}
         <div class="taskBlock__comment">

@@ -24,6 +24,13 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	setImportant: async (data) => {
+		try {
+			return await Ajax.put({url: 'task/' + data.id, opt: JSON.stringify(data.body)});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	removeUser: async (data) => {
 		try {
 			return await Ajax.delete({url: 'task/' + data.id + '/' + data.body.idu});

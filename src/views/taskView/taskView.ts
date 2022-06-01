@@ -249,6 +249,15 @@ export default new (class TaskView extends BaseView {
 			},
 			{
 				type: 'click',
+				className: 'taskBlock__important-task',
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.setImportant,
+					});
+				},
+			},
+			{
+				type: 'click',
 				className: 'taskBlock__comment-text-delete',
 				isArray: true,
 				func: (e) => {
@@ -309,9 +318,30 @@ export default new (class TaskView extends BaseView {
 					});
 				},
 			},
+			{
+				type: 'focus',
+				isArray: true,
+				querySelector: '[data-block-update="true"]',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.blockUpdate,
+					});
+				},
+			},
+			{
+				type: 'blur',
+				isArray: true,
+				querySelector: '[data-block-update="true"]',
+				func: async (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.unBlockUpdate,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.taskUpdate, this.onUpdate.bind(this));
+		EventBus.subscribe(Events.taskDelete, this.close.bind(this));
 	}
 
 	/**
@@ -324,6 +354,10 @@ export default new (class TaskView extends BaseView {
 		block.classList.toggle('taskBlock_active');
 
 		this._createListeners();
+
+		Dispatcher.dispatch({
+			type: BoardActions.blockUpdate,
+		});
 
 		Dispatcher.dispatch({
 			type: TaskActions.loadTask,
@@ -353,6 +387,8 @@ export default new (class TaskView extends BaseView {
 	 * @param {TaskStore} data состояние стора
 	 */
 	onUpdate(data: TaskStore = null): void {
+		console.log(data);
+
 		this.removeListeners();
 
 		const addUsers = Board.getUsers().slice(0);
@@ -406,6 +442,10 @@ export default new (class TaskView extends BaseView {
 	close() {
 		const block = document.querySelector('.taskBlockContainer');
 		block.classList.toggle('taskBlock_active');
+
+		Dispatcher.dispatch({
+			type: BoardActions.unBlockUpdate,
+		});
 
 		Dispatcher.dispatch({
 			type: BoardActions.loadBoard,

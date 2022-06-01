@@ -189,6 +189,9 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk__task-text', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
+					Dispatcher.dispatch({
+						type: BoardActions.blockUpdate,
+					});
 					TaskView.render(e);
 				},
 			},
@@ -249,9 +252,12 @@ export default new (class BoardPage extends BaseView {
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'taskBlock__img-block-delete', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
-					Dispatcher.dispatch({
+					this.openModal({
+						isDelete: true,
 						type: BoardActions.deleteUsers,
-						data: e.target.dataset.id,
+						id: e.target.dataset.id,
+						title: 'Удалить пользователя?',
+						inputs: [],
 					});
 				},
 			},
@@ -341,6 +347,10 @@ export default new (class BoardPage extends BaseView {
 
 		createDeskBg.classList.add('active'); // Добавляем класс 'active' для фона
 		createDesk.classList.add('active'); // И для самого окна;
+
+		Dispatcher.dispatch({
+			type: BoardActions.blockUpdate,
+		});
 	}
 
 	/**
@@ -359,6 +369,10 @@ export default new (class BoardPage extends BaseView {
 
 		createDeskBg.classList.remove('active'); // Убираем активный класс с фона
 		createDesk.classList.remove('active'); // И с окна
+
+		Dispatcher.dispatch({
+			type: BoardActions.unBlockUpdate,
+		});
 	}
 
 	/**
@@ -401,6 +415,10 @@ export default new (class BoardPage extends BaseView {
 		if (payload.title?.length === 0) {
 			return;
 		}
+
+		Dispatcher.dispatch({
+			type: BoardActions.unBlockUpdate,
+		});
 
 		Dispatcher.dispatch({
 			type: e.composedPath()[0].dataset.type,

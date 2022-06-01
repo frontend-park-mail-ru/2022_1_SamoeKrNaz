@@ -122,6 +122,14 @@ class Router {
 	forward(): void {
 		window.history.forward();
 	}
+
+	/**
+	 * Получить текущую вьюшку
+	 * @return {BaseView}
+	 */
+	getView(): BaseView {
+		return this._currentView;
+	}
 }
 
 export default new Router();

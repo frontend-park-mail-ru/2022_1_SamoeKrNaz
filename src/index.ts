@@ -6,6 +6,7 @@ import Dispatcher from './modules/dispatcher';
 import {ProfileActions} from './modules/actions';
 import {Url} from './constants/constants';
 import router from './modules/router';
+import Socket from './modules/webSocket';
 
 import Profile from './stores/profile';
 import Boards from './stores/boards';
@@ -19,7 +20,6 @@ import BoardPage from './views/boardPage/boardPage';
 import NotFoundPage from './views/notFoundPage/notFoundPage';
 import NoNetworkPage from './views/noNetworkPage/noNetworkPage';
 import InvitePage from './views/invitePage/invitePage';
-
 
 // ts-loader не импортит файлы, который никак не используются. Поэтому ниже прописаны
 // названия классов, чьи конструкторы должны сработать при импорте

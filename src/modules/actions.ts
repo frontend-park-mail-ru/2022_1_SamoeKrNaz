@@ -7,6 +7,7 @@ export const ProfileActions = {
 	update: 'updateProfile',
 	uploadAvatar: 'uploadAvatar',
 	logout: 'logout',
+	loadImpTask: 'loadImpTask',
 };
 
 export const ProfileEvents = {
@@ -17,6 +18,7 @@ export const ProfileEvents = {
 	updateUnSuccess: 'Profile_update_unsuccessful',
 	updateAvatarSuccess: 'Profile_avatar_success',
 	updateAvatarUnSuccess: 'Profile_avatar_unsuccessful',
+	loadImpTask: 'loadImpTask',
 };
 
 export const BoardActions = {
@@ -38,10 +40,13 @@ export const BoardActions = {
 	copyLink: 'copyLink',
 	loadBoardInvite: 'loadBoardInvite',
 	loadTaskInvite: 'loadTaskInvite',
+	blockUpdate: 'blockUpdate',
+	unBlockUpdate: 'unBlockUpdate',
 };
 
 export const TaskActions = {
 	loadTask: 'loadTask',
+	updateTask: 'updateTasks',
 	updateTitle: 'updateTitle',
 	addUser: 'adduser',
 	removeUser: 'removeUser',
@@ -62,6 +67,9 @@ export const TaskActions = {
 	uploadAttachment: 'uploadAttachment',
 	removeAttachment: 'removeAttachment',
 	downloadAttachment: 'downloadAttachment',
+	blockUpdate: 'blockTaskUpdate',
+	unBlockUpdate: 'unBlockTaskUpdate',
+	setImportant: 'setImportant',
 };
 
 export const BoardsActions = {
@@ -75,5 +83,6 @@ export const Events = {
 	boardUpdate: 'board',
 	boardError: 'boardError',
 	taskUpdate: 'taskUpdate',
+	taskDelete: 'taskDelete',
 };
 

@@ -28,11 +28,14 @@ export interface ProfileStore {
 		unSuccessAv: string,
 		avatarPath: string,
 	},
+
+	impTasks: Task;
 }
 
 export interface Event {
 	type: string,
 	className?: string,
+	querySelector?: string,
 	id?: string,
 	func: (e?: any) => void,
 	isArray?: boolean,
@@ -45,6 +48,8 @@ export type Task = Array<{
 	title: string,
 	position: number,
 	IdL: number,
+	deadline: string,
+	IdB: number,
 }>;
 
 export type List = Array<{
@@ -74,6 +79,7 @@ export interface TaskStore {
 	description: string,
 	append_users: Users,
 	idt: number,
+	is_important: boolean,
 	isExec: boolean,
 	isLarge: boolean,
 	checkList: Array<{
@@ -99,4 +105,10 @@ export interface TaskStore {
 		default_name: string,
 		system_name: string,
 	}>,
+}
+
+export interface MsgData {
+	event_type: string,
+	id_b: number,
+	id_t: number,
 }

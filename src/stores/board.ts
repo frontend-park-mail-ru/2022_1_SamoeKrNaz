@@ -10,6 +10,7 @@ import TaskView from '../views/taskView/taskView';
 export default new (class Board extends Store {
 	_data: {
 		board: BoardStore,
+		isBlock: boolean,
 		validation: {
 			errorMsg: string,
 		}
@@ -21,6 +22,7 @@ export default new (class Board extends Store {
 	constructor() {
 		super('Board', {
 			board: null,
+			isBlock: false,
 			validation: {
 				errorMsg: null,
 			},
@@ -81,6 +83,15 @@ export default new (class Board extends Store {
 		case BoardActions.copyLink:
 			this._copyLink();
 			break;
+		case BoardActions.blockUpdate:
+			this._data.isBlock = true;
+			console.log('Обновление доски заблокированно');
+			break;
+		case BoardActions.unBlockUpdate:
+			this._data.isBlock = false;
+			console.log('Обновление доски разаблокированно');
+			this._publish(Events.boardUpdate);
+			break;
 		}
 	}
 
@@ -101,7 +112,10 @@ export default new (class Board extends Store {
 			router.open(Url.notFound);
 			return;
 		}
-		await this._publish(Events.boardUpdate);
+
+		if (!this._data.isBlock) {
+			await this._publish(Events.boardUpdate);
+		}
 	}
 
 	/**
@@ -199,14 +213,15 @@ export default new (class Board extends Store {
 	 * @param {DispatcherAction} action
 	 */
 	async _deleteUsers(action: DispatcherAction) {
-		const res = await ajaxMethods.deleteUsers({idb: this._data.board.idb, idu: action.data});
+		console.log(action);
+		const res = await ajaxMethods.deleteUsers({idb: this._data.board.idb, idu: action.id});
 
 		switch (res.status) {
 		case ResponseStatus.noContent:
 		case ResponseStatus.created:
 		case ResponseStatus.success:
 			this._data.board.Users.forEach((el, i) => {
-				if (el.idu === Number(action.data)) {
+				if (el.idu === Number(action.id)) {
 					this._data.board.Users.splice(i, 1);
 				}
 			});
@@ -400,9 +415,10 @@ export default new (class Board extends Store {
 	 */
 	async _loadTaskInvite() {
 		const res = await ajaxMethods.loadTaskInvite(window.location.pathname.split('/').pop());
-		console.log(res.body);
+
 		switch (res.status) {
 		case ResponseStatus.success:
+		case ResponseStatus.conflict:
 			window.history.pushState('', '', '/board/' + res.body.IdB);
 			await this._loadBoard();
 			setTimeout(()=>{
@@ -429,7 +445,6 @@ export default new (class Board extends Store {
 		navigator.clipboard.writeText(copyText.value);
 	}
 
-
 	/**
 	 * Получение title
 	 * @return {string}
@@ -438,6 +453,13 @@ export default new (class Board extends Store {
 		return this._data.board.Users;
 	}
 
+	/**
+	 * Получение id текущей доски
+	 * @return {number}
+	 */
+	getId(): number {
+		return this._data.board.idb;
+	}
 
 	/**
 	 * Получение title
