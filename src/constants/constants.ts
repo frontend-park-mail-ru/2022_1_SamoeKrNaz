@@ -50,6 +50,7 @@ export const WSMsg = {
 	updateBoard: 'UpdateBoard',
 	updateTask: 'UpdateTask',
 	deleteTask: 'DeleteTask',
+	notification: 'Notification',
 };
 
 export const NotificationTypes = {

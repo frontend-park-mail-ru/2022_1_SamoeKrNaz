@@ -3,7 +3,7 @@ import {MsgData} from '../modules/types';
 import Board from '../stores/board';
 import Task from '../stores/task';
 import Dispatcher from '../modules/dispatcher';
-import {BoardActions, TaskActions, Events} from '../modules/actions';
+import {BoardActions, TaskActions, Events, NotificationActions} from '../modules/actions';
 import Router from '../modules/router';
 import BoardPage from '../views/boardPage/boardPage';
 import EventBus from '../modules/eventBus';
@@ -14,6 +14,11 @@ import EventBus from '../modules/eventBus';
 export default new class Socket {
 	private socket: WebSocket;
 	private state: boolean;
+	private notifyAudio: HTMLAudioElement;
+
+	constructor() {
+		this.notifyAudio = new Audio('../img/notification.mp3');
+	}
 
 	/**
 	 * Метод, инициирующий соединения вебсокета с сервером
@@ -73,6 +78,9 @@ export default new class Socket {
 		case WSMsg.updateBoard:
 			this.updateBoard(msg);
 			break;
+		case WSMsg.notification:
+			this.notification();
+			break;
 		}
 	}
 
@@ -108,5 +116,16 @@ export default new class Socket {
 		if (Task.getId() === msg.id_t && Router.getView() === BoardPage) {
 			EventBus.publish(Events.taskDelete, {});
 		}
+	}
+
+	/**
+	 * Обработка прихода новой таски
+	 */
+	private notification(): void {
+		this.notifyAudio.play();
+
+		Dispatcher.dispatch({
+			type: NotificationActions.loadNotifications,
+		})
 	}
 };
