@@ -2,8 +2,9 @@ import notification from './notification.hbs';
 import BaseView from '../baseView';
 import BasePage from '../basePage/basePage';
 import EventBus from '../../modules/eventBus';
-import {BoardsActions, Events} from '../../modules/actions';
+import {NotificationActions, Events} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
+import Router from '../../modules/router';
 import Notification from '../../stores/notification';
 import {NotificationTypes} from '../../constants/constants';
 import type {NotificationType} from '../../modules/types';
@@ -34,6 +35,12 @@ export default new (class NotificationPage extends BaseView {
 	 */
 	render() {
 		BasePage.render();
+
+		if (Notification.getState().notification != null) {
+			Dispatcher.dispatch({
+				type: NotificationActions.readAll,
+			});
+		}
 
 		this.onUpdate(Notification.getState());
 	}

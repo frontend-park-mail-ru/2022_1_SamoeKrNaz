@@ -77,6 +77,7 @@ export const BoardsActions = {
 
 export const NotificationActions = {
 	loadNotifications: 'loadNotifications',
+	readAll: 'readAllNotifications',
 };
 
 export const Events = {

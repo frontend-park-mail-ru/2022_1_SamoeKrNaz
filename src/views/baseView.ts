@@ -87,7 +87,7 @@ class BaseView {
 	 * Метод, удаляющий обработчки на страницы
 	 */
 	removeListeners() {
-		this._listeners.map((listener) => {
+		this._listeners?.map((listener) => {
 			this._removeListener(listener);
 		});
 	}

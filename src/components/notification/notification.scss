@@ -17,6 +17,11 @@
 		text-decoration: underline;
 	}
 
+	&__title-block {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	&__description {
 		font-style: normal;
 		font-weight: 500;

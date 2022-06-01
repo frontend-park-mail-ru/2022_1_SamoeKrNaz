@@ -8,4 +8,11 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	readAll: async () => {
+		try {
+			return await Ajax.post({url: 'notification'});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };

@@ -3,6 +3,7 @@ import {NotificationActions, Events} from '../modules/actions';
 import {ajaxMethods} from '../ajax/notifications';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import router from '../modules/router';
+import Dispatcher from '../modules/dispatcher';
 import {Notifications, DispatcherAction} from '../modules/types';
 import NotificationPage from '../views/notification/notification';
 
@@ -29,6 +30,9 @@ export default new (class Notification extends Store {
 			case NotificationActions.loadNotifications:
 				await this._loadNotifications();
 				break;
+			case NotificationActions.readAll:
+				await this._readAll();
+				break;
 		}
 	}
 
@@ -49,6 +53,27 @@ export default new (class Notification extends Store {
 
 		if (router.getView() === NotificationPage) {
 			this._publish(Events.notificationUpdate);
+
+			Dispatcher.dispatch({
+				type: NotificationActions.readAll,
+			});
+		}
+	}
+
+	/**
+	 * Метод реализующий загрузку досок пользователя
+	 */
+	async _readAll() {
+		const res = await ajaxMethods.readAll();
+
+		switch (res.status) {
+			case ResponseStatus.success:
+				this._data.notification?.map((el) => {
+					el.is_read = true;
+				});
+				break;
+			default:
+				console.error('Что-то пошло не по плану');
 		}
 	}
 

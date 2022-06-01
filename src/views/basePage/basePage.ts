@@ -144,7 +144,7 @@ export default new (class basePage extends BaseView {
 
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
-		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask);
+		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask.bind(this));
 
 		this.pageStatus = {
 			isRightMenu: true,
@@ -187,6 +187,8 @@ export default new (class basePage extends BaseView {
 	 * @param {ProfileStore} data
 	 */
 	loadImpTask(data: ProfileStore) {
+		this.removeListeners();
+
 		const div = document.querySelector('.active-tasks');
 		console.log(data);
 		data.impTasks.map((el) => {
@@ -202,6 +204,8 @@ export default new (class basePage extends BaseView {
 		});
 
 		div.innerHTML = html;
+
+		this._createListeners();
 	}
 
 	/**

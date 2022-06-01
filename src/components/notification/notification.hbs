@@ -5,7 +5,17 @@
 <div class="main__content">
     {{#each notification}}
         <div class="notification">
-            <div class="desk__title header2">{{title}}</div>
+            <div class="notification__title-block">
+                <div class="desk__title header2">{{title}}</div>
+                <div>
+                    {{#if isRead}}
+                        <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7515 0.445781C14.0828 0.777135 14.0828 1.31437 13.7515 1.64572L4.84239 10.5548C4.51104 10.8862 3.97381 10.8862 3.64246 10.5548L0.248515 7.16087C-0.0828385 6.82952 -0.0828385 6.29229 0.248515 5.96093C0.579869 5.62958 1.1171 5.62958 1.44845 5.96093L4.24242 8.7549L12.5515 0.445781C12.8829 0.114427 13.4201 0.114427 13.7515 0.445781Z" fill="#4277FA"/>
+                        </svg>
+                    {{/if}}
+                </div>
+            </div>
+
             <div class="desk__description notification__description">
                 {{{description}}}
             </div>
