@@ -10,6 +10,13 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	loadImpTask: async () => {
+		try {
+			return await Ajax.get({url: 'task'});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	loginProfile: async (data) => {
 		try {
 			return await Ajax.post({url: 'api/login', opt: JSON.stringify(data)});

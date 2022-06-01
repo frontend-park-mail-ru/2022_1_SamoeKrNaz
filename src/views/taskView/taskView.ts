@@ -249,6 +249,15 @@ export default new (class TaskView extends BaseView {
 			},
 			{
 				type: 'click',
+				className: 'taskBlock__important-task',
+				func: (e) => {
+					Dispatcher.dispatch({
+						type: TaskActions.setImportant,
+					});
+				},
+			},
+			{
+				type: 'click',
 				className: 'taskBlock__comment-text-delete',
 				isArray: true,
 				func: (e) => {
@@ -378,6 +387,8 @@ export default new (class TaskView extends BaseView {
 	 * @param {TaskStore} data состояние стора
 	 */
 	onUpdate(data: TaskStore = null): void {
+		console.log(data);
+
 		this.removeListeners();
 
 		const addUsers = Board.getUsers().slice(0);

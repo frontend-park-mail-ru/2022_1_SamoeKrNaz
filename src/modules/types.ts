@@ -28,6 +28,8 @@ export interface ProfileStore {
 		unSuccessAv: string,
 		avatarPath: string,
 	},
+
+	impTasks: Task;
 }
 
 export interface Event {
@@ -46,6 +48,8 @@ export type Task = Array<{
 	title: string,
 	position: number,
 	IdL: number,
+	deadline: string,
+	IdB: number,
 }>;
 
 export type List = Array<{
@@ -75,6 +79,7 @@ export interface TaskStore {
 	description: string,
 	append_users: Users,
 	idt: number,
+	is_important: boolean,
 	isExec: boolean,
 	isLarge: boolean,
 	checkList: Array<{

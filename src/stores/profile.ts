@@ -5,6 +5,7 @@ import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
 import router from '../modules/router';
 import {DispatcherAction, ProfileStore} from '../modules/types';
+import Dispatcher from '../modules/dispatcher';
 
 /**
  * Класс реализующий стор для профиля пользователя
@@ -25,6 +26,8 @@ class Profile extends Store {
 			validation: {},
 
 			avatar: {},
+
+			impTasks: null,
 		});
 	}
 
@@ -52,6 +55,9 @@ class Profile extends Store {
 		case ProfileActions.logout:
 			await this._logout();
 			break;
+		case ProfileActions.loadImpTask:
+			await this._loadImpTask();
+			break;
 		}
 	}
 
@@ -71,6 +77,21 @@ class Profile extends Store {
 		}
 
 		this._publish(ProfileEvents.load);
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
+	}
+
+	/**
+	 * Получение и обработка информации о важных тасках
+	 */
+	async _loadImpTask() {
+		const res = await ajaxMethods.loadImpTask();
+
+		this._data.impTasks = res.body;
+
+		this._publish(ProfileEvents.loadImpTask);
 	}
 
 	/**

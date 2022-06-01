@@ -89,6 +89,9 @@ class Task extends Store {
 		case TaskActions.downloadAttachment:
 			await this._downloadAttachment(action);
 			break;
+		case TaskActions.setImportant:
+			await this._setImportant();
+			break;
 		case TaskActions.blockUpdate:
 			this.isBlock = true;
 			break;
@@ -141,6 +144,21 @@ class Task extends Store {
 		const res = await ajaxMethods.updateTitle({id: this._data.idt, body: {title: action.title}});
 
 		this._data.title = action.title;
+
+		this._publish(Events.taskUpdate);
+	}
+
+	/**
+	 * Сделать таску важной
+	 */
+	async _setImportant() {
+		this._data.is_important = !this._data.is_important;
+
+		const res = await ajaxMethods.setImportant({id: this._data.idt, body: {is_important: this._data.is_important}});
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 
 		this._publish(Events.taskUpdate);
 	}

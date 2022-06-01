@@ -71,6 +71,14 @@
                         </svg>
                     </div>
                 </div>
+                <div class="taskBlock__content-dop-date">
+                    <p class="taskBlock__text">Отметить как важное:</p>
+                    {{#if is_important}}
+                        <div class="taskBlock__important-task">Задача отмечена</div>
+                    {{else}}
+                        <div class="taskBlock__important-task taskBlock__not-important-task">Отметить задачу</div>
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
