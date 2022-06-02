@@ -186,7 +186,7 @@ export default new (class basePage extends BaseView {
 	}
 
 	/**
-	 * Функция уберающая все активные страницы с левого меню
+	 * Функция убирающая все активные страницы с левого меню
 	 */
 	switchPage() {
 		const menuItems = document.querySelectorAll('[data-page]');
