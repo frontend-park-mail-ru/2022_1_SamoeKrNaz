@@ -284,6 +284,10 @@ export default new (class BoardPage extends BaseView {
 			Dispatcher.dispatch({
 				type: BoardActions.loadTaskInvite,
 			});
+		} else if (currentUrl.includes('task/')) {
+			Dispatcher.dispatch({
+				type: BoardActions.openTaskByUrl,
+			});
 		} else {
 			Dispatcher.dispatch({
 				type: BoardActions.loadBoard,

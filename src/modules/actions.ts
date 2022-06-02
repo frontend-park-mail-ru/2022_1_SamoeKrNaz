@@ -40,6 +40,7 @@ export const BoardActions = {
 	loadTaskInvite: 'loadTaskInvite',
 	blockUpdate: 'blockUpdate',
 	unBlockUpdate: 'unBlockUpdate',
+	openTaskByUrl: 'openTaskByUrl',
 };
 
 export const TaskActions = {

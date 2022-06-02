@@ -80,16 +80,17 @@ export default new (class Board extends Store {
 		case BoardActions.loadTaskInvite:
 			await this._loadTaskInvite();
 			break;
+		case BoardActions.openTaskByUrl:
+			await this._openTaskByUrl();
+			break;
 		case BoardActions.copyLink:
 			this._copyLink();
 			break;
 		case BoardActions.blockUpdate:
 			this._data.isBlock = true;
-			console.log('Обновление доски заблокированно');
 			break;
 		case BoardActions.unBlockUpdate:
 			this._data.isBlock = false;
-			console.log('Обновление доски разаблокированно');
 			this._publish(Events.boardUpdate);
 			break;
 		}
@@ -421,9 +422,6 @@ export default new (class Board extends Store {
 		case ResponseStatus.conflict:
 			window.history.pushState('', '', '/board/' + res.body.IdB);
 			await this._loadBoard();
-			setTimeout(()=>{
-				TaskView.renderLink(res.body.idt);
-			}, 100);
 			break;
 		default:
 			router.open(Url.invitePage);
@@ -431,6 +429,27 @@ export default new (class Board extends Store {
 		}
 
 		this._publish(Events.boardUpdate);
+
+		TaskView.renderLink(res.body.idt);
+	}
+
+	/**
+	 * Загрузка карточки
+	 */
+	async _openTaskByUrl() {
+		const res = await ajaxMethods.loadTask(window.location.pathname.split('/').pop());
+
+		switch (res.status) {
+		case ResponseStatus.success:
+		case ResponseStatus.conflict:
+			window.history.pushState('', '', '/board/' + res.body.IdB);
+			await this._loadBoard();
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+		
+		TaskView.renderLink(res.body.idt);
 	}
 
 	/**

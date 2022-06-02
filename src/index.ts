@@ -1,5 +1,3 @@
-'use strict';
-
 import './css/style.scss';
 
 import Dispatcher from './modules/dispatcher';
@@ -53,5 +51,6 @@ router.register(Url.board, BoardPage);
 router.register(Url.noNetwork, NoNetworkPage);
 router.register(Url.inviteBoard, BoardPage);
 router.register(Url.inviteTask, BoardPage);
+router.register(Url.task, BoardPage);
 router.register(Url.invitePage, InvitePage);
 router.register(Url.notifications, NotificationPage);

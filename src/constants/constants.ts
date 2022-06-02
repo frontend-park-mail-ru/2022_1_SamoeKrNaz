@@ -18,6 +18,7 @@ export const Url = {
 	base: '/base',
 	signup: '/signup',
 	board: '/board/<id>',
+	task: '/task/<id>',
 	index: '/',
 	notFound: '/404',
 	noNetwork: '/noNetwork',

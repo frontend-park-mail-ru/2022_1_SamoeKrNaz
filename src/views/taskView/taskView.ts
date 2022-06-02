@@ -379,7 +379,12 @@ export default new (class TaskView extends BaseView {
 			type: TaskActions.loadTask,
 			data: data,
 		});
+
 		block.classList.add('taskBlock_active');
+
+		Dispatcher.dispatch({
+			type: BoardActions.blockUpdate,
+		});
 	}
 
 	/**
