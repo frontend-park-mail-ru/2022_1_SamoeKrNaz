@@ -1,4 +1,4 @@
-import {backendUrl, WSMsg} from '../constants/constants';
+import {backendUrl, WSMsg, NotificationTypes} from '../constants/constants';
 import {MsgData} from '../modules/types';
 import Board from '../stores/board';
 import Task from '../stores/task';
@@ -82,7 +82,11 @@ export default new class Socket {
 		case WSMsg.updateBoard:
 			this.updateBoard(msg);
 			break;
-		case WSMsg.notification:
+		case NotificationTypes.deleteFromBoard:
+		case NotificationTypes.appendToTask:
+		case NotificationTypes.deleteFromTask:
+		case NotificationTypes.inviteUser:
+		case NotificationTypes.appendToBoard:
 			this.notification();
 			break;
 		}
