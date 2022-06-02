@@ -90,6 +90,7 @@ export default new (class NotificationPage extends BaseView {
 	/**
 	 * Форматирование уведомления о добавлении пользователя
 	 * @param {NotificationType} notify
+	 * @return {object}
 	 */
 	formatInviteUser(notify: NotificationType) {
 		return {
@@ -113,6 +114,7 @@ export default new (class NotificationPage extends BaseView {
 	/**
 	 * Форматирование уведомления о добавлении пользователя
 	 * @param {NotificationType} notify
+	 * @return {object}
 	 */
 	formatAppendToTask(notify: NotificationType) {
 		return {
@@ -133,6 +135,7 @@ export default new (class NotificationPage extends BaseView {
 	/**
 	 * Форматирование уведомления о добавлении пользователя
 	 * @param {NotificationType} notify
+	 * @return {object}
 	 */
 	formatAppendToBoard(notify: NotificationType) {
 		return {
@@ -153,6 +156,7 @@ export default new (class NotificationPage extends BaseView {
 	/**
 	 * Форматирование уведомления о удалении пользователя с карточки
 	 * @param {NotificationType} notify
+	 * @return {object}
 	 */
 	formatDeleteFromTask(notify: NotificationType) {
 		return {
@@ -173,6 +177,7 @@ export default new (class NotificationPage extends BaseView {
 	/**
 	 * Форматирование уведомления о удалении пользователя с карточки
 	 * @param {NotificationType} notify
+	 * @return {object}
 	 */
 	formatDeleteFromBoard(notify: NotificationType) {
 		return {

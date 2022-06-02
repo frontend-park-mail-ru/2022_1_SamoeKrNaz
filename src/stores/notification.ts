@@ -27,12 +27,12 @@ export default new (class Notification extends Store {
 	 */
 	async _callback(action: DispatcherAction) {
 		switch (action.type) {
-			case NotificationActions.loadNotifications:
-				await this._loadNotifications();
-				break;
-			case NotificationActions.readAll:
-				await this._readAll();
-				break;
+		case NotificationActions.loadNotifications:
+			await this._loadNotifications();
+			break;
+		case NotificationActions.readAll:
+			await this._readAll();
+			break;
 		}
 	}
 
@@ -43,12 +43,12 @@ export default new (class Notification extends Store {
 		const res = await ajaxMethods.loadNotifications();
 
 		switch (res.status) {
-			case ResponseStatus.success:
-				this._data.notification = res.body.slice(0, 10);
-				break;
+		case ResponseStatus.success:
+			this._data.notification = res.body.slice(0, 10);
+			break;
 
-			default:
-				console.error('Что-то пошло не по плану');
+		default:
+			console.error('Что-то пошло не по плану');
 		}
 
 		if (router.getView() === NotificationPage) {
@@ -69,15 +69,15 @@ export default new (class Notification extends Store {
 		const res = await ajaxMethods.readAll();
 
 		switch (res.status) {
-			case ResponseStatus.success:
-				this._data.notification?.map((el) => {
-					el.is_read = true;
-				});
+		case ResponseStatus.success:
+			this._data.notification?.map((el) => {
+				el.is_read = true;
+			});
 
-				this.switchIcon();
-				break;
-			default:
-				console.error('Что-то пошло не по плану');
+			this.switchIcon();
+			break;
+		default:
+			console.error('Что-то пошло не по плану');
 		}
 	}
 
@@ -90,6 +90,7 @@ export default new (class Notification extends Store {
 
 	/**
 	 * Получить состояние уведомлений
+	 * @return {object}
 	 */
 	getState() {
 		return this._data;

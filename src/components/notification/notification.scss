@@ -12,16 +12,13 @@
 		color: #383838;
 		text-decoration: none;
 	}
-
 	a.notification__description-black:hover {
 		text-decoration: underline;
 	}
-
 	&__title-block {
 		display: flex;
 		justify-content: space-between;
 	}
-
 	&__description {
 		font-style: normal;
 		font-weight: 500;
@@ -31,7 +28,6 @@
 		color: #898989;
 		margin-bottom: 0;
 	}
-
 	&__button {
 		padding: 7px 30px;
 		font-weight: 400;

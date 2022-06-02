@@ -58,12 +58,10 @@ svg[data-notification="true"] {
 			display: none;
 		}
 	}
-
 	&__menu-block {
 		width: calc(100% - $menu-width + $button-size);
 		cursor: pointer;
 	}
-
 	&__menu-part {
 		width: 100%;
 		height: $button-size;
@@ -75,7 +73,6 @@ svg[data-notification="true"] {
 		&:hover {
 			background: #f3f3f3;
 		}
-
 		&_active {
 			background: $blue-color;
 			color: $white;
@@ -84,11 +81,9 @@ svg[data-notification="true"] {
 				background: $blue-color;
 			}
 		}
-
 		&_active path {
 			fill: #f8fafd;
 		}
-
 		&_deactive {
 			cursor: not-allowed;
 		}

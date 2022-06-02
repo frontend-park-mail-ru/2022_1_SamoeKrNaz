@@ -200,6 +200,7 @@ export default new (class basePage extends BaseView {
 
 	/**
 	 * Функция изменяющая состояние иконки уведомлений
+	 * @param {object} data
 	 */
 	switchNotificationIcon(data) {
 		const state = data.notification[0].is_read;
@@ -210,9 +211,10 @@ export default new (class basePage extends BaseView {
 
 	/**
 	 * Функция делающая активной страницу на левом меню
+	 * @param {string} path
 	 */
 	selectPage(path: string) {
-		console.log(path)
+		console.log(path);
 		document.querySelector('[data-page="' + path + '"]')?.classList.add('header__menu-part_active');
 	}
 

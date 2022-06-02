@@ -50,7 +50,7 @@ export interface Task {
 	IdL: number,
 	deadline: string,
 	IdB: number,
-};
+}
 
 export type Tasks = Array<Task>;
 
@@ -65,7 +65,7 @@ export interface User {
 	idu: number,
 	username: string,
 	img_avatar: string,
-};
+}
 
 export type Users = Array<User>;
 
@@ -124,6 +124,6 @@ export interface NotificationType {
 	board: BoardStore,
 	is_read: boolean,
 	task: Task,
-};
+}
 
 export type Notifications = Array<NotificationType>;

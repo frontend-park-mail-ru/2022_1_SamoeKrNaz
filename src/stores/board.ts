@@ -448,7 +448,7 @@ export default new (class Board extends Store {
 		}
 
 		this._publish(Events.boardUpdate);
-		
+
 		TaskView.renderLink(res.body.idt);
 	}
 

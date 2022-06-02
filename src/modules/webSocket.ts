@@ -16,6 +16,10 @@ export default new class Socket {
 	private state: boolean;
 	private notifyAudio: HTMLAudioElement;
 
+	/**
+	 * Конструктор, который загружает звуковой файл
+	 * @constructor
+	 */
 	constructor() {
 		this.notifyAudio = new Audio('../img/notification.mp3');
 	}
@@ -126,6 +130,6 @@ export default new class Socket {
 
 		Dispatcher.dispatch({
 			type: NotificationActions.loadNotifications,
-		})
+		});
 	}
 };
