@@ -35,7 +35,7 @@ export default new class Socket {
 		this.socket.onmessage = this.msg.bind(this);
 		this.socket.onclose = this.onClose.bind(this);
 		this.socket.onerror = (error) => {
-			alert(`[error] ${error}`);
+			console.error(`[error] ${error}`);
 		};
 	}
 

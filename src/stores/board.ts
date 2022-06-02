@@ -382,8 +382,6 @@ export default new (class Board extends Store {
 				this._data.validation.errorMsg = 'Такого пользователя не существует';
 				this._publish(Events.boardError);
 			} else {
-				this._data.board.Users.push(res.body);
-
 				this._publish(Events.boardUpdate);
 
 				await ajaxMethods.addUser({id: this._data.board.idb, body: res.body[0].idu});
