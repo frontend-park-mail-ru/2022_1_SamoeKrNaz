@@ -25,6 +25,15 @@ export default new (class NotificationPage extends BaseView {
 					BasePage.toggleLeft();
 				},
 			},
+			{
+				type: 'click', // Тип обработчика, который навешивается
+				className: 'clearNotification', // Класс, на который навешивается обработчки
+				func: () => { // Функция, которая вызывается обработчиком
+					Dispatcher.dispatch({
+						type: NotificationActions.clear,
+					});
+				},
+			},
 		]);
 
 		EventBus.subscribe(Events.notificationUpdate, this.onUpdate.bind(this));

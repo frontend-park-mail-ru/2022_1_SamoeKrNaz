@@ -33,6 +33,9 @@ export default new (class Notification extends Store {
 		case NotificationActions.readAll:
 			await this._readAll();
 			break;
+		case NotificationActions.clear:
+			await this._clear();
+			break;
 		}
 	}
 
@@ -79,6 +82,17 @@ export default new (class Notification extends Store {
 		default:
 			console.error('Что-то пошло не по плану');
 		}
+	}
+
+	/**
+	 * Метод реализующий загрузку досок пользователя
+	 */
+	private async _clear() {
+		const res = await ajaxMethods.clear();
+
+		Dispatcher.dispatch({
+			type: NotificationActions.loadNotifications,
+		});
 	}
 
 	/**

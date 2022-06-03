@@ -15,4 +15,11 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	clear: async () => {
+		try {
+			return await Ajax.delete({url: 'notification'});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 };
