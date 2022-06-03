@@ -100,7 +100,11 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 */
 	async _loadBoard() {
+		this.startLoader();
+
 		const res = await ajaxMethods.loadBoard(window.location.pathname.split('/').pop());
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.success:

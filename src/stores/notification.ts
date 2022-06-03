@@ -69,7 +69,11 @@ export default new (class Notification extends Store {
 	 * Метод реализующий загрузку досок пользователя
 	 */
 	private async _readAll() {
+		this.startLoader();
+
 		const res = await ajaxMethods.readAll();
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.success:

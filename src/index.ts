@@ -4,6 +4,7 @@ import Dispatcher from './modules/dispatcher';
 import {ProfileActions} from './modules/actions';
 import {Url} from './constants/constants';
 import router from './modules/router';
+import Loaders from './modules/loader';
 import Socket from './modules/webSocket';
 
 import Profile from './stores/profile';
@@ -25,6 +26,7 @@ import NotificationPage from './views/notification/notification';
 Board;
 Boards;
 Task;
+Loaders;
 
 if (!Profile.isLoad()) {
 	Dispatcher.dispatch({

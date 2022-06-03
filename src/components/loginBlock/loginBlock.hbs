@@ -26,8 +26,8 @@
             {{> input/input inputPlaceholder="Укажите логин" inputType="text" inputId="input_login" }}
             {{> input/input inputPlaceholder="Введите пароль" inputType="password" inputId="input_pass" }}
             <button class="auth__block_button" type="submit">
-<!--                <span>Войти</span>-->
-                <div data-loader="true" data-loader-type="circle"></div>
+                <span data-hidden-loader="false">Войти</span>
+                <div data-loader="false" data-loader-type="circle"></div>
             </button>
         </form>
         <div class="auth__block_signup">

@@ -203,10 +203,12 @@ export default new (class basePage extends BaseView {
 	 * @param {object} data
 	 */
 	switchNotificationIcon(data) {
-		const state = data.notification[0].is_read;
+		if (data.notification.length) {
+			const state = data.notification[0]?.is_read;
 
-		(<HTMLElement> document.querySelector('[data-notification="' + state + '"]')).style.display = 'none';
-		(<HTMLElement> document.querySelector('[data-notification="' + !state + '"]')).style.display = 'block';
+			(<HTMLElement> document.querySelector('[data-notification="' + state + '"]')).style.display = 'none';
+			(<HTMLElement> document.querySelector('[data-notification="' + !state + '"]')).style.display = 'block';
+		}
 	}
 
 	/**
