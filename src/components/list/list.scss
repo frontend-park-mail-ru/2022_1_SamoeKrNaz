@@ -27,7 +27,7 @@
 
 		&-block {
 			min-width: 345px;
-			height: calc(100vh - 151px);
+			height: calc(100vh - 166px);
 
 			@include media("max", "lg") {
 				min-width: 310px;

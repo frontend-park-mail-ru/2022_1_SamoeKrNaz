@@ -1,6 +1,7 @@
 import Dispatcher from '../modules/dispatcher';
 import EventBus from '../modules/eventBus';
 import {DispatcherAction} from '../modules/types';
+import {Events} from '../modules/actions';
 
 /**
  * Базовый класс стора, от которого будут наследоваться все остальные сторы
@@ -36,6 +37,20 @@ class Store {
 	 */
 	_publish(event: string) {
 		EventBus.publish(event, this._data);
+	}
+
+	/**
+	 * Визуальный запуск лоадера
+	 */
+	startLoader() {
+		EventBus.publish(Events.startLoader, this._data);
+	}
+
+	/**
+	 * Визуальный запуск лоадера
+	 */
+	stopLoader() {
+		EventBus.publish(Events.stopLoader, this._data);
 	}
 }
 

@@ -84,6 +84,8 @@ export const NotificationActions = {
 
 export const Events = {
 	boardsUpdate: 'boards',
+	startLoader: 'startLoader',
+	stopLoader: 'stopLoader',
 	boardsCreateError: 'boardsError',
 	boardUpdate: 'board',
 	boardError: 'boardError',
