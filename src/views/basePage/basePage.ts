@@ -231,7 +231,7 @@ export default new (class basePage extends BaseView {
 
 		const div = document.querySelector('.active-tasks');
 		console.log(data);
-		data.impTasks.map((el) => {
+		data.impTasks?.map((el) => {
 			if (el.deadline !== '') {
 				el.deadline = el.deadline.replace('-', '.').replace('-', '.').replace('T', ' ');
 			} else {

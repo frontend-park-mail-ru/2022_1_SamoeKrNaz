@@ -273,8 +273,6 @@ export default new (class BoardPage extends BaseView {
 	render():void {
 		BasePage.render();
 
-		this.onUpdate();
-
 		const currentUrl = window.location.href;
 		if (currentUrl.includes('boardappend/')) {
 			Dispatcher.dispatch({

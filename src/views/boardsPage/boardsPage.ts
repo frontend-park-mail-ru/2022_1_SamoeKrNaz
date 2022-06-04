@@ -44,8 +44,6 @@ export default new (class BoardsPage extends BaseView {
 	render() {
 		BasePage.render();
 
-		this.onUpdate();
-
 		Dispatcher.dispatch({
 			type: BoardsActions.loadBoards,
 		});
