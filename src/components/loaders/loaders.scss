@@ -27,12 +27,12 @@
 
 [data-loader-type="line"][data-loader="false"] {
 	display: block;
-	animation: lineEnd 0.1s linear 1;
+	animation: lineEnd 0.2s linear 1;
 }
 
 @keyframes lineEnd {
 	0% { width: 75vw; }
-	99% { width: 100vw; }
+	90% { width: 100vw; }
 	100% { display: none; }
 }
 

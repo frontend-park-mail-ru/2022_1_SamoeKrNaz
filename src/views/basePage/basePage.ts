@@ -9,6 +9,7 @@ import EventBus from '../../modules/eventBus';
 import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import SettingsView from '../settingsView/settingsView';
+import Profile from '../../stores/profile';
 import type {ProfileStore} from '../../modules/types';
 
 /**
@@ -165,6 +166,7 @@ export default new (class basePage extends BaseView {
 
 		const html = basePageTemp({
 			pageStatus: this.pageStatus,
+			profile: Profile.getState(),
 		});
 
 		/* Добавление контента в DOM */
