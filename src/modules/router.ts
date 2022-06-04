@@ -3,6 +3,7 @@ import EventBus from './eventBus';
 import {ProfileEvents} from './actions';
 import {ProfileStore} from './types';
 import BaseView from '../views/baseView';
+import {Events} from './actions';
 
 /**
  * Класс, реализующий смену страниц и историю перемещений по странице
@@ -91,6 +92,9 @@ class Router {
 			view = this._routes.get(path.replace(/\/boardappend\/.+/g, '/boardappend/<token>'));
 			if (view === undefined) {
 				view = this._routes.get(path.replace(/\/taskappend\/.+/g, '/taskappend/<token>'));
+				if (view === undefined) {
+					view = this._routes.get(path.replace(/\/task\/.+/g, '/task/<id>'));
+				}
 			}
 		}
 		this._currentView = view;
@@ -107,6 +111,9 @@ class Router {
 		}
 		// рендерим страницу
 		view.render();
+
+		EventBus.publish(Events.switchPage, null);
+		EventBus.publish(Events.selectPage, path);
 	}
 
 	/**

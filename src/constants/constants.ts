@@ -18,12 +18,14 @@ export const Url = {
 	base: '/base',
 	signup: '/signup',
 	board: '/board/<id>',
+	task: '/task/<id>',
 	index: '/',
 	notFound: '/404',
 	noNetwork: '/noNetwork',
 	inviteBoard: '/boardappend/<token>',
 	inviteTask: '/taskappend/<token>',
 	invitePage: '/invite',
+	notifications: '/notifications',
 };
 
 export const ResponseStatus = {
@@ -49,6 +51,15 @@ export const WSMsg = {
 	updateBoard: 'UpdateBoard',
 	updateTask: 'UpdateTask',
 	deleteTask: 'DeleteTask',
+	notification: 'Notification',
+};
+
+export const NotificationTypes = {
+	inviteUser: 'InviteUser',
+	appendToTask: 'AppendUserToTask',
+	appendToBoard: 'AppendUserToBoard',
+	deleteFromTask: 'DeleteUserFromTask',
+	deleteFromBoard: 'DeleteUserFromBoard',
 };
 
 export const backendUrl = window.location.origin.replace(':3000', ':8080') + '/';

@@ -9,6 +9,7 @@ import EventBus from '../../modules/eventBus';
 import {BoardsActions, Events, ProfileActions, ProfileEvents} from '../../modules/actions';
 import Dispatcher from '../../modules/dispatcher';
 import SettingsView from '../settingsView/settingsView';
+import Profile from '../../stores/profile';
 import type {ProfileStore} from '../../modules/types';
 
 /**
@@ -100,9 +101,10 @@ export default new (class basePage extends BaseView {
 			},
 			{
 				type: 'click',
-				className: 'homeButton',
-				func: () => {
-					router.open(Url.base);
+				querySelector: '[data-page]',
+				isArray: true,
+				func: (e) => {
+					router.open(e.target.closest('[data-page]').dataset.page);
 				},
 			},
 			{
@@ -142,8 +144,11 @@ export default new (class basePage extends BaseView {
 		]);
 
 		EventBus.subscribe(Events.boardsCreateError, this.errorRender);
+		EventBus.subscribe(Events.switchPage, this.switchPage);
+		EventBus.subscribe(Events.selectPage, this.selectPage);
 		EventBus.subscribe(Events.boardsUpdate, this.modalClose);
-		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask);
+		EventBus.subscribe(Events.switchNotificationIcon, this.switchNotificationIcon);
+		EventBus.subscribe(ProfileEvents.loadImpTask, this.loadImpTask.bind(this));
 
 		this.pageStatus = {
 			isRightMenu: true,
@@ -161,6 +166,7 @@ export default new (class basePage extends BaseView {
 
 		const html = basePageTemp({
 			pageStatus: this.pageStatus,
+			profile: Profile.getState(),
 		});
 
 		/* Добавление контента в DOM */
@@ -182,13 +188,50 @@ export default new (class basePage extends BaseView {
 	}
 
 	/**
+	 * Функция убирающая все активные страницы с левого меню
+	 */
+	switchPage() {
+		const menuItems = document.querySelectorAll('[data-page]');
+
+		for (const key in menuItems) {
+			if (menuItems.hasOwnProperty(key)) {
+				menuItems[key].classList.remove('header__menu-part_active');
+			}
+		}
+	}
+
+	/**
+	 * Функция изменяющая состояние иконки уведомлений
+	 * @param {object} data
+	 */
+	switchNotificationIcon(data) {
+		if (data.notification.length) {
+			const state = data.notification[0]?.is_read;
+
+			(<HTMLElement> document.querySelector('[data-notification="' + state + '"]')).style.display = 'none';
+			(<HTMLElement> document.querySelector('[data-notification="' + !state + '"]')).style.display = 'block';
+		}
+	}
+
+	/**
+	 * Функция делающая активной страницу на левом меню
+	 * @param {string} path
+	 */
+	selectPage(path: string) {
+		console.log(path);
+		document.querySelector('[data-page="' + path + '"]')?.classList.add('header__menu-part_active');
+	}
+
+	/**
 	 * Функция закрытия модального окна
 	 * @param {ProfileStore} data
 	 */
 	loadImpTask(data: ProfileStore) {
+		this.removeListeners();
+
 		const div = document.querySelector('.active-tasks');
 		console.log(data);
-		data.impTasks.map((el) => {
+		data.impTasks?.map((el) => {
 			if (el.deadline !== '') {
 				el.deadline = el.deadline.replace('-', '.').replace('-', '.').replace('T', ' ');
 			} else {
@@ -201,6 +244,8 @@ export default new (class basePage extends BaseView {
 		});
 
 		div.innerHTML = html;
+
+		this._createListeners();
 	}
 
 	/**

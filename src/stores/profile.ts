@@ -1,5 +1,5 @@
 import Store from './baseStore';
-import {ProfileActions, ProfileEvents} from '../modules/actions';
+import {ProfileActions, ProfileEvents, NotificationActions} from '../modules/actions';
 import Socket from '../modules/webSocket';
 import {Messages, ResponseStatus, Url} from '../constants/constants';
 import {ajaxMethods} from '../ajax/profile';
@@ -77,10 +77,6 @@ class Profile extends Store {
 		}
 
 		this._publish(ProfileEvents.load);
-
-		Dispatcher.dispatch({
-			type: ProfileActions.loadImpTask,
-		});
 	}
 
 	/**
@@ -115,7 +111,11 @@ class Profile extends Store {
 			return;
 		}
 
+		this.startLoader();
+
 		const res = await ajaxMethods.loginProfile({username: data.login, password: data.password});
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.success:
@@ -155,7 +155,11 @@ class Profile extends Store {
 			return false;
 		}
 
+		this.startLoader();
+
 		const res = await ajaxMethods.registerProfile({username: data.login, password: data.password});
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.created:
@@ -226,7 +230,7 @@ class Profile extends Store {
 	 * @param {DispatcherAction} data инфорация о событии
 	 */
 	async _uploadAvatar(data: DispatcherAction) {
-		if (data.data.size > 5000 * 1024) {
+		if (data.data.size > 1024) {
 			this._data.avatar.unSuccessAv = Messages['bigSize'];
 			this._publish(ProfileEvents.updateAvatarUnSuccess);
 			return;
@@ -276,6 +280,14 @@ class Profile extends Store {
 		this._data.id = data.id;
 		this._data.username = data.username;
 		this._data.img = '../' + data.img_avatar;
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
+
+		Dispatcher.dispatch({
+			type: NotificationActions.loadNotifications,
+		});
 
 		Socket.start();
 	}

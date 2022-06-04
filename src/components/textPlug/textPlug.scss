@@ -1,0 +1,38 @@
+.plug {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+
+	&__header {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 19px;
+		color: #2d2d2d;
+		margin: 15px 0;
+
+		&-blue {
+			color: $blue-color;
+		}
+	}
+	&__text {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 19px;
+		color: #7f7f7f;
+		text-align: center;
+	}
+	&-tasks {
+		margin-bottom: 60px;
+	}
+
+	@include media("max", "lg") {
+		height: 60vh;
+	}
+}
+
+.plug:not(:first-child) {
+	display: none;
+}

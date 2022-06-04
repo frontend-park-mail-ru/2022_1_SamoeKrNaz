@@ -7,3 +7,5 @@ node_modules
 index_bundle.js
 index_bundle.js.map
 index.html
+main.*.js
+main.*.js.map

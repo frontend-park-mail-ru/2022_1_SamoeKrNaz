@@ -24,6 +24,7 @@ export default new (class BoardsPage extends BaseView {
 			{
 				type: 'click',
 				className: 'createDeskButtonUnic',
+				isArray: true,
 				func: (e) => {
 					const createDeskBg = document.getElementsByClassName('createDesk__bg')[0]; // Фон попап окна
 					const createDesk = document.getElementsByClassName('createDesk')[0]; // Само окно
@@ -43,8 +44,6 @@ export default new (class BoardsPage extends BaseView {
 	 */
 	render() {
 		BasePage.render();
-
-		this.onUpdate();
 
 		Dispatcher.dispatch({
 			type: BoardsActions.loadBoards,

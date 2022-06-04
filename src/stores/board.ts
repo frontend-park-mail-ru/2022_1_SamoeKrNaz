@@ -1,8 +1,9 @@
 import Store from './baseStore';
-import {BoardActions, Events} from '../modules/actions';
+import {BoardActions, Events, ProfileActions} from '../modules/actions';
 import {ajaxMethods} from '../ajax/board';
 import {backendUrl, copyLength, frontendUrl, ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
+import Dispatcher from '../modules/dispatcher';
 import {Url} from '../constants/constants';
 import {BoardStore, DispatcherAction, Users} from '../modules/types';
 import TaskView from '../views/taskView/taskView';
@@ -80,16 +81,17 @@ export default new (class Board extends Store {
 		case BoardActions.loadTaskInvite:
 			await this._loadTaskInvite();
 			break;
+		case BoardActions.openTaskByUrl:
+			await this._openTaskByUrl();
+			break;
 		case BoardActions.copyLink:
 			this._copyLink();
 			break;
 		case BoardActions.blockUpdate:
 			this._data.isBlock = true;
-			console.log('Обновление доски заблокированно');
 			break;
 		case BoardActions.unBlockUpdate:
 			this._data.isBlock = false;
-			console.log('Обновление доски разаблокированно');
 			this._publish(Events.boardUpdate);
 			break;
 		}
@@ -99,7 +101,11 @@ export default new (class Board extends Store {
 	 * Загрузка в стор информации
 	 */
 	async _loadBoard() {
+		this.startLoader();
+
 		const res = await ajaxMethods.loadBoard(window.location.pathname.split('/').pop());
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.success:
@@ -265,6 +271,10 @@ export default new (class Board extends Store {
 			router.open(Url.base);
 			break;
 		}
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 	}
 
 	/**
@@ -351,6 +361,10 @@ export default new (class Board extends Store {
 			break;
 		}
 
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
+
 		this._publish(Events.boardUpdate);
 	}
 
@@ -381,8 +395,6 @@ export default new (class Board extends Store {
 				this._data.validation.errorMsg = 'Такого пользователя не существует';
 				this._publish(Events.boardError);
 			} else {
-				this._data.board.Users.push(res.body);
-
 				this._publish(Events.boardUpdate);
 
 				await ajaxMethods.addUser({id: this._data.board.idb, body: res.body[0].idu});
@@ -421,9 +433,6 @@ export default new (class Board extends Store {
 		case ResponseStatus.conflict:
 			window.history.pushState('', '', '/board/' + res.body.IdB);
 			await this._loadBoard();
-			setTimeout(()=>{
-				TaskView.renderLink(res.body.idt);
-			}, 100);
 			break;
 		default:
 			router.open(Url.invitePage);
@@ -431,6 +440,27 @@ export default new (class Board extends Store {
 		}
 
 		this._publish(Events.boardUpdate);
+
+		TaskView.renderLink(res.body.idt);
+	}
+
+	/**
+	 * Загрузка карточки
+	 */
+	async _openTaskByUrl() {
+		const res = await ajaxMethods.loadTask(window.location.pathname.split('/').pop());
+
+		switch (res.status) {
+		case ResponseStatus.success:
+		case ResponseStatus.conflict:
+			window.history.pushState('', '', '/board/' + res.body.IdB);
+			await this._loadBoard();
+			break;
+		}
+
+		this._publish(Events.boardUpdate);
+
+		TaskView.renderLink(res.body.idt);
 	}
 
 	/**

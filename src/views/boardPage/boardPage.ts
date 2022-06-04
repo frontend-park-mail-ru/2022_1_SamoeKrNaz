@@ -196,7 +196,7 @@ export default new (class BoardPage extends BaseView {
 				},
 			},
 			{
-				isArray: false,
+				isArray: true,
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk-invite', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
@@ -273,8 +273,6 @@ export default new (class BoardPage extends BaseView {
 	render():void {
 		BasePage.render();
 
-		this.onUpdate();
-
 		const currentUrl = window.location.href;
 		if (currentUrl.includes('boardappend/')) {
 			Dispatcher.dispatch({
@@ -283,6 +281,10 @@ export default new (class BoardPage extends BaseView {
 		} else if (currentUrl.includes('taskappend/')) {
 			Dispatcher.dispatch({
 				type: BoardActions.loadTaskInvite,
+			});
+		} else if (currentUrl.includes('task/')) {
+			Dispatcher.dispatch({
+				type: BoardActions.openTaskByUrl,
 			});
 		} else {
 			Dispatcher.dispatch({

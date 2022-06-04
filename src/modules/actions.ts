@@ -1,5 +1,3 @@
-'use strict';
-
 export const ProfileActions = {
 	loadProfile: 'loadProfile',
 	login: 'loginProfile',
@@ -42,6 +40,7 @@ export const BoardActions = {
 	loadTaskInvite: 'loadTaskInvite',
 	blockUpdate: 'blockUpdate',
 	unBlockUpdate: 'unBlockUpdate',
+	openTaskByUrl: 'openTaskByUrl',
 };
 
 export const TaskActions = {
@@ -77,12 +76,24 @@ export const BoardsActions = {
 	createBoard: 'createBoard',
 };
 
+export const NotificationActions = {
+	loadNotifications: 'loadNotifications',
+	readAll: 'readAllNotifications',
+	clear: 'clearNotification',
+};
+
 export const Events = {
 	boardsUpdate: 'boards',
+	startLoader: 'startLoader',
+	stopLoader: 'stopLoader',
 	boardsCreateError: 'boardsError',
 	boardUpdate: 'board',
 	boardError: 'boardError',
 	taskUpdate: 'taskUpdate',
 	taskDelete: 'taskDelete',
+	notificationUpdate: 'notificationUpdate',
+	switchPage: 'switchPage',
+	selectPage: 'selectPage',
+	switchNotificationIcon: 'switchNotificationIcon',
 };
 

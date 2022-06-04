@@ -46,7 +46,11 @@ export default new (class Boards extends Store {
 	 * Метод реализующий загрузку досок пользователя
 	 */
 	async _loadBoards() {
+		this.startLoader();
+
 		const res = await ajaxMethods.loadBoards();
+
+		this.stopLoader();
 
 		switch (res.status) {
 		case ResponseStatus.success:

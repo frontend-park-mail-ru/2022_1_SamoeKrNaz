@@ -1,5 +1,10 @@
 $leftMobile: 70vw;
 
+svg[data-notification="true"] {
+	display: none;
+	margin-right: -3px;
+}
+
 .header {
 	background: $white;
 	box-shadow: $shadow;
@@ -75,6 +80,9 @@ $leftMobile: 70vw;
 			&:hover {
 				background: $blue-color;
 			}
+		}
+		&_active path {
+			fill: #f8fafd;
 		}
 		&_deactive {
 			cursor: not-allowed;

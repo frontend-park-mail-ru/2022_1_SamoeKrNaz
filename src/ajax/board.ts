@@ -66,6 +66,13 @@ export const ajaxMethods = {
 			console.error('Error connection: ' + err);
 		}
 	},
+	loadTask: async (data) => {
+		try {
+			return await Ajax.get({url: 'task/' + data});
+		} catch (err) {
+			console.error('Error connection: ' + err);
+		}
+	},
 	findUsers: async (data) => {
 		try {
 			return await Ajax.post({url: 'api/profile/like', opt: JSON.stringify(data.body)});

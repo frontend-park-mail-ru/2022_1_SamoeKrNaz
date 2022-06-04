@@ -18,3 +18,10 @@
 		outline: 1px solid $blue-color;
 	}
 }
+
+.auth__block > .auth__block_error {
+	width: 258px;
+	border: 1px solid #ff7e7e;
+	line-height: 18px;
+	padding: 10px 20px;
+}
