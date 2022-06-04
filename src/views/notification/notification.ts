@@ -28,6 +28,7 @@ export default new (class NotificationPage extends BaseView {
 			{
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'clearNotification', // Класс, на который навешивается обработчки
+				isArray: true,
 				func: () => { // Функция, которая вызывается обработчиком
 					Dispatcher.dispatch({
 						type: NotificationActions.clear,

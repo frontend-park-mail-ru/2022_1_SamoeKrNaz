@@ -196,7 +196,7 @@ export default new (class BoardPage extends BaseView {
 				},
 			},
 			{
-				isArray: false,
+				isArray: true,
 				type: 'click', // Тип обработчика, который навешивается
 				className: 'desk-invite', // Класс, на который навешивается обработчки
 				func: (e) => { // Функция, которая вызывается обработчиком
