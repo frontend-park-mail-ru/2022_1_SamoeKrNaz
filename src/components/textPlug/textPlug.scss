@@ -30,6 +30,10 @@
 	&-tasks {
 		margin-bottom: 60px;
 	}
+
+	@include media("max", "lg") {
+		height: 60vh;
+	}
 }
 
 .plug:not(:first-child) {
