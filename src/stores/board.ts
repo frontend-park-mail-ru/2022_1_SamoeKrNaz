@@ -1,8 +1,9 @@
 import Store from './baseStore';
-import {BoardActions, Events} from '../modules/actions';
+import {BoardActions, Events, ProfileActions} from '../modules/actions';
 import {ajaxMethods} from '../ajax/board';
 import {backendUrl, copyLength, frontendUrl, ResponseStatus} from '../constants/constants';
 import router from '../modules/router';
+import Dispatcher from '../modules/dispatcher';
 import {Url} from '../constants/constants';
 import {BoardStore, DispatcherAction, Users} from '../modules/types';
 import TaskView from '../views/taskView/taskView';
@@ -355,6 +356,10 @@ export default new (class Board extends Store {
 			});
 			break;
 		}
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 
 		this._publish(Events.boardUpdate);
 	}
