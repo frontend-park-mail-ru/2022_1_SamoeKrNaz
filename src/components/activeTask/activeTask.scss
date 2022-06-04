@@ -9,7 +9,6 @@
 		position: relative;
 		cursor: pointer;
 	}
-
 	&__icon {
 		display: none;
 		border-radius: 20px;
@@ -22,25 +21,20 @@
 			&-1 > .icon-1 {
 				display: block;
 			}
-
 			&-2 > .icon-2 {
 				display: block;
 			}
-
 			&-3 > .icon-3 {
 				display: block;
 			}
-
 			&-4 > .icon-4 {
 				display: block;
 			}
-
 			&-5 > .icon-5 {
 				display: block;
 			}
 		}
 	}
-
 	&__text-block {
 		margin-left: 20px;
 

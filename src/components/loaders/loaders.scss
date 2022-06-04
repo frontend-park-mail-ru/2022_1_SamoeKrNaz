@@ -21,6 +21,7 @@
 }
 
 @keyframes line {
+
 	0% { width: 0; }
 	5% { width: 75vw; }
 	100% { width: 75vw; }
@@ -28,10 +29,11 @@
 
 [data-loader-type="line"][data-loader="false"] {
 	display: block;
-	animation: lineEnd 0.2s linear 1;
+	animation: line-end 0.2s linear 1;
 }
 
-@keyframes lineEnd {
+@keyframes line-end {
+
 	0% { width: 75vw; }
 	90% { width: 100vw; }
 	100% { display: none; }
@@ -50,16 +52,17 @@
 	border-top: 2px solid #fff;
 	border-left: 2px solid #fff;
 	border-right: 2px solid #fff;
-	-webkit-animation: spin 0.7s linear infinite;
 	animation: spin 0.7s linear infinite;
 }
 
-@-webkit-keyframes spin {
-	0% { -webkit-transform: rotate(0deg); }
-	100% { -webkit-transform: rotate(360deg); }
+@keyframes spin {
+
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }
 
 @keyframes spin {
+
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }

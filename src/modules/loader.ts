@@ -16,7 +16,7 @@ export default new class Loaders {
 	start() {
 		const hidden = document.querySelectorAll('[data-hidden-loader="false"]');
 		const loaders = document.querySelectorAll('[data-loader="false"]');
-		console.log(132)
+		console.log(132);
 		for (const key in hidden) {
 			if (hidden.hasOwnProperty(key)) {
 				(<HTMLElement> hidden[key]).setAttribute('data-hidden-loader', 'true');
@@ -39,7 +39,7 @@ export default new class Loaders {
 
 		for (const key in hidden) {
 			if (hidden.hasOwnProperty(key)) {
-				(<HTMLElement> hidden[key]).setAttribute('data-hidden-loader', 'false')
+				(<HTMLElement> hidden[key]).setAttribute('data-hidden-loader', 'false');
 			}
 		}
 
@@ -49,4 +49,4 @@ export default new class Loaders {
 			}
 		}
 	}
-}
+};
