@@ -271,6 +271,10 @@ export default new (class Board extends Store {
 			router.open(Url.base);
 			break;
 		}
+
+		Dispatcher.dispatch({
+			type: ProfileActions.loadImpTask,
+		});
 	}
 
 	/**
